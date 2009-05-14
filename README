@@ -9,6 +9,7 @@ This code is distributed under the GNU GENERAL PUBLIC LICENSE
 
 To install, see the file "INSTALL".
 
+
 Getting Started
 ================
 	See INSTALL file to install the software first.
@@ -77,6 +78,13 @@ http://jrevpro.sourceforge.net .
     If possible please , try to submit the class files with which you 
  encountered the errors since that would be very helpful to debug the issue.
  
+Source Control:
+==============
+   Started using Git from May 2009.
+
+
+
+
 
 Copyrights (c) 2000..2008 by  Karthik Kumar 
 akkumar@users.sourceforge.net.
