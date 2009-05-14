@@ -24,15 +24,16 @@ import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
 
 /**
- * @author akkumar
+ * Creates a custom logger
  * 
+ * @author akkumar
  */
 public class CustomLoggerFactory {
 
 	public static Logger createLogger() {
-		Logger logger = Logger.getLogger("JReversePro");
-		SimpleFormatter formatter = new SimpleFormatter();
-		StreamHandler handler = new StreamHandler(System.out, formatter);
+		final Logger logger = Logger.getLogger("JReversePro");
+		final SimpleFormatter formatter = new SimpleFormatter();
+		final StreamHandler handler = new StreamHandler(System.out, formatter);
 		logger.addHandler(handler);
 		logger.setLevel(Level.FINER);
 		return logger;
