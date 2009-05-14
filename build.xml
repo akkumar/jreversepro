@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<project name="JReversePro" default="compile" basedir=".">
+    <!-- ==================================================== -->
+    <!--  JReversePro - Java Decompiling suite                -->
+    <!--  Decompiling Engine build file                       -->
+    <!--  Author -  Karthik Kumar                             -->
+    <!-- ==================================================== -->
+
+    <target name="default" depends="usage, makejar">
+   <echo message="Using option makejar as the default option" />
+    </target>
+
+    <target name="usage">
+        <echo message="compile  Compile all source files"/>
+        <echo message="makejar  Make Library Jar File"/>
+        <echo message="dist     Create Distribution"/>
+        <echo message="docs     Create Java Docs"/>
+        <echo message="clean    Clean binaries"/>
+    </target>
+
+    <target name="init">
+        <property name="version"        value="1.4.0" />
+
+        <property name="build.compiler" value="modern"/>
+        <property name="dirs.base"      value="${basedir}"/>
+        <property name="classpath"      value="${java.class.path}" />
+        <property name="srcdir"         value="${dirs.base}/src"/>
+        <property name="classdir"       value="${dirs.base}/classes"/>
+        <property name="libdir"         value="${dirs.base}/lib"/>
+        <property name="bindir"         value="${dirs.base}/bin"/>
+        <property name="docdir"         value="${dirs.base}/docs"/>
+        <property name="distdir"        value="${dirs.base}/dist"/>
+        <property name="bindistdir"     value="${distdir}/bin" />
+        <property name="srcdistdir"     value="${distdir}/src" />
+        <property name="testdir"        value="${dirs.base}/test"/>
+        <property name="testtarget"     value="${dirs.base}/test/output"/>
+        <property name="apidir"         value="api"/>
+        <property name="jarfile"        value="jreversepro.jar"/>
+        <property name="doctitle"       value="JReversePro ${version} API"/>
+        <property name="windowtitle"    value="JReversePro ${version} API"/>
+        <property name="bottom"         value="Submit Feedback to akkumar@users.sourceforge.net"/>
+        
+        <chmod file="${bindir}/*" perm="ugo+rx-w"/>
+        
+    </target>
+
+    <!-- Compiler Target -->
+    <target name="compile" depends="clean,init" 
+                description="Compile all the Java source files">
+        <mkdir dir="${classdir}"/>
+        <javac srcdir="${srcdir}" destdir="${classdir}"/>
+    </target>
+
+    <!-- Create the Jar File -->
+    <target name="makejar" depends="init,compile" description="Make the Library Jar file">
+        <jar jarfile="${libdir}/${jarfile}" basedir="${classdir}" manifest="${srcdir}/manifest.txt"/>
+    </target>
+
+    <!-- Create Java Documentation -->
+    <target name="docs" depends="init, makejar" description="Create the Javadocs file">
+        <mkdir dir="${docdir}/${apidir}"/>
+        <javadoc packagenames=" jreversepro, jreversepro.common,jreversepro.parser,jreversepro.reflect, jreversepro.reflect.method, jreversepro.revengine, jreversepro.runtime" 
+             sourcepath="${srcdir}" classpath="${classpath}" destdir="${docdir}/${apidir}" use="true" windowtitle="${windowtitle}" doctitle="${doctitle}" bottom="${bottom}"/>
+    </target>
+
+    <!-- dist -->
+    <target name="dist" depends="cleanall, docs">
+        <property name="jrevroot"  value="jreversepro-${version}" />
+        <property name="infofiles" value="COPYING CHANGES README INSTALL AUTHORS"/>
+
+        <mkdir dir="${distdir}"    />
+
+        <mkdir dir="${bindistdir}" />
+        <mkdir dir="${bindistdir}/${jrevroot}" />
+        <copy todir="${bindistdir}/${jrevroot}">
+            <fileset dir="." includes="${infofiles} bin/** lib/** docs/** " 
+                             excludes="CVS/** lib/checkstyle-all-2.3.jar" />
+        </copy>
+        <chmod file="${bindistdir}/${jrevroot}/bin/*" perm="ugo+rx-w"/>
+        <tar tarfile="${distdir}/bin.tar">
+             <tarfileset dir="${bindistdir}" mode="755">
+                 <include name="${jrevroot}/bin/**" />
+             </tarfileset> 
+
+             <tarfileset dir="${bindistdir}"> 
+                 <exclude name="${jrevroot}/bin/**"/>
+                 <include name="${jrevroot}/**"/>
+            </tarfileset>
+        </tar>
+        <gzip zipfile="${distdir}/jreversepro-${version}-bin.tgz" 
+              src="${distdir}/bin.tar" />
+
+        <mkdir dir="${srcdistdir}" />
+        <mkdir dir="${srcdistdir}/${jrevroot}" />
+        <copy todir="${srcdistdir}/${jrevroot}">
+            <fileset dir="." includes="build.xml ${infofiles} bin/** src/**" 
+                             excludes="CVS/**" />
+        </copy>
+        <chmod file="${srcdistdir}/${jrevroot}/bin/*" perm="ugo+rx-w"/>
+        <tar tarfile="${distdir}/src.tar">
+             <tarfileset dir="${srcdistdir}" mode="755">
+                 <include name="${jrevroot}/bin/**" />
+             </tarfileset> 
+
+             <tarfileset dir="${srcdistdir}"> 
+                 <exclude name="${jrevroot}/bin/**"/>
+                 <include name="${jrevroot}/**"/>
+             </tarfileset>
+        </tar>
+        <gzip zipfile="${distdir}/jreversepro-${version}-src.tgz" 
+              src="${distdir}/src.tar" />
+
+    </target> 
+
+    <!-- uploads to sourceforge -->
+    <target name="sourceforge" depends="dist">
+        <exec dir="${distdir}" executable="ncftpput">
+            <arg line="-V upload.sourceforge.net /incoming jreversepro-${version}-src.tgz" />
+        </exec>
+
+        <exec dir="${distdir}" executable="ncftpput">
+            <arg line="-V upload.sourceforge.net /incoming jreversepro-${version}-bin.tgz" />
+        </exec>
+    </target>
+
+
+    <!-- Clean up -->
+    <target name="clean" depends="init" description="Clean up binary Files">
+        <delete dir="${classdir}"/>
+        <delete> 
+            <fileset dir="${basedir}" includes="**/*~" defaultexcludes="no" />
+        </delete>
+    </target>
+
+
+    <!-- Clean up -->
+    <target name="cleanall" depends="init, clean" description="Clean up All Files">
+        <delete dir="${docdir}/${apidir}"/>
+        <delete dir="${distdir}"/>
+    </target>
+
+    <!-- targets for testing -->
+    <target name="compiletests" depends="init"> 
+        <javac srcdir="testclasses" destdir="testclasses"/>
+    </target>
+
+    <target name="runtests" depends="compiletests"> 
+        <java classpath="lib/jreversepro.jar" classname="jreversepro.tester.TestMain">
+            <arg value="${dirs.base}" />
+        </java>
+    </target>
+
+    <target name="cleantests">
+        <delete includeEmptyDirs="true"> 
+            <fileset dir="${basedir}"  includes="testrun*/*"  />
+            <fileset dir="${basedir}"  includes="testrun*" />
+            <fileset dir="testclasses" includes="**/*.class" />
+        </delete>     
+    </target>
+    
+</project>

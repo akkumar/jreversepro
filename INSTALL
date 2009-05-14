@@ -1,0 +1,11 @@
+                     JReversePro 1.4.0
+               Java Decompiler / Disassembler
+                 http://jrevpro.sourceforge.net
+	             Oct 19  2002
+
+To Install:
+==========
+	Set the environment variable JREVERSE_HOME to point to this directory,
+to which you have extracted the tarball.
+	Add JREVERSE_HOME/bin to the PATH environment variable.
+	

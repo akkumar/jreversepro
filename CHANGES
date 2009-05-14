@@ -1,0 +1,48 @@
+                       JReversePro 
+               Java Decompiler / Disassembler
+               http://jreversepro.blogspot.com
+
+
+version 1.4.0 ( Oct 19 2002 )
+	bug regarding transient field members fixed.
+	lookup switch handling modified appropriately.
+	invokestatic instruction handling bug fixed.
+	Introduction of method blocks in API thereby moving towards provision of maximum manipulation of decompiled code through code.
+	Fixed a bug related to space in throw new Exception .
+	
+version 1.3.3: ( May 07 2002 ).
+
+version 1.3.2: ( Feb 5 2002 ).
+	Fixed a bug to identify an empty-catch statement.
+	Better command-line interface now.
+	
+
+version 1.3.1: ( Jan 26 2002 ).
+	Some code enhancements to speed up the decompilation especially avoiding the costly breakup for switch and normal statements.
+	Bug regarding the size of  long and double variables in LocalSymbolTable fixed.
+	
+	Statements of the type 'Object obj = null'  get decompiled correctly.
+	
+	Now viewing of constantpool contents is better.
+
+
+version 1.3: ( Jan 2002 ).
+	Now statements containing finally ..  and synchronized are decompiled properly.
+	Also ternary expressions now decompile correctly.
+	
+	TODO: Live variable analysis probably need to be more rigorous ...,
+		Currently variables are declared but decompiled code uses variables use 
+		them out-of-scope.
+	This project has hopefully entered into its pre-alpha stage..	
+		
+
+version 1.2: ( Jun 2001 ).
+	Fixed more bugs.
+
+version 1.1: ( Mar 2001 ).
+	Bugs fixed in  the reverse engineering engine.
+	
+
+version 1.0: ( Dec 2000 ).
+	Started working on a Java decompiler. 
+	This has just got over the design stage!!
