@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import net.sf.jrevpro.CustomLoggerFactory;
+import net.sf.jrevpro.VersionChecker;
 import net.sf.jrevpro.output.AbstractOutputter;
 import net.sf.jrevpro.output.DecompilerOutputter;
 import net.sf.jrevpro.output.DisassemblerOutputter;
@@ -51,18 +53,18 @@ public class JReverseProContext {
 	 * @throws FileNotFoundException
 	 * @throws ClassParserException
 	 */
-	public ClassInfo loadResource(String pathToClass)
+	public ClassInfo loadResource(final String pathToClass)
 			throws FileNotFoundException, IOException, ClassParserException {
-		FileInputStream fis = new FileInputStream(pathToClass);
-		DataInputStream dis = new DataInputStream(fis);
+		final FileInputStream fis = new FileInputStream(pathToClass);
+		final DataInputStream dis = new DataInputStream(fis);
 
-		ClassFileParser cfp = ClassFileParserFactory.getClassFileParser(dis);
-		ClassInfo info = cfp.parseInputStream(dis, pathToClass);
+		final ClassFileParser cfp = ClassFileParserFactory.getClassFileParser(dis);
+		final ClassInfo info = cfp.parseInputStream(dis, pathToClass);
 		fis.close();
 		return info;
 	}
 
-	public String print(OutputType outputType, ClassInfo info) {
+	public String print(final OutputType outputType, final ClassInfo info) {
 		AbstractOutputter printer = null;
 		switch (outputType) {
 		case DISASSEMBLER:
@@ -98,5 +100,5 @@ public class JReverseProContext {
 			+ "\n// it under certain conditions;See the File 'COPYING' for "
 			+ "more details.\n";
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+	private final Logger logger = CustomLoggerFactory.createLogger();
 }
