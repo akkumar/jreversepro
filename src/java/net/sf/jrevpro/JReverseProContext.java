@@ -24,8 +24,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import net.sf.jrevpro.CustomLoggerFactory;
-import net.sf.jrevpro.VersionChecker;
 import net.sf.jrevpro.output.AbstractOutputter;
 import net.sf.jrevpro.output.DecompilerOutputter;
 import net.sf.jrevpro.output.DisassemblerOutputter;
@@ -94,7 +92,7 @@ public class JReverseProContext {
 	 */
 	public static String GPL_INFO = "// JReversePro v " + VERSION + " "
 			+ (new Date()) + "\n// http://jrevpro.sourceforge.net"
-			+ "\n// Copyright (C)2008 Karthik Kumar."
+			+ "\n// Copyright (C)2000-2009 Karthik Kumar."
 			+ "\n// JReversePro comes with ABSOLUTELY NO WARRANTY;"
 			+ "\n// This is free software, and you are welcome to redistribute"
 			+ "\n// it under certain conditions;See the File 'COPYING' for "
