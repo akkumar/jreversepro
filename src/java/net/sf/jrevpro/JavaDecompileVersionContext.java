@@ -18,7 +18,7 @@ public final class JavaDecompileVersionContext
   private JavaDecompileVersionContext()
   {
   }
-
+  
   private static final JavaDecompileVersionContext ctx = new JavaDecompileVersionContext();
 
   public enum JAVA_VERSION
