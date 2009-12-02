@@ -18,7 +18,7 @@ package net.sf.jrevpro.reflect.variabletable;
 
 public interface VariableTable {
 
-  int FULL_SCOPE_INSTRUCTION_INDEX = 0;
+  final int FULL_SCOPE_INSTRUCTION_INDEX = 0;
 
   /**
    * Records the reference for a given local variable index of inferred type -
@@ -31,7 +31,7 @@ public interface VariableTable {
    * @param referredBytecodeIndex
    *          variable store index.
    */
-  public abstract void recordLocalDatatypeReference(int localVariableIndex,
+  void recordLocalDatatypeReference(int localVariableIndex,
       char jvmVariableType, int referredBytecodeIndex);
 
   /**
@@ -45,14 +45,14 @@ public interface VariableTable {
    * @param referredBytecodeIndex
    *          variable store index.
    */
-  public abstract void recordLocalDatatypeReference(int localVariableIndex,
+  void recordLocalDatatypeReference(int localVariableIndex,
       String jvmVariableType, int referredBytecodeIndex);
 
   /**
    * @return Get the maximum number of symbols available in the scope of the
    *         current method.
    */
-  public abstract int getMaxSymbols();
+  int getMaxSymbols();
 
   /**
    * @param aVarIndex
@@ -62,6 +62,6 @@ public interface VariableTable {
    * @return Returns a name of the variable given the variable index and the
    *         instruction index.
    */
-  public abstract String getName(int aVarIndex, int aInsIndex);
+  String getName(int aVarIndex, int aInsIndex);
 
 }
