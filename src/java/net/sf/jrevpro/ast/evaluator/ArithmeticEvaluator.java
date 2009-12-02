@@ -18,7 +18,6 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
 
 import net.sf.jrevpro.ast.expression.BinaryOpExpression;
 import net.sf.jrevpro.ast.expression.BinaryOpExpression.BinaryOperator;

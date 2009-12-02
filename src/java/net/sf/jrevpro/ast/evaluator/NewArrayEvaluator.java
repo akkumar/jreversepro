@@ -20,7 +20,6 @@
 package net.sf.jrevpro.ast.evaluator;
 
 import java.util.Arrays;
-import java.util.List;
 
 import net.sf.jrevpro.ast.expression.ArrayInstantiationExpression;
 import net.sf.jrevpro.ast.expression.Expression;
@@ -123,7 +122,7 @@ public class NewArrayEvaluator extends AbstractInstructionEvaluator {
     }
     evalStack.push(expr);
 
-  }
+  } 
 
   /*
    * (non-Javadoc)

@@ -17,8 +17,6 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
-
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class NullEvaluator extends AbstractInstructionEvaluator {
@@ -38,3 +36,4 @@ public class NullEvaluator extends AbstractInstructionEvaluator {
   }
 
 }
+ 

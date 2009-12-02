@@ -21,7 +21,6 @@ package net.sf.jrevpro.ast.evaluator;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -48,7 +47,7 @@ public class RuntimeFrame {
     mapEvaluatorInstances = new HashMap<Class<? extends AbstractInstructionEvaluator>, AbstractInstructionEvaluator>();
 
     initEvaluators();
-
+ 
   }
 
   private void initEvaluators() {
@@ -173,13 +172,13 @@ public class RuntimeFrame {
     return context;
   }
 
-  private EvaluatorContext context;
+  private final EvaluatorContext context;
 
-  private Map<Class<? extends AbstractInstructionEvaluator>, AbstractInstructionEvaluator> mapEvaluatorInstances;
+  private final Map<Class<? extends AbstractInstructionEvaluator>, AbstractInstructionEvaluator> mapEvaluatorInstances;
 
   /** Set of instruction evaluators * */
   private Map<Integer, Class<? extends AbstractInstructionEvaluator>> mapEvaluatorTypes;
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 
 }/* End of class */

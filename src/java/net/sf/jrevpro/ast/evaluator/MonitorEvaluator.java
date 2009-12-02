@@ -17,8 +17,6 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
-
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -36,7 +34,7 @@ public class MonitorEvaluator extends AbstractInstructionEvaluator {
     super(context);
   }
 
-  /*
+  /* 
    * (non-Javadoc)
    * 
    * @see

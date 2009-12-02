@@ -19,7 +19,6 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import net.sf.jrevpro.CustomLoggerFactory;

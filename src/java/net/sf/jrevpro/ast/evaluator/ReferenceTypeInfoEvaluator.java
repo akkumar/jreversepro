@@ -18,8 +18,6 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
-
 import net.sf.jrevpro.ast.expression.ArrayLengthExpression;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.InstanceOfExpression;
@@ -98,7 +96,7 @@ public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
     }
     }
   }
-
+ 
   /*
    * (non-Javadoc)
    * 

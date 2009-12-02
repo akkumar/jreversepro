@@ -17,8 +17,6 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
-
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.ReturnExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
@@ -37,7 +35,7 @@ public class ReturnEvaluator extends AbstractInstructionEvaluator {
     super(context);
   }
 
-  /*
+  /* 
    * (non-Javadoc)
    * 
    * @see

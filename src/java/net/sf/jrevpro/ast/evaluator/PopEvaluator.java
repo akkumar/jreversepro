@@ -17,8 +17,6 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
-
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -84,7 +82,7 @@ public class PopEvaluator extends AbstractInstructionEvaluator {
   }
 
   /*
-   * (non-Javadoc)
+   * (non-Javadoc) 
    * 
    * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
    * getProcessingOpcodes()
