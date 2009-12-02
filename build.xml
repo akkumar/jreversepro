@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <project name="JReversePro" default="compile" basedir=".">
+	<property file="${basedir}/build.properties" />
+	
+	<import file="${basedir}/ivy-targets.xml" />
+
     <!-- ==================================================== -->
     <!--  JReversePro - Java Decompiling suite                -->
     <!--  Decompiling Engine build file                       -->
@@ -18,7 +22,7 @@
         <echo message="clean    Clean binaries"/>
     </target>
 
-    <target name="init">
+    <target name="init" depends="retrieve-ivy" >
         <property name="version"        value="1.4.0" />
 
         <property name="build.compiler" value="modern"/>
