@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import net.sf.jrevpro.CustomLoggerFactory;
+import net.sf.jrevpro.ast.block.Block;
 
 /**
  * 
@@ -38,9 +39,9 @@ public final class BlockEmitterFactory {
   }
 
   // Caching can be done as all method invoction are stateless
-  private static Map<Class, BlockEmitter> emitterCache = new HashMap<Class, BlockEmitter>();
+  private static Map<Class<? extends Block>, BlockEmitter> emitterCache = new HashMap<Class<? extends Block>, BlockEmitter>();
 
-  public static final BlockEmitter getBlockEmitter(Class clazz)
+  public static final BlockEmitter getBlockEmitter(Class<? extends Block> clazz)
       throws Exception {
 
     BlockEmitter emitter = emitterCache.get(clazz);
@@ -50,9 +51,8 @@ public final class BlockEmitterFactory {
     // during the window of vulnerability when simultaneous requests are
     // coming in.
     if (emitter == null) {
-      Class blockEmitter = Class.forName(BlockEmitterContext
-          .getBlockEmitterFQCN(clazz.getName()));
-      emitter = (BlockEmitter) blockEmitter.newInstance();
+      emitter = Class.forName(BlockEmitterContext
+          .getBlockEmitterFQCN(clazz.getName())).asSubclass(BlockEmitter.class).newInstance();
 
       emitterCache.put(clazz, emitter);
     }
