@@ -32,6 +32,11 @@ import net.sf.jrevpro.reflect.ConstantPool;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 import net.sf.jrevpro.reflect.variabletable.VariableTable;
 
+/**
+ * Evaluates the instructions (byte codes) as appropriate. 
+ * @author karthik.kumar
+ *
+ */
 public abstract class AbstractInstructionEvaluator implements JVMConstants,
 		JLSConstants, Opcodes {
 
