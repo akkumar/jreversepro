@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.BinaryOpExpression;
 import net.sf.jrevpro.ast.expression.BinaryOpExpression.BinaryOperator;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -144,7 +146,7 @@ public class ArithmeticEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IADD, OPCODE_LADD, OPCODE_FADD, OPCODE_DADD,
+    return Arrays.asList(OPCODE_IADD, OPCODE_LADD, OPCODE_FADD, OPCODE_DADD,
         OPCODE_ISUB, OPCODE_LSUB, OPCODE_FSUB, OPCODE_DSUB, OPCODE_IMUL,
         OPCODE_LMUL, OPCODE_FMUL, OPCODE_DMUL, OPCODE_IDIV, OPCODE_LDIV,
         OPCODE_FDIV, OPCODE_DDIV, OPCODE_IREM, OPCODE_LREM, OPCODE_FREM,

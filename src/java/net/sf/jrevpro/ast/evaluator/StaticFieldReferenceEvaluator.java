@@ -20,6 +20,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.FieldAccessExpression;
@@ -80,7 +82,7 @@ public class StaticFieldReferenceEvaluator extends AbstractInstructionEvaluator 
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_GETSTATIC, OPCODE_PUTSTATIC);
+    return Arrays.asList(OPCODE_GETSTATIC, OPCODE_PUTSTATIC);
   }
 
 }

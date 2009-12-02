@@ -17,6 +17,8 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -89,7 +91,7 @@ public class PopEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_POP, OPCODE_POP2);
+    return Arrays.asList(OPCODE_POP, OPCODE_POP2);
   }
 
 }

@@ -19,6 +19,8 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.FieldAccessExpression;
@@ -93,7 +95,7 @@ public class NonStaticFieldReferenceEvaluator extends
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_GETFIELD, OPCODE_PUTFIELD);
+    return Arrays.asList(OPCODE_GETFIELD, OPCODE_PUTFIELD);
   }
 
 }

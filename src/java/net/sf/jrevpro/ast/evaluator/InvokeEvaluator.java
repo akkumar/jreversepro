@@ -19,6 +19,7 @@
 package net.sf.jrevpro.ast.evaluator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_INVOKEVIRTUAL, OPCODE_INVOKEINTERFACE,
+    return Arrays.asList(OPCODE_INVOKEVIRTUAL, OPCODE_INVOKEINTERFACE,
         OPCODE_INVOKESPECIAL, OPCODE_INVOKESTATIC);
   }
 

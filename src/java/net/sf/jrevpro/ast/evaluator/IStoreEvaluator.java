@@ -19,6 +19,7 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import net.sf.jrevpro.CustomLoggerFactory;
@@ -87,7 +88,7 @@ public class IStoreEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_ISTORE, OPCODE_ISTORE_0, OPCODE_ISTORE_1,
+    return Arrays.asList(OPCODE_ISTORE, OPCODE_ISTORE_0, OPCODE_ISTORE_1,
         OPCODE_ISTORE_2, OPCODE_ISTORE_3);
   }
 

@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -44,7 +46,7 @@ public class IPushEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_BIPUSH, OPCODE_SIPUSH);
+    return Arrays.asList(OPCODE_BIPUSH, OPCODE_SIPUSH);
   }
 
 }

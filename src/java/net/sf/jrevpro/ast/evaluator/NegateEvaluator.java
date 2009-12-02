@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.UnaryOpExpression;
 import net.sf.jrevpro.ast.expression.UnaryOpExpression.UnaryOperator;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -74,7 +76,7 @@ public class NegateEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_INEG, OPCODE_LNEG, OPCODE_FNEG, OPCODE_DNEG);
+    return Arrays.asList(OPCODE_INEG, OPCODE_LNEG, OPCODE_FNEG, OPCODE_DNEG);
   }
 
 }

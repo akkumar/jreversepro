@@ -132,7 +132,7 @@ public class NewArrayEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_NEWARRAY, OPCODE_ANEWARRAY,
+    return Arrays.asList(OPCODE_NEWARRAY, OPCODE_ANEWARRAY,
         OPCODE_MULTIANEWARRAY);
   }
 

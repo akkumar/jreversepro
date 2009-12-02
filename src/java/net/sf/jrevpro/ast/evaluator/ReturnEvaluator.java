@@ -17,6 +17,8 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.ReturnExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
@@ -78,7 +80,7 @@ public class ReturnEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IRETURN, OPCODE_LRETURN, OPCODE_FRETURN,
+    return Arrays.asList(OPCODE_IRETURN, OPCODE_LRETURN, OPCODE_FRETURN,
         OPCODE_DRETURN, OPCODE_ARETURN, OPCODE_RETURN);
   }
 

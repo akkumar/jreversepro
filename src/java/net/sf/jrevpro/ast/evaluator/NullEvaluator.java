@@ -17,6 +17,8 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class NullEvaluator extends AbstractInstructionEvaluator {
@@ -32,7 +34,7 @@ public class NullEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_NOP);
+    return Arrays.asList(OPCODE_NOP);
   }
 
 }

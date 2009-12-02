@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -35,7 +37,7 @@ public class IConstEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return this.numbersAsList(OPCODE_ICONST_M1, OPCODE_ICONST_0,
+    return Arrays.asList(OPCODE_ICONST_M1, OPCODE_ICONST_0,
         OPCODE_ICONST_1, OPCODE_ICONST_2, OPCODE_ICONST_3, OPCODE_ICONST_4,
         OPCODE_ICONST_5);
   }

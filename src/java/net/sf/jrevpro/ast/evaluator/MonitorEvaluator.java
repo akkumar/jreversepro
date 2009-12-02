@@ -17,6 +17,8 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -55,7 +57,7 @@ public class MonitorEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_MONITORENTER, OPCODE_MONITOREXIT);
+    return Arrays.asList(OPCODE_MONITORENTER, OPCODE_MONITOREXIT);
   }
 
 }

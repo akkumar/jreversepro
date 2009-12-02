@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ArrayMemberReferenceExpression;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -69,7 +71,7 @@ public class ArrayIndexLoadEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IALOAD, OPCODE_LALOAD, OPCODE_FALOAD,
+    return Arrays.asList(OPCODE_IALOAD, OPCODE_LALOAD, OPCODE_FALOAD,
         OPCODE_DALOAD, OPCODE_AALOAD, OPCODE_BALOAD, OPCODE_CALOAD,
         OPCODE_SALOAD);
   }

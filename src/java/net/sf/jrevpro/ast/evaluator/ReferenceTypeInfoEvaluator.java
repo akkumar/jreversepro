@@ -18,6 +18,8 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ArrayLengthExpression;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.InstanceOfExpression;
@@ -105,7 +107,7 @@ public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_NEW, OPCODE_ARRAYLENGTH, OPCODE_ATHROW,
+    return Arrays.asList(OPCODE_NEW, OPCODE_ARRAYLENGTH, OPCODE_ATHROW,
         OPCODE_CHECKCAST, OPCODE_INSTANCEOF);
   }
 

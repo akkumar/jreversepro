@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ArrayMemberReferenceExpression;
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
@@ -46,7 +48,7 @@ public class ArrayIndexStoreEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IASTORE, OPCODE_LASTORE, OPCODE_FASTORE,
+    return Arrays.asList(OPCODE_IASTORE, OPCODE_LASTORE, OPCODE_FASTORE,
         OPCODE_DASTORE, OPCODE_AASTORE, OPCODE_BASTORE, OPCODE_CASTORE,
         OPCODE_SASTORE);
   }

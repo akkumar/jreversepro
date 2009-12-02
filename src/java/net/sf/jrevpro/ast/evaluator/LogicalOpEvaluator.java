@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.BinaryOpExpression;
 import net.sf.jrevpro.ast.expression.BinaryOpExpression.BinaryOperator;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -107,7 +109,7 @@ public class LogicalOpEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_ISHL, OPCODE_LSHL, OPCODE_ISHR, OPCODE_IUSHR,
+    return Arrays.asList(OPCODE_ISHL, OPCODE_LSHL, OPCODE_ISHR, OPCODE_IUSHR,
         OPCODE_LSHR, OPCODE_LUSHR, OPCODE_IAND, OPCODE_LAND, OPCODE_IOR,
         OPCODE_LOR, OPCODE_IXOR, OPCODE_LXOR);
   }

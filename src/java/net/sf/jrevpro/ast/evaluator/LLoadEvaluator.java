@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Variable;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -65,7 +67,7 @@ public class LLoadEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_LLOAD, OPCODE_LLOAD_0, OPCODE_LLOAD_1,
+    return Arrays.asList(OPCODE_LLOAD, OPCODE_LLOAD_0, OPCODE_LLOAD_1,
         OPCODE_LLOAD_2, OPCODE_LLOAD_3);
   }
 

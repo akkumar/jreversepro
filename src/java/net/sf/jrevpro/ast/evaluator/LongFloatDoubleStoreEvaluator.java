@@ -17,7 +17,7 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
+import java.util.Arrays;
 
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
@@ -80,7 +80,7 @@ public class LongFloatDoubleStoreEvaluator extends AbstractInstructionEvaluator 
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_LSTORE, OPCODE_LSTORE_0, OPCODE_LSTORE_1,
+    return Arrays.asList(OPCODE_LSTORE, OPCODE_LSTORE_0, OPCODE_LSTORE_1,
         OPCODE_LSTORE_2,
         OPCODE_LSTORE_3, // Store longs
         OPCODE_FSTORE, OPCODE_FSTORE_0, OPCODE_FSTORE_1, OPCODE_FSTORE_2,

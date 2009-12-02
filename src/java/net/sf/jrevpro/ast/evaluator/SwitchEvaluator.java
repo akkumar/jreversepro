@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.intermediate.SwitchLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -57,7 +59,7 @@ public class SwitchEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_TABLESWITCH, OPCODE_LOOKUPSWITCH);
+    return Arrays.asList(OPCODE_TABLESWITCH, OPCODE_LOOKUPSWITCH);
   }
 
 }
