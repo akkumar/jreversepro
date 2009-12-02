@@ -166,7 +166,7 @@ public class DupEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_DUP, OPCODE_DUP_X1, OPCODE_DUP_X2, OPCODE_DUP2,
         OPCODE_DUP2_X1, OPCODE_DUP2_X2, OPCODE_SWAP);
   }

@@ -53,7 +53,7 @@ public class ReferenceLoadEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_ALOAD, OPCODE_ALOAD_0, OPCODE_ALOAD_1,
         OPCODE_ALOAD_2, OPCODE_ALOAD_3);
   }

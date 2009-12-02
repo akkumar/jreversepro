@@ -79,7 +79,7 @@ public class ReturnEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IRETURN, OPCODE_LRETURN, OPCODE_FRETURN,
         OPCODE_DRETURN, OPCODE_ARETURN, OPCODE_RETURN);
   }

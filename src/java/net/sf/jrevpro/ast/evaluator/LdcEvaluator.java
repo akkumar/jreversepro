@@ -54,7 +54,7 @@ public class LdcEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_LDC, OPCODE_LDC_W, OPCODE_LDC2_W);
   }
 }

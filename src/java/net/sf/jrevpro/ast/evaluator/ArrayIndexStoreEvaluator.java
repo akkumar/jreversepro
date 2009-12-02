@@ -46,7 +46,7 @@ public class ArrayIndexStoreEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IASTORE, OPCODE_LASTORE, OPCODE_FASTORE,
         OPCODE_DASTORE, OPCODE_AASTORE, OPCODE_BASTORE, OPCODE_CASTORE,
         OPCODE_SASTORE);

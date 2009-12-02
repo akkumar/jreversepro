@@ -54,7 +54,7 @@ public class GotoEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_GOTO, OPCODE_GOTOW, OPCODE_WIDE);
   }
 

@@ -45,7 +45,7 @@ public class DConstEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_DCONST_0, OPCODE_DCONST_1);
   }
 

@@ -75,7 +75,7 @@ public class ILoadEvaluator extends AbstractInstructionEvaluator {
    * #getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_ILOAD, OPCODE_ILOAD_0, OPCODE_ILOAD_1,
         OPCODE_ILOAD_2, OPCODE_ILOAD_3);
   }

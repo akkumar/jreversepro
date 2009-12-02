@@ -87,7 +87,7 @@ public class IStoreEvaluator extends AbstractInstructionEvaluator {
    * #getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_ISTORE, OPCODE_ISTORE_0, OPCODE_ISTORE_1,
         OPCODE_ISTORE_2, OPCODE_ISTORE_3);
   }

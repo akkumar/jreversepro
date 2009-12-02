@@ -90,7 +90,7 @@ public class PopEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_POP, OPCODE_POP2);
   }
 

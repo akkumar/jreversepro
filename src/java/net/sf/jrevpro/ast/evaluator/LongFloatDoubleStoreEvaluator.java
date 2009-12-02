@@ -79,7 +79,7 @@ public class LongFloatDoubleStoreEvaluator extends AbstractInstructionEvaluator 
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_LSTORE, OPCODE_LSTORE_0, OPCODE_LSTORE_1,
         OPCODE_LSTORE_2,
         OPCODE_LSTORE_3, // Store longs

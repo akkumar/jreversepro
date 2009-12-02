@@ -94,7 +94,7 @@ public class NonStaticFieldReferenceEvaluator extends
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_GETFIELD, OPCODE_PUTFIELD);
   }
 

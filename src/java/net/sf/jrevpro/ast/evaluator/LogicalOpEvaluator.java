@@ -107,7 +107,7 @@ public class LogicalOpEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_ISHL, OPCODE_LSHL, OPCODE_ISHR, OPCODE_IUSHR,
         OPCODE_LSHR, OPCODE_LUSHR, OPCODE_IAND, OPCODE_LAND, OPCODE_IOR,
         OPCODE_LOR, OPCODE_IXOR, OPCODE_LXOR);

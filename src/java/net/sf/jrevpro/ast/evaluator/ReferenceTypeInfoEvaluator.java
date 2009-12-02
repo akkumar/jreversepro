@@ -106,7 +106,7 @@ public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_NEW, OPCODE_ARRAYLENGTH, OPCODE_ATHROW,
         OPCODE_CHECKCAST, OPCODE_INSTANCEOF);
   }

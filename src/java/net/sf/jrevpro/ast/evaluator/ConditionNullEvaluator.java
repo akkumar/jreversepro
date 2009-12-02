@@ -73,7 +73,7 @@ public class ConditionNullEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IFNULL, OPCODE_IFNONNULL);
   }
 

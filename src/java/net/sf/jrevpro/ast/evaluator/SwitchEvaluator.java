@@ -57,7 +57,7 @@ public class SwitchEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_TABLESWITCH, OPCODE_LOOKUPSWITCH);
   }
 

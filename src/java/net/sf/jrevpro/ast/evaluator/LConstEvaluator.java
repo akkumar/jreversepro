@@ -35,7 +35,7 @@ public class LConstEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_LCONST_0, OPCODE_LCONST_1);
   }
 }

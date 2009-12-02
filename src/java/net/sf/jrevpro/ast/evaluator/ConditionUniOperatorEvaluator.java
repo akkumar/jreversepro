@@ -93,7 +93,7 @@ public class ConditionUniOperatorEvaluator extends AbstractInstructionEvaluator 
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IFEQ, OPCODE_IFNE, OPCODE_IFLT, OPCODE_IFLE,
         OPCODE_IFGT, OPCODE_IFGE);
   }

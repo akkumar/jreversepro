@@ -76,7 +76,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_INVOKEVIRTUAL, OPCODE_INVOKEINTERFACE,
         OPCODE_INVOKESPECIAL, OPCODE_INVOKESTATIC);
   }

@@ -44,7 +44,7 @@ public class IPushEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_BIPUSH, OPCODE_SIPUSH);
   }
 

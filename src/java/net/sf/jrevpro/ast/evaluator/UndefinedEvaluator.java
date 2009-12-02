@@ -35,7 +35,7 @@ public class UndefinedEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     List<Integer> result = new ArrayList<Integer>();
     result.add(OPCODE_XXXUNUSEDXXX); // opcode
     for (int i = OPCODE_UNUSED_START; i <= OPCODE_UNUSED_END; ++i) {

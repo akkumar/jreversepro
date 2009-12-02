@@ -144,7 +144,7 @@ public class ArithmeticEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IADD, OPCODE_LADD, OPCODE_FADD, OPCODE_DADD,
         OPCODE_ISUB, OPCODE_LSUB, OPCODE_FSUB, OPCODE_DSUB, OPCODE_IMUL,
         OPCODE_LMUL, OPCODE_FMUL, OPCODE_DMUL, OPCODE_IDIV, OPCODE_LDIV,

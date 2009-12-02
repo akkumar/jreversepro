@@ -87,7 +87,7 @@ public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IF_ICMPEQ, OPCODE_IF_ACMPEQ, // ==
         OPCODE_IF_ICMPNE, OPCODE_IF_ACMPNE, // !=
         OPCODE_IF_ICMPLT, OPCODE_IF_ICMPLE, // <=

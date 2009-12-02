@@ -80,7 +80,7 @@ public class StaticFieldReferenceEvaluator extends AbstractInstructionEvaluator 
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_GETSTATIC, OPCODE_PUTSTATIC);
   }
 

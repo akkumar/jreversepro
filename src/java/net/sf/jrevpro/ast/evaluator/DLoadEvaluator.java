@@ -52,7 +52,7 @@ public class DLoadEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_DLOAD, OPCODE_DLOAD_0, OPCODE_DLOAD_1,
         OPCODE_DLOAD_2, OPCODE_DLOAD_3);
   }

@@ -69,7 +69,7 @@ public class JSREvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_JSR, OPCODE_JSRW, OPCODE_RET);
   }
 

@@ -69,7 +69,7 @@ public class ArrayIndexLoadEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_IALOAD, OPCODE_LALOAD, OPCODE_FALOAD,
         OPCODE_DALOAD, OPCODE_AALOAD, OPCODE_BALOAD, OPCODE_CALOAD,
         OPCODE_SALOAD);

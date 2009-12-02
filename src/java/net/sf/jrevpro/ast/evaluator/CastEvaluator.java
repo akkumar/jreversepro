@@ -87,7 +87,7 @@ public class CastEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_I2L, OPCODE_F2L, OPCODE_D2L, // long
         OPCODE_I2F, OPCODE_L2F, OPCODE_D2F, // float
         OPCODE_I2D, OPCODE_L2D, OPCODE_F2D, // double

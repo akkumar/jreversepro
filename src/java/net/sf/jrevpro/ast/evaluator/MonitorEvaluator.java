@@ -56,7 +56,7 @@ public class MonitorEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_MONITORENTER, OPCODE_MONITOREXIT);
   }
 

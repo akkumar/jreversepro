@@ -74,7 +74,7 @@ public class NegateEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_INEG, OPCODE_LNEG, OPCODE_FNEG, OPCODE_DNEG);
   }
 

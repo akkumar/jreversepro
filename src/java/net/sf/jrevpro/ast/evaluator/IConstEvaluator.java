@@ -35,7 +35,7 @@ public class IConstEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return this.numbersAsList(OPCODE_ICONST_M1, OPCODE_ICONST_0,
         OPCODE_ICONST_1, OPCODE_ICONST_2, OPCODE_ICONST_3, OPCODE_ICONST_4,
         OPCODE_ICONST_5);

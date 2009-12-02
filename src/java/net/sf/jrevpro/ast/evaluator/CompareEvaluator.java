@@ -66,7 +66,7 @@ public class CompareEvaluator extends AbstractInstructionEvaluator {
    * getProcessingOpcodes()
    */
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return Arrays.asList(OPCODE_LCMP, OPCODE_FCMPL, OPCODE_FCMPG, OPCODE_DCMPL,
         OPCODE_DCMPG);
 

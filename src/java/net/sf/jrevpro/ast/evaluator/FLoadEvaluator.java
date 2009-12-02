@@ -52,7 +52,7 @@ public class FLoadEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_FLOAD, OPCODE_FLOAD_0, OPCODE_FLOAD_1,
         OPCODE_FLOAD_2, OPCODE_FLOAD_3);
   }

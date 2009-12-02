@@ -51,7 +51,7 @@ public class FConstEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
+  Iterable<Integer> getProcessingOpcodes() {
     return numbersAsList(OPCODE_FCONST_0, OPCODE_FCONST_1, OPCODE_FCONST_2);
   }
 
