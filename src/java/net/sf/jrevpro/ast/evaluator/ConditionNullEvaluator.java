@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ConditionExpression;
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.ast.expression.Expression;
@@ -73,7 +75,7 @@ public class ConditionNullEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IFNULL, OPCODE_IFNONNULL);
+    return Arrays.asList(OPCODE_IFNULL, OPCODE_IFNONNULL);
   }
 
 }

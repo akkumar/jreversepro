@@ -17,6 +17,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.intermediate.GotoLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -54,7 +56,7 @@ public class GotoEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_GOTO, OPCODE_GOTOW, OPCODE_WIDE);
+    return Arrays.asList(OPCODE_GOTO, OPCODE_GOTOW, OPCODE_WIDE);
   }
 
 }

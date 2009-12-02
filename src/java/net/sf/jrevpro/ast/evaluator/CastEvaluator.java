@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.UnaryOpExpression;
 import net.sf.jrevpro.ast.expression.UnaryOpExpression.UnaryOperator;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -87,7 +89,7 @@ public class CastEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_I2L, OPCODE_F2L, OPCODE_D2L, // long
+    return Arrays.asList(OPCODE_I2L, OPCODE_F2L, OPCODE_D2L, // long
         OPCODE_I2F, OPCODE_L2F, OPCODE_D2F, // float
         OPCODE_I2D, OPCODE_L2D, OPCODE_F2D, // double
         OPCODE_L2I, OPCODE_F2I, OPCODE_D2I, // int

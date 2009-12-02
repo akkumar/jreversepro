@@ -17,6 +17,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.BinaryOpExpression;
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.ast.expression.Variable;
@@ -71,7 +73,7 @@ public class IINCEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IINC);
+    return Arrays.asList(OPCODE_IINC);
   }
 
 }

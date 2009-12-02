@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -166,7 +168,7 @@ public class DupEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_DUP, OPCODE_DUP_X1, OPCODE_DUP_X2, OPCODE_DUP2,
+    return Arrays.asList(OPCODE_DUP, OPCODE_DUP_X1, OPCODE_DUP_X2, OPCODE_DUP2,
         OPCODE_DUP2_X1, OPCODE_DUP2_X2, OPCODE_SWAP);
   }
 }

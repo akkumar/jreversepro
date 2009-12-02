@@ -20,6 +20,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ConditionExpression;
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.ast.expression.Expression;
@@ -93,7 +95,7 @@ public class ConditionUniOperatorEvaluator extends AbstractInstructionEvaluator 
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IFEQ, OPCODE_IFNE, OPCODE_IFLT, OPCODE_IFLE,
+    return Arrays.asList(OPCODE_IFEQ, OPCODE_IFNE, OPCODE_IFLT, OPCODE_IFLE,
         OPCODE_IFGT, OPCODE_IFGE);
   }
 

@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -51,7 +53,7 @@ public class FConstEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_FCONST_0, OPCODE_FCONST_1, OPCODE_FCONST_2);
+    return Arrays.asList(OPCODE_FCONST_0, OPCODE_FCONST_1, OPCODE_FCONST_2);
   }
 
 }

@@ -19,6 +19,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.ConditionExpression;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.ConditionExpression.RelationalOperator;
@@ -87,7 +89,7 @@ public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_IF_ICMPEQ, OPCODE_IF_ACMPEQ, // ==
+    return Arrays.asList(OPCODE_IF_ICMPEQ, OPCODE_IF_ACMPEQ, // ==
         OPCODE_IF_ICMPNE, OPCODE_IF_ACMPNE, // !=
         OPCODE_IF_ICMPLT, OPCODE_IF_ICMPLE, // <=
         OPCODE_IF_ICMPGE, OPCODE_IF_ICMPGT); // >=

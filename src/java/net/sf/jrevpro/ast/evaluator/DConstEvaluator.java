@@ -18,6 +18,8 @@
 package net.sf.jrevpro.ast.evaluator;
 
 
+import java.util.Arrays;
+
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -45,7 +47,7 @@ public class DConstEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_DCONST_0, OPCODE_DCONST_1);
+    return Arrays.asList(OPCODE_DCONST_0, OPCODE_DCONST_1);
   }
 
 }
