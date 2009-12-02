@@ -29,7 +29,6 @@
         <property name="dirs.base"      value="${basedir}"/>
         <property name="classpath"      value="${java.class.path}" />
 
-    	<property name="docdir"         value="${dirs.base}/docs"/>
         <property name="distdir"        value="${dirs.base}/dist"/>
         <property name="bindistdir"     value="${distdir}/bin" />
         <property name="srcdistdir"     value="${distdir}/src" />
@@ -69,9 +68,8 @@
 
     <!-- Create Java Documentation -->
     <target name="docs" depends="init, makejar" description="Create the Javadocs file">
-        <mkdir dir="${docdir}/${apidir}"/>
-        <javadoc packagenames=" jreversepro, jreversepro.common,jreversepro.parser,jreversepro.reflect, jreversepro.reflect.method, jreversepro.revengine, jreversepro.runtime" 
-             sourcepath="${srcdir}" classpath="${classpath}" destdir="${docdir}/${apidir}" use="true" windowtitle="${windowtitle}" doctitle="${doctitle}" bottom="${bottom}"/>
+        <mkdir dir="${doc.dir}"/>
+        <javadoc sourcepath="${src.java.dir}" classpath="${classes.dir}" destdir="${doc.dir}" use="true" windowtitle="${windowtitle}" doctitle="${doctitle}" bottom="${bottom}"/>
     </target>
 
     <!-- dist -->
