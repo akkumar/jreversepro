@@ -33,110 +33,108 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class NewArrayEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public NewArrayEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public NewArrayEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		ArrayInstantiationExpression expr = null;
-		switch (ins.opcode) {
-		case OPCODE_NEWARRAY: {
-			int atype = ins.getArgByte();
-			Expression arraySize = evalStack.pop();
-			char jvmtype = JVM_TYPE_UNDEFINED;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    ArrayInstantiationExpression expr = null;
+    switch (ins.opcode) {
+    case OPCODE_NEWARRAY: {
+      int atype = ins.getArgByte();
+      Expression arraySize = evalStack.pop();
+      char jvmtype = JVM_TYPE_UNDEFINED;
 
-			switch (atype) {
-			case 4:
-				jvmtype = JVM_TYPE_BOOLEAN;
-				break;
-			case 5:
-				jvmtype = JVM_TYPE_CHAR;
-				break;
-			case 6:
-				jvmtype = JVM_TYPE_FLOAT;
-				break;
-			case 7:
-				jvmtype = JVM_TYPE_DOUBLE;
-				break;
-			case 8:
-				jvmtype = JVM_TYPE_BYTE;
-				break;
-			case 9:
-				jvmtype = JVM_TYPE_SHORT;
-				break;
-			case 10:
-				jvmtype = JVM_TYPE_INT;
-				break;
-			case 11:
-				jvmtype = JVM_TYPE_LONG;
-				break;
-			default:
-				throw new UnsupportedOperationException(
-						"Type  "
-								+ atype
-								+ " not supported as argument of opcode OPCODE_NEWARRAY");
-			}
-			expr = new ArrayInstantiationExpression(jvmtype, arraySize);
-			break;
-		}
-		case OPCODE_ANEWARRAY: {
-			int offset = ins.getArgUnsignedShort();
-			String classType = pool.getClassName(offset);
+      switch (atype) {
+      case 4:
+        jvmtype = JVM_TYPE_BOOLEAN;
+        break;
+      case 5:
+        jvmtype = JVM_TYPE_CHAR;
+        break;
+      case 6:
+        jvmtype = JVM_TYPE_FLOAT;
+        break;
+      case 7:
+        jvmtype = JVM_TYPE_DOUBLE;
+        break;
+      case 8:
+        jvmtype = JVM_TYPE_BYTE;
+        break;
+      case 9:
+        jvmtype = JVM_TYPE_SHORT;
+        break;
+      case 10:
+        jvmtype = JVM_TYPE_INT;
+        break;
+      case 11:
+        jvmtype = JVM_TYPE_LONG;
+        break;
+      default:
+        throw new UnsupportedOperationException("Type  " + atype
+            + " not supported as argument of opcode OPCODE_NEWARRAY");
+      }
+      expr = new ArrayInstantiationExpression(jvmtype, arraySize);
+      break;
+    }
+    case OPCODE_ANEWARRAY: {
+      int offset = ins.getArgUnsignedShort();
+      String classType = pool.getClassName(offset);
 
-			Expression arraySize1 = evalStack.pop();
-			expr = new ArrayInstantiationExpression(classType, arraySize1);
-			break;
-		}
-		case OPCODE_MULTIANEWARRAY: {
-			int offset = ins.getArgUnsignedShort();
+      Expression arraySize1 = evalStack.pop();
+      expr = new ArrayInstantiationExpression(classType, arraySize1);
+      break;
+    }
+    case OPCODE_MULTIANEWARRAY: {
+      int offset = ins.getArgUnsignedShort();
 
-			// Dimensions. Max 255.
-			int dimensions = ins.getArgUnsignedByte(2);
-			if (dimensions > 255) {
-				throw new IllegalArgumentException(
-						"OPCODE_MULTIANEWARRAY: Max. Number of dimensions is 255. Received "
-								+ dimensions);
-			}
-			Expression arrayIndices[] = new Expression[dimensions];
+      // Dimensions. Max 255.
+      int dimensions = ins.getArgUnsignedByte(2);
+      if (dimensions > 255) {
+        throw new IllegalArgumentException(
+            "OPCODE_MULTIANEWARRAY: Max. Number of dimensions is 255. Received "
+                + dimensions);
+      }
+      Expression arrayIndices[] = new Expression[dimensions];
 
-			// ClassType
-			String classType = TypeInferrer.getJLSType(pool
-					.getClassName(offset), false);
+      // ClassType
+      String classType = TypeInferrer.getJLSType(pool.getClassName(offset),
+          false);
 
-			// Get all array indices
-			for (int i = dimensions - 1; i >= 0; i--) {
-				arrayIndices[i] = evalStack.pop();
-			}
-			expr = new ArrayInstantiationExpression(classType, Arrays
-					.asList(arrayIndices));
-		}
+      // Get all array indices
+      for (int i = dimensions - 1; i >= 0; i--) {
+        arrayIndices[i] = evalStack.pop();
+      }
+      expr = new ArrayInstantiationExpression(classType, Arrays
+          .asList(arrayIndices));
+    }
 
-		}
-		evalStack.push(expr);
+    }
+    evalStack.push(expr);
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_NEWARRAY, OPCODE_ANEWARRAY,
-				OPCODE_MULTIANEWARRAY);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_NEWARRAY, OPCODE_ANEWARRAY,
+        OPCODE_MULTIANEWARRAY);
+  }
 
 }

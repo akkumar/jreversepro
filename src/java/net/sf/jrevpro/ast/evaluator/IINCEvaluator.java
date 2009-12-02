@@ -31,48 +31,48 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class IINCEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public IINCEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public IINCEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
 
-		Variable var = new Variable(varTable, JVM_TYPE_INT, ins
-				.getArgUnsignedWide(), ins.currentPc);
-		int constant = ins.getArgWide(1);
+    Variable var = new Variable(varTable, JVM_TYPE_INT, ins
+        .getArgUnsignedWide(), ins.currentPc);
+    int constant = ins.getArgWide(1);
 
-		if (constant < 0) {
-			Constant ct = new Constant(-constant);
-			statements.append(new CompleteLine(ins, new BinaryOpExpression(var,
-					BinaryOperator.SMART_MINUS, ct, JVM_TYPE_INT)));
-		} else {
-			Constant ct = new Constant(constant);
-			statements.append(new CompleteLine(ins, new BinaryOpExpression(var,
-					BinaryOperator.SMART_PLUS, ct, JVM_TYPE_INT)));
-		}
+    if (constant < 0) {
+      Constant ct = new Constant(-constant);
+      statements.append(new CompleteLine(ins, new BinaryOpExpression(var,
+          BinaryOperator.SMART_MINUS, ct, JVM_TYPE_INT)));
+    } else {
+      Constant ct = new Constant(constant);
+      statements.append(new CompleteLine(ins, new BinaryOpExpression(var,
+          BinaryOperator.SMART_PLUS, ct, JVM_TYPE_INT)));
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IINC);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IINC);
+  }
 
 }

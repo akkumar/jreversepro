@@ -30,52 +30,52 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class NegateEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public NegateEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public NegateEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_INEG:
-			UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
-					JVM_TYPE_INT);
-			break;
-		case OPCODE_LNEG:
-			UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
-					JVM_TYPE_LONG);
-			break;
-		case OPCODE_FNEG:
-			UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
-					JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DNEG:
-			UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
-					JVM_TYPE_DOUBLE);
-			break;
-		}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_INEG:
+      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LNEG:
+      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FNEG:
+      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DNEG:
+      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+          JVM_TYPE_DOUBLE);
+      break;
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_INEG, OPCODE_LNEG, OPCODE_FNEG, OPCODE_DNEG);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_INEG, OPCODE_LNEG, OPCODE_FNEG, OPCODE_DNEG);
+  }
 
 }

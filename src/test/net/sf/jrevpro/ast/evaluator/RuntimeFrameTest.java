@@ -30,32 +30,32 @@ import org.junit.Test;
  */
 public class RuntimeFrameTest {
 
-	public RuntimeFrameTest() {
-		pool = new ConstantPool(10);
+  public RuntimeFrameTest() {
+    pool = new ConstantPool(10);
 
-		Method method = new Method();
-		method.setName("noname");
-		method.setSignature("(II)V");
-		method.setMaxLocals(10);
-		method.initializeSymbolTable();
+    Method method = new Method();
+    method.setName("noname");
+    method.setSignature("(II)V");
+    method.setMaxLocals(10);
+    method.initializeSymbolTable();
 
-		varTable = method.getVariableTable();
-	}
+    varTable = method.getVariableTable();
+  }
 
-	@Test
-	public void testInstantiation() {
-		run = new RuntimeFrame(pool, varTable);
-		assertNotNull("Failed to instante runtime frame", run);
-		for (int i = 0; i < 255; ++i) {
-			AbstractInstructionEvaluator eval = run.getEvaluator(i);
-			assertNotNull("Retrieving evaluator for " + i, eval);
-			System.out.println(eval.getClass().getName() + "\t"
-					+ JVMInstructionSet.getOpcodeString(i));
-		}
-	}
+  @Test
+  public void testInstantiation() {
+    run = new RuntimeFrame(pool, varTable);
+    assertNotNull("Failed to instante runtime frame", run);
+    for (int i = 0; i < 255; ++i) {
+      AbstractInstructionEvaluator eval = run.getEvaluator(i);
+      assertNotNull("Retrieving evaluator for " + i, eval);
+      System.out.println(eval.getClass().getName() + "\t"
+          + JVMInstructionSet.getOpcodeString(i));
+    }
+  }
 
-	ConstantPool pool;
-	VariableTable varTable;
+  ConstantPool pool;
+  VariableTable varTable;
 
-	RuntimeFrame run;
+  RuntimeFrame run;
 }

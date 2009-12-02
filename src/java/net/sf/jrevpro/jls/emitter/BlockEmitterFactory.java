@@ -34,31 +34,31 @@ import net.sf.jrevpro.CustomLoggerFactory;
  */
 public final class BlockEmitterFactory {
 
-	private BlockEmitterFactory() {
-	}
+  private BlockEmitterFactory() {
+  }
 
-	// Caching can be done as all method invoction are stateless
-	private static Map<Class, BlockEmitter> emitterCache = new HashMap<Class, BlockEmitter>();
+  // Caching can be done as all method invoction are stateless
+  private static Map<Class, BlockEmitter> emitterCache = new HashMap<Class, BlockEmitter>();
 
-	public static final BlockEmitter getBlockEmitter(Class clazz)
-			throws Exception {
+  public static final BlockEmitter getBlockEmitter(Class clazz)
+      throws Exception {
 
-		BlockEmitter emitter = emitterCache.get(clazz);
+    BlockEmitter emitter = emitterCache.get(clazz);
 
-		// Do not worry about any synchronization here.. No harm done by
-		// creating it twice or more
-		// during the window of vulnerability when simultaneous requests are
-		// coming in.
-		if (emitter == null) {
-			Class blockEmitter = Class.forName(BlockEmitterContext
-					.getBlockEmitterFQCN(clazz.getName()));
-			emitter = (BlockEmitter) blockEmitter.newInstance();
+    // Do not worry about any synchronization here.. No harm done by
+    // creating it twice or more
+    // during the window of vulnerability when simultaneous requests are
+    // coming in.
+    if (emitter == null) {
+      Class blockEmitter = Class.forName(BlockEmitterContext
+          .getBlockEmitterFQCN(clazz.getName()));
+      emitter = (BlockEmitter) blockEmitter.newInstance();
 
-			emitterCache.put(clazz, emitter);
-		}
-		return emitter;
-	}
+      emitterCache.put(clazz, emitter);
+    }
+    return emitter;
+  }
 
-	private static Logger logger = CustomLoggerFactory.createLogger();
+  private static Logger logger = CustomLoggerFactory.createLogger();
 
 }

@@ -22,21 +22,22 @@ import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 
-
 /**
  * Listener to close the dialogs.
+ * 
  * @author Karthik Kumar
  * @version 1.3
  **/
 public class DlgClose extends WindowAdapter {
 
-    /**
-     * @param aEvent Window event generated.
-     **/
-    public void windowClosing(WindowEvent aEvent ) {
-        if ( aEvent.getSource() instanceof Window  ) {
-            Window win = (Window)( aEvent.getSource() );
-            win.setVisible(false);
-        }
+  /**
+   * @param aEvent
+   *          Window event generated.
+   **/
+  public void windowClosing(WindowEvent aEvent) {
+    if (aEvent.getSource() instanceof Window) {
+      Window win = (Window) (aEvent.getSource());
+      win.setVisible(false);
     }
+  }
 }

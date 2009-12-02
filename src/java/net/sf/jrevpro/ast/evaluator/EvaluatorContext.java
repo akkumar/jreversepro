@@ -23,25 +23,25 @@ import net.sf.jrevpro.reflect.variabletable.VariableTable;
 
 public class EvaluatorContext {
 
-	public EvaluatorContext(ConstantPool _pool, VariableTable _varTable) {
+  public EvaluatorContext(ConstantPool _pool, VariableTable _varTable) {
 
-		pool = _pool;
-		varTable = _varTable;
-		opStack = new EvaluatorStack();
-		statements = new LineOfCodeList();
-	}
+    pool = _pool;
+    varTable = _varTable;
+    opStack = new EvaluatorStack();
+    statements = new LineOfCodeList();
+  }
 
-	public void setPreviousOpcode(int opcode) {
-		opStack.setPreviousOpcode(opcode);
-	}
+  public void setPreviousOpcode(int opcode) {
+    opStack.setPreviousOpcode(opcode);
+  }
 
-	public LineOfCodeList getStatements() {
-		return statements;
-	}
+  public LineOfCodeList getStatements() {
+    return statements;
+  }
 
-	LineOfCodeList statements;
-	ConstantPool pool;
-	VariableTable varTable;
-	EvaluatorStack opStack;
+  LineOfCodeList statements;
+  ConstantPool pool;
+  VariableTable varTable;
+  EvaluatorStack opStack;
 
 }

@@ -24,16 +24,17 @@ import net.sf.jrevpro.jls.emitter.BlockEmitterConfig;
 /**
  * 
  * @author karthikeyanc
- *
+ * 
  */
 public class BlockEmitterConfigImpl_14 extends BlockEmitterConfig {
-    
-   
-    public  Map<String, String> getConfig() {
-	Map<String, String> map=new HashMap<String, String>();
-	map.put("net.sf.jrevpro.ast.block.MethodBlock", "net.sf.jrevpro.jls.emitter.java14.MethodEmitter");
-	map.put("net.sf.jrevpro.ast.block.Statement", "net.sf.jrevpro.jls.emitter.java14.StatementEmitter");
-	return map;
-    }
+
+  public Map<String, String> getConfig() {
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("net.sf.jrevpro.ast.block.MethodBlock",
+        "net.sf.jrevpro.jls.emitter.java14.MethodEmitter");
+    map.put("net.sf.jrevpro.ast.block.Statement",
+        "net.sf.jrevpro.jls.emitter.java14.StatementEmitter");
+    return map;
+  }
 
 }

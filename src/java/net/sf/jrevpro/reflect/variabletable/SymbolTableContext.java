@@ -24,26 +24,26 @@ import net.sf.jrevpro.reflect.Method;
 
 public class SymbolTableContext {
 
-	/**
-	 * 
-	 * @param method
-	 *            Method Instance for SymbolTableContext needs to be created.
-	 */
-	public SymbolTableContext(Method method) {
-		maxSymbols = method.getMaxLocals();
-		args = method.getArgList();
-		isMethodStatic = method.isStatic();
-		mapMethodExceptions = method.getAllExceptionsAsMap();
-		jvmMethodReturnType = method.getReturnType();
-	}
+  /**
+   * 
+   * @param method
+   *          Method Instance for SymbolTableContext needs to be created.
+   */
+  public SymbolTableContext(Method method) {
+    maxSymbols = method.getMaxLocals();
+    args = method.getArgList();
+    isMethodStatic = method.isStatic();
+    mapMethodExceptions = method.getAllExceptionsAsMap();
+    jvmMethodReturnType = method.getReturnType();
+  }
 
-	Map<Integer, String> mapMethodExceptions;
+  Map<Integer, String> mapMethodExceptions;
 
-	int maxSymbols; // = rhsMethod.getMaxLocals();
+  int maxSymbols; // = rhsMethod.getMaxLocals();
 
-	List<String> args; // = rhsMethod.getArgList();
+  List<String> args; // = rhsMethod.getArgList();
 
-	boolean isMethodStatic; // Is the given method static
+  boolean isMethodStatic; // Is the given method static
 
-	String jvmMethodReturnType; // JVM Method Return type
+  String jvmMethodReturnType; // JVM Method Return type
 }

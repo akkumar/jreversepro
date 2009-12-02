@@ -18,12 +18,12 @@ package net.sf.jrevpro.parser.instruction;
 
 /**
  * @author akkumar
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class InstructionListParserException extends Exception {
 
-	public InstructionListParserException(String _msg) {
-		super(_msg);
-	}
+  public InstructionListParserException(String _msg) {
+    super(_msg);
+  }
 }

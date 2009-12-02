@@ -25,54 +25,54 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class ArrayIndexLoadEvaluator extends AbstractInstructionEvaluator {
 
-	public ArrayIndexLoadEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public ArrayIndexLoadEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		Expression subscript = evalStack.pop();
-		Expression arrayObject = evalStack.pop();
+  @Override
+  void evaluate(Instruction ins) {
+    Expression subscript = evalStack.pop();
+    Expression arrayObject = evalStack.pop();
 
-		char type = JVM_TYPE_UNDEFINED;
-		switch (ins.opcode) {
-		case OPCODE_IALOAD:
-			type = JVM_TYPE_INT;
-			break;
-		case OPCODE_LALOAD:
-			type = JVM_TYPE_LONG;
-			break;
-		case OPCODE_FALOAD:
-			type = JVM_TYPE_FLOAT;
-			break;
-		case OPCODE_DALOAD:
-			type = JVM_TYPE_DOUBLE;
-			break;
-		case OPCODE_AALOAD:
-			type = JVM_TYPE_REFERENCE;
-			break;
-		case OPCODE_BALOAD:
-			type = JVM_TYPE_BOOLEAN;
-			break;
-		case OPCODE_CALOAD:
-			type = JVM_TYPE_CHAR;
-			break;
-		case OPCODE_SALOAD:
-			type = JVM_TYPE_SHORT;
-			break;
-		}
-		ArrayMemberReferenceExpression expr = new ArrayMemberReferenceExpression(subscript,
-				arrayObject, type);
+    char type = JVM_TYPE_UNDEFINED;
+    switch (ins.opcode) {
+    case OPCODE_IALOAD:
+      type = JVM_TYPE_INT;
+      break;
+    case OPCODE_LALOAD:
+      type = JVM_TYPE_LONG;
+      break;
+    case OPCODE_FALOAD:
+      type = JVM_TYPE_FLOAT;
+      break;
+    case OPCODE_DALOAD:
+      type = JVM_TYPE_DOUBLE;
+      break;
+    case OPCODE_AALOAD:
+      type = JVM_TYPE_REFERENCE;
+      break;
+    case OPCODE_BALOAD:
+      type = JVM_TYPE_BOOLEAN;
+      break;
+    case OPCODE_CALOAD:
+      type = JVM_TYPE_CHAR;
+      break;
+    case OPCODE_SALOAD:
+      type = JVM_TYPE_SHORT;
+      break;
+    }
+    ArrayMemberReferenceExpression expr = new ArrayMemberReferenceExpression(
+        subscript, arrayObject, type);
 
-		evalStack.push(expr);
+    evalStack.push(expr);
 
-	}
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IALOAD, OPCODE_LALOAD, OPCODE_FALOAD,
-				OPCODE_DALOAD, OPCODE_AALOAD, OPCODE_BALOAD, OPCODE_CALOAD,
-				OPCODE_SALOAD);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IALOAD, OPCODE_LALOAD, OPCODE_FALOAD,
+        OPCODE_DALOAD, OPCODE_AALOAD, OPCODE_BALOAD, OPCODE_CALOAD,
+        OPCODE_SALOAD);
+  }
 
 }

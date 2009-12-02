@@ -27,36 +27,36 @@ import net.sf.jrevpro.CustomLoggerFactory;
  */
 public class BSDKNFCodeStyler implements CodeStyler {
 
-	public BSDKNFCodeStyler() {
-		depth = 0;
-	}
+  public BSDKNFCodeStyler() {
+    depth = 0;
+  }
 
-	public String closeBlock() {
-		if (depth == 0) {
-			logger.warning("Depth seems to be zero. Unformatted code. ");
-		} else {
-			--depth;
-		}
-		return outputLine("}\n");
-	}
+  public String closeBlock() {
+    if (depth == 0) {
+      logger.warning("Depth seems to be zero. Unformatted code. ");
+    } else {
+      --depth;
+    }
+    return outputLine("}\n");
+  }
 
-	public String outputLine(String str) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("\n");
-		for (int i = 0; i < depth; ++i) {
-			sb.append("    ");
-		}
-		sb.append(str);
-		return sb.toString();
-	}
+  public String outputLine(String str) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("\n");
+    for (int i = 0; i < depth; ++i) {
+      sb.append("    ");
+    }
+    sb.append(str);
+    return sb.toString();
+  }
 
-	public String openBlock() {
-		++depth;
-		return " {\n";
-	}
+  public String openBlock() {
+    ++depth;
+    return " {\n";
+  }
 
-	private int depth;
+  private int depth;
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

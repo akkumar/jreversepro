@@ -25,68 +25,68 @@ import java.util.List;
  */
 public class InstructionList {
 
-	public InstructionList() {
-		instructions = new ArrayList<Instruction>();
-	}
+  public InstructionList() {
+    instructions = new ArrayList<Instruction>();
+  }
 
-	public void add(Instruction ins) {
-		instructions.add(ins);
+  public void add(Instruction ins) {
+    instructions.add(ins);
 
-	}
+  }
 
-	/**
-	 * Returns the JInstruction having the specified byte offset
-	 * 
-	 * @param ind
-	 *            Index of the instruction.
-	 * @return Returns the JInstruction in the method.
-	 */
-	public Instruction getInstruction(int ind) {
-		if (instructions == null) {
-			return null;
-		}
+  /**
+   * Returns the JInstruction having the specified byte offset
+   * 
+   * @param ind
+   *          Index of the instruction.
+   * @return Returns the JInstruction in the method.
+   */
+  public Instruction getInstruction(int ind) {
+    if (instructions == null) {
+      return null;
+    }
 
-		for (Instruction sIns : instructions) {
-			if (sIns.currentPc == ind) {
-				return sIns;
-			}
-		}
-		return null;
-	}
+    for (Instruction sIns : instructions) {
+      if (sIns.currentPc == ind) {
+        return sIns;
+      }
+    }
+    return null;
+  }
 
-	/**
-	 * Returns the JInstruction following the instruction having the specified
-	 * byte offset
-	 * 
-	 * @param ind
-	 *            Index of the instruction.
-	 * @return Returns the JInstruction in the method.
-	 */
-	public Instruction getNextInstruction(int ind) {
-		if (instructions == null) {
-			return null;
-		}
+  /**
+   * Returns the JInstruction following the instruction having the specified
+   * byte offset
+   * 
+   * @param ind
+   *          Index of the instruction.
+   * @return Returns the JInstruction in the method.
+   */
+  public Instruction getNextInstruction(int ind) {
+    if (instructions == null) {
+      return null;
+    }
 
-		// now search for the ins
-		Instruction tIns = null;
-		for (int i = 0; i < instructions.size(); i++) {
-			Instruction sIns = (Instruction) instructions.get(i);
-			if (sIns.currentPc == ind) {
-				i++;
-				// now make sure it's not the last ins
-				if (i < instructions.size()) {
-					tIns = (Instruction) instructions.get(i);
-				}
-				break;
-			}
-		}
-		return tIns;
-	}
+    // now search for the ins
+    Instruction tIns = null;
+    for (int i = 0; i < instructions.size(); i++) {
+      Instruction sIns = (Instruction) instructions.get(i);
+      if (sIns.currentPc == ind) {
+        i++;
+        // now make sure it's not the last ins
+        if (i < instructions.size()) {
+          tIns = (Instruction) instructions.get(i);
+        }
+        break;
+      }
+    }
+    return tIns;
+  }
 
-	public List<Instruction> getAllInstructions() {
-		return instructions;
-	}
+  public List<Instruction> getAllInstructions() {
+    return instructions;
+  }
 
-	private List<Instruction> instructions;
+  private List<Instruction> instructions;
 
 }

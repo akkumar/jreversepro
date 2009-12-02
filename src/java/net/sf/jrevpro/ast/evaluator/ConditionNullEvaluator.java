@@ -32,49 +32,49 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ConditionNullEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ConditionNullEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ConditionNullEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		Expression lhs = evalStack.pop();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    Expression lhs = evalStack.pop();
 
-		RelationalOperator op = RelationalOperator.EQ;
+    RelationalOperator op = RelationalOperator.EQ;
 
-		switch (ins.opcode) {
-		case OPCODE_IFNULL:
-			op = RelationalOperator.EQ;
-			break;
-		case OPCODE_IFNONNULL:
-			op = RelationalOperator.NE;
-			break;
-		}
+    switch (ins.opcode) {
+    case OPCODE_IFNULL:
+      op = RelationalOperator.EQ;
+      break;
+    case OPCODE_IFNONNULL:
+      op = RelationalOperator.NE;
+      break;
+    }
 
-		evalStack.conditionExpression = null;
-		evalStack.conditionExpression = new ConditionExpression(lhs,
-				Constant.NULL, op);
-	}
+    evalStack.conditionExpression = null;
+    evalStack.conditionExpression = new ConditionExpression(lhs, Constant.NULL,
+        op);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IFNULL, OPCODE_IFNONNULL);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IFNULL, OPCODE_IFNONNULL);
+  }
 
 }

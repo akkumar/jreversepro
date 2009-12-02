@@ -1,6 +1,6 @@
 /**
  * @(#)ConfirmCloseDialog.java
-  * JReversePro - Java Decompiler / Disassembler.
+ * JReversePro - Java Decompiler / Disassembler.
  * Copyright (C) 2008 Karthik Kumar.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -25,31 +25,29 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * ConfirmCloseDialog is the dialog that appears at the end of
- * application when the user prompts to close the application.
+ * ConfirmCloseDialog is the dialog that appears at the end of application when
+ * the user prompts to close the application.
+ * 
  * @author Karthik Kumar
  * @version 1.3
  **/
-public final class ConfirmCloseDialog   {
+public final class ConfirmCloseDialog {
 
-        /**
-         * Prompts the user if (s)he would exit the application.
-         * @param aAppFrame Application Frame.
-         * @return true, if the user chooses to close the app.
-         *          false, otherwise.
-         **/
-        public static boolean confirmExit(JFrame aAppFrame ) {
-            int OptionSelect =  JOptionPane.showConfirmDialog(
-                                aAppFrame ,
-                                "Are you sure you want to exit ?",
-                                 "Confirm Exit",
-                                 JOptionPane.YES_NO_CANCEL_OPTION ,
-                                 JOptionPane.WARNING_MESSAGE );
-            if ( OptionSelect == JOptionPane.YES_OPTION ) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+  /**
+   * Prompts the user if (s)he would exit the application.
+   * 
+   * @param aAppFrame
+   *          Application Frame.
+   * @return true, if the user chooses to close the app. false, otherwise.
+   **/
+  public static boolean confirmExit(JFrame aAppFrame) {
+    int OptionSelect = JOptionPane.showConfirmDialog(aAppFrame,
+        "Are you sure you want to exit ?", "Confirm Exit",
+        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+    if (OptionSelect == JOptionPane.YES_OPTION) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

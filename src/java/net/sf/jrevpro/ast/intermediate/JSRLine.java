@@ -1,7 +1,7 @@
 /**
  *  @(#) JSRLine.java
  *
-  * JReversePro - Java Decompiler / Disassembler.
+ * JReversePro - Java Decompiler / Disassembler.
  * Copyright (C) 2008 Karthik Kumar.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -27,21 +27,20 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class JSRLine extends AbstractLineOfCode {
 
-	public JSRLine(Instruction _ins) {
-		super(_ins);
-	}
+  public JSRLine(Instruction _ins) {
+    super(_ins);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
-	 * .sf.jrevpro.decompile.BlockContext)
-	 */
-	@Override
-	public void regenerateBlock(BlockInferrer ctx) {
-		// TODO Auto-generated method stub
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
+   * .sf.jrevpro.decompile.BlockContext)
+   */
+  @Override
+  public void regenerateBlock(BlockInferrer ctx) {
+    // TODO Auto-generated method stub
 
-	}
+  }
 
 }

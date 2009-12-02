@@ -25,38 +25,38 @@ package net.sf.jrevpro.parser;
 @SuppressWarnings("serial")
 public class ClassParserException extends Exception {
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param aMsg
-	 *            Exception Message.
-	 */
-	public ClassParserException(String aMsg) {
-		msg = aMsg;
-	}
+  /**
+   * Constructor.
+   * 
+   * @param aMsg
+   *          Exception Message.
+   */
+  public ClassParserException(String aMsg) {
+    msg = aMsg;
+  }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param aMsg
-	 *            Exception Message as a java.lang.StringBuilder
-	 */
-	public ClassParserException(StringBuilder aMsg) {
-		msg = aMsg.toString();
-	}
+  /**
+   * Constructor.
+   * 
+   * @param aMsg
+   *          Exception Message as a java.lang.StringBuilder
+   */
+  public ClassParserException(StringBuilder aMsg) {
+    msg = aMsg.toString();
+  }
 
-	/**
-	 * Serialized version.
-	 * 
-	 * @return Returns a Stringified version of the string.
-	 */
-	public String toString() {
-		return getClass().getPackage() + msg;
-	}
+  /**
+   * Serialized version.
+   * 
+   * @return Returns a Stringified version of the string.
+   */
+  public String toString() {
+    return getClass().getPackage() + msg;
+  }
 
-	/**
-	 * Exception message.
-	 */
-	private String msg;
+  /**
+   * Exception message.
+   */
+  private String msg;
 
 }

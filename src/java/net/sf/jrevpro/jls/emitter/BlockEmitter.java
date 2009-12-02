@@ -27,23 +27,22 @@ import net.sf.jrevpro.ast.block.Block;
  */
 public abstract class BlockEmitter {
 
-	// The block may have
-	public void emitJLSCode(EmitterTarget target, Block _block) {
-		emitBlockBeginCode(target, _block);
-		emitCurrentCode(target, _block);
-		emitBlockEndCode(target, _block);
-	}
+  // The block may have
+  public void emitJLSCode(EmitterTarget target, Block _block) {
+    emitBlockBeginCode(target, _block);
+    emitCurrentCode(target, _block);
+    emitBlockEndCode(target, _block);
+  }
 
-	protected abstract void emitBlockBeginCode(EmitterTarget target,
-			Block _block);
+  protected abstract void emitBlockBeginCode(EmitterTarget target, Block _block);
 
-	protected void emitCurrentCode(EmitterTarget target, Block _block) {
-		/* For a block - the current code is the same as emitting Children code */
-		for (Block childBlock : _block.getChildren()) {
-			childBlock.getEmitter().emitJLSCode(target, childBlock);
-		}
-	}
+  protected void emitCurrentCode(EmitterTarget target, Block _block) {
+    /* For a block - the current code is the same as emitting Children code */
+    for (Block childBlock : _block.getChildren()) {
+      childBlock.getEmitter().emitJLSCode(target, childBlock);
+    }
+  }
 
-	protected abstract void emitBlockEndCode(EmitterTarget target, Block _block);
+  protected abstract void emitBlockEndCode(EmitterTarget target, Block _block);
 
 }

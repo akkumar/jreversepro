@@ -20,14 +20,14 @@ import net.sf.jrevpro.jls.emitter.java14.DefaultSourceEmitter;
 
 public class SourceEmitterFactory {
 
-	public enum JLSSource {
-		JDK14, JDK5, JDK6
-	};
+  public enum JLSSource {
+    JDK14, JDK5, JDK6
+  };
 
-	public static SourceEmitter getSourceEmitter(JLSSource _source) {
-		return new DefaultSourceEmitter();
-	}
+  public static SourceEmitter getSourceEmitter(JLSSource _source) {
+    return new DefaultSourceEmitter();
+  }
 
-	private SourceEmitterFactory() {
-	}
+  private SourceEmitterFactory() {
+  }
 }

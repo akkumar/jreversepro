@@ -23,15 +23,14 @@ import net.sf.jrevpro.jls.emitter.SourceEmitter;
 
 public class DefaultSourceEmitter implements SourceEmitter {
 
-	public String emitCode(Block block) {
-		if (!(block instanceof MethodBlock)) {
-			throw new IllegalArgumentException(
-					"I take only MethodBlocks. Can't take "
-							+ block.getClass().getName());
-		}
-		EmitterTarget target = new EmitterTarget();
-		block.getEmitter().emitJLSCode(target, block);
-		return target.getEmittedCode();
-	}
+  public String emitCode(Block block) {
+    if (!(block instanceof MethodBlock)) {
+      throw new IllegalArgumentException(
+          "I take only MethodBlocks. Can't take " + block.getClass().getName());
+    }
+    EmitterTarget target = new EmitterTarget();
+    block.getEmitter().emitJLSCode(target, block);
+    return target.getEmittedCode();
+  }
 
 }

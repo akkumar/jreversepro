@@ -27,94 +27,93 @@ import net.sf.jrevpro.jvm.JVMConstants;
  */
 public class Member implements JVMConstants {
 
-	/**
-	 * Setter method for datatype.
-	 * 
-	 * @param rhsType
-	 *            data type value.
-	 */
-	public void setDatatype(String rhsType) {
-		datatype = rhsType;
-	}
+  /**
+   * Setter method for datatype.
+   * 
+   * @param rhsType
+   *          data type value.
+   */
+  public void setDatatype(String rhsType) {
+    datatype = rhsType;
+  }
 
-	/**
-	 * Setter method for name
-	 * 
-	 * @param rhsName
-	 *            New Name
-	 */
-	public void setName(String rhsName) {
-		name = rhsName;
-	}
+  /**
+   * Setter method for name
+   * 
+   * @param rhsName
+   *          New Name
+   */
+  public void setName(String rhsName) {
+    name = rhsName;
+  }
 
-	/**
-	 * Setter method for qualifiers.
-	 * 
-	 * @param rhsQualify
-	 *            qualifier value
-	 */
-	public void setQualifier(int rhsQualify) {
-		qualifier = rhsQualify;
-	}
+  /**
+   * Setter method for qualifiers.
+   * 
+   * @param rhsQualify
+   *          qualifier value
+   */
+  public void setQualifier(int rhsQualify) {
+    qualifier = rhsQualify;
+  }
 
-	/**
-	 * Getter method for name
-	 * 
-	 * @return Returns name of the member.
-	 */
-	public String getName() {
-		return name;
-	}
+  /**
+   * Getter method for name
+   * 
+   * @return Returns name of the member.
+   */
+  public String getName() {
+    return name;
+  }
 
-	/**
-	 * Getter method for the qualifier.
-	 * 
-	 * @return Returns the qualifier integer.
-	 */
-	public int getQualifier() {
-		return qualifier;
-	}
+  /**
+   * Getter method for the qualifier.
+   * 
+   * @return Returns the qualifier integer.
+   */
+  public int getQualifier() {
+    return qualifier;
+  }
 
-	/**
-	 * @return Returns the data type
-	 */
-	public String getDatatype() {
-		return datatype;
-	}
+  /**
+   * @return Returns the data type
+   */
+  public String getDatatype() {
+    return datatype;
+  }
 
-	/**
-	 * Returns if this member is a 'final' one or not.
-	 * 
-	 * @return Returns true, if final. false, otherwise.
-	 */
-	public boolean isFinal() {
-		return (qualifier & ACC_FINAL) != 0;
-	}
+  /**
+   * Returns if this member is a 'final' one or not.
+   * 
+   * @return Returns true, if final. false, otherwise.
+   */
+  public boolean isFinal() {
+    return (qualifier & ACC_FINAL) != 0;
+  }
 
-	/**
-	 * Returns if this member is a 'static' one or not.
-	 * 
-	 * @return Returns true, if static. false, otherwise.
-	 */
-	public boolean isStatic() {
-		return (qualifier & ACC_STATIC) != 0;
-	}
+  /**
+   * Returns if this member is a 'static' one or not.
+   * 
+   * @return Returns true, if static. false, otherwise.
+   */
+  public boolean isStatic() {
+    return (qualifier & ACC_STATIC) != 0;
+  }
 
-	/**
-	 * This field contains the datatype of the member.
-	 */
-	protected String datatype;
+  /**
+   * This field contains the datatype of the member.
+   */
+  protected String datatype;
 
-	/**
-	 * This field contains the name of the member ( field/ method).
-	 */
-	protected String name;
+  /**
+   * This field contains the name of the member ( field/ method).
+   */
+  protected String name;
 
-	/**
-	 * This contains the integer representation of the qualifier of the member
-	 * with the appropriate combination of bits set to know the qualifier
-	 * string.
-	 */
-	protected int qualifier;
+  /**
+   * This contains the integer representation of the qualifier of the member
+   * with the appropriate combination of bits set to know the qualifier string.
+   */
+  protected int qualifier;
 
 }

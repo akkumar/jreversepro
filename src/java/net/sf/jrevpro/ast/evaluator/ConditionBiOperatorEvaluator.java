@@ -31,66 +31,66 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ConditionBiOperatorEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ConditionBiOperatorEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		evalStack.conditionExpression = null;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    evalStack.conditionExpression = null;
 
-		Expression rhs = evalStack.pop();
-		Expression lhs = evalStack.pop();
+    Expression rhs = evalStack.pop();
+    Expression lhs = evalStack.pop();
 
-		RelationalOperator op = RelationalOperator.EQ;
-		switch (ins.opcode) {
-		case OPCODE_IF_ICMPEQ:
-		case OPCODE_IF_ACMPEQ:
-			op = RelationalOperator.EQ;
-			break;
-		case OPCODE_IF_ACMPNE:
-		case OPCODE_IF_ICMPNE:
-			op = RelationalOperator.NE;
-			break;
-		case OPCODE_IF_ICMPLT:
-			op = RelationalOperator.LT;
-			break;
-		case OPCODE_IF_ICMPGE:
-			op = RelationalOperator.GE;
-			break;
-		case OPCODE_IF_ICMPGT:
-			op = RelationalOperator.GT;
-			break;
-		case OPCODE_IF_ICMPLE:
-			op = RelationalOperator.LE;
-			break;
-		}
-		evalStack.conditionExpression = new ConditionExpression(lhs, rhs, op);
+    RelationalOperator op = RelationalOperator.EQ;
+    switch (ins.opcode) {
+    case OPCODE_IF_ICMPEQ:
+    case OPCODE_IF_ACMPEQ:
+      op = RelationalOperator.EQ;
+      break;
+    case OPCODE_IF_ACMPNE:
+    case OPCODE_IF_ICMPNE:
+      op = RelationalOperator.NE;
+      break;
+    case OPCODE_IF_ICMPLT:
+      op = RelationalOperator.LT;
+      break;
+    case OPCODE_IF_ICMPGE:
+      op = RelationalOperator.GE;
+      break;
+    case OPCODE_IF_ICMPGT:
+      op = RelationalOperator.GT;
+      break;
+    case OPCODE_IF_ICMPLE:
+      op = RelationalOperator.LE;
+      break;
+    }
+    evalStack.conditionExpression = new ConditionExpression(lhs, rhs, op);
 
-		addConditional(ins, evalStack.conditionExpression);
-	}
+    addConditional(ins, evalStack.conditionExpression);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IF_ICMPEQ, OPCODE_IF_ACMPEQ, // ==
-				OPCODE_IF_ICMPNE, OPCODE_IF_ACMPNE, // !=
-				OPCODE_IF_ICMPLT, OPCODE_IF_ICMPLE, // <=
-				OPCODE_IF_ICMPGE, OPCODE_IF_ICMPGT); // >=
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IF_ICMPEQ, OPCODE_IF_ACMPEQ, // ==
+        OPCODE_IF_ICMPNE, OPCODE_IF_ACMPNE, // !=
+        OPCODE_IF_ICMPLT, OPCODE_IF_ICMPLE, // <=
+        OPCODE_IF_ICMPGE, OPCODE_IF_ICMPGT); // >=
+  }
 }

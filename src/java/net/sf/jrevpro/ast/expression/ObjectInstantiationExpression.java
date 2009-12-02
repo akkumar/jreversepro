@@ -28,25 +28,25 @@ import net.sf.jrevpro.reflect.Import;
  */
 public class ObjectInstantiationExpression extends Expression {
 
-	/**
-	 * @param type
-	 */
-	public ObjectInstantiationExpression(String jvmType) {
-		super(jvmType, L_REF);
-	}
+  /**
+   * @param type
+   */
+  public ObjectInstantiationExpression(String jvmType) {
+    super(jvmType, L_REF);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
 
-		String className = Import.getClassName(TypeInferrer.getJLSType(jvmType,
-				false));
+    String className = Import.getClassName(TypeInferrer.getJLSType(jvmType,
+        false));
 
-		return JLSConstants.NEW + " " + className;
-	}
+    return JLSConstants.NEW + " " + className;
+  }
 
 }

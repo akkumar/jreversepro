@@ -30,35 +30,35 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class SwitchEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public SwitchEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public SwitchEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		Expression exp = evalStack.pop();
-		statements.append(new SwitchLine(ins, exp));
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    Expression exp = evalStack.pop();
+    statements.append(new SwitchLine(ins, exp));
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_TABLESWITCH, OPCODE_LOOKUPSWITCH);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_TABLESWITCH, OPCODE_LOOKUPSWITCH);
+  }
 
 }

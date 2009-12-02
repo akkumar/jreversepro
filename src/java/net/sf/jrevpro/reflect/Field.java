@@ -20,36 +20,40 @@ package net.sf.jrevpro.reflect;
 
 /**
  * Abstraction for the field in a class.
+ * 
  * @author Karthik Kumar.
  **/
 public class Field extends Member {
 
-    /**
-     * Initial value of field. Applicable only if
-     * the qualifier has a 'final' keyword in it.
-     **/
-    private String value;
+  /**
+   * Initial value of field. Applicable only if the qualifier has a 'final'
+   * keyword in it.
+   **/
+  private String value;
 
-    /**
-     * no-arg constructor.
-     **/
-    public Field() {
-        value = "";
-    }
+  /**
+   * no-arg constructor.
+   **/
+  public Field() {
+    value = "";
+  }
 
-    /**
-     * Setter method for value.
-     * @param rhsValue New Value
-     **/
-    public void setValue(String rhsValue) {
-        value = rhsValue;
-    }
+  /**
+   * Setter method for value.
+   * 
+   * @param rhsValue
+   *          New Value
+   **/
+  public void setValue(String rhsValue) {
+    value = rhsValue;
+  }
 
-    /**
-     * Getter method for value.
-     * @return Returns value
-     **/
-    public String getValue() {
-        return value;
-    }
+  /**
+   * Getter method for value.
+   * 
+   * @return Returns value
+   **/
+  public String getValue() {
+    return value;
+  }
 }

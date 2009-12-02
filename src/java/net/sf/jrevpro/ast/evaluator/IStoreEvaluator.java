@@ -35,64 +35,62 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class IStoreEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public IStoreEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public IStoreEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		Expression exp = evalStack.pop();
-		switch (ins.opcode) {
-		case OPCODE_ISTORE:
-			logger.info("Processing Instruction " + ins.currentPc + " istore "
-					+ ins.getArgUnsignedWide());
-			operateStoreInstruction(ins, ins.getArgUnsignedWide(), exp);
-			break;
-		case OPCODE_ISTORE_0:
-		case OPCODE_ISTORE_1:
-		case OPCODE_ISTORE_2:
-		case OPCODE_ISTORE_3:
-			operateStoreInstruction(ins, ins.opcode - OPCODE_ISTORE_0, exp);
-			break;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    Expression exp = evalStack.pop();
+    switch (ins.opcode) {
+    case OPCODE_ISTORE:
+      logger.info("Processing Instruction " + ins.currentPc + " istore "
+          + ins.getArgUnsignedWide());
+      operateStoreInstruction(ins, ins.getArgUnsignedWide(), exp);
+      break;
+    case OPCODE_ISTORE_0:
+    case OPCODE_ISTORE_1:
+    case OPCODE_ISTORE_2:
+    case OPCODE_ISTORE_3:
+      operateStoreInstruction(ins, ins.opcode - OPCODE_ISTORE_0, exp);
+      break;
 
-		}
+    }
 
-	}
+  }
 
-	protected void operateStoreInstruction(Instruction ins,
-			int variableIndexToSymbolTable, Expression expr) {
-		Variable lhs = new Variable(varTable, expr.getType(),
-				variableIndexToSymbolTable, ins.currentPc);
-		statements.append(new CompleteLine(ins, new Assignment(lhs, expr)));
+  protected void operateStoreInstruction(Instruction ins,
+      int variableIndexToSymbolTable, Expression expr) {
+    Variable lhs = new Variable(varTable, expr.getType(),
+        variableIndexToSymbolTable, ins.currentPc);
+    statements.append(new CompleteLine(ins, new Assignment(lhs, expr)));
 
-		// Hint to the symbol table about the type.
-		varTable.recordLocalDatatypeReference(variableIndexToSymbolTable, expr
-				.getType(), ins.currentPc);
+    // Hint to the symbol table about the type.
+    varTable.recordLocalDatatypeReference(variableIndexToSymbolTable, expr
+        .getType(), ins.currentPc);
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_ISTORE, OPCODE_ISTORE_0, OPCODE_ISTORE_1,
-				OPCODE_ISTORE_2, OPCODE_ISTORE_3);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_ISTORE, OPCODE_ISTORE_0, OPCODE_ISTORE_1,
+        OPCODE_ISTORE_2, OPCODE_ISTORE_3);
+  }
 
-	private static final Logger logger = CustomLoggerFactory.createLogger();
+  private static final Logger logger = CustomLoggerFactory.createLogger();
 }

@@ -22,44 +22,35 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.Calendar;
 
-
 /**
-*   Represents the Status Panel of the Decompiler
-*
-*/
+ * Represents the Status Panel of the Decompiler
+ * 
+ */
 @SuppressWarnings("serial")
-public class StatusPanel
-        extends JPanel
-        implements ActionListener
-{
+public class StatusPanel extends JPanel implements ActionListener {
 
-    private final JLabel LblTime;
-    Timer SysTimer;
-    Calendar Today;
+  private final JLabel LblTime;
+  Timer SysTimer;
+  Calendar Today;
 
-    static final int INTERVAL  = 1000;// milliseconds
+  static final int INTERVAL = 1000;// milliseconds
 
-    public StatusPanel()
-    {
-        LblTime = new JLabel("" ,
-                                SwingConstants.RIGHT);
+  public StatusPanel() {
+    LblTime = new JLabel("", SwingConstants.RIGHT);
 
-        //Right Justify Time
-        setLayout( new GridLayout(1,1) );
-        add( LblTime);
+    // Right Justify Time
+    setLayout(new GridLayout(1, 1));
+    add(LblTime);
 
+    Today = Calendar.getInstance();
 
-        Today = Calendar.getInstance();
+    SysTimer = new Timer(INTERVAL, this);
+    SysTimer.start();
+  }
 
-        SysTimer = new Timer( INTERVAL , this );
-        SysTimer.start();
+  public void actionPerformed(final ActionEvent e) {
+    if (e.getSource() == SysTimer) {
+      LblTime.setText(new Date(System.currentTimeMillis()).toString());
     }
-
-    public void actionPerformed( final ActionEvent e )
-    {
-        if ( e.getSource() == SysTimer )
-        {
-            LblTime.setText( new Date(System.currentTimeMillis()).toString() );
-        }
-    }
+  }
 }

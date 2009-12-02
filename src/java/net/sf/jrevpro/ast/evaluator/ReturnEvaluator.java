@@ -30,58 +30,58 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ReturnEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ReturnEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ReturnEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		ReturnExpression expr = null;
-		if (ins.opcode == OPCODE_RETURN) {
-			expr = new ReturnExpression();
-		} else {
-			Expression op1 = evalStack.pop();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    ReturnExpression expr = null;
+    if (ins.opcode == OPCODE_RETURN) {
+      expr = new ReturnExpression();
+    } else {
+      Expression op1 = evalStack.pop();
 
-			switch (ins.opcode) {
-			case OPCODE_IRETURN:
-				expr = new ReturnExpression(op1, methodReturnType);
-				break;
-			case OPCODE_LRETURN:
-			case OPCODE_FRETURN:
-			case OPCODE_DRETURN:
-			case OPCODE_ARETURN:
-				expr = new ReturnExpression(op1, JVM_TYPE_VOID);
-				break;
-			default:
-				throw new IllegalArgumentException("Unsupported return code "
-						+ ins.opcode);
-			}
+      switch (ins.opcode) {
+      case OPCODE_IRETURN:
+        expr = new ReturnExpression(op1, methodReturnType);
+        break;
+      case OPCODE_LRETURN:
+      case OPCODE_FRETURN:
+      case OPCODE_DRETURN:
+      case OPCODE_ARETURN:
+        expr = new ReturnExpression(op1, JVM_TYPE_VOID);
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported return code "
+            + ins.opcode);
+      }
 
-		}
-		statements.append(new CompleteLine(ins, expr));
+    }
+    statements.append(new CompleteLine(ins, expr));
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IRETURN, OPCODE_LRETURN, OPCODE_FRETURN,
-				OPCODE_DRETURN, OPCODE_ARETURN, OPCODE_RETURN);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IRETURN, OPCODE_LRETURN, OPCODE_FRETURN,
+        OPCODE_DRETURN, OPCODE_ARETURN, OPCODE_RETURN);
+  }
 
 }

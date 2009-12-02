@@ -24,18 +24,18 @@ package net.sf.jrevpro.jls.emitter;
  */
 public class EmitterTarget {
 
-	public EmitterTarget() {
-		sb = new StringBuilder();
-	}
+  public EmitterTarget() {
+    sb = new StringBuilder();
+  }
 
-	public String getEmittedCode() {
-		return sb.toString();
-	}
+  public String getEmittedCode() {
+    return sb.toString();
+  }
 
-	public void append(String str) {
-		sb.append(str);
-	}
+  public void append(String str) {
+    sb.append(str);
+  }
 
-	private StringBuilder sb;
+  private StringBuilder sb;
 
 }

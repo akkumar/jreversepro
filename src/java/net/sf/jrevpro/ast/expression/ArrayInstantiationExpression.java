@@ -31,51 +31,50 @@ import net.sf.jrevpro.reflect.Import;
  */
 public class ArrayInstantiationExpression extends Expression {
 
-	public ArrayInstantiationExpression(char _arrayMemberType,
-			Expression _arraySize) {
-		this(String.valueOf(_arrayMemberType), _arraySize);
-	}
+  public ArrayInstantiationExpression(char _arrayMemberType,
+      Expression _arraySize) {
+    this(String.valueOf(_arrayMemberType), _arraySize);
+  }
 
-	public ArrayInstantiationExpression(String _arrayMemberType,
-			Expression _arraySize) {
-		super(String.valueOf(JVM_TYPE_ARRAY) + _arrayMemberType, L_REF);
-		arraySizes = new ArrayList<Expression>();
-		arraySizes.add(_arraySize);
-		arrayMemberType = _arrayMemberType;
-	}
+  public ArrayInstantiationExpression(String _arrayMemberType,
+      Expression _arraySize) {
+    super(String.valueOf(JVM_TYPE_ARRAY) + _arrayMemberType, L_REF);
+    arraySizes = new ArrayList<Expression>();
+    arraySizes.add(_arraySize);
+    arrayMemberType = _arrayMemberType;
+  }
 
-	public ArrayInstantiationExpression(String _arrayMemberType,
-			List<Expression> _arraySizes) {
-		super(String.valueOf(JVM_TYPE_ARRAY) + _arrayMemberType, L_REF);
-		arraySizes = _arraySizes;
-		arrayMemberType = _arrayMemberType;
-	}
+  public ArrayInstantiationExpression(String _arrayMemberType,
+      List<Expression> _arraySizes) {
+    super(String.valueOf(JVM_TYPE_ARRAY) + _arrayMemberType, L_REF);
+    arraySizes = _arraySizes;
+    arrayMemberType = _arrayMemberType;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
-		String jlstype = Import.getClassName(TypeInferrer.getJLSType(
-				arrayMemberType, false));
-		// Get Class Name
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
+    String jlstype = Import.getClassName(TypeInferrer.getJLSType(
+        arrayMemberType, false));
+    // Get Class Name
 
-		StringBuilder sb = new StringBuilder();
-		sb.append(JLSConstants.NEW + " " + jlstype);
+    StringBuilder sb = new StringBuilder();
+    sb.append(JLSConstants.NEW + " " + jlstype);
 
-		for (Expression expr : arraySizes) {
-			sb.append(JLSConstants.OPEN_SQUARE_BRACKET
-					+ expr.getJLSCode()
-					+ JLSConstants.CLOSE_SQUARE_BRACKET);
-		}
-		return sb.toString();
+    for (Expression expr : arraySizes) {
+      sb.append(JLSConstants.OPEN_SQUARE_BRACKET + expr.getJLSCode()
+          + JLSConstants.CLOSE_SQUARE_BRACKET);
+    }
+    return sb.toString();
 
-	}
+  }
 
-	String arrayMemberType;
+  String arrayMemberType;
 
-	List<Expression> arraySizes;
+  List<Expression> arraySizes;
 
 }

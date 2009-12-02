@@ -26,30 +26,28 @@ import net.sf.jrevpro.jls.JLSConstants;
  */
 public class Assignment extends Expression {
 
-	/**
-	 * @param type
-	 */
-	public Assignment(Expression _lhs, Expression _rhs) {
-		super(_rhs.getType(), L_EVAL);
-		lhs = _lhs;
-		rhs = _rhs;
-	}
+  /**
+   * @param type
+   */
+  public Assignment(Expression _lhs, Expression _rhs) {
+    super(_rhs.getType(), L_EVAL);
+    lhs = _lhs;
+    rhs = _rhs;
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
+    return lhs.getJLSCode() + JLSConstants.EQUALTO + rhs.getJLSCode();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
-		return lhs.getJLSCode() + JLSConstants.EQUALTO
-				+ rhs.getJLSCode();
+  }
 
-	}
+  Expression lhs;
 
-	Expression lhs;
-
-	Expression rhs;
+  Expression rhs;
 
 }

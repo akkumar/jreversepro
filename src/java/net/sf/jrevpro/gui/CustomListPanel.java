@@ -30,102 +30,95 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-
-/** Provides a Custom List Panel.
- *
+/**
+ * Provides a Custom List Panel.
+ * 
  * @author Karthik Kumar
  **/
 @SuppressWarnings("serial")
-public class CustomListPanel extends JPanel
-{
-    /**
-     * Corresponds to the Label 'Constant PoolTable'
-     **/
-    private JLabel mLblList;
+public class CustomListPanel extends JPanel {
+  /**
+   * Corresponds to the Label 'Constant PoolTable'
+   **/
+  private JLabel mLblList;
 
-    /**
-     * Corresponds to the Label 'Goto Index'.
-     **/
-    private JLabel mLblGoto;
+  /**
+   * Corresponds to the Label 'Goto Index'.
+   **/
+  private JLabel mLblGoto;
 
-    /**
-     * Gets Index of the ConstantPool as input from the user.
-     **/
-    public JTextField mTxtIndex;
+  /**
+   * Gets Index of the ConstantPool as input from the user.
+   **/
+  public JTextField mTxtIndex;
 
-    /**
-     * Goto button.
-     **/
-    public JButton mBtnGoto;
+  /**
+   * Goto button.
+   **/
+  public JButton mBtnGoto;
 
-    /**
-     * Text to search to in the ConstantPool.
-     **/
-    public JTextField mTxtSearch;
+  /**
+   * Text to search to in the ConstantPool.
+   **/
+  public JTextField mTxtSearch;
 
-    /**
-     * List of categories available for searching.
-     **/
-    public JComboBox mChooseType;
+  /**
+   * List of categories available for searching.
+   **/
+  public JComboBox mChooseType;
 
-    /**
-     * Find button.
-     **/
-    public JButton mBtnFind;
+  /**
+   * Find button.
+   **/
+  public JButton mBtnFind;
 
-    /**
-     * @param aMaxEntries Maximum Entries of the ConstantPool Table.
-     **/
-    public CustomListPanel(int aMaxEntries)
-    {
-        mLblList = new JLabel("Constant Pool Table:   " +
-                                    "Total Entries " +
-                                    String.valueOf(aMaxEntries),
-                                    SwingConstants.CENTER );
+  /**
+   * @param aMaxEntries
+   *          Maximum Entries of the ConstantPool Table.
+   **/
+  public CustomListPanel(int aMaxEntries) {
+    mLblList = new JLabel("Constant Pool Table:   " + "Total Entries "
+        + String.valueOf(aMaxEntries), SwingConstants.CENTER);
 
-        mLblGoto = new JLabel("Goto Index ",
-                                    SwingConstants.CENTER );
+    mLblGoto = new JLabel("Goto Index ", SwingConstants.CENTER);
 
-        mTxtIndex = new JTextField(10);
-        mBtnGoto = new JButton("Goto");
+    mTxtIndex = new JTextField(10);
+    mBtnGoto = new JButton("Goto");
 
-        Object [] items  = { "ConstantPool Values" ,
-                                    "Pointer I",
-                                    "Pointer II"
-                                 };
+    Object[] items = { "ConstantPool Values", "Pointer I", "Pointer II" };
 
-        mChooseType = new JComboBox(items);
-        mTxtSearch = new JTextField(10);
-        mBtnFind = new JButton("Find Next");
+    mChooseType = new JComboBox(items);
+    mTxtSearch = new JTextField(10);
+    mBtnFind = new JButton("Find Next");
 
-        setLayout( new GridBagLayout() );
-        setSize( 100 , 75 );
-        addComponents();
-    }
+    setLayout(new GridBagLayout());
+    setSize(100, 75);
+    addComponents();
+  }
 
-    /**
-     * Adds the components.
-     **/
-    private void addComponents() {
-        //GridBagLayout grid = new GridBagLayout();
-        GridBagConstraints c  = new GridBagConstraints();
+  /**
+   * Adds the components.
+   **/
+  private void addComponents() {
+    // GridBagLayout grid = new GridBagLayout();
+    GridBagConstraints c = new GridBagConstraints();
 
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        add( mLblList , c);
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    add(mLblList, c);
 
-        c.gridwidth = 1;
-        add( mLblGoto , c );
-        add( mTxtIndex , c );
+    c.gridwidth = 1;
+    add(mLblGoto, c);
+    add(mTxtIndex, c);
 
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        add( mBtnGoto , c );
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    add(mBtnGoto, c);
 
-        c.gridwidth = 1;
-        add( mTxtSearch , c );
-        add( mChooseType , c );
+    c.gridwidth = 1;
+    add(mTxtSearch, c);
+    add(mChooseType, c);
 
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        add(mBtnFind , c);
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    add(mBtnFind, c);
 
-    }
+  }
 }

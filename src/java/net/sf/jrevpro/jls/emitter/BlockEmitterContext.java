@@ -30,27 +30,27 @@ import net.sf.jrevpro.jls.emitter.java14.BlockEmitterConfigImpl_14;
  */
 public final class BlockEmitterContext {
 
-	private BlockEmitterContext() {
-	}
+  private BlockEmitterContext() {
+  }
 
-	private static final Map<JAVA_VERSION, BlockEmitterConfig> configMap = init();
+  private static final Map<JAVA_VERSION, BlockEmitterConfig> configMap = init();
 
-	public static String getBlockEmitterFQCN(String blockFCQN) {
-		return configMap.get(
-				JavaDecompileVersionContext.getJavaVersionToDecompile())
-				.getConfig().get(blockFCQN);
-	}
+  public static String getBlockEmitterFQCN(String blockFCQN) {
+    return configMap.get(
+        JavaDecompileVersionContext.getJavaVersionToDecompile()).getConfig()
+        .get(blockFCQN);
+  }
 
-	private static Map<JAVA_VERSION, BlockEmitterConfig> init() {
-		Map<JAVA_VERSION, BlockEmitterConfig> configMap = new HashMap<JAVA_VERSION, BlockEmitterConfig>();
-		configMap.put(JAVA_VERSION.JAVA_1_4, getJava14Config());
-		// Java 5 and 6 config go here
-		// TODO
-		return configMap;
-	}
+  private static Map<JAVA_VERSION, BlockEmitterConfig> init() {
+    Map<JAVA_VERSION, BlockEmitterConfig> configMap = new HashMap<JAVA_VERSION, BlockEmitterConfig>();
+    configMap.put(JAVA_VERSION.JAVA_1_4, getJava14Config());
+    // Java 5 and 6 config go here
+    // TODO
+    return configMap;
+  }
 
-	private static BlockEmitterConfig getJava14Config() {
-		return new BlockEmitterConfigImpl_14();
-	}
+  private static BlockEmitterConfig getJava14Config() {
+    return new BlockEmitterConfigImpl_14();
+  }
 
 }

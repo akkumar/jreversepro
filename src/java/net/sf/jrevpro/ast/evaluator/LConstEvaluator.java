@@ -24,18 +24,18 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class LConstEvaluator extends AbstractInstructionEvaluator {
 
-	public LConstEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public LConstEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		int val = ins.opcode - OPCODE_LCONST_0;
-		evalStack.push(new Constant(val, JVM_TYPE_LONG));
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    int val = ins.opcode - OPCODE_LCONST_0;
+    evalStack.push(new Constant(val, JVM_TYPE_LONG));
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_LCONST_0, OPCODE_LCONST_1);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_LCONST_0, OPCODE_LCONST_1);
+  }
 }

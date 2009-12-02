@@ -12,37 +12,26 @@ package net.sf.jrevpro;
 /**
  * @author karthikeyanc
  */
-public final class JavaDecompileVersionContext
-{
+public final class JavaDecompileVersionContext {
 
-  private JavaDecompileVersionContext()
-  {
+  private JavaDecompileVersionContext() {
   }
-  
+
   private static final JavaDecompileVersionContext ctx = new JavaDecompileVersionContext();
 
-  public enum JAVA_VERSION
-  {
-    JAVA_1_4,
-    JAVA_5,
-    JAVA_6
+  public enum JAVA_VERSION {
+    JAVA_1_4, JAVA_5, JAVA_6
   }
 
-
-  public static final void setJavaVersionToDecompile(final String version)
-  {
+  public static final void setJavaVersionToDecompile(final String version) {
     parseJavaVersionToDecompile(version);
   }
 
-
-  public static JAVA_VERSION getJavaVersionToDecompile()
-  {
+  public static JAVA_VERSION getJavaVersionToDecompile() {
     return ctx.getJavaVersion();
   }
 
-
-  private static final void parseJavaVersionToDecompile(final String userInput)
-  {
+  private static final void parseJavaVersionToDecompile(final String userInput) {
     // TODO implementation is to be provided
     // till then setting it as java 1.4
 
@@ -51,15 +40,11 @@ public final class JavaDecompileVersionContext
 
   private JAVA_VERSION javaVersion = null;
 
-
-  private JAVA_VERSION getJavaVersion()
-  {
+  private JAVA_VERSION getJavaVersion() {
     return this.javaVersion;
   }
 
-
-  private void setJavaVersion(final JAVA_VERSION javaVersion)
-  {
+  private void setJavaVersion(final JAVA_VERSION javaVersion) {
     this.javaVersion = javaVersion;
   }
 

@@ -16,69 +16,65 @@
  ***/
 package net.sf.jrevpro.gui;
 
-
 /**
- *
+ * 
  * @author Karthik Kumar
  **/
 interface GuiConstants {
 
-    /**
-     * Name of property file.
-     **/
-    String PROP_FILE = "jrev.ini";
+  /**
+   * Name of property file.
+   **/
+  String PROP_FILE = "jrev.ini";
 
+  /**
+   * Heading of property file.
+   **/
+  String PROP_HEADING = "JReversePro - Java Decompiler / Disassembler";
 
-    /**
-     * Heading of property file.
-     **/
-    String PROP_HEADING = "JReversePro - Java Decompiler / Disassembler";
+  /**
+   * DecompileFlag Property.
+   **/
+  String DECOMPILE_FLAG = "Decompile";
 
-    /**
-     * DecompileFlag Property.
-     **/
-    String DECOMPILE_FLAG = "Decompile";
+  /**
+   * XPosition of GUI window.
+   **/
+  String XPOS = "XPos";
 
-    /**
-     * XPosition of GUI window.
-     **/
-    String XPOS = "XPos";
+  /**
+   * YPosition of GUI window.
+   **/
+  String YPOS = "YPos";
 
-    /**
-     * YPosition of GUI window.
-     **/
-    String YPOS = "YPos";
+  /**
+   * Width of GUI window.
+   **/
+  String XSIZE = "Width";
 
-    /**
-     * Width of GUI window.
-     **/
-    String XSIZE = "Width";
+  /**
+   * Height of GUI window.
+   **/
+  String YSIZE = "Height";
 
-    /**
-     * Height of GUI window.
-     **/
-    String YSIZE = "Height";
+  /**
+   * Look And Feel of Window.
+   **/
+  String L_AND_F = "LookAndFeel";
 
-    /**
-     * Look And Feel of Window.
-     **/
-    String L_AND_F = "LookAndFeel";
+  /**
+   * Font of GUI window.
+   **/
+  String FONT = "Font";
 
-    /**
-     * Font of GUI window.
-     **/
-    String FONT  = "Font";
+  /**
+   * Title of GUI window.
+   **/
+  String TITLE = "JReversePro - Java Decompiler / Disassembler";
 
-    /**
-     * Title of GUI window.
-     **/
-    String TITLE = "JReversePro - Java Decompiler / Disassembler";
-
-
-
-    /**
-     * MAGIC corresponds to the Magic number appearing in
-     * the beginning of class files.
-     **/
-    int MAGIC = 0xCAFEBABE;
+  /**
+   * MAGIC corresponds to the Magic number appearing in the beginning of class
+   * files.
+   **/
+  int MAGIC = 0xCAFEBABE;
 }

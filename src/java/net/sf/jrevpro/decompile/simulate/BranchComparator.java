@@ -26,42 +26,42 @@ import java.util.Comparator;
  */
 public class BranchComparator implements Comparator<BranchEntry> {
 
-	/**
-	 * Method to compare two JBranchComparator objects
-	 * 
-	 * @param o1
-	 *            First Object to be compared.
-	 * @param o2
-	 *            Second object to be compared.
-	 * @return -1 if First branch overlaps Second branch, 1 if first branch
-	 *         doesnt overlap and exactly outside the second branch.
-	 */
-	public int compare(BranchEntry e1, BranchEntry e2) {
-		int exec1 = e1.getStartExecPc();
-		int exec2 = e2.getStartExecPc();
-		int end1 = e1.getEndBlockPc();
-		int end2 = e2.getEndBlockPc();
+  /**
+   * Method to compare two JBranchComparator objects
+   * 
+   * @param o1
+   *          First Object to be compared.
+   * @param o2
+   *          Second object to be compared.
+   * @return -1 if First branch overlaps Second branch, 1 if first branch doesnt
+   *         overlap and exactly outside the second branch.
+   */
+  public int compare(BranchEntry e1, BranchEntry e2) {
+    int exec1 = e1.getStartExecPc();
+    int exec2 = e2.getStartExecPc();
+    int end1 = e1.getEndBlockPc();
+    int end2 = e2.getEndBlockPc();
 
-		if (exec1 < exec2) {
-			return -1;
-		} else if (exec1 == exec2) {
-			if (end1 > end2) {
-				return -1;
-			} else {
-				return 1;
-			}
-		} else {
-			return 1;
-		}
+    if (exec1 < exec2) {
+      return -1;
+    } else if (exec1 == exec2) {
+      if (end1 > end2) {
+        return -1;
+      } else {
+        return 1;
+      }
+    } else {
+      return 1;
+    }
 
-	}
+  }
 
-	/**
-	 * @param obj
-	 *            R.H.S object to be compared.
-	 * @return true, if both are equal. false, otherwise.
-	 */
-	public boolean equals(Object obj) {
-		return (obj instanceof BranchEntry);
-	}
+  /**
+   * @param obj
+   *          R.H.S object to be compared.
+   * @return true, if both are equal. false, otherwise.
+   */
+  public boolean equals(Object obj) {
+    return (obj instanceof BranchEntry);
+  }
 }

@@ -32,72 +32,71 @@ import net.sf.jrevpro.jvm.JVMConstants;
  * 
  */
 public abstract class Expression implements JVMConstants,
-		ExpressionPrecedenceConstants, Cloneable {
+    ExpressionPrecedenceConstants, Cloneable {
 
-	/**
-	 * Retrieves the JLS code corresponding to this expression
-	 * 
-	 * @return String supporting Java Language.
-	 */
-	public abstract String getJLSCode();
+  /**
+   * Retrieves the JLS code corresponding to this expression
+   * 
+   * @return String supporting Java Language.
+   */
+  public abstract String getJLSCode();
 
-	/**
-	 * Release all the resources associated with this Expression
-	 */
-	// public abstract void release();
-	protected Expression(String _jvmType, int _precedence) {
-		jvmType = _jvmType;
-		precedence = _precedence;
-	}
+  /**
+   * Release all the resources associated with this Expression
+   */
+  // public abstract void release();
+  protected Expression(String _jvmType, int _precedence) {
+    jvmType = _jvmType;
+    precedence = _precedence;
+  }
 
-	protected Expression(char _jvmType, int _precedence) {
-		jvmType = String.valueOf(_jvmType);
-		precedence = _precedence;
-	}
+  protected Expression(char _jvmType, int _precedence) {
+    jvmType = String.valueOf(_jvmType);
+    precedence = _precedence;
+  }
 
-	public String getType() {
-		return jvmType;
-	}
+  public String getType() {
+    return jvmType;
+  }
 
-	/**
-	 * @param precedence
-	 *            precedence of the operand.
-	 * @return Returns value taking into account precedence too
-	 **/
-	public String getValueEx(int precedence) {
-		if (this.precedence >= precedence) {
-			return getJLSCode();
-		} else {
-			return JLSConstants.OPEN_BRACKET + getJLSCode()
-					+ JLSConstants.CLOSE_BRACKET;
-		}
-	}
+  /**
+   * @param precedence
+   *          precedence of the operand.
+   * @return Returns value taking into account precedence too
+   **/
+  public String getValueEx(int precedence) {
+    if (this.precedence >= precedence) {
+      return getJLSCode();
+    } else {
+      return JLSConstants.OPEN_BRACKET + getJLSCode()
+          + JLSConstants.CLOSE_BRACKET;
+    }
+  }
 
-	/**
-	 * @return Returns true, if this type is one of the following. integer,
-	 *         boolean, byte, character, short, float, reference, return
-	 *         address. In case it is either Long / Double the datatype belongs
-	 *         to cat2
-	 */
-	public boolean isCategory1() {
-		if (jvmType.length() == 1) {
-			char ch = jvmType.charAt(0);
-			return !(ch == JVMConstants.JVM_TYPE_LONG || ch == JVM_TYPE_DOUBLE);
-		}
-		// References are ok too.
-		return true;
-	}
+  /**
+   * @return Returns true, if this type is one of the following. integer,
+   *         boolean, byte, character, short, float, reference, return address.
+   *         In case it is either Long / Double the datatype belongs to cat2
+   */
+  public boolean isCategory1() {
+    if (jvmType.length() == 1) {
+      char ch = jvmType.charAt(0);
+      return !(ch == JVMConstants.JVM_TYPE_LONG || ch == JVM_TYPE_DOUBLE);
+    }
+    // References are ok too.
+    return true;
+  }
 
-	/**
-	 * Have clone object
-	 */
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
+  /**
+   * Have clone object
+   */
+  public Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
 
-	protected String jvmType;
-	protected int precedence;
+  protected String jvmType;
+  protected int precedence;
 
-	protected static final Logger logger = CustomLoggerFactory.createLogger();
+  protected static final Logger logger = CustomLoggerFactory.createLogger();
 
 }

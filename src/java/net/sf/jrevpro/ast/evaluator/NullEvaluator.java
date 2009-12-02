@@ -23,18 +23,18 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class NullEvaluator extends AbstractInstructionEvaluator {
 
-	public NullEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public NullEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		// Do nothing. since it is a null statement.
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    // Do nothing. since it is a null statement.
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_NOP);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_NOP);
+  }
 
 }

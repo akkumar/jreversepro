@@ -19,35 +19,34 @@ package net.sf.jrevpro;
 
 public class VersionChecker {
 
-	/**
-	 * Checks for the version compatibility between the system JRE and the JRE
-	 * for which the application is written for.
-	 * 
-	 * @return true , if System JRE is >= {@value #DEFAULT_VERSION}<br>
-	 *         false , otherwise.
-	 */
-	public static boolean versionCheck() {
-		String version = System.getProperty("java.version");
-		for (int i = 0; i <= 5; i += 2) {
-			int versionVal = (int) (version.charAt(i));
-			int workingVal = (int) (DEFAULT_VERSION.charAt(i));
-			if (versionVal > workingVal) {
-				return true;
-			} else if (versionVal < workingVal) {
-				System.err.println("This Software is designed to run under "
-						+ DEFAULT_VERSION);
-				System.err.println("Please upgrade your JRE"
-						+ " from http://java.sun.com/j2se"
-						+ " for your operating system");
-				return false;
-			}
-		}
-		return true;
-	}
+  /**
+   * Checks for the version compatibility between the system JRE and the JRE for
+   * which the application is written for.
+   * 
+   * @return true , if System JRE is >= {@value #DEFAULT_VERSION}<br>
+   *         false , otherwise.
+   */
+  public static boolean versionCheck() {
+    String version = System.getProperty("java.version");
+    for (int i = 0; i <= 5; i += 2) {
+      int versionVal = (int) (version.charAt(i));
+      int workingVal = (int) (DEFAULT_VERSION.charAt(i));
+      if (versionVal > workingVal) {
+        return true;
+      } else if (versionVal < workingVal) {
+        System.err.println("This Software is designed to run under "
+            + DEFAULT_VERSION);
+        System.err.println("Please upgrade your JRE"
+            + " from http://java.sun.com/j2se" + " for your operating system");
+        return false;
+      }
+    }
+    return true;
+  }
 
-	/**
-	 * Working Version Could be compromised
-	 */
-	static final String DEFAULT_VERSION = "1.5.0";
+  /**
+   * Working Version Could be compromised
+   */
+  static final String DEFAULT_VERSION = "1.5.0";
 
 }

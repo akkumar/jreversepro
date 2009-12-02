@@ -18,50 +18,50 @@ package net.sf.jrevpro.reflect.variabletable;
 
 public interface VariableTable {
 
-	int FULL_SCOPE_INSTRUCTION_INDEX = 0;
+  int FULL_SCOPE_INSTRUCTION_INDEX = 0;
 
-	/**
-	 * Records the reference for a given local variable index of inferred type -
-	 * jvmVariableType in the symbol table. are the
-	 * 
-	 * @param localVariableIndex
-	 *            variable index
-	 * @param jvmVariableType
-	 *            Data type
-	 * @param referredBytecodeIndex
-	 *            variable store index.
-	 */
-	public abstract void recordLocalDatatypeReference(int localVariableIndex,
-			char jvmVariableType, int referredBytecodeIndex);
+  /**
+   * Records the reference for a given local variable index of inferred type -
+   * jvmVariableType in the symbol table. are the
+   * 
+   * @param localVariableIndex
+   *          variable index
+   * @param jvmVariableType
+   *          Data type
+   * @param referredBytecodeIndex
+   *          variable store index.
+   */
+  public abstract void recordLocalDatatypeReference(int localVariableIndex,
+      char jvmVariableType, int referredBytecodeIndex);
 
-	/**
-	 * Records the reference for a given local variable index of inferred type -
-	 * jvmVariableType in the symbol table. are the
-	 * 
-	 * @param localVariableIndex
-	 *            variable index
-	 * @param jvmVariableType
-	 *            Data type
-	 * @param referredBytecodeIndex
-	 *            variable store index.
-	 */
-	public abstract void recordLocalDatatypeReference(int localVariableIndex,
-			String jvmVariableType, int referredBytecodeIndex);
+  /**
+   * Records the reference for a given local variable index of inferred type -
+   * jvmVariableType in the symbol table. are the
+   * 
+   * @param localVariableIndex
+   *          variable index
+   * @param jvmVariableType
+   *          Data type
+   * @param referredBytecodeIndex
+   *          variable store index.
+   */
+  public abstract void recordLocalDatatypeReference(int localVariableIndex,
+      String jvmVariableType, int referredBytecodeIndex);
 
-	/**
-	 * @return Get the maximum number of symbols available in the scope of the
-	 *         current method.
-	 */
-	public abstract int getMaxSymbols();
+  /**
+   * @return Get the maximum number of symbols available in the scope of the
+   *         current method.
+   */
+  public abstract int getMaxSymbols();
 
-	/**
-	 * @param aVarIndex
-	 *            Index of local variable into symbol table.
-	 * @param aInsIndex
-	 *            Index of instruction into bytecode array of method.
-	 * @return Returns a name of the variable given the variable index and the
-	 *         instruction index.
-	 */
-	public abstract String getName(int aVarIndex, int aInsIndex);
+  /**
+   * @param aVarIndex
+   *          Index of local variable into symbol table.
+   * @param aInsIndex
+   *          Index of instruction into bytecode array of method.
+   * @return Returns a name of the variable given the variable index and the
+   *         instruction index.
+   */
+  public abstract String getName(int aVarIndex, int aInsIndex);
 
 }

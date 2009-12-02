@@ -27,74 +27,74 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class BlockInferrer {
 
-	public BlockInferrer(DecompilationContext _context) {
+  public BlockInferrer(DecompilationContext _context) {
 
-		decompiler = _context;
+    decompiler = _context;
 
-		mainBlock = new MethodBlock(decompiler.method.getBytes().length);
+    mainBlock = new MethodBlock(decompiler.method.getBytes().length);
 
-		currentBlock = mainBlock;
+    currentBlock = mainBlock;
 
-		gotoStack = new Stack<Instruction>();
-	}
+    gotoStack = new Stack<Instruction>();
+  }
 
-	public void pushGotoInstruction(Instruction ins) {
-		if (ins.getOffset() > 0) {
-			// Only forward-looking references are pushed.
-			gotoStack.push(ins);
-		}
-	}
+  public void pushGotoInstruction(Instruction ins) {
+    if (ins.getOffset() > 0) {
+      // Only forward-looking references are pushed.
+      gotoStack.push(ins);
+    }
+  }
 
-	public boolean isMultiConditionalExpression() {
-		return (currentBlock instanceof ConditionalBlock)
-				&& !currentBlock.hasChildren();
+  public boolean isMultiConditionalExpression() {
+    return (currentBlock instanceof ConditionalBlock)
+        && !currentBlock.hasChildren();
 
-	}
+  }
 
-	public void appendChildBlock(Block _block) {
-		_block.setParent(currentBlock);
-		currentBlock.addChildBlock(_block);
-	}
+  public void appendChildBlock(Block _block) {
+    _block.setParent(currentBlock);
+    currentBlock.addChildBlock(_block);
+  }
 
-	public void moveUp() {
-		Block parent = currentBlock.getParent();
-		if (parent == null) {
-			throw new IllegalStateException(
-					"Cannot move up since current block is the topmost level block");
-		}
-		currentBlock = parent;
-	}
+  public void moveUp() {
+    Block parent = currentBlock.getParent();
+    if (parent == null) {
+      throw new IllegalStateException(
+          "Cannot move up since current block is the topmost level block");
+    }
+    currentBlock = parent;
+  }
 
-	public void markConditionAsStatement() {
-		if (multiCondition != null) {
-			currentBlock.addChildBlock(multiCondition);
-			currentBlock = multiCondition;
-			multiCondition = null;
-		}
-	}
+  public void markConditionAsStatement() {
+    if (multiCondition != null) {
+      currentBlock.addChildBlock(multiCondition);
+      currentBlock = multiCondition;
+      multiCondition = null;
+    }
+  }
 
-	public void saveConditionalBlock(Instruction ins, ConditionExpression expr) {
-		if (multiCondition == null) {
-			multiCondition = new ConditionalBlock(currentBlock, expr,
-					ConditionalBlock.ConditionalType.CONDITION_IF);
-			// By default it begins with an if condition.
-		} else {
-			// Look if we can possibly merge blocks to form a single condition
-		}
-	}
+  public void saveConditionalBlock(Instruction ins, ConditionExpression expr) {
+    if (multiCondition == null) {
+      multiCondition = new ConditionalBlock(currentBlock, expr,
+          ConditionalBlock.ConditionalType.CONDITION_IF);
+      // By default it begins with an if condition.
+    } else {
+      // Look if we can possibly merge blocks to form a single condition
+    }
+  }
 
-	public Block getMainBlock() {
-		return mainBlock;
-	}
+  public Block getMainBlock() {
+    return mainBlock;
+  }
 
-	private ConditionalBlock multiCondition;
+  private ConditionalBlock multiCondition;
 
-	private Stack<Instruction> gotoStack;
+  private Stack<Instruction> gotoStack;
 
-	private Block currentBlock;
+  private Block currentBlock;
 
-	private Block mainBlock;
+  private Block mainBlock;
 
-	private DecompilationContext decompiler;
+  private DecompilationContext decompiler;
 
 }

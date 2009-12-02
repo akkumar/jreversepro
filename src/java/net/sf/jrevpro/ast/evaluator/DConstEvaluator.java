@@ -24,30 +24,29 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class DConstEvaluator extends AbstractInstructionEvaluator {
 
-	public DConstEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public DConstEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_DCONST_0: {
-			evalStack.push(Constant.DOUBLE_0);
-			break;
-		}
-		case OPCODE_DCONST_1: {
-			evalStack.push(Constant.DOUBLE_1);
-			break;
-		}
-		default:
-			throw new RuntimeException("Opcode " + ins.opcode
-					+ " not supported");
-		}
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_DCONST_0: {
+      evalStack.push(Constant.DOUBLE_0);
+      break;
+    }
+    case OPCODE_DCONST_1: {
+      evalStack.push(Constant.DOUBLE_1);
+      break;
+    }
+    default:
+      throw new RuntimeException("Opcode " + ins.opcode + " not supported");
+    }
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_DCONST_0, OPCODE_DCONST_1);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_DCONST_0, OPCODE_DCONST_1);
+  }
 
 }

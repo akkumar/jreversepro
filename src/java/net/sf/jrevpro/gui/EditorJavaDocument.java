@@ -21,22 +21,24 @@ import javax.swing.event.*;
 import java.awt.*;
 
 /**
- *  JJavaDocumentEdit
+ * JJavaDocumentEdit
  */
 @SuppressWarnings("serial")
-public class EditorJavaDocument extends JTextArea
-        implements DocumentListener
-        {
+public class EditorJavaDocument extends JTextArea implements DocumentListener {
 
-    public EditorJavaDocument() {
-        super();
-        setFont( new Font("SansSerif" , Font.PLAIN ,
-                                        DlgFont.OPTIMUM_SIZE) );
-        getDocument().addDocumentListener(this);
-    }
+  public EditorJavaDocument() {
+    super();
+    setFont(new Font("SansSerif", Font.PLAIN, DlgFont.OPTIMUM_SIZE));
+    getDocument().addDocumentListener(this);
+  }
 
-    //Document Listeners
-    public void insertUpdate( DocumentEvent e) {    }
-    public void removeUpdate( DocumentEvent e) { }
-    public void changedUpdate( DocumentEvent e) { }
+  // Document Listeners
+  public void insertUpdate(DocumentEvent e) {
+  }
+
+  public void removeUpdate(DocumentEvent e) {
+  }
+
+  public void changedUpdate(DocumentEvent e) {
+  }
 }

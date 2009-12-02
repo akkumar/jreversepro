@@ -24,36 +24,36 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class DLoadEvaluator extends AbstractInstructionEvaluator {
 
-	public DLoadEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public DLoadEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_DLOAD:
-			operateLoadInstruction(ins, ins.getArgUnsignedWide());
-			break;
-		case OPCODE_DLOAD_0:
-		case OPCODE_DLOAD_1:
-		case OPCODE_DLOAD_2:
-		case OPCODE_DLOAD_3:
-			operateLoadInstruction(ins, ins.opcode - OPCODE_DLOAD_0);
-			break;
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_DLOAD:
+      operateLoadInstruction(ins, ins.getArgUnsignedWide());
+      break;
+    case OPCODE_DLOAD_0:
+    case OPCODE_DLOAD_1:
+    case OPCODE_DLOAD_2:
+    case OPCODE_DLOAD_3:
+      operateLoadInstruction(ins, ins.opcode - OPCODE_DLOAD_0);
+      break;
 
-		}
-	}
+    }
+  }
 
-	private void operateLoadInstruction(Instruction ins,
-			int variableIndexToSymbolTable) {
-		Variable var = new Variable(varTable, JVM_TYPE_DOUBLE,
-				variableIndexToSymbolTable, ins.currentPc);
-		evalStack.push(var);
-	}
+  private void operateLoadInstruction(Instruction ins,
+      int variableIndexToSymbolTable) {
+    Variable var = new Variable(varTable, JVM_TYPE_DOUBLE,
+        variableIndexToSymbolTable, ins.currentPc);
+    evalStack.push(var);
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_DLOAD, OPCODE_DLOAD_0, OPCODE_DLOAD_1,
-				OPCODE_DLOAD_2, OPCODE_DLOAD_3);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_DLOAD, OPCODE_DLOAD_0, OPCODE_DLOAD_1,
+        OPCODE_DLOAD_2, OPCODE_DLOAD_3);
+  }
 }

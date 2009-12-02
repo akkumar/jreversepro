@@ -30,123 +30,126 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ArithmeticEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ArithmeticEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ArithmeticEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		// +
-		case OPCODE_IADD:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
-					JVM_TYPE_INT);
-			break;
-		case OPCODE_LADD:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
-					JVM_TYPE_LONG);
-			break;
-		case OPCODE_FADD:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
-					JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DADD:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
-					JVM_TYPE_DOUBLE);
-			break;
-			// -
-		case OPCODE_ISUB:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
-					JVM_TYPE_INT);
-			break;
-		case OPCODE_LSUB:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
-					JVM_TYPE_LONG);
-			break;
-		case OPCODE_FSUB:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
-					JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DSUB:
-			BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
-					JVM_TYPE_DOUBLE);
-			break;
-			// *
-		case OPCODE_IMUL:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MULTIPLY, JVM_TYPE_INT);
-			break;
-		case OPCODE_LMUL:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MULTIPLY, JVM_TYPE_LONG);
-			break;
-		case OPCODE_FMUL:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MULTIPLY, JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DMUL:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MULTIPLY, JVM_TYPE_DOUBLE);
-			break;
-			// /
-		case OPCODE_IDIV:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.DIVIDE, JVM_TYPE_INT);
-			break;
-		case OPCODE_LDIV:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.DIVIDE, JVM_TYPE_LONG);
-			break;
-		case OPCODE_FDIV:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.DIVIDE, JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DDIV:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.DIVIDE, JVM_TYPE_DOUBLE);
-			break;
-			// %
-		case OPCODE_IREM:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MODULO, JVM_TYPE_INT);
-			break;
-		case OPCODE_LREM:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MODULO, JVM_TYPE_LONG);
-			break;
-		case OPCODE_FREM:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MODULO, JVM_TYPE_FLOAT);
-			break;
-		case OPCODE_DREM:
-			BinaryOpExpression.evaluateBinary(evalStack,
-					BinaryOperator.MODULO, JVM_TYPE_DOUBLE);
-			break;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    // +
+    case OPCODE_IADD:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LADD:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FADD:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DADD:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+          JVM_TYPE_DOUBLE);
+      break;
+    // -
+    case OPCODE_ISUB:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LSUB:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FSUB:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DSUB:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+          JVM_TYPE_DOUBLE);
+      break;
+    // *
+    case OPCODE_IMUL:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LMUL:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FMUL:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DMUL:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+          JVM_TYPE_DOUBLE);
+      break;
+    // /
+    case OPCODE_IDIV:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LDIV:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FDIV:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DDIV:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+          JVM_TYPE_DOUBLE);
+      break;
+    // %
+    case OPCODE_IREM:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+          JVM_TYPE_INT);
+      break;
+    case OPCODE_LREM:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+          JVM_TYPE_LONG);
+      break;
+    case OPCODE_FREM:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+          JVM_TYPE_FLOAT);
+      break;
+    case OPCODE_DREM:
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+          JVM_TYPE_DOUBLE);
+      break;
 
-		}
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IADD, OPCODE_LADD, OPCODE_FADD,
-				OPCODE_DADD, OPCODE_ISUB, OPCODE_LSUB, OPCODE_FSUB,
-				OPCODE_DSUB, OPCODE_IMUL, OPCODE_LMUL, OPCODE_FMUL,
-				OPCODE_DMUL, OPCODE_IDIV, OPCODE_LDIV, OPCODE_FDIV,
-				OPCODE_DDIV, OPCODE_IREM, OPCODE_LREM, OPCODE_FREM, OPCODE_DREM);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IADD, OPCODE_LADD, OPCODE_FADD, OPCODE_DADD,
+        OPCODE_ISUB, OPCODE_LSUB, OPCODE_FSUB, OPCODE_DSUB, OPCODE_IMUL,
+        OPCODE_LMUL, OPCODE_FMUL, OPCODE_DMUL, OPCODE_IDIV, OPCODE_LDIV,
+        OPCODE_FDIV, OPCODE_DDIV, OPCODE_IREM, OPCODE_LREM, OPCODE_FREM,
+        OPCODE_DREM);
+  }
 
 }

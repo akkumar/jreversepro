@@ -19,17 +19,17 @@ package net.sf.jrevpro.ast.block;
 
 public class MethodBlock extends Block {
 
-	public MethodBlock(int lengthOfByteArray) {
-		// There is no parent for this - because it is the main block
-		super(null);
-		this.lengthOfByteArray=lengthOfByteArray;
-	}
+  public MethodBlock(int lengthOfByteArray) {
+    // There is no parent for this - because it is the main block
+    super(null);
+    this.lengthOfByteArray = lengthOfByteArray;
+  }
 
-	@Override
-	public int endOfBlock() {
-		return lengthOfByteArray;
-	}
+  @Override
+  public int endOfBlock() {
+    return lengthOfByteArray;
+  }
 
-	private int lengthOfByteArray;
+  private int lengthOfByteArray;
 
 }

@@ -27,43 +27,43 @@ import net.sf.jrevpro.reflect.Method;
  */
 public class BranchEntry implements BranchConstants {
 
-	public String opr1;
-	public String opr2;
-	public String operator;
+  public String opr1;
+  public String opr2;
+  public String operator;
 
-	public BranchEntry(Method method, int startPc, int startPc2, int retPc,
-			int typeJsr, String string, String string2, String string3) {
-		// TODO Auto-generated constructor stub
-	}
+  public BranchEntry(Method method, int startPc, int startPc2, int retPc,
+      int typeJsr, String string, String string2, String string3) {
+    // TODO Auto-generated constructor stub
+  }
 
-	public int getStartExecPc() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+  public int getStartExecPc() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 
-	public int getEndBlockPc() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+  public int getEndBlockPc() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 
-	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+  public int getType() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 
-	public boolean doesStartWith(int insIndex) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+  public boolean doesStartWith(int insIndex) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 
-	public int getStartPc() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+  public int getStartPc() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 
-	public void setType(int typeElseIf) {
-		// TODO Auto-generated method stub
+  public void setType(int typeElseIf) {
+    // TODO Auto-generated method stub
 
-	}
+  }
 
 }

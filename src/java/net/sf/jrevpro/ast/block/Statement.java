@@ -28,27 +28,27 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class Statement extends Block {
 
-	/**
-	 * 
-	 * @param _expr
-	 *            Expression contained within a given statement.
-	 */
-	public Statement(Block _parent, Instruction _instruction, Expression _expr) {
-		super(_parent);
-		expr = _expr;
-		instruction = _instruction;
-	}
+  /**
+   * 
+   * @param _expr
+   *          Expression contained within a given statement.
+   */
+  public Statement(Block _parent, Instruction _instruction, Expression _expr) {
+    super(_parent);
+    expr = _expr;
+    instruction = _instruction;
+  }
 
-	@Override
-	public int endOfBlock() {
-		return instruction.getNextIndex();
-	}
+  @Override
+  public int endOfBlock() {
+    return instruction.getNextIndex();
+  }
 
-	public Expression getExpression() {
-		return expr;
-	}
+  public Expression getExpression() {
+    return expr;
+  }
 
-	private Expression expr;
-	private Instruction instruction;
+  private Expression expr;
+  private Instruction instruction;
 
 }

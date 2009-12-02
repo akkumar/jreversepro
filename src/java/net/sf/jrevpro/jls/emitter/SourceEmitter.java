@@ -20,5 +20,5 @@ import net.sf.jrevpro.ast.block.Block;
 
 public interface SourceEmitter {
 
-	public String emitCode(Block block);
+  public String emitCode(Block block);
 }

@@ -30,62 +30,61 @@ import net.sf.jrevpro.reflect.Method;
 
 public class DecompilerOutputImpl extends AbstractClassOutputterImpl {
 
-	protected DecompilerOutputImpl(ClassInfo _clazz, CodeStyler _styler) {
-		super(_clazz, _styler);
+  protected DecompilerOutputImpl(ClassInfo _clazz, CodeStyler _styler) {
+    super(_clazz, _styler);
 
-	}
+  }
 
-	@Override
-	public void process() {
-		clearContents();
+  @Override
+  public void process() {
+    clearContents();
 
-		outputHeaderComments();
-		outputPackageImports();
+    outputHeaderComments();
+    outputPackageImports();
 
-		outputThisSuperClasses();
-		outputInterfaces();
+    outputThisSuperClasses();
+    outputInterfaces();
 
-		openBlock();
+    openBlock();
 
-		outputFields();
-		outputMethods();
+    outputFields();
+    outputMethods();
 
-		closeBlock();
-	}
+    closeBlock();
+  }
 
-	/**
-	 * Returns the stringified disassembled/decompiled method.
-	 * 
-	 * @param getBytecode
-	 *            If TRUE, returns the disassembled code IF the method has
-	 *            already been disassembled. If FALSE, returns the decompiled
-	 *            code IF the method has been decompiled. Otherwise, returns
-	 *            null;
-	 * @param includeMetadata
-	 *            - TRUE if method stack & exception data should be output
-	 * @return Stringified methods in this class
-	 */
-	protected void outputMethods() {
+  /**
+   * Returns the stringified disassembled/decompiled method.
+   * 
+   * @param getBytecode
+   *          If TRUE, returns the disassembled code IF the method has already
+   *          been disassembled. If FALSE, returns the decompiled code IF the
+   *          method has been decompiled. Otherwise, returns null;
+   * @param includeMetadata
+   *          - TRUE if method stack & exception data should be output
+   * @return Stringified methods in this class
+   */
+  protected void outputMethods() {
 
-		for (Method method : clazz.getMethods()) {
-			outputMethodHeader(method);
-			openBlock();
-			processMethod(method);
-			closeBlock();
-		}
-	}
+    for (Method method : clazz.getMethods()) {
+      outputMethodHeader(method);
+      openBlock();
+      processMethod(method);
+      closeBlock();
+    }
+  }
 
-	public void processMethod(Method method) {
-		DecompilationContext ctx = new DecompilationContext(method, clazz
-				.getConstantPool());
-		Decompiler decompiler = new Decompiler(ctx);
-		Block block = decompiler.extractAST();
-		SourceEmitter emitter = SourceEmitterFactory
-				.getSourceEmitter(JLSSource.JDK14);
-		outputString(emitter.emitCode(block));
+  public void processMethod(Method method) {
+    DecompilationContext ctx = new DecompilationContext(method, clazz
+        .getConstantPool());
+    Decompiler decompiler = new Decompiler(ctx);
+    Block block = decompiler.extractAST();
+    SourceEmitter emitter = SourceEmitterFactory
+        .getSourceEmitter(JLSSource.JDK14);
+    outputString(emitter.emitCode(block));
 
-	}
+  }
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

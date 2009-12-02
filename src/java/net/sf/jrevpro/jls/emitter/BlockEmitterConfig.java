@@ -26,6 +26,6 @@ import java.util.Map;
 
 public abstract class BlockEmitterConfig {
 
-	protected abstract Map<String, String> getConfig();
+  protected abstract Map<String, String> getConfig();
 
 }

@@ -24,28 +24,28 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class IPushEvaluator extends AbstractInstructionEvaluator {
 
-	public IPushEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public IPushEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_BIPUSH: {
-			evalStack.push(new Constant(ins.getArgByte(), JVM_TYPE_BYTE));
-			break;
-		}
-		case OPCODE_SIPUSH: {
-			// Sign Extend This
-			evalStack.push(new Constant(ins.getArgShort(), JVM_TYPE_SHORT));
-			break;
-		}
-		}
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_BIPUSH: {
+      evalStack.push(new Constant(ins.getArgByte(), JVM_TYPE_BYTE));
+      break;
+    }
+    case OPCODE_SIPUSH: {
+      // Sign Extend This
+      evalStack.push(new Constant(ins.getArgShort(), JVM_TYPE_SHORT));
+      break;
+    }
+    }
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_BIPUSH, OPCODE_SIPUSH);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_BIPUSH, OPCODE_SIPUSH);
+  }
 
 }

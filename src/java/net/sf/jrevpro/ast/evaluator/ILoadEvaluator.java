@@ -30,55 +30,53 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ILoadEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ILoadEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ILoadEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_ILOAD:
-			operateLoadInstruction(ins, ins.getArgUnsignedWide());
-			break;
-		case OPCODE_ILOAD_0:
-		case OPCODE_ILOAD_1:
-		case OPCODE_ILOAD_2:
-		case OPCODE_ILOAD_3:
-			operateLoadInstruction(ins, ins.opcode - OPCODE_ILOAD_0);
-			break;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_ILOAD:
+      operateLoadInstruction(ins, ins.getArgUnsignedWide());
+      break;
+    case OPCODE_ILOAD_0:
+    case OPCODE_ILOAD_1:
+    case OPCODE_ILOAD_2:
+    case OPCODE_ILOAD_3:
+      operateLoadInstruction(ins, ins.opcode - OPCODE_ILOAD_0);
+      break;
 
-		}
+    }
 
-	}
+  }
 
-	protected void operateLoadInstruction(Instruction ins,
-			int variableIndexToSymbolTable) {
-		Variable var = new Variable(varTable, JVM_TYPE_INT,
-				variableIndexToSymbolTable, ins.currentPc);
+  protected void operateLoadInstruction(Instruction ins,
+      int variableIndexToSymbolTable) {
+    Variable var = new Variable(varTable, JVM_TYPE_INT,
+        variableIndexToSymbolTable, ins.currentPc);
 
-		evalStack.push(var);
-	}
+    evalStack.push(var);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_ILOAD, OPCODE_ILOAD_0, OPCODE_ILOAD_1,
-				OPCODE_ILOAD_2, OPCODE_ILOAD_3);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_ILOAD, OPCODE_ILOAD_0, OPCODE_ILOAD_1,
+        OPCODE_ILOAD_2, OPCODE_ILOAD_3);
+  }
 }

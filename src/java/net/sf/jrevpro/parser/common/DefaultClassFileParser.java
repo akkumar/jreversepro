@@ -29,55 +29,53 @@ import net.sf.jrevpro.reflect.Method;
 
 public class DefaultClassFileParser implements ClassFileParser {
 
-	/**
-	 * Parses the given file and creates the ClassInfo and ConstantPool objects.
-	 * 
-	 * @param is
-	 *            InputStream containing the bytes.
-	 * @param pathToClass
-	 *            path to the class.
-	 * @throws ClassParserException
-	 * @throws IOException
-	 * @throws ClassParserException
-	 *             Thrown if class file not in desired format.
-	 * @throws IOException
-	 *             Thrown if error in stream of bytes containing the class file.
-	 */
-	public ClassInfo parseInputStream(DataInputStream dis, String pathToClass)
-			throws IOException, ClassParserException {
+  /**
+   * Parses the given file and creates the ClassInfo and ConstantPool objects.
+   * 
+   * @param is
+   *          InputStream containing the bytes.
+   * @param pathToClass
+   *          path to the class.
+   * @throws ClassParserException
+   * @throws IOException
+   * @throws ClassParserException
+   *           Thrown if class file not in desired format.
+   * @throws IOException
+   *           Thrown if error in stream of bytes containing the class file.
+   */
+  public ClassInfo parseInputStream(DataInputStream dis, String pathToClass)
+      throws IOException, ClassParserException {
 
-		ConstantPool cp = AbstractClassFileParser.readConstantPool(dis);
-		ClassInfo clazz = new ClassInfo(cp);
-		short access = AbstractClassFileParser.readAccess(dis);
+    ConstantPool cp = AbstractClassFileParser.readConstantPool(dis);
+    ClassInfo clazz = new ClassInfo(cp);
+    short access = AbstractClassFileParser.readAccess(dis);
 
-		clazz.setAccess(access);
+    clazz.setAccess(access);
 
-		// <p>
-		// For Example , a class by name <code>JClassParser</code> in the
-		// package
-		// <code>Heart</code> would be saved as: <code>Heart/JClassParser</code>
-		// </p>.
-		short thisClassIndex = AbstractClassFileParser.readThisClassIndex(dis);
-		clazz.setThisClass(cp.getClassName(thisClassIndex));
+    // <p>
+    // For Example , a class by name <code>JClassParser</code> in the
+    // package
+    // <code>Heart</code> would be saved as: <code>Heart/JClassParser</code>
+    // </p>.
+    short thisClassIndex = AbstractClassFileParser.readThisClassIndex(dis);
+    clazz.setThisClass(cp.getClassName(thisClassIndex));
 
-		short superClassIndex = AbstractClassFileParser
-				.readSuperClassIndex(dis);
-		clazz.setSuperClass(cp.getClassName(superClassIndex));
+    short superClassIndex = AbstractClassFileParser.readSuperClassIndex(dis);
+    clazz.setSuperClass(cp.getClassName(superClassIndex));
 
-		List<String> interfaceNames = AbstractClassFileParser.readInterfaces(
-				dis, cp);
-		clazz.setInterfaces(interfaceNames);
+    List<String> interfaceNames = AbstractClassFileParser.readInterfaces(dis,
+        cp);
+    clazz.setInterfaces(interfaceNames);
 
-		List<Field> fields = AbstractClassFileParser.readFields(dis, cp);
-		clazz.setFields(fields);
+    List<Field> fields = AbstractClassFileParser.readFields(dis, cp);
+    clazz.setFields(fields);
 
-		List<Method> methods = AbstractClassFileParser.readMethods(dis, cp);
-		clazz.setMethods(methods);
+    List<Method> methods = AbstractClassFileParser.readMethods(dis, cp);
+    clazz.setMethods(methods);
 
-		AbstractClassFileParser.readClassAttributes(dis, cp, clazz);
+    AbstractClassFileParser.readClassAttributes(dis, cp, clazz);
 
-
-		return clazz;
-	}
+    return clazz;
+  }
 
 }

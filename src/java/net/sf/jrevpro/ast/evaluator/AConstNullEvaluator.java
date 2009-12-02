@@ -24,19 +24,19 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class AConstNullEvaluator extends AbstractInstructionEvaluator {
 
-	public AConstNullEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public AConstNullEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		evalStack.push(Constant.NULL);
+  @Override
+  void evaluate(Instruction ins) {
+    evalStack.push(Constant.NULL);
 
-	}
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_ACONST_NULL);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_ACONST_NULL);
+  }
 
 }

@@ -22,10 +22,10 @@ package net.sf.jrevpro.parser.instruction;
  */
 public class InstructionListParserFactory {
 
-	public static InstructionListParser createInstructionListParser() {
-		return new DefaultInstructionListParser();
-	}
+  public static InstructionListParser createInstructionListParser() {
+    return new DefaultInstructionListParser();
+  }
 
-	private InstructionListParserFactory() {
-	}
+  private InstructionListParserFactory() {
+  }
 }

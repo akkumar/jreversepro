@@ -28,26 +28,22 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ConditionalLine extends AbstractLineOfCode {
 
-	public ConditionalLine(Instruction _ins, ConditionExpression _ex) {
-		super(_ins);
-		ex = _ex;
-	}
+  public ConditionalLine(Instruction _ins, ConditionExpression _ex) {
+    super(_ins);
+    ex = _ex;
+  }
 
-	@Override
-	public void regenerateBlock(BlockInferrer ctx) {
-		/*
-		int targetPc = ins.getTargetPc();
-		if (ins.getOffset() < 0) {
-			// TODO: It is a do .. while loop. OR a while loop.
-			// Determine w.r.t current top-of-stack goto statement.
+  @Override
+  public void regenerateBlock(BlockInferrer ctx) {
+    /*
+     * int targetPc = ins.getTargetPc(); if (ins.getOffset() < 0) { // TODO: It
+     * is a do .. while loop. OR a while loop. // Determine w.r.t current
+     * top-of-stack goto statement.
+     * 
+     * } else { // It is a if branch. ctx.saveConditionalBlock(ins, ex); }
+     */
+  }
 
-		} else {
-			// It is a if branch.
-			ctx.saveConditionalBlock(ins, ex);
-		}
-		*/
-	}
-
-	private ConditionExpression ex;
+  private ConditionExpression ex;
 
 }

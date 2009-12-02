@@ -35,61 +35,64 @@ import net.sf.jrevpro.reflect.ClassInfo;
  */
 public class CommandMain {
 
-	public CommandMain() {
-		cli = new CommandLineInterface();
-		context = new JReverseProContext();
-	}
+  public CommandMain() {
+    cli = new CommandLineInterface();
+    context = new JReverseProContext();
+  }
 
-	/**
-	 * Driving the application.
-	 * 
-	 * @param args
-	 *            Argument to Main.
-	 */
-	public static void main(String[] args) {
-		JReverseProContext.checkJREVersion();
+  /**
+   * Driving the application.
+   * 
+   * @param args
+   *          Argument to Main.
+   */
+  public static void main(String[] args) {
+    JReverseProContext.checkJREVersion();
 
-		CommandMain main = new CommandMain();
-		main.process(args);
-	}
+    CommandMain main = new CommandMain();
+    main.process(args);
+  }
 
-	/**
-	 * @param args
-	 *            Arguments to the command-line module.
-	 */
-	public void process(String[] args) {
-		cli.parse(args);
-		
-		//Comment by bercolax: Set the Java version to decompile. To server multiple requests
-		//queuing support should be added later to follow serialized processing. Else synchronization issues 
-		//will occur.
-		JavaDecompileVersionContext.setJavaVersionToDecompile(cli.getJavaVersionToDecompile());
-		
-		// If GUI is enabled.
-		if (cli.isGuiEnabled()) {
-			(new GUIMain(context)).setVisible(true);
-			return;
-		}
-		ClassInfo info;
-		try {
-			info = context.loadResource(cli.getInputResource());
+  /**
+   * @param args
+   *          Arguments to the command-line module.
+   */
+  public void process(String[] args) {
+    cli.parse(args);
 
-			System.out.println(context.print(cli.getOutputType(), info));
+    // Comment by bercolax: Set the Java version to decompile. To server
+    // multiple requests
+    // queuing support should be added later to follow serialized processing.
+    // Else synchronization issues
+    // will occur.
+    JavaDecompileVersionContext.setJavaVersionToDecompile(cli
+        .getJavaVersionToDecompile());
 
-		} catch (FileNotFoundException e) {
-			logger.severe(e.getMessage());
-		} catch (IOException e) {
-			logger.severe(e.getMessage());
-		} catch (ClassParserException e) {
-			logger.severe(e.getMessage());
-		}
+    // If GUI is enabled.
+    if (cli.isGuiEnabled()) {
+      (new GUIMain(context)).setVisible(true);
+      return;
+    }
+    ClassInfo info;
+    try {
+      info = context.loadResource(cli.getInputResource());
 
-	}
+      System.out.println(context.print(cli.getOutputType(), info));
 
-	private CommandLineInterface cli;
+    } catch (FileNotFoundException e) {
+      logger.severe(e.getMessage());
+    } catch (IOException e) {
+      logger.severe(e.getMessage());
+    } catch (ClassParserException e) {
+      logger.severe(e.getMessage());
+    }
 
-	private JReverseProContext context;
+  }
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+  private CommandLineInterface cli;
+
+  private JReverseProContext context;
+
+  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

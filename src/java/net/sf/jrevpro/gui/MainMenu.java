@@ -16,7 +16,6 @@
  ***/
 package net.sf.jrevpro.gui;
 
-
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
@@ -27,108 +26,106 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 @SuppressWarnings("serial")
-public class MainMenu extends JMenuBar
-{
-    static final int MAX_THEMES = 3 ;
+public class MainMenu extends JMenuBar {
+  static final int MAX_THEMES = 3;
 
-    JMenu OnFile;
-    JMenu OnEdit;
-    JMenu   OnView;
-    JMenu   OnOptions;
-    public MenuLooknFeel OnLookFeel;
-    JMenu OnHelp;
+  JMenu OnFile;
+  JMenu OnEdit;
+  JMenu OnView;
+  JMenu OnOptions;
+  public MenuLooknFeel OnLookFeel;
+  JMenu OnHelp;
 
+  public JMenuItem OnFileOpen;
+  public JMenuItem OnFileSave;
+  public JMenuItem OnFileExit;
 
-    public JMenuItem OnFileOpen;
-    public JMenuItem OnFileSave;
-    public JMenuItem OnFileExit;
+  public JMenuItem OnEditCut;
+  public JMenuItem OnEditCopy;
 
-    public JMenuItem OnEditCut;
-    public JMenuItem OnEditCopy;
+  public JMenuItem OnViewCPool;
 
-    public JMenuItem OnViewCPool;
+  public JMenuItem OnOptFont;
 
-    public JMenuItem    OnOptFont;
+  public JRadioButtonMenuItem OnDisAssembler;
+  public JRadioButtonMenuItem OnDecompiler;
 
-    public JRadioButtonMenuItem OnDisAssembler;
-    public JRadioButtonMenuItem OnDecompiler;
+  public JMenuItem OnHelpAbout;
 
-    public JMenuItem OnHelpAbout;
+  ButtonGroup group;
+  JFrame parent;
 
-    ButtonGroup group;
-    JFrame parent;
+  public MainMenu(JFrame owner) {
 
-    public MainMenu(JFrame owner ) {
+    Font FontObj = new Font("Serif", Font.PLAIN, 10);
 
-        Font FontObj = new Font("Serif", Font.PLAIN , 10);
+    parent = owner;
 
+    OnFile = new JMenu("File");
+    OnEdit = new JMenu("Edit");
+    OnView = new JMenu("View");
+    OnOptions = new JMenu("Options");
+    OnHelp = new JMenu("Help");
 
-        parent = owner;
+    OnLookFeel = new MenuLooknFeel("Look And Feel", parent);
 
-        OnFile = new JMenu("File");
-        OnEdit = new JMenu("Edit");
-        OnView = new JMenu("View");
-        OnOptions = new JMenu("Options");
-        OnHelp = new JMenu("Help");
+    initMenuItems();
 
+    OnFile.add(OnFileOpen);
+    OnFile.add(OnFileSave);
+    OnFile.add(OnFileExit);
 
-        OnLookFeel = new MenuLooknFeel("Look And Feel" , parent );
+    OnEdit.add(OnEditCut);
+    OnEdit.add(OnEditCopy);
 
-        initMenuItems();
+    OnView.add(OnViewCPool);
 
-        OnFile.add(OnFileOpen);
-        OnFile.add(OnFileSave);
-        OnFile.add(OnFileExit);
+    OnOptions.add(OnOptFont);
+    OnOptions.addSeparator();
+    OnOptions.add(OnDisAssembler);
+    OnOptions.add(OnDecompiler);
 
-        OnEdit.add(OnEditCut);
-        OnEdit.add(OnEditCopy);
+    OnHelp.add(OnHelpAbout);
 
-        OnView.add(OnViewCPool);
+    add(OnFile);
+    add(OnEdit);
+    add(OnView);
+    add(OnOptions);
+    add(OnLookFeel);
+    add(OnHelp);
 
-        OnOptions.add(OnOptFont);
-        OnOptions.addSeparator();
-        OnOptions.add(OnDisAssembler);
-        OnOptions.add(OnDecompiler);
+    setFont(FontObj);
+  }
 
-        OnHelp.add(OnHelpAbout);
+  public void setFlag(String Rhs) {
+    boolean value = false;
+    if (Rhs.compareTo("true") == 0)
+      value = true;
+    else
+      value = false;
+    OnDecompiler.setSelected(value);
+    OnDisAssembler.setSelected(!value);
+  }
 
-        add(OnFile);
-        add(OnEdit);
-        add(OnView);
-        add(OnOptions);
-        add(OnLookFeel);
-        add(OnHelp);
+  private void initMenuItems() {
+    OnFileOpen = new JMenuItem("Open");
+    OnFileSave = new JMenuItem("Save");
+    OnFileExit = new JMenuItem("Exit");
 
-        setFont(FontObj);
-    }
+    OnEditCut = new JMenuItem("Cut");
+    OnEditCopy = new JMenuItem("Copy");
 
-    public void setFlag( String Rhs ) {
-        boolean value = false;
-        if( Rhs.compareTo("true") == 0 ) value = true;
-        else value = false;
-        OnDecompiler.setSelected(value);
-        OnDisAssembler.setSelected(!value);
-    }
+    OnViewCPool = new JMenuItem("ConstantPool");
 
-    private void initMenuItems(){
-        OnFileOpen = new JMenuItem("Open");
-        OnFileSave = new JMenuItem("Save");
-        OnFileExit = new JMenuItem("Exit");
+    OnOptFont = new JMenuItem("Set Font ");
 
-        OnEditCut = new JMenuItem("Cut");
-        OnEditCopy = new JMenuItem("Copy");
+    OnDisAssembler = new JRadioButtonMenuItem("DisAssemble", true);
+    OnDecompiler = new JRadioButtonMenuItem("Decompile");
 
-        OnViewCPool = new JMenuItem("ConstantPool");
+    group = new ButtonGroup();
+    group.add(OnDisAssembler);
+    group.add(OnDecompiler);
 
-        OnOptFont = new JMenuItem("Set Font ");
-
-        OnDisAssembler = new JRadioButtonMenuItem("DisAssemble",true);
-        OnDecompiler  = new JRadioButtonMenuItem("Decompile");
-
-        group = new ButtonGroup();
-        group.add( OnDisAssembler );
-        group.add( OnDecompiler );
-
-        OnHelpAbout = new JMenuItem("About");
-    }
+    OnHelpAbout = new JMenuItem("About");
+  }
 }

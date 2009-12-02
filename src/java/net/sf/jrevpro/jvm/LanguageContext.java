@@ -18,29 +18,28 @@ package net.sf.jrevpro.jvm;
 
 /**
  * Information about the information about which we are going to decompile to.
+ * 
  * @author akkumar
- *
+ * 
  */
 public interface LanguageContext {
 
-	String getTypeInt();
-	
-	String getTypeChar();
-	
-	String getTypeBoolean();
-	
-	
-	String getTypeLong();
-	
-	String getTypeFloat();
-	
-	String getTypeDouble();
+  String getTypeInt();
 
-	String getTypeShort();
+  String getTypeChar();
 
-	String getTypeVoid();
+  String getTypeBoolean();
 
-	String getArrayTypeSuffix();
-	
-	
+  String getTypeLong();
+
+  String getTypeFloat();
+
+  String getTypeDouble();
+
+  String getTypeShort();
+
+  String getTypeVoid();
+
+  String getArrayTypeSuffix();
+
 }

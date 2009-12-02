@@ -28,22 +28,21 @@ import net.sf.jrevpro.jls.emitter.EmitterTarget;
  */
 public class MethodEmitter extends BlockEmitter {
 
-	@Override
-	protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
-	@Override
-	protected void emitBlockEndCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockEndCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.jls.emitter.ast.BlockEmitter#getJLSCode(net.sf.jrevpro
-	 * .ast.block.Block)
-	 */
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.emitter.ast.BlockEmitter#getJLSCode(net.sf.jrevpro
+   * .ast.block.Block)
+   */
 
 }

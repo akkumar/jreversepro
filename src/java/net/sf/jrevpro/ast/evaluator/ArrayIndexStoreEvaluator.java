@@ -28,28 +28,28 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class ArrayIndexStoreEvaluator extends AbstractInstructionEvaluator {
 
-	public ArrayIndexStoreEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public ArrayIndexStoreEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		Expression value = evalStack.pop();
-		Expression subscript = evalStack.pop();
-		Expression arrayObject = evalStack.pop();
+  @Override
+  void evaluate(Instruction ins) {
+    Expression value = evalStack.pop();
+    Expression subscript = evalStack.pop();
+    Expression arrayObject = evalStack.pop();
 
-		ArrayMemberReferenceExpression arr = new ArrayMemberReferenceExpression(
-				arrayObject, subscript, TypeInferrer
-						.getArrayMemberType(arrayObject.getType()));
+    ArrayMemberReferenceExpression arr = new ArrayMemberReferenceExpression(
+        arrayObject, subscript, TypeInferrer.getArrayMemberType(arrayObject
+            .getType()));
 
-		statements.append(new CompleteLine(ins, new Assignment(arr, value)));
-	}
+    statements.append(new CompleteLine(ins, new Assignment(arr, value)));
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_IASTORE, OPCODE_LASTORE, OPCODE_FASTORE,
-				OPCODE_DASTORE, OPCODE_AASTORE, OPCODE_BASTORE, OPCODE_CASTORE,
-				OPCODE_SASTORE);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_IASTORE, OPCODE_LASTORE, OPCODE_FASTORE,
+        OPCODE_DASTORE, OPCODE_AASTORE, OPCODE_BASTORE, OPCODE_CASTORE,
+        OPCODE_SASTORE);
+  }
 
 }

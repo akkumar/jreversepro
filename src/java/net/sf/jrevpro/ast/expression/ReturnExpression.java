@@ -21,32 +21,31 @@ import net.sf.jrevpro.jls.JLSConstants;
 
 public class ReturnExpression extends Expression {
 
+  public ReturnExpression(Expression _expr, char _type) {
+    this(_expr, String.valueOf(_type));
+  }
 
-	public ReturnExpression(Expression _expr, char _type) {
-		this(_expr, String.valueOf(_type));
-	}
+  public ReturnExpression(Expression _expr, String _type) {
+    super(_type, VALUE);
+    expr = _expr;
+  }
 
-	public ReturnExpression(Expression _expr, String _type) {
-		super(_type, VALUE);
-		expr = _expr;
-	}
+  public ReturnExpression() {
+    super(JVM_TYPE_VOID, VALUE);
+    expr = null;
+  }
 
-	public ReturnExpression() {
-		super(JVM_TYPE_VOID, VALUE);
-		expr = null;
-	}
+  @Override
+  public String getJLSCode() {
+    StringBuilder sb = new StringBuilder(50);
+    sb.append(JLSConstants.RETURN);
+    if (expr != null) {
+      sb.append(" ");
+      sb.append(expr.getJLSCode());
+    }
+    return sb.toString();
+  }
 
-	@Override
-	public String getJLSCode() {
-		StringBuilder sb = new StringBuilder(50);
-		sb.append(JLSConstants.RETURN);
-		if (expr != null) {
-			sb.append(" ");
-			sb.append(expr.getJLSCode() );
-		}
-		return sb.toString();
-	}
-
-	private Expression expr;
+  private Expression expr;
 
 }

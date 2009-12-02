@@ -23,6 +23,6 @@ import net.sf.jrevpro.reflect.ClassInfo;
 
 public interface ClassFileParser {
 
-	ClassInfo parseInputStream(DataInputStream dis, String pathToClass)
-			throws IOException, ClassParserException;
+  ClassInfo parseInputStream(DataInputStream dis, String pathToClass)
+      throws IOException, ClassParserException;
 }

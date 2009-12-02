@@ -28,22 +28,21 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class SwitchLine extends AbstractLineOfCode {
 
-	public SwitchLine(Instruction _ins, Expression _exp) {
-		super(_ins);
-		exp = _exp;
-	}
+  public SwitchLine(Instruction _ins, Expression _exp) {
+    super(_ins);
+    exp = _exp;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
-	 * .sf.jrevpro.decompile.BlockContext)
-	 */
-	@Override
-	public void regenerateBlock(BlockInferrer ctx) {
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
+   * .sf.jrevpro.decompile.BlockContext)
+   */
+  @Override
+  public void regenerateBlock(BlockInferrer ctx) {
 
-	}
+  }
 
-	private Expression exp;
+  private Expression exp;
 }

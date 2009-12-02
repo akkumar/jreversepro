@@ -20,5 +20,5 @@ import net.sf.jrevpro.reflect.ClassInfo;
 
 public interface AbstractOutputter {
 
-	String output(ClassInfo clazz);
+  String output(ClassInfo clazz);
 }

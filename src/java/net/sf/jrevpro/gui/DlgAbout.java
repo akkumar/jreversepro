@@ -27,40 +27,37 @@ import javax.swing.JTextArea;
 
 import net.sf.jrevpro.JReverseProContext;
 
-
 /**
  * This contains the definition of the About Dialog Box
+ * 
  * @author Karthik Kumar
  * @version 1.3
  **/
 @SuppressWarnings("serial")
 public class DlgAbout extends JDialog implements GuiConstants {
 
-    /**
-     * @param aParent Parent Frame
-     * @param aTitle Title of the Dialog box.
-     **/
-    public DlgAbout( JFrame aParent , String aTitle ) {
-        super( aParent, aTitle, true );
+  /**
+   * @param aParent
+   *          Parent Frame
+   * @param aTitle
+   *          Title of the Dialog box.
+   **/
+  public DlgAbout(JFrame aParent, String aTitle) {
+    super(aParent, aTitle, true);
 
+    JTextArea txtAbout = new JTextArea(JReverseProContext.GPL_INFO);
+    JScrollPane ScrAbout = new JScrollPane(txtAbout);
 
-        JTextArea txtAbout = new JTextArea( JReverseProContext.GPL_INFO );
-        JScrollPane ScrAbout = new JScrollPane(txtAbout);
+    txtAbout.setEditable(false);
 
+    getContentPane().setLayout(new GridLayout(1, 1));
+    getContentPane().add(ScrAbout);
 
-
-        txtAbout.setEditable(false);
-
-
-        getContentPane().setLayout( new GridLayout(1,1) );
-        getContentPane().add(ScrAbout);
-
-        setSize( 400 ,170);
-        setLocation(150,50);
-        setResizable(false);
-        setVisible(true);
-        addWindowListener( new DlgClose() );
-    }
+    setSize(400, 170);
+    setLocation(150, 50);
+    setResizable(false);
+    setVisible(true);
+    addWindowListener(new DlgClose());
+  }
 
 }
-

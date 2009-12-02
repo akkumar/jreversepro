@@ -30,13 +30,13 @@ import java.util.logging.StreamHandler;
  */
 public class CustomLoggerFactory {
 
-	public static Logger createLogger() {
-		final Logger logger = Logger.getLogger("JReversePro");
-		final SimpleFormatter formatter = new SimpleFormatter();
-		final StreamHandler handler = new StreamHandler(System.out, formatter);
-		logger.addHandler(handler);
-		logger.setLevel(Level.FINER);
-		return logger;
-	}
+  public static Logger createLogger() {
+    final Logger logger = Logger.getLogger("JReversePro");
+    final SimpleFormatter formatter = new SimpleFormatter();
+    final StreamHandler handler = new StreamHandler(System.out, formatter);
+    logger.addHandler(handler);
+    logger.setLevel(Level.FINER);
+    return logger;
+  }
 
 }

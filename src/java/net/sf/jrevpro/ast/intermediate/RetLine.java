@@ -27,21 +27,20 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class RetLine extends AbstractLineOfCode {
 
-	public RetLine(Instruction _ins) {
-		super(_ins);
-	}
+  public RetLine(Instruction _ins) {
+    super(_ins);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
-	 * .sf.jrevpro.decompile.BlockContext)
-	 */
-	@Override
-	public void regenerateBlock(BlockInferrer ctx) {
-		// TODO Auto-generated method stub
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.ast.intermediate.AbstractLineOfCode#regenerateBlock(net
+   * .sf.jrevpro.decompile.BlockContext)
+   */
+  @Override
+  public void regenerateBlock(BlockInferrer ctx) {
+    // TODO Auto-generated method stub
 
-	}
+  }
 
 }

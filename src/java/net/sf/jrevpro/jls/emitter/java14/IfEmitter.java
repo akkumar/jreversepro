@@ -28,25 +28,24 @@ import net.sf.jrevpro.jls.emitter.EmitterTarget;
  */
 public class IfEmitter extends BlockEmitter {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.jls.emitter.ast.BlockEmitter#getJLSCode(net.sf.jrevpro
-	 * .ast.block.Block)
-	 */
-	public String emitJLSCode(Block _block) {
-		return null;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.emitter.ast.BlockEmitter#getJLSCode(net.sf.jrevpro
+   * .ast.block.Block)
+   */
+  public String emitJLSCode(Block _block) {
+    return null;
+  }
 
-	@Override
-	protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
-	@Override
-	protected void emitBlockEndCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockEndCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
 }

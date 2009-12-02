@@ -33,39 +33,40 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 import net.sf.jrevpro.reflect.variabletable.VariableTable;
 
 /**
- * Evaluates the instructions (byte codes) as appropriate. 
+ * Evaluates the instructions (byte codes) as appropriate.
+ * 
  * @author karthik.kumar
- *
+ * 
  */
 public abstract class AbstractInstructionEvaluator implements JVMConstants,
-		JLSConstants, Opcodes {
+    JLSConstants, Opcodes {
 
-	public AbstractInstructionEvaluator(EvaluatorContext context) {
-		pool = context.pool;
-		varTable = context.varTable;
-		evalStack = context.opStack;
-		statements = context.statements;
+  public AbstractInstructionEvaluator(EvaluatorContext context) {
+    pool = context.pool;
+    varTable = context.varTable;
+    evalStack = context.opStack;
+    statements = context.statements;
 
-	}
+  }
 
-	abstract List<Integer> getProcessingOpcodes();
+  abstract List<Integer> getProcessingOpcodes();
 
-	abstract void evaluate(Instruction ins);
+  abstract void evaluate(Instruction ins);
 
-	protected List<Integer> numbersAsList(Integer ... numbers) {
-		return Arrays.asList(numbers);
-	}
+  protected List<Integer> numbersAsList(Integer... numbers) {
+    return Arrays.asList(numbers);
+  }
 
-	protected void addConditional(Instruction ins, ConditionExpression expr) {
-		statements.append(new ConditionalLine(ins, expr));
-	}
+  protected void addConditional(Instruction ins, ConditionExpression expr) {
+    statements.append(new ConditionalLine(ins, expr));
+  }
 
-	protected ConstantPool pool;
-	protected VariableTable varTable;
-	protected String methodReturnType;
-	protected LineOfCodeList statements;
-	protected EvaluatorStack evalStack;
+  protected ConstantPool pool;
+  protected VariableTable varTable;
+  protected String methodReturnType;
+  protected LineOfCodeList statements;
+  protected EvaluatorStack evalStack;
 
-	protected static final Logger logger = CustomLoggerFactory.createLogger();
+  protected static final Logger logger = CustomLoggerFactory.createLogger();
 
 }

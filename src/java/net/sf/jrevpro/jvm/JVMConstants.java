@@ -21,202 +21,202 @@ package net.sf.jrevpro.jvm;
  * 
  * @author akkumar
  * 
- * Modification by Karthikeyan C (bercolax) - Added InnerClasses Attribute Constant
+ *         Modification by Karthikeyan C (bercolax) - Added InnerClasses
+ *         Attribute Constant
  * 
  */
 public interface JVMConstants {
 
-	/**
-	 * datatype is a reference to an object
-	 */
-	char JVM_TYPE_REFERENCE = 'A';
+  /**
+   * datatype is a reference to an object
+   */
+  char JVM_TYPE_REFERENCE = 'A';
 
-	char JVM_TYPE_BYTE = 'B';
+  char JVM_TYPE_BYTE = 'B';
 
-	char JVM_TYPE_CHAR = 'C';
+  char JVM_TYPE_CHAR = 'C';
 
-	char JVM_TYPE_DOUBLE = 'D';
+  char JVM_TYPE_DOUBLE = 'D';
 
-	char JVM_TYPE_FLOAT = 'F';
+  char JVM_TYPE_FLOAT = 'F';
 
-	char JVM_TYPE_INT = 'I';
+  char JVM_TYPE_INT = 'I';
 
-	char JVM_TYPE_LONG = 'J';
+  char JVM_TYPE_LONG = 'J';
 
-	char JVM_TYPE_SHORT = 'S';
+  char JVM_TYPE_SHORT = 'S';
 
-	char JVM_TYPE_VOID = 'V';
+  char JVM_TYPE_VOID = 'V';
 
-	char JVM_TYPE_BOOLEAN = 'Z';
+  char JVM_TYPE_BOOLEAN = 'Z';
 
-	char JVM_TYPE_ARRAY = '[';
+  char JVM_TYPE_ARRAY = '[';
 
-	char JVM_TYPE_CLASS = 'L';
+  char JVM_TYPE_CLASS = 'L';
 
-	char JVM_TYPE_DELIMITER = ';';
-	
-	char JVM_TYPE_UNDEFINED = 'U';
+  char JVM_TYPE_DELIMITER = ';';
 
-	char JVM_METHOD_ARG_BEGIN_DELIMITER = '(';
-	
-	char JVM_METHOD_ARG_END_DELIMITER = ')';
+  char JVM_TYPE_UNDEFINED = 'U';
 
-	String JVM_BOOLEAN_TRUE = "1"; // representation of true in JVM
+  char JVM_METHOD_ARG_BEGIN_DELIMITER = '(';
 
-	String JVM_BOOLEAN_FALSE = "0"; // representation of false in JVM
+  char JVM_METHOD_ARG_END_DELIMITER = ')';
 
-	// Constants containing KeyWords
-	String FOREIGN_CLASS = "<ForeignClass>";
-	String FOREIGN_OBJ = "<ForeignObject>";
+  String JVM_BOOLEAN_TRUE = "1"; // representation of true in JVM
 
-	/**
-	 * JVM Representation of java.lang.String
-	 */
-	String CLASS_LANG_STRING = "java/lang/String";
+  String JVM_BOOLEAN_FALSE = "0"; // representation of false in JVM
 
-	/**
-	 * datatype is of type returnaddress
-	 */
-	String RET_ADDR = "returnaddress";
+  // Constants containing KeyWords
+  String FOREIGN_CLASS = "<ForeignClass>";
+  String FOREIGN_OBJ = "<ForeignObject>";
 
-	/**
-	 * Refers to the name of the current class type.
-	 */
-	String THISCLASS = "**this_class**";
+  /**
+   * JVM Representation of java.lang.String
+   */
+  String CLASS_LANG_STRING = "java/lang/String";
 
-	/**
-	 * JVM representation of the method static {.. }
-	 */
-	String CLINIT = "<clinit>";
+  /**
+   * datatype is of type returnaddress
+   */
+  String RET_ADDR = "returnaddress";
 
-	/**
-	 * JVM representation of the constructor method.
-	 */
-	String INIT = "<init>";
+  /**
+   * Refers to the name of the current class type.
+   */
+  String THISCLASS = "**this_class**";
 
-	/**
-	 * JVM representation of the class java.lang.Object
-	 */
-	String CLASS_LANG_OBJECT = "java/lang/Object";
+  /**
+   * JVM representation of the method static {.. }
+   */
+  String CLINIT = "<clinit>";
 
-	/**
-	 * Exception Class of type 'any'.
-	 */
-	String ANY = "<any>";
+  /**
+   * JVM representation of the constructor method.
+   */
+  String INIT = "<init>";
 
-	int MAGIC = 0xCAFEBABE;
+  /**
+   * JVM representation of the class java.lang.Object
+   */
+  String CLASS_LANG_OBJECT = "java/lang/Object";
 
-	/**
-	 * ACC_SUPER bit required to be set on all modern classes.
-	 */
-	int ACC_SUPER = 0x0020;
+  /**
+   * Exception Class of type 'any'.
+   */
+  String ANY = "<any>";
 
-	/**
-	 * ACC_INTERFACE bit required to be set if it is an interface and not a
-	 * class.
-	 */
-	int ACC_INTERFACE = 0x0200;
+  int MAGIC = 0xCAFEBABE;
 
-	/**
-	 * ConstantValue attribute of a Method.
-	 */
-	String ATTRIBUTE_CONSTANT_VALUE = "ConstantValue";
+  /**
+   * ACC_SUPER bit required to be set on all modern classes.
+   */
+  int ACC_SUPER = 0x0020;
 
-	/**
-	 * Deprecated attribute of a Method.
-	 */
-	String ATTRIBUTE_DEPRECATED = "Deprecated";
+  /**
+   * ACC_INTERFACE bit required to be set if it is an interface and not a class.
+   */
+  int ACC_INTERFACE = 0x0200;
 
-	/**
-	 * Synthetic attribute of a Method.
-	 */
-	String ATTRIBUTE_SYNTHETIC = "Synthetic";
+  /**
+   * ConstantValue attribute of a Method.
+   */
+  String ATTRIBUTE_CONSTANT_VALUE = "ConstantValue";
 
-	/**
-	 * Code attribute of a Method.
-	 */
-	String ATTRIBUTE_CODE = "Code";
+  /**
+   * Deprecated attribute of a Method.
+   */
+  String ATTRIBUTE_DEPRECATED = "Deprecated";
 
-	/**
-	 * Exceptions attribute of a Method.
-	 */
-	String ATTRIBUTE_EXCEPTIONS = "Exceptions";
-	
-	/**
-	 * InnerClasses attribute of a Method.
-	 */
-	String ATTRIBUTE_INNERCLASSES = "InnerClasses";
+  /**
+   * Synthetic attribute of a Method.
+   */
+  String ATTRIBUTE_SYNTHETIC = "Synthetic";
 
-	/**
-	 * LineNumberTable attribute of a Method.
-	 */
-	String ATTRIBUTE_LINENUMBERTABLE = "LineNumberTable";
+  /**
+   * Code attribute of a Method.
+   */
+  String ATTRIBUTE_CODE = "Code";
 
-	/**
-	 * LocalVariableTable attribute of a Method.
-	 */
-	String ATTRIBUTE_LOCALVARIABLETABLE = "LocalVariableTable";
+  /**
+   * Exceptions attribute of a Method.
+   */
+  String ATTRIBUTE_EXCEPTIONS = "Exceptions";
 
-	/**
-	 * SourceFile attribute of a Method.
-	 */
-	String ATTRIBUTE_SOURCEFILE = "SourceFile";
+  /**
+   * InnerClasses attribute of a Method.
+   */
+  String ATTRIBUTE_INNERCLASSES = "InnerClasses";
 
-	char JVM_PACKAGE_DELIMITER = '/';
+  /**
+   * LineNumberTable attribute of a Method.
+   */
+  String ATTRIBUTE_LINENUMBERTABLE = "LineNumberTable";
 
-	/**
-	 * Public access specifier.
-	 */
-	int ACC_PUBLIC = 0x0001;
+  /**
+   * LocalVariableTable attribute of a Method.
+   */
+  String ATTRIBUTE_LOCALVARIABLETABLE = "LocalVariableTable";
 
-	/**
-	 * Private access specifier.
-	 */
-	int ACC_PRIVATE = 0x0002;
+  /**
+   * SourceFile attribute of a Method.
+   */
+  String ATTRIBUTE_SOURCEFILE = "SourceFile";
 
-	/**
-	 * Protected access specifier.
-	 */
-	int ACC_PROTECTED = 0x0004;
+  char JVM_PACKAGE_DELIMITER = '/';
 
-	/**
-	 * Qualifer 'static'
-	 */
-	int ACC_STATIC = 0x0008;
+  /**
+   * Public access specifier.
+   */
+  int ACC_PUBLIC = 0x0001;
 
-	/**
-	 * Qualifier 'final'
-	 */
-	int ACC_FINAL = 0x0010;
+  /**
+   * Private access specifier.
+   */
+  int ACC_PRIVATE = 0x0002;
 
-	/**
-	 * Qualifer 'synchronized'
-	 */
-	int ACC_SYNCHRONIZED = 0x0020;
+  /**
+   * Protected access specifier.
+   */
+  int ACC_PROTECTED = 0x0004;
 
-	/**
-	 * Qualifer 'native'
-	 */
-	int ACC_NATIVE = 0x0100;
+  /**
+   * Qualifer 'static'
+   */
+  int ACC_STATIC = 0x0008;
 
-	/**
-	 * Qualifer 'abstract'
-	 */
-	int ACC_ABSTRACT = 0x0400;
+  /**
+   * Qualifier 'final'
+   */
+  int ACC_FINAL = 0x0010;
 
-	/**
-	 * Qualifer 'strictfp'
-	 */
-	int ACC_STRICT = 0x0800;
+  /**
+   * Qualifer 'synchronized'
+   */
+  int ACC_SYNCHRONIZED = 0x0020;
 
-	/**
-	 * Qualifer 'volatile'. This qualifer is valid for fields only.
-	 */
-	int ACC_VOLATILE = 0x0040;
+  /**
+   * Qualifer 'native'
+   */
+  int ACC_NATIVE = 0x0100;
 
-	/**
-	 * Qualifer 'transient' This qualifer is valid for fields only.
-	 */
-	int ACC_TRANSIENT = 0x0080;
+  /**
+   * Qualifer 'abstract'
+   */
+  int ACC_ABSTRACT = 0x0400;
+
+  /**
+   * Qualifer 'strictfp'
+   */
+  int ACC_STRICT = 0x0800;
+
+  /**
+   * Qualifer 'volatile'. This qualifer is valid for fields only.
+   */
+  int ACC_VOLATILE = 0x0040;
+
+  /**
+   * Qualifer 'transient' This qualifer is valid for fields only.
+   */
+  int ACC_TRANSIENT = 0x0080;
 
 }

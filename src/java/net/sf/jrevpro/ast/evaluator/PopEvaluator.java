@@ -52,46 +52,46 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class PopEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public PopEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public PopEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		if (ins.opcode == OPCODE_POP) {
-			Expression op1 = evalStack.pop();
-			statements.append(new CompleteLine(ins, op1));
-		} else if (ins.opcode == OPCODE_POP2) {
-			// To Assess its use properly.
-			Expression op1 = evalStack.pop();
-			if (op1.isCategory1()) {
-				evalStack.pop();
-			}
-		} else {
-			throw new UnsupportedOperationException("Unsupported opcode");
-		}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    if (ins.opcode == OPCODE_POP) {
+      Expression op1 = evalStack.pop();
+      statements.append(new CompleteLine(ins, op1));
+    } else if (ins.opcode == OPCODE_POP2) {
+      // To Assess its use properly.
+      Expression op1 = evalStack.pop();
+      if (op1.isCategory1()) {
+        evalStack.pop();
+      }
+    } else {
+      throw new UnsupportedOperationException("Unsupported opcode");
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_POP, OPCODE_POP2);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_POP, OPCODE_POP2);
+  }
 
 }

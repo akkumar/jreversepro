@@ -21,30 +21,28 @@ import net.sf.jrevpro.jls.JLSConstants;
 
 public class ArrayMemberReferenceExpression extends Expression {
 
-	public ArrayMemberReferenceExpression(Expression _arrayObject,
-			Expression _subscript, String type) {
-		super(type, VALUE);
-		arrayObject = _arrayObject;
-		subscript = _subscript;
-	}
+  public ArrayMemberReferenceExpression(Expression _arrayObject,
+      Expression _subscript, String type) {
+    super(type, VALUE);
+    arrayObject = _arrayObject;
+    subscript = _subscript;
+  }
 
-	public ArrayMemberReferenceExpression(Expression _arrayObject,
-			Expression _subscript, char type) {
-		super(type, VALUE);
-		arrayObject = _arrayObject;
-		subscript = _subscript;
-	}
+  public ArrayMemberReferenceExpression(Expression _arrayObject,
+      Expression _subscript, char type) {
+    super(type, VALUE);
+    arrayObject = _arrayObject;
+    subscript = _subscript;
+  }
 
-	@Override
-	public String getJLSCode() {
-		return arrayObject.getJLSCode()
-				+ JLSConstants.OPEN_SQUARE_BRACKET
-				+ subscript.getJLSCode()
-				+ JLSConstants.CLOSE_SQUARE_BRACKET;
-	}
+  @Override
+  public String getJLSCode() {
+    return arrayObject.getJLSCode() + JLSConstants.OPEN_SQUARE_BRACKET
+        + subscript.getJLSCode() + JLSConstants.CLOSE_SQUARE_BRACKET;
+  }
 
-	private Expression arrayObject;
+  private Expression arrayObject;
 
-	private Expression subscript;
+  private Expression subscript;
 
 }

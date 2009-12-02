@@ -30,119 +30,110 @@ import org.apache.commons.cli.PosixParser;
 
 public class CommandLineInterface {
 
-	public CommandLineInterface() {
-		options = new Options();
-		options.addOption(OPTION_INPUT, true, "input stream (file/URL)");
-		options.addOption(OPTION_DISASSEMBLE, false, "disassemble class files");
-		options.addOption(OPTION_DECOMPILE, false, "decompile class files");
-		options.addOption(OPTION_GUI, false, "launch Swing UI");
-		options.addOption(OPTION_VIEW_CONSTANT_POOL, false,
-				"view constant pool");
+  public CommandLineInterface() {
+    options = new Options();
+    options.addOption(OPTION_INPUT, true, "input stream (file/URL)");
+    options.addOption(OPTION_DISASSEMBLE, false, "disassemble class files");
+    options.addOption(OPTION_DECOMPILE, false, "decompile class files");
+    options.addOption(OPTION_GUI, false, "launch Swing UI");
+    options.addOption(OPTION_VIEW_CONSTANT_POOL, false, "view constant pool");
 
-		parser = new PosixParser();
-		cmd = null;
-		outputType = OutputType.NONE;
-		guiEnabled = false;
-	}
+    parser = new PosixParser();
+    cmd = null;
+    outputType = OutputType.NONE;
+    guiEnabled = false;
+  }
 
-	public void parse(String[] args) {
-		try {
-			cmd = parser.parse(options, args);
-			if (cmd.hasOption(OPTION_GUI)) {
-				if (cmd.hasOption(OPTION_INPUT)
-						|| cmd.hasOption(OPTION_DECOMPILE)
-						|| cmd.hasOption(OPTION_DISASSEMBLE)) {
-					logger
-							.severe(OPTION_GUI
-									+ " needs to be specified alone and should not accompany other arguments");
-					throw new UnsupportedOperationException(
-							"Invalid argument specified");
-				}
-				guiEnabled = true;
-				return;
-			}
+  public void parse(String[] args) {
+    try {
+      cmd = parser.parse(options, args);
+      if (cmd.hasOption(OPTION_GUI)) {
+        if (cmd.hasOption(OPTION_INPUT) || cmd.hasOption(OPTION_DECOMPILE)
+            || cmd.hasOption(OPTION_DISASSEMBLE)) {
+          logger
+              .severe(OPTION_GUI
+                  + " needs to be specified alone and should not accompany other arguments");
+          throw new UnsupportedOperationException("Invalid argument specified");
+        }
+        guiEnabled = true;
+        return;
+      }
 
-			if (!cmd.hasOption(OPTION_INPUT)) {
-				logger.severe("Option -" + OPTION_INPUT + " mandatory");
-			}
-			outputType = OutputType.NONE;
-			if (cmd.hasOption(OPTION_DISASSEMBLE)) {
-				outputType = OutputType.DISASSEMBLER;
-			}
-			if (cmd.hasOption(OPTION_DECOMPILE)) {
-				outputType = OutputType.DECOMPILER;
-			}
-			if (cmd.hasOption(OPTION_GUI)) {
-				if (cmd.hasOption(OPTION_INPUT)
-						|| cmd.hasOption(OPTION_DECOMPILE)) {
-					logger
-							.severe(OPTION_GUI
-									+ " needs to be specified alone and should not accompany other arguments");
-					throw new UnsupportedOperationException(
-							"Invalid argument specified");
-				}
-				guiEnabled = true;
-			}
-			if (outputType == OutputType.NONE) {
-				logger.severe("Need to specify either " + OPTION_DISASSEMBLE
-						+ " or " + OPTION_DECOMPILE);
+      if (!cmd.hasOption(OPTION_INPUT)) {
+        logger.severe("Option -" + OPTION_INPUT + " mandatory");
+      }
+      outputType = OutputType.NONE;
+      if (cmd.hasOption(OPTION_DISASSEMBLE)) {
+        outputType = OutputType.DISASSEMBLER;
+      }
+      if (cmd.hasOption(OPTION_DECOMPILE)) {
+        outputType = OutputType.DECOMPILER;
+      }
+      if (cmd.hasOption(OPTION_GUI)) {
+        if (cmd.hasOption(OPTION_INPUT) || cmd.hasOption(OPTION_DECOMPILE)) {
+          logger
+              .severe(OPTION_GUI
+                  + " needs to be specified alone and should not accompany other arguments");
+          throw new UnsupportedOperationException("Invalid argument specified");
+        }
+        guiEnabled = true;
+      }
+      if (outputType == OutputType.NONE) {
+        logger.severe("Need to specify either " + OPTION_DISASSEMBLE + " or "
+            + OPTION_DECOMPILE);
 
-			}
-			
-			if (cmd.hasOption(DECOMPILE_VERSION)) {
-			    javaVersionToDecompile = 
-				cmd.getOptionValue(DECOMPILE_VERSION);
-			}
-			
+      }
 
-		} catch (ParseException ex) {
-			logger.severe(ex.toString());
-		}
-	}
+      if (cmd.hasOption(DECOMPILE_VERSION)) {
+        javaVersionToDecompile = cmd.getOptionValue(DECOMPILE_VERSION);
+      }
 
-	public String getInputResource() {
-		return cmd.getOptionValue(OPTION_INPUT);
-	}
+    } catch (ParseException ex) {
+      logger.severe(ex.toString());
+    }
+  }
 
-	public OutputType getOutputType() {
-		return outputType;
-	}
+  public String getInputResource() {
+    return cmd.getOptionValue(OPTION_INPUT);
+  }
 
-	public boolean isGuiEnabled() {
-		return guiEnabled;
-	}
-	
+  public OutputType getOutputType() {
+    return outputType;
+  }
 
-	public String getJavaVersionToDecompile() {
-	    return javaVersionToDecompile;
-	}
+  public boolean isGuiEnabled() {
+    return guiEnabled;
+  }
 
-	
-	private String javaVersionToDecompile="1.4";
+  public String getJavaVersionToDecompile() {
+    return javaVersionToDecompile;
+  }
 
-	private Options options;
+  private String javaVersionToDecompile = "1.4";
 
-	private CommandLineParser parser;
+  private Options options;
 
-	private CommandLine cmd;
+  private CommandLineParser parser;
 
-	private OutputType outputType;
+  private CommandLine cmd;
 
-	private boolean guiEnabled;
+  private OutputType outputType;
 
-	private static final String OPTION_INPUT = "i";
+  private boolean guiEnabled;
 
-	private static final String OPTION_DISASSEMBLE = "a";
+  private static final String OPTION_INPUT = "i";
 
-	private static final String OPTION_DECOMPILE = "d";
+  private static final String OPTION_DISASSEMBLE = "a";
 
-	private static final String OPTION_VIEW_CONSTANT_POOL = "v";
+  private static final String OPTION_DECOMPILE = "d";
 
-	private static final String OPTION_GUI = "u";
-	
-	//t may mean target as v is already used
-	private static final String DECOMPILE_VERSION = "t";
+  private static final String OPTION_VIEW_CONSTANT_POOL = "v";
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+  private static final String OPTION_GUI = "u";
+
+  // t may mean target as v is already used
+  private static final String DECOMPILE_VERSION = "t";
+
+  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

@@ -26,21 +26,21 @@ import net.sf.jrevpro.jls.JLSConstants;
  */
 public class ArrayLengthExpression extends Expression {
 
-	public ArrayLengthExpression(Expression _arrayReference) {
-		super(JVM_TYPE_INT, VALUE);
-		arrayReference = _arrayReference;
-	}
+  public ArrayLengthExpression(Expression _arrayReference) {
+    super(JVM_TYPE_INT, VALUE);
+    arrayReference = _arrayReference;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
-		return arrayReference.getValueEx(L_REF) + "." + JLSConstants.LENGTH;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
+    return arrayReference.getValueEx(L_REF) + "." + JLSConstants.LENGTH;
+  }
 
-	private Expression arrayReference;
+  private Expression arrayReference;
 
 }

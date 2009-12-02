@@ -26,59 +26,59 @@ import net.sf.jrevpro.jls.emitter.BlockEmitterFactory;
 
 public abstract class Block {
 
-	public void addChildBlock(Block block) {
-		children.add(block);
-	}
+  public void addChildBlock(Block block) {
+    children.add(block);
+  }
 
-	public void addChildBlocks(Collection<Block> _blocks) {
-		if (_blocks != null) {
-			children.addAll(_blocks);
-		}
-	}
+  public void addChildBlocks(Collection<Block> _blocks) {
+    if (_blocks != null) {
+      children.addAll(_blocks);
+    }
+  }
 
-	public List<Block> getChildren() {
-		return children;
-	}
+  public List<Block> getChildren() {
+    return children;
+  }
 
-	public boolean hasChildren() {
-		return children.size() > 0;
-	}
+  public boolean hasChildren() {
+    return children.size() > 0;
+  }
 
-	public BlockEmitter getEmitter() {
+  public BlockEmitter getEmitter() {
 
-		BlockEmitter emitter = null;
-		try {
-			emitter = BlockEmitterFactory.getBlockEmitter(this.getClass());
-		} catch (Exception e) {
-			// TODO Exception handling
-			e.printStackTrace();
-		}
-		return emitter;
-	}
+    BlockEmitter emitter = null;
+    try {
+      emitter = BlockEmitterFactory.getBlockEmitter(this.getClass());
+    } catch (Exception e) {
+      // TODO Exception handling
+      e.printStackTrace();
+    }
+    return emitter;
+  }
 
-	public void setParent(Block _parent) {
-		parent = _parent;
-	}
+  public void setParent(Block _parent) {
+    parent = _parent;
+  }
 
-	public Block getParent() {
-		return parent;
-	}
+  public Block getParent() {
+    return parent;
+  }
 
-	public int endOfBlock() {
-		int sz = children.size();
-		if (sz == 0) {
-			throw new IllegalStateException("Something gone wrong");
-		}
-		return children.get(sz).endOfBlock();
-	}
+  public int endOfBlock() {
+    int sz = children.size();
+    if (sz == 0) {
+      throw new IllegalStateException("Something gone wrong");
+    }
+    return children.get(sz).endOfBlock();
+  }
 
-	protected Block(Block _parent) {
-		children = new ArrayList<Block>();
-		parent = _parent;
-	}
+  protected Block(Block _parent) {
+    children = new ArrayList<Block>();
+    parent = _parent;
+  }
 
-	protected List<Block> children;
+  protected List<Block> children;
 
-	protected Block parent;
+  protected Block parent;
 
 }

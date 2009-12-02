@@ -26,21 +26,21 @@ import net.sf.jrevpro.jls.JLSConstants;
  */
 public class ThrowExpression extends Expression {
 
-	public ThrowExpression(Expression _thrownClass) {
-		super(JVM_TYPE_VOID, VALUE);
-		thrownClass = _thrownClass;
-	}
+  public ThrowExpression(Expression _thrownClass) {
+    super(JVM_TYPE_VOID, VALUE);
+    thrownClass = _thrownClass;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
-		return JLSConstants.THROW + " " + thrownClass.getValueEx(L_REF);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
+    return JLSConstants.THROW + " " + thrownClass.getValueEx(L_REF);
+  }
 
-	private Expression thrownClass;
+  private Expression thrownClass;
 
 }

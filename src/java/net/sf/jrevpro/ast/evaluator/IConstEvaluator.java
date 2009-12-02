@@ -24,20 +24,20 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class IConstEvaluator extends AbstractInstructionEvaluator {
 
-	public IConstEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public IConstEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		int val = ins.opcode - OPCODE_ICONST_0;
-		evalStack.push(new Constant(String.valueOf(val), JVM_TYPE_INT));
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    int val = ins.opcode - OPCODE_ICONST_0;
+    evalStack.push(new Constant(String.valueOf(val), JVM_TYPE_INT));
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return this.numbersAsList(OPCODE_ICONST_M1, OPCODE_ICONST_0,
-				OPCODE_ICONST_1, OPCODE_ICONST_2, OPCODE_ICONST_3,
-				OPCODE_ICONST_4, OPCODE_ICONST_5);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return this.numbersAsList(OPCODE_ICONST_M1, OPCODE_ICONST_0,
+        OPCODE_ICONST_1, OPCODE_ICONST_2, OPCODE_ICONST_3, OPCODE_ICONST_4,
+        OPCODE_ICONST_5);
+  }
 }

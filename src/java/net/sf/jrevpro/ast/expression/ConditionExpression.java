@@ -27,80 +27,79 @@ import net.sf.jrevpro.jvm.JVMConstants;
  */
 public class ConditionExpression extends Expression {
 
-	public enum RelationalOperator {
-		LT, // <
-		LE, // <=
-		GT, // >
-		GE, // >=
-		NE, // !=
-		EQ
-		// ==
-	}
+  public enum RelationalOperator {
+    LT, // <
+    LE, // <=
+    GT, // >
+    GE, // >=
+    NE, // !=
+    EQ
+    // ==
+  }
 
-	/**
-	 * @param type
-	 * @param _precedence
-	 */
-	public ConditionExpression(Expression _lhs, Expression _rhs,
-			RelationalOperator _op) {
-		super(JVMConstants.JVM_TYPE_BOOLEAN, assignPrecedence(_op));
-		lhs = _lhs;
-		rhs = _rhs;
-		op = _op;
-	}
+  /**
+   * @param type
+   * @param _precedence
+   */
+  public ConditionExpression(Expression _lhs, Expression _rhs,
+      RelationalOperator _op) {
+    super(JVMConstants.JVM_TYPE_BOOLEAN, assignPrecedence(_op));
+    lhs = _lhs;
+    rhs = _rhs;
+    op = _op;
+  }
 
-	private static int assignPrecedence(RelationalOperator argOp) {
-		switch (argOp) {
-		case EQ:
-			return L_LOGEQ;
-		case NE:
-			return L_LOGNEQ;
-		case LT:
-		case GT:
-		case LE:
-		case GE:
-			return L_LOGREL;
-		default:
-			throw new IllegalArgumentException(argOp
-					+ " is not a valid relational operator");
-		}
+  private static int assignPrecedence(RelationalOperator argOp) {
+    switch (argOp) {
+    case EQ:
+      return L_LOGEQ;
+    case NE:
+      return L_LOGNEQ;
+    case LT:
+    case GT:
+    case LE:
+    case GE:
+      return L_LOGREL;
+    default:
+      throw new IllegalArgumentException(argOp
+          + " is not a valid relational operator");
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-	 */
-	@Override
-	public String getJLSCode() {
-		String jlsExpression = "";
-		switch (op) {
-		case EQ:
-			jlsExpression = JLSConstants.OPR_EQ;
-			break;
-		case NE:
-			jlsExpression = JLSConstants.OPR_NE;
-			break;
-		case LT:
-			jlsExpression = JLSConstants.OPR_LT;
-			break;
-		case GE:
-			jlsExpression = JLSConstants.OPR_GE;
-			break;
-		case GT:
-			jlsExpression = JLSConstants.OPR_GT;
-			break;
-		case LE:
-			jlsExpression = JLSConstants.OPR_LE;
-			break;
-		}
-		return lhs.getJLSCode() + jlsExpression
-				+ rhs.getJLSCode();
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   */
+  @Override
+  public String getJLSCode() {
+    String jlsExpression = "";
+    switch (op) {
+    case EQ:
+      jlsExpression = JLSConstants.OPR_EQ;
+      break;
+    case NE:
+      jlsExpression = JLSConstants.OPR_NE;
+      break;
+    case LT:
+      jlsExpression = JLSConstants.OPR_LT;
+      break;
+    case GE:
+      jlsExpression = JLSConstants.OPR_GE;
+      break;
+    case GT:
+      jlsExpression = JLSConstants.OPR_GT;
+      break;
+    case LE:
+      jlsExpression = JLSConstants.OPR_LE;
+      break;
+    }
+    return lhs.getJLSCode() + jlsExpression + rhs.getJLSCode();
+  }
 
-	Expression lhs;
-	Expression rhs;
+  Expression lhs;
+  Expression rhs;
 
-	RelationalOperator op;
+  RelationalOperator op;
 }

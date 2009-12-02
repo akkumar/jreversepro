@@ -26,86 +26,86 @@ import net.sf.jrevpro.parser.common.DefaultClassFileParser;
 
 public class ClassFileParserFactory {
 
-	public static ClassFileParser getClassFileParser(DataInputStream dis)
-			throws ClassParserException, IOException {
-		assertJVMMagic(dis);
-		JVMVersion jvmVersion = readVersion(dis);
-		// TODO: Depending on the supported JVM Versions - select one
-		// appopriately
-		return new DefaultClassFileParser();
-	}
+  public static ClassFileParser getClassFileParser(DataInputStream dis)
+      throws ClassParserException, IOException {
+    assertJVMMagic(dis);
+    JVMVersion jvmVersion = readVersion(dis);
+    // TODO: Depending on the supported JVM Versions - select one
+    // appopriately
+    return new DefaultClassFileParser();
+  }
 
-	/**
-	 * Reads the Magic number.
-	 * 
-	 * @throws ClassParserException
-	 *             Thrown if class file not in desired format.
-	 * @throws IOException
-	 *             Thrown if error in stream of bytes containing the class file.
-	 */
-	private static void assertJVMMagic(DataInputStream dis)
-			throws ClassParserException, IOException {
-		int magic = dis.readInt();
-		if (magic != JVMConstants.MAGIC) {
-			throw new ClassParserException("Invalid Magic Number" + magic);
-		}
-	}
+  /**
+   * Reads the Magic number.
+   * 
+   * @throws ClassParserException
+   *           Thrown if class file not in desired format.
+   * @throws IOException
+   *           Thrown if error in stream of bytes containing the class file.
+   */
+  private static void assertJVMMagic(DataInputStream dis)
+      throws ClassParserException, IOException {
+    int magic = dis.readInt();
+    if (magic != JVMConstants.MAGIC) {
+      throw new ClassParserException("Invalid Magic Number" + magic);
+    }
+  }
 
-	/**
-	 * Reads the Version of the class file.
-	 * 
-	 * @return
-	 * 
-	 * @throws ClassParserException
-	 *             Thrown if class file not in desired format.
-	 * @throws IOException
-	 *             Thrown if error in stream of bytes containing the class file.
-	 */
-	private static JVMVersion readVersion(DataInputStream dis)
-			throws IOException {
-		JVMVersion jvmVersion = new JVMVersion();
+  /**
+   * Reads the Version of the class file.
+   * 
+   * @return
+   * 
+   * @throws ClassParserException
+   *           Thrown if class file not in desired format.
+   * @throws IOException
+   *           Thrown if error in stream of bytes containing the class file.
+   */
+  private static JVMVersion readVersion(DataInputStream dis) throws IOException {
+    JVMVersion jvmVersion = new JVMVersion();
 
-		jvmVersion.minor = dis.readShort();
-		jvmVersion.major = dis.readShort();
+    jvmVersion.minor = dis.readShort();
+    jvmVersion.major = dis.readShort();
 
-		return jvmVersion;
-	}
+    return jvmVersion;
+  }
 
-	/**
-	 * @param major
-	 *            Major version of the JVM.
-	 * @param minor
-	 *            Minor version of the JVM. test whether or not the supplied
-	 *            major/minor class versions are acceptable. (NOTE: we should
-	 *            probably have a runtime switch to accept all versions since
-	 *            even though the versions may be incremented, there are
-	 *            typically no changes to the form of the class files)
-	 * 
-	 * 45.3+ is java 1.1 46.0 is java 1.2 47.0 is java 1.3 48.0 is java 1.4
-	 * 
-	 * @return true if the major/minor versions are acceptable
-	 */
-	private static boolean supportedMajorMinor(JVMVersion _version) {
-		if (_version.major == 45) {
-			return (_version.minor >= 3);
-		}
+  /**
+   * @param major
+   *          Major version of the JVM.
+   * @param minor
+   *          Minor version of the JVM. test whether or not the supplied
+   *          major/minor class versions are acceptable. (NOTE: we should
+   *          probably have a runtime switch to accept all versions since even
+   *          though the versions may be incremented, there are typically no
+   *          changes to the form of the class files)
+   * 
+   *          45.3+ is java 1.1 46.0 is java 1.2 47.0 is java 1.3 48.0 is java
+   *          1.4
+   * 
+   * @return true if the major/minor versions are acceptable
+   */
+  private static boolean supportedMajorMinor(JVMVersion _version) {
+    if (_version.major == 45) {
+      return (_version.minor >= 3);
+    }
 
-		if (_version.major >= 46 && _version.major <= 48) {
-			return true;
-		}
-		logger.warning("Major: " + _version.major + " ,Minor: "
-				+ _version.minor + " not supported ");
-		return false;
-	}
+    if (_version.major >= 46 && _version.major <= 48) {
+      return true;
+    }
+    logger.warning("Major: " + _version.major + " ,Minor: " + _version.minor
+        + " not supported ");
+    return false;
+  }
 
-	private ClassFileParserFactory() {
-	}
+  private ClassFileParserFactory() {
+  }
 
-	static class JVMVersion {
-		short minor;
-		short major;
-	}
+  static class JVMVersion {
+    short minor;
+    short major;
+  }
 
-	private static Logger logger = CustomLoggerFactory.createLogger();
+  private static Logger logger = CustomLoggerFactory.createLogger();
 
 }

@@ -30,47 +30,47 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class JSREvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public JSREvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public JSREvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_JSR:
-			statements.append(new JSRLine(ins));
-			break;
-		case OPCODE_RET:
-			statements.append(new RetLine(ins));
-			break;
-		case OPCODE_JSRW:
-			throw new UnsupportedOperationException("not yet implemented");
-		}
-		/**
-		 * opStack.push(String.valueOf(thisIns.index +3) , RET_ADDR);
-		 */
-		// Represents finally
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_JSR:
+      statements.append(new JSRLine(ins));
+      break;
+    case OPCODE_RET:
+      statements.append(new RetLine(ins));
+      break;
+    case OPCODE_JSRW:
+      throw new UnsupportedOperationException("not yet implemented");
+    }
+    /**
+     * opStack.push(String.valueOf(thisIns.index +3) , RET_ADDR);
+     */
+    // Represents finally
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_JSR, OPCODE_JSRW, OPCODE_RET);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_JSR, OPCODE_JSRW, OPCODE_RET);
+  }
 
 }

@@ -1,7 +1,7 @@
 /**
  *  @(#) NonStaticFieldAccessorEvaluator.java
  *
-  * JReversePro - Java Decompiler / Disassembler.
+ * JReversePro - Java Decompiler / Disassembler.
  * Copyright (C) 2008 Karthik Kumar.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -32,70 +32,70 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  * 
  */
 public class NonStaticFieldReferenceEvaluator extends
-		AbstractInstructionEvaluator {
+    AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public NonStaticFieldReferenceEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public NonStaticFieldReferenceEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_GETFIELD: {
-			Expression op1 = evalStack.pop();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_GETFIELD: {
+      Expression op1 = evalStack.pop();
 
-			int offset = ins.getArgUnsignedShort();
+      int offset = ins.getArgUnsignedShort();
 
-			int fieldPtr = pool.getPtr2(offset);
+      int fieldPtr = pool.getPtr2(offset);
 
-			String fieldName = pool.getFieldName(fieldPtr);
-			String fieldType = pool.getFieldType(fieldPtr);
+      String fieldName = pool.getFieldName(fieldPtr);
+      String fieldType = pool.getFieldType(fieldPtr);
 
-			FieldAccessExpression expr = new FieldAccessExpression(op1,
-					fieldName, fieldType);
-			evalStack.push(expr);
-			break;
-		}
-		case OPCODE_PUTFIELD: {
+      FieldAccessExpression expr = new FieldAccessExpression(op1, fieldName,
+          fieldType);
+      evalStack.push(expr);
+      break;
+    }
+    case OPCODE_PUTFIELD: {
 
-			Expression rhs = evalStack.pop();
-			Expression accessTarget = evalStack.pop();
+      Expression rhs = evalStack.pop();
+      Expression accessTarget = evalStack.pop();
 
-			int offset = ins.getArgUnsignedShort();
+      int offset = ins.getArgUnsignedShort();
 
-			int fieldPtr = pool.getPtr2(offset);
-			String fieldName = pool.getFieldName(fieldPtr);
-			String fieldType = pool.getFieldType(fieldPtr);
+      int fieldPtr = pool.getPtr2(offset);
+      String fieldName = pool.getFieldName(fieldPtr);
+      String fieldType = pool.getFieldType(fieldPtr);
 
-			FieldAccessExpression expr = new FieldAccessExpression(
-					accessTarget, fieldName, fieldType);
-			Assignment assign = new Assignment(expr, rhs);
-			statements.append(new CompleteLine(ins, assign));
-			break;
-		}
-		}
+      FieldAccessExpression expr = new FieldAccessExpression(accessTarget,
+          fieldName, fieldType);
+      Assignment assign = new Assignment(expr, rhs);
+      statements.append(new CompleteLine(ins, assign));
+      break;
+    }
+    }
 
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_GETFIELD, OPCODE_PUTFIELD);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_GETFIELD, OPCODE_PUTFIELD);
+  }
 
 }

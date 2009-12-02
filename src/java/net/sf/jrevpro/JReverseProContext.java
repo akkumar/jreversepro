@@ -39,64 +39,64 @@ import net.sf.jrevpro.reflect.ClassInfo;
  */
 public class JReverseProContext {
 
-	public enum OutputType {
-		NONE, DISASSEMBLER, DECOMPILER, VIEW_CONSTANTPOOL,
-	}
+  public enum OutputType {
+    NONE, DISASSEMBLER, DECOMPILER, VIEW_CONSTANTPOOL,
+  }
 
-	/**
-	 * 
-	 * @param pathToClass
-	 *            Path to the class for which resource needs to be loaded
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws ClassParserException
-	 */
-	public ClassInfo loadResource(final String pathToClass)
-			throws FileNotFoundException, IOException, ClassParserException {
-		final FileInputStream fis = new FileInputStream(pathToClass);
-		final DataInputStream dis = new DataInputStream(fis);
+  /**
+   * 
+   * @param pathToClass
+   *          Path to the class for which resource needs to be loaded
+   * @return
+   * @throws FileNotFoundException
+   * @throws ClassParserException
+   */
+  public ClassInfo loadResource(final String pathToClass)
+      throws FileNotFoundException, IOException, ClassParserException {
+    final FileInputStream fis = new FileInputStream(pathToClass);
+    final DataInputStream dis = new DataInputStream(fis);
 
-		final ClassFileParser cfp = ClassFileParserFactory.getClassFileParser(dis);
-		final ClassInfo info = cfp.parseInputStream(dis, pathToClass);
-		fis.close();
-		return info;
-	}
+    final ClassFileParser cfp = ClassFileParserFactory.getClassFileParser(dis);
+    final ClassInfo info = cfp.parseInputStream(dis, pathToClass);
+    fis.close();
+    return info;
+  }
 
-	public String print(final OutputType outputType, final ClassInfo info) {
-		AbstractOutputter printer = null;
-		switch (outputType) {
-		case DISASSEMBLER:
-			printer = new DisassemblerOutputter();
-			break;
-		case DECOMPILER:
-			printer = new DecompilerOutputter();
-			break;
-		}
-		return printer.output(info);
-	}
+  public String print(final OutputType outputType, final ClassInfo info) {
+    AbstractOutputter printer = null;
+    switch (outputType) {
+    case DISASSEMBLER:
+      printer = new DisassemblerOutputter();
+      break;
+    case DECOMPILER:
+      printer = new DecompilerOutputter();
+      break;
+    }
+    return printer.output(info);
+  }
 
-	public static void checkJREVersion() {
-		if (!VersionChecker.versionCheck()) {
-			System.exit(1);
-		}
-		System.out.println(GPL_INFO);
-	}
+  public static void checkJREVersion() {
+    if (!VersionChecker.versionCheck()) {
+      System.exit(1);
+    }
+    System.out.println(GPL_INFO);
+  }
 
-	/**
-	 * Version of the software.
-	 */
-	public static final String VERSION = "1.5.0";
+  /**
+   * Version of the software.
+   */
+  public static final String VERSION = "1.5.0";
 
-	/**
-	 * GPL Information.
-	 */
-	public static String GPL_INFO = "// JReversePro v " + VERSION + " "
-			+ (new Date()) + "\n// http://jrevpro.sourceforge.net"
-			+ "\n// Copyright (C)2000-2009 Karthik Kumar."
-			+ "\n// JReversePro comes with ABSOLUTELY NO WARRANTY;"
-			+ "\n// This is free software, and you are welcome to redistribute"
-			+ "\n// it under certain conditions;See the File 'COPYING' for "
-			+ "more details.\n";
+  /**
+   * GPL Information.
+   */
+  public static String GPL_INFO = "// JReversePro v " + VERSION + " "
+      + (new Date()) + "\n// http://jrevpro.sourceforge.net"
+      + "\n// Copyright (C)2000-2009 Karthik Kumar."
+      + "\n// JReversePro comes with ABSOLUTELY NO WARRANTY;"
+      + "\n// This is free software, and you are welcome to redistribute"
+      + "\n// it under certain conditions;See the File 'COPYING' for "
+      + "more details.\n";
 
-	private final Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 }

@@ -19,11 +19,11 @@
 package net.sf.jrevpro.reflect;
 
 /**
- *
+ * 
  * Contains info about the LineNumber Table.
+ * 
  * @author Karthik Kumar.
  **/
 public class LineNumberTable {
-
 
 }

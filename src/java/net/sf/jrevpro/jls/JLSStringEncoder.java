@@ -27,49 +27,49 @@ package net.sf.jrevpro.jls;
  */
 public class JLSStringEncoder {
 
-	/**
-	 * Inserts a '\' before all the escape characters , line '\n' , '\t' to
-	 * provide better readability.
-	 * <p>
-	 * 
-	 * @param aLiteral
-	 *            String containing the escape characters.
-	 * @return the new String containing the new escape sequence of characters.
-	 */
-	public static String encodeStringInJLSSource(String aLiteral) {
-		StringBuilder result = new StringBuilder("");
-		for (int i = 0; i < aLiteral.length(); i++) {
-			result.append(encodeCharInJLSSource(aLiteral.charAt(i)));
-		}
-		return result.toString();
-	}
+  /**
+   * Inserts a '\' before all the escape characters , line '\n' , '\t' to
+   * provide better readability.
+   * <p>
+   * 
+   * @param aLiteral
+   *          String containing the escape characters.
+   * @return the new String containing the new escape sequence of characters.
+   */
+  public static String encodeStringInJLSSource(String aLiteral) {
+    StringBuilder result = new StringBuilder("");
+    for (int i = 0; i < aLiteral.length(); i++) {
+      result.append(encodeCharInJLSSource(aLiteral.charAt(i)));
+    }
+    return result.toString();
+  }
 
-	/**
-	 * Returns the String representation of the character .
-	 * 
-	 * @param aChar
-	 *            - Character.
-	 * @return the new String representing the character.
-	 */
-	private static String encodeCharInJLSSource(char aChar) {
-		switch (aChar) {
-		case '\n':
-			return "\\n";
-		case '\t':
-			return "\\t";
-		case '\\':
-			return "\\\\";
-		case '"':
-			return "\\" + "\"";
-		default:
-			return String.valueOf(aChar);
-		}
-	}
+  /**
+   * Returns the String representation of the character .
+   * 
+   * @param aChar
+   *          - Character.
+   * @return the new String representing the character.
+   */
+  private static String encodeCharInJLSSource(char aChar) {
+    switch (aChar) {
+    case '\n':
+      return "\\n";
+    case '\t':
+      return "\\t";
+    case '\\':
+      return "\\\\";
+    case '"':
+      return "\\" + "\"";
+    default:
+      return String.valueOf(aChar);
+    }
+  }
 
-	/**
-	 * Private constructor to prevent any instance from being created.
-	 */
-	private JLSStringEncoder() {
-	}
+  /**
+   * Private constructor to prevent any instance from being created.
+   */
+  private JLSStringEncoder() {
+  }
 
 }

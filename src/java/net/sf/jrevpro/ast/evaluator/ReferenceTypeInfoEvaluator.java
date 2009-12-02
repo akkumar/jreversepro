@@ -36,81 +36,79 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
 
-	/**
-	 * @param context
-	 */
-	public ReferenceTypeInfoEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  /**
+   * @param context
+   */
+  public ReferenceTypeInfoEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
-	 * (net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_NEW: { // new
-			int offset = ins.getArgUnsignedShort();
-			ObjectInstantiationExpression expr = new ObjectInstantiationExpression(
-					pool.getClassName(offset));
-			evalStack.push(expr);
-			break;
-		}
-		case OPCODE_ARRAYLENGTH: {
-			Expression arrayReference = evalStack.pop();
-			ArrayLengthExpression expr = new ArrayLengthExpression(
-					arrayReference);
-			evalStack.push(expr);
-			break;
-		}
-		case OPCODE_ATHROW: {
-			Expression thrownClass = evalStack.pop();
-			ThrowExpression expr = new ThrowExpression(thrownClass);
-			statements.append(new CompleteLine(ins, expr));
-			break;
-		}
-		case OPCODE_CHECKCAST: {
-			int offset = ins.getArgUnsignedShort();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#evaluate
+   * (net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_NEW: { // new
+      int offset = ins.getArgUnsignedShort();
+      ObjectInstantiationExpression expr = new ObjectInstantiationExpression(
+          pool.getClassName(offset));
+      evalStack.push(expr);
+      break;
+    }
+    case OPCODE_ARRAYLENGTH: {
+      Expression arrayReference = evalStack.pop();
+      ArrayLengthExpression expr = new ArrayLengthExpression(arrayReference);
+      evalStack.push(expr);
+      break;
+    }
+    case OPCODE_ATHROW: {
+      Expression thrownClass = evalStack.pop();
+      ThrowExpression expr = new ThrowExpression(thrownClass);
+      statements.append(new CompleteLine(ins, expr));
+      break;
+    }
+    case OPCODE_CHECKCAST: {
+      int offset = ins.getArgUnsignedShort();
 
-			// Get Class Name
-			Expression expr = evalStack.pop();
+      // Get Class Name
+      Expression expr = evalStack.pop();
 
-			String castType = pool.getClassName(offset);
+      String castType = pool.getClassName(offset);
 
-			evalStack.push(new UnaryOpExpression(expr,
-					UnaryOperator.CAST_REFERENCE, castType));
-			// No Change to JVM Stack
-			break;
-		}
-		case OPCODE_INSTANCEOF: {
-			Expression reference = evalStack.pop();
-			int offset = ins.getArgUnsignedShort();
+      evalStack.push(new UnaryOpExpression(expr, UnaryOperator.CAST_REFERENCE,
+          castType));
+      // No Change to JVM Stack
+      break;
+    }
+    case OPCODE_INSTANCEOF: {
+      Expression reference = evalStack.pop();
+      int offset = ins.getArgUnsignedShort();
 
-			// Class Type found here
-			String classType = pool.getClassName(offset);
-			InstanceOfExpression expr = new InstanceOfExpression(reference,
-					classType);
+      // Class Type found here
+      String classType = pool.getClassName(offset);
+      InstanceOfExpression expr = new InstanceOfExpression(reference, classType);
 
-			evalStack.push(expr);
-			break;
-		}
-		}
-	}
+      evalStack.push(expr);
+      break;
+    }
+    }
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
-	 * getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_NEW, OPCODE_ARRAYLENGTH, OPCODE_ATHROW,
-				OPCODE_CHECKCAST, OPCODE_INSTANCEOF);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_NEW, OPCODE_ARRAYLENGTH, OPCODE_ATHROW,
+        OPCODE_CHECKCAST, OPCODE_INSTANCEOF);
+  }
 
 }

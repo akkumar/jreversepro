@@ -24,21 +24,21 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class CompleteLine extends AbstractLineOfCode {
 
-	/**
-	 * 
-	 * @param _expr
-	 *            Expression contained within a given statement.
-	 */
-	public CompleteLine(Instruction _lastBytecode, Expression _expr) {
-		super(_lastBytecode);
-		expr = _expr;
-	}
+  /**
+   * 
+   * @param _expr
+   *          Expression contained within a given statement.
+   */
+  public CompleteLine(Instruction _lastBytecode, Expression _expr) {
+    super(_lastBytecode);
+    expr = _expr;
+  }
 
-	@Override
-	public void regenerateBlock(BlockInferrer ctx) {
-		ctx.appendChildBlock(new Statement(null, ins, expr));
-	}
+  @Override
+  public void regenerateBlock(BlockInferrer ctx) {
+    ctx.appendChildBlock(new Statement(null, ins, expr));
+  }
 
-	private Expression expr;
+  private Expression expr;
 
 }

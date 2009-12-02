@@ -24,24 +24,24 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class UndefinedEvaluator extends AbstractInstructionEvaluator {
 
-	public UndefinedEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public UndefinedEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		throw new UnsupportedOperationException("Opcode " + ins.opcode
-				+ " not supported ");
-	}
+  @Override
+  void evaluate(Instruction ins) {
+    throw new UnsupportedOperationException("Opcode " + ins.opcode
+        + " not supported ");
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		List<Integer> result = new ArrayList<Integer>();
-		result.add(OPCODE_XXXUNUSEDXXX); // opcode
-		for (int i = OPCODE_UNUSED_START; i <= OPCODE_UNUSED_END; ++i) {
-			result.add(new Integer(i));
-		}
-		return result;
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    List<Integer> result = new ArrayList<Integer>();
+    result.add(OPCODE_XXXUNUSEDXXX); // opcode
+    for (int i = OPCODE_UNUSED_START; i <= OPCODE_UNUSED_END; ++i) {
+      result.add(new Integer(i));
+    }
+    return result;
+  }
 
 }

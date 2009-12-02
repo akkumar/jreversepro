@@ -24,76 +24,81 @@ import javax.swing.JFrame;
 import java.io.File;
 
 /**
- * FileChooser to choose  /view a group of files.
+ * FileChooser to choose /view a group of files.
+ * 
  * @author Karthik Kumar
  * @version 1.3
  **/
 @SuppressWarnings("serial")
-public class CustomFileChooser extends JFileChooser
- {
-    /**
-     * mFileExtension Extension of the files to be viewed.
-     */
-    private String mFileExtension;
+public class CustomFileChooser extends JFileChooser {
+  /**
+   * mFileExtension Extension of the files to be viewed.
+   */
+  private String mFileExtension;
+
+  /**
+   * Description of the files to be viewed.
+   **/
+  private String mFileDescription;
+
+  /**
+   * @param aDir
+   *          Default Directory of the File Chooser.
+   * @param aDescription
+   *          Description of the extension aExtension
+   * @param aExtension
+   *          Extension of the file
+   * @param aToolTipText
+   *          Tooltip text used when viewing file.
+   **/
+  public CustomFileChooser(String aDir, String aDescription, String aExtension,
+      String aToolTipText) {
+    super(aDir);
+
+    mFileExtension = aExtension;
+    mFileDescription = aDescription;
+
+    setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+    setFileFilter(new CustomFileFilter());
+    setApproveButtonToolTipText(aToolTipText);
+  }
+
+  /**
+   * Makes the file chooser visible.
+   * 
+   * @param aParent
+   *          Parent Frame
+   * @param aSelectButton
+   *          Name of the button to be selected.
+   * @return the status returned by the file chooser.
+   **/
+  public int showChooser(JFrame aParent, String aSelectButton) {
+    return showDialog(aParent, aSelectButton);
+  }
+
+  /**
+   * File Filter.
+   * 
+   * @author Karthik Kumar
+   **/
+  class CustomFileFilter extends javax.swing.filechooser.FileFilter {
 
     /**
-     * Description of the files to be viewed.
+     * @param aFilterFile
+     *          File to be filtered.
+     * @return true, if this file is passed by the filter. false, otherwise.
      **/
-    private String mFileDescription;
-
-    /**
-     * @param aDir Default Directory of the File Chooser.
-     * @param aDescription Description of the extension aExtension
-     * @param aExtension Extension of the file
-     * @param aToolTipText Tooltip text used when viewing file.
-     **/
-    public CustomFileChooser(String aDir,
-                    String aDescription ,
-                    String aExtension ,
-                    String aToolTipText) {
-            super(aDir);
-
-            mFileExtension = aExtension;
-            mFileDescription = aDescription;
-
-            setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );
-            setFileFilter( new CustomFileFilter() ) ;
-            setApproveButtonToolTipText( aToolTipText );
+    public boolean accept(File aFilterFile) {
+      return (aFilterFile.isDirectory() || aFilterFile.getName().endsWith(
+          mFileExtension));
     }
 
     /**
-     * Makes the file chooser visible.
-     * @param aParent Parent Frame
-     * @param aSelectButton Name of the button to be selected.
-     * @return the status returned by the file chooser.
+     * @return Description of the Filter involved.
      **/
-    public int showChooser(JFrame aParent , String aSelectButton ) {
-        return showDialog(aParent, aSelectButton );
+    public String getDescription() {
+      return mFileDescription + "(" + mFileExtension + ")";
     }
-
-    /**
-     * File Filter.
-     * @author Karthik Kumar
-     **/
-    class CustomFileFilter
-           extends javax.swing.filechooser.FileFilter {
-
-            /**
-             * @param aFilterFile File to be filtered.
-             * @return true, if this file is passed by the filter.
-             * false, otherwise.
-             **/
-            public boolean accept( File aFilterFile ) {
-                return ( aFilterFile.isDirectory()
-                    || aFilterFile.getName().endsWith(mFileExtension) );
-            }
-
-            /**
-             * @return Description of the Filter involved.
-             **/
-            public String getDescription() {
-                return mFileDescription + "(" + mFileExtension + ")";
-            }
-    }
+  }
 
 }

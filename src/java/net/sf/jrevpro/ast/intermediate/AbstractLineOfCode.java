@@ -28,29 +28,29 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  */
 public abstract class AbstractLineOfCode {
 
-	/**
-	 * 
-	 * @param _expr
-	 *            Expression contained within a given statement.
-	 */
-	protected AbstractLineOfCode(Instruction _ins) {
-		if (_ins == null) {
-			throw new IllegalArgumentException(
-					"Instruction passed to a LineOfCode can never be null");
-		}
-		ins = _ins;
-	}
+  /**
+   * 
+   * @param _expr
+   *          Expression contained within a given statement.
+   */
+  protected AbstractLineOfCode(Instruction _ins) {
+    if (_ins == null) {
+      throw new IllegalArgumentException(
+          "Instruction passed to a LineOfCode can never be null");
+    }
+    ins = _ins;
+  }
 
-	public int feedToInferrer(BlockInferrer ctx) {
-		if (!(this instanceof ConditionalLine)) {
-			ctx.markConditionAsStatement();
-		}
-		regenerateBlock(ctx);
-		return ins.nextPc;
-	}
+  public int feedToInferrer(BlockInferrer ctx) {
+    if (!(this instanceof ConditionalLine)) {
+      ctx.markConditionAsStatement();
+    }
+    regenerateBlock(ctx);
+    return ins.nextPc;
+  }
 
-	protected abstract void regenerateBlock(BlockInferrer ctx);
+  protected abstract void regenerateBlock(BlockInferrer ctx);
 
-	protected Instruction ins;
+  protected Instruction ins;
 
 }

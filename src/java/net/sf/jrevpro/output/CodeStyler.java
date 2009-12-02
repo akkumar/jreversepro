@@ -18,11 +18,10 @@ package net.sf.jrevpro.output;
 
 public interface CodeStyler {
 
-	public String openBlock();
-	
-	public String closeBlock();
-	
-	public String outputLine(String str);
+  public String openBlock();
 
-	
+  public String closeBlock();
+
+  public String outputLine(String str);
+
 }

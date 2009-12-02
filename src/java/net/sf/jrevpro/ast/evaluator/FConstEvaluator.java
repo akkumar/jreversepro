@@ -24,36 +24,35 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class FConstEvaluator extends AbstractInstructionEvaluator {
 
-	public FConstEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public FConstEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_FCONST_0: { // fconst_0
-			evalStack.push(Constant.FLOAT_0);
-			break;
-		}
-		case OPCODE_FCONST_1: { // fconst_1
-			evalStack.push(Constant.FLOAT_1);
-			break;
-		}
-		case OPCODE_FCONST_2: { // fconst_2
-			evalStack.push(Constant.FLOAT_2);
-			break;
-		}
-		default: {
-			throw new RuntimeException("Opcode " + ins.opcode
-					+ "not supported ");
-		}
-		}
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_FCONST_0: { // fconst_0
+      evalStack.push(Constant.FLOAT_0);
+      break;
+    }
+    case OPCODE_FCONST_1: { // fconst_1
+      evalStack.push(Constant.FLOAT_1);
+      break;
+    }
+    case OPCODE_FCONST_2: { // fconst_2
+      evalStack.push(Constant.FLOAT_2);
+      break;
+    }
+    default: {
+      throw new RuntimeException("Opcode " + ins.opcode + "not supported ");
+    }
+    }
 
-	}
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_FCONST_0, OPCODE_FCONST_1, OPCODE_FCONST_2);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_FCONST_0, OPCODE_FCONST_1, OPCODE_FCONST_2);
+  }
 
 }

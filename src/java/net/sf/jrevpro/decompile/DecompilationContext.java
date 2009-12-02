@@ -28,25 +28,25 @@ import net.sf.jrevpro.reflect.instruction.InstructionList;
 
 public class DecompilationContext {
 
-	public DecompilationContext(Method _method, ConstantPool _constantPool) {
-		method = _method;
-		constantPool = _constantPool;
+  public DecompilationContext(Method _method, ConstantPool _constantPool) {
+    method = _method;
+    constantPool = _constantPool;
 
-		try {
-			list = InstructionListParserFactory.createInstructionListParser()
-					.parseBytes(method.getBytes());
-		} catch (InstructionListParserException e) {
-			logger.severe(e.toString());
-		}
+    try {
+      list = InstructionListParserFactory.createInstructionListParser()
+          .parseBytes(method.getBytes());
+    } catch (InstructionListParserException e) {
+      logger.severe(e.toString());
+    }
 
-	}
+  }
 
-	Method method;
+  Method method;
 
-	ConstantPool constantPool;
+  ConstantPool constantPool;
 
-	InstructionList list;
+  InstructionList list;
 
-	private Logger logger = CustomLoggerFactory.createLogger();
+  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

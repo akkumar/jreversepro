@@ -27,42 +27,42 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class ReferenceStoreEvaluator extends AbstractInstructionEvaluator {
 
-	public ReferenceStoreEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public ReferenceStoreEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_ASTORE:
-			operateStoreInstruction(ins, ins.getArgUnsignedWide());
-			break;
-		case OPCODE_ASTORE_0:
-		case OPCODE_ASTORE_1:
-		case OPCODE_ASTORE_2:
-		case OPCODE_ASTORE_3:
-			operateStoreInstruction(ins, ins.opcode - OPCODE_ASTORE_0);
-			break;
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_ASTORE:
+      operateStoreInstruction(ins, ins.getArgUnsignedWide());
+      break;
+    case OPCODE_ASTORE_0:
+    case OPCODE_ASTORE_1:
+    case OPCODE_ASTORE_2:
+    case OPCODE_ASTORE_3:
+      operateStoreInstruction(ins, ins.opcode - OPCODE_ASTORE_0);
+      break;
 
-		}
-	}
+    }
+  }
 
-	private void operateStoreInstruction(Instruction ins,
-			int variableIndexToSymbolTable) {
-		int indexToSymbolTable = variableIndexToSymbolTable;
-		Expression rhs = evalStack.pop();
-		Variable lhs = new Variable(varTable, rhs.getType(),
-				indexToSymbolTable, ins.currentPc);
-		statements.append(new CompleteLine(ins, new Assignment(lhs, rhs)));
+  private void operateStoreInstruction(Instruction ins,
+      int variableIndexToSymbolTable) {
+    int indexToSymbolTable = variableIndexToSymbolTable;
+    Expression rhs = evalStack.pop();
+    Variable lhs = new Variable(varTable, rhs.getType(), indexToSymbolTable,
+        ins.currentPc);
+    statements.append(new CompleteLine(ins, new Assignment(lhs, rhs)));
 
-		// Hint to the symbol table about the type.
-		varTable.recordLocalDatatypeReference(variableIndexToSymbolTable, rhs
-				.getType(), ins.currentPc);
-	}
+    // Hint to the symbol table about the type.
+    varTable.recordLocalDatatypeReference(variableIndexToSymbolTable, rhs
+        .getType(), ins.currentPc);
+  }
 
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_ASTORE, OPCODE_ASTORE_0, OPCODE_ASTORE_1,
-				OPCODE_ASTORE_2, OPCODE_ASTORE_3);
-	}
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_ASTORE, OPCODE_ASTORE_0, OPCODE_ASTORE_1,
+        OPCODE_ASTORE_2, OPCODE_ASTORE_3);
+  }
 }

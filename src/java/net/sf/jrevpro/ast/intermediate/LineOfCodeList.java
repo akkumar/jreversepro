@@ -27,17 +27,17 @@ import java.util.List;
  */
 public class LineOfCodeList {
 
-	public LineOfCodeList() {
-		statements = new ArrayList<AbstractLineOfCode>();
-	}
+  public LineOfCodeList() {
+    statements = new ArrayList<AbstractLineOfCode>();
+  }
 
-	public void append(AbstractLineOfCode ref) {
-		statements.add(ref);
-	}
+  public void append(AbstractLineOfCode ref) {
+    statements.add(ref);
+  }
 
-	public List<AbstractLineOfCode> getAsList() {
-		return statements;
-	}
+  public List<AbstractLineOfCode> getAsList() {
+    return statements;
+  }
 
-	private List<AbstractLineOfCode> statements;
+  private List<AbstractLineOfCode> statements;
 }

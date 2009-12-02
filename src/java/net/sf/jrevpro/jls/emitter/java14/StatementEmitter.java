@@ -30,22 +30,22 @@ import net.sf.jrevpro.jls.emitter.EmitterTarget;
  */
 public class StatementEmitter extends BlockEmitter {
 
-	@Override
-	protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockBeginCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
-	@Override
-	protected void emitBlockEndCode(EmitterTarget target, Block _block) {
+  @Override
+  protected void emitBlockEndCode(EmitterTarget target, Block _block) {
 
-	}
+  }
 
-	@Override
-	protected void emitCurrentCode(EmitterTarget target, Block _block) {
-		Statement stmt = (Statement) _block;
-		target.append(stmt.getExpression().getJLSCode()
-				+ JLSConstants.END_OF_STATEMENT);
-		target.append("\n");
-	}
+  @Override
+  protected void emitCurrentCode(EmitterTarget target, Block _block) {
+    Statement stmt = (Statement) _block;
+    target.append(stmt.getExpression().getJLSCode()
+        + JLSConstants.END_OF_STATEMENT);
+    target.append("\n");
+  }
 
 }

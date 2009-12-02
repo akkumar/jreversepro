@@ -23,24 +23,24 @@ import net.sf.jrevpro.reflect.Import;
 
 public class InstanceOfExpression extends Expression {
 
-	public InstanceOfExpression(Expression _reference, String _referenceType) {
-		super(JVM_TYPE_BOOLEAN, L_LOGIOF);
-		reference = _reference;
-		referenceType = _referenceType;
+  public InstanceOfExpression(Expression _reference, String _referenceType) {
+    super(JVM_TYPE_BOOLEAN, L_LOGIOF);
+    reference = _reference;
+    referenceType = _referenceType;
 
-	}
+  }
 
-	@Override
-	public String getJLSCode() {
-		String classType = Import.getClassName(TypeInferrer.getJLSType(
-				referenceType, false));
+  @Override
+  public String getJLSCode() {
+    String classType = Import.getClassName(TypeInferrer.getJLSType(
+        referenceType, false));
 
-		return reference.getJLSCode() + JLSConstants.SPACE
-				+ JLSConstants.INSTANCEOF + JLSConstants.SPACE + classType;
-	}
+    return reference.getJLSCode() + JLSConstants.SPACE
+        + JLSConstants.INSTANCEOF + JLSConstants.SPACE + classType;
+  }
 
-	Expression reference;
+  Expression reference;
 
-	String referenceType;
+  String referenceType;
 
 }

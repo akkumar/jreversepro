@@ -20,7 +20,7 @@ import net.sf.jrevpro.reflect.instruction.InstructionList;
 
 public interface InstructionListParser {
 
-	InstructionList parseBytes(byte[] bytes)
-			throws InstructionListParserException;
+  InstructionList parseBytes(byte[] bytes)
+      throws InstructionListParserException;
 
 }

@@ -21,19 +21,19 @@ import net.sf.jrevpro.ast.expression.ConditionExpression;
 
 public class ConditionalBlock extends Block {
 
-	public enum ConditionalType {
-		CONDITION_IF, CONDITION_ELSE_IF, CONDITION_RETURN
-	};
+  public enum ConditionalType {
+    CONDITION_IF, CONDITION_ELSE_IF, CONDITION_RETURN
+  };
 
-	public ConditionalBlock(Block _parent, ConditionExpression _expr,
-			ConditionalType _type) {
-		super(_parent);
-		expr = _expr;
-		type = _type;
-	}
+  public ConditionalBlock(Block _parent, ConditionExpression _expr,
+      ConditionalType _type) {
+    super(_parent);
+    expr = _expr;
+    type = _type;
+  }
 
-	private ConditionExpression expr;
+  private ConditionExpression expr;
 
-	private ConditionalType type;
+  private ConditionalType type;
 
 }

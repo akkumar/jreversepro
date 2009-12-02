@@ -24,52 +24,50 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 
 public class LLoadEvaluator extends AbstractInstructionEvaluator {
 
-	public LLoadEvaluator(EvaluatorContext context) {
-		super(context);
-	}
+  public LLoadEvaluator(EvaluatorContext context) {
+    super(context);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
-	 */
-	@Override
-	void evaluate(Instruction ins) {
-		switch (ins.opcode) {
-		case OPCODE_LLOAD:
-			operateLoadInstruction(ins, ins.getArgUnsignedWide());
-			break;
-		case OPCODE_LLOAD_0:
-		case OPCODE_LLOAD_1:
-		case OPCODE_LLOAD_2:
-		case OPCODE_LLOAD_3:
-			operateLoadInstruction(ins, ins.opcode - OPCODE_LLOAD_0);
-			break;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #evaluate(net.sf.jrevpro.reflect.instruction.Instruction)
+   */
+  @Override
+  void evaluate(Instruction ins) {
+    switch (ins.opcode) {
+    case OPCODE_LLOAD:
+      operateLoadInstruction(ins, ins.getArgUnsignedWide());
+      break;
+    case OPCODE_LLOAD_0:
+    case OPCODE_LLOAD_1:
+    case OPCODE_LLOAD_2:
+    case OPCODE_LLOAD_3:
+      operateLoadInstruction(ins, ins.opcode - OPCODE_LLOAD_0);
+      break;
 
-		}
+    }
 
-	}
+  }
 
-	private void operateLoadInstruction(Instruction ins,
-			int variableIndexToSymbolTable) {
-		Variable var = new Variable(varTable, JVM_TYPE_LONG,
-				variableIndexToSymbolTable, ins.currentPc);
-		evalStack.push(var);
-	}
+  private void operateLoadInstruction(Instruction ins,
+      int variableIndexToSymbolTable) {
+    Variable var = new Variable(varTable, JVM_TYPE_LONG,
+        variableIndexToSymbolTable, ins.currentPc);
+    evalStack.push(var);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
-	 * #getProcessingOpcodes()
-	 */
-	@Override
-	List<Integer> getProcessingOpcodes() {
-		return numbersAsList(OPCODE_LLOAD, OPCODE_LLOAD_0, OPCODE_LLOAD_1,
-				OPCODE_LLOAD_2, OPCODE_LLOAD_3);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see net.sf.jrevpro.decompile.instructioneval.AbstractInstructionEvaluator
+   * #getProcessingOpcodes()
+   */
+  @Override
+  List<Integer> getProcessingOpcodes() {
+    return numbersAsList(OPCODE_LLOAD, OPCODE_LLOAD_0, OPCODE_LLOAD_1,
+        OPCODE_LLOAD_2, OPCODE_LLOAD_3);
+  }
 
 }

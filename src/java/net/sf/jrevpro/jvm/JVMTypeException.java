@@ -25,7 +25,7 @@ package net.sf.jrevpro.jvm;
 @SuppressWarnings("serial")
 public class JVMTypeException extends RuntimeException {
 
-	public JVMTypeException(String _cause) {
-		super(_cause);
-	}
+  public JVMTypeException(String _cause) {
+    super(_cause);
+  }
 }
