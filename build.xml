@@ -22,7 +22,7 @@
         <echo message="clean    Clean binaries"/>
     </target>
 
-    <target name="init" depends="retrieve-ivy" >
+    <target name="init"  >
         <property name="version"        value="1.4.0" />
 
         <property name="build.compiler" value="modern"/>
@@ -49,11 +49,20 @@
     </target>
 
     <!-- Compiler Target -->
-    <target name="compile" depends="clean,init" 
-                description="Compile all the Java source files">
-        <mkdir dir="${classdir}"/>
-        <javac srcdir="${srcdir}" destdir="${classdir}"/>
-    </target>
+	<path id="src.class.path">
+		<fileset dir="${lib.dir}/compile" includes="*.jar" />
+		<pathelement path="${classes.dir}" />		
+	</path>
+
+	<target name="compile.pre" />
+	<target name="compile.post" />
+	<target name="compile.main">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.java.dir}" destdir="${classes.dir}" source="${javac.source}" target="${javac.target}" classpathref="src.class.path" />
+	</target>
+
+	<target name="compile" depends="init,retrieve-ivy,compile.pre,compile.main,compile.post" />
+	
 
     <!-- Create the Jar File -->
     <target name="makejar" depends="init,compile" description="Make the Library Jar file">
@@ -131,6 +140,7 @@
     <!-- Clean up -->
     <target name="clean" depends="init" description="Clean up binary Files">
         <delete dir="${classdir}"/>
+        <delete dir="${libdir}"/>
         <delete> 
             <fileset dir="${basedir}" includes="**/*~" defaultexcludes="no" />
         </delete>
