@@ -17,7 +17,7 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.List;
+import java.util.Arrays;
 
 import net.sf.jrevpro.ast.expression.Constant;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -35,8 +35,8 @@ public class AConstNullEvaluator extends AbstractInstructionEvaluator {
   }
 
   @Override
-  List<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_ACONST_NULL);
+  Iterable<Integer> getProcessingOpcodes() {
+    return Arrays.asList(OPCODE_ACONST_NULL);
   }
 
 }

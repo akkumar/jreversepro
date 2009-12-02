@@ -49,10 +49,16 @@ public abstract class AbstractInstructionEvaluator implements JVMConstants,
 
   }
 
-  abstract List<Integer> getProcessingOpcodes();
+  abstract Iterable<Integer> getProcessingOpcodes();
 
   abstract void evaluate(Instruction ins);
 
+  /**
+   * No need for this present here. Remove this.
+   * @param numbers
+   * @return
+   */
+  @Deprecated
   protected List<Integer> numbersAsList(Integer... numbers) {
     return Arrays.asList(numbers);
   }

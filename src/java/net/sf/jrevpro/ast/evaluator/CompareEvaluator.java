@@ -18,6 +18,7 @@
  **/
 package net.sf.jrevpro.ast.evaluator;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.sf.jrevpro.ast.expression.ConditionExpression;
@@ -66,7 +67,7 @@ public class CompareEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   List<Integer> getProcessingOpcodes() {
-    return numbersAsList(OPCODE_LCMP, OPCODE_FCMPL, OPCODE_FCMPG, OPCODE_DCMPL,
+    return Arrays.asList(OPCODE_LCMP, OPCODE_FCMPL, OPCODE_FCMPG, OPCODE_DCMPL,
         OPCODE_DCMPG);
 
   }

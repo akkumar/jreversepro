@@ -125,7 +125,7 @@ public class RuntimeFrame {
       ctor = clazz.getDeclaredConstructor(EvaluatorContext.class);
 
       AbstractInstructionEvaluator eval = ctor.newInstance(context);
-      List<Integer> opcodes = eval.getProcessingOpcodes();
+      Iterable<Integer> opcodes = eval.getProcessingOpcodes();
       for (Integer number : opcodes) {
         if (mapEvaluatorTypes.get(number) != null) {
           throw new RuntimeException("Opcode " + number
