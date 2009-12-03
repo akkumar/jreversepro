@@ -84,7 +84,7 @@
 
         <copy todir="${dist.binary.dir}/${jrevroot}">
             <fileset dir="${target.dir}">
-        		<include name="docs" />
+        		<include name="docs/**" />
         	</fileset>
 		 	<fileset file="${target.dir}/${jarfile}" />
             <fileset dir="${basedir}" includes="${infofiles}" />
@@ -162,13 +162,7 @@
         </delete>
     </target>
 
-
-    <!-- Clean up -->
-    <target name="cleanall" depends="init, clean" description="Clean up All Files">
-        <delete dir="${docdir}/${apidir}"/>
-        <delete dir="${distdir}"/>
-    </target>
-
+	<!-- TODO: The following test related targets do not work . Need to get them up and running soon -->
     <!-- targets for testing -->
     <target name="compiletests" depends="init"> 
         <javac srcdir="testclasses" destdir="testclasses"/>
