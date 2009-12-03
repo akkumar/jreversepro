@@ -31,7 +31,7 @@
     </target>
 
     <target name="retrieve-ivy" depends="load-ivy">
-        <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact].[ext]"
+        <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[revision].[ext]"
             conf="compile,test" type="jar" />
     </target>
 </project>
