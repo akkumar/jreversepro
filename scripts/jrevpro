@@ -1,0 +1,20 @@
+#! /bin/sh
+# JReversePro - startup script
+
+# if JREVERSE_HOME is not set, use dirname to get at it
+if [ "z$JREVERSE_HOME" = "z" ] ; then
+   DIRNAME=`dirname $0`
+   JREVERSE_HOME=`cd $DIRNAME/..; pwd`
+fi
+
+# get our java from JAVA_HOME if set, otherwise
+# from classpath
+if [ "z$JAVA_HOME" != "z" ]; then
+    JAVA="$JAVA_HOME/bin/java"
+else
+    JAVA="java"
+fi
+
+CP=$JREVERSE_HOME/lib/jreversepro.jar
+exec $JAVA -classpath $CP jreversepro.JCmdMain $@
+
