@@ -53,7 +53,7 @@ public class CommandLineInterface {
           logger
               .severe(OPTION_GUI
                   + " needs to be specified alone and should not accompany other arguments");
-          throw new UnsupportedOperationException("Invalid argument specified");
+          throw new IllegalArgumentException("Invalid argument specified");
         }
         guiEnabled = true;
         return;
@@ -111,9 +111,9 @@ public class CommandLineInterface {
 
   private String javaVersionToDecompile = "1.4";
 
-  private Options options;
+  private final Options options;
 
-  private CommandLineParser parser;
+  private final CommandLineParser parser;
 
   private CommandLine cmd;
 
@@ -134,6 +134,6 @@ public class CommandLineInterface {
   // t may mean target as v is already used
   private static final String DECOMPILE_VERSION = "t";
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 
 }
