@@ -15,6 +15,6 @@ else
     JAVA="java"
 fi
 
-CP=$JREVERSE_HOME/lib/jreversepro.jar
-exec $JAVA -classpath $CP jreversepro.JCmdMain $@
+CP=$JREVERSE_HOME/jreversepro.jar:$JREVERSE_HOME/lib/commons-cli-1.2.jar
+exec $JAVA -classpath $CP net.sf.jrevpro.cmd.CommandMain $@
 
