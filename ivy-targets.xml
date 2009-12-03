@@ -17,7 +17,7 @@
         <mkdir dir="${ivy.jar.dir}" />
         <echo message="Installing Ivy..." />
         <get
-            src="${central.repo}/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+            src="${central.repo}"
             dest="${ivy.jar.file}" />
     </target>
 
