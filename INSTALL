@@ -1,11 +1,25 @@
-                     JReversePro 1.4.0
-               Java Decompiler / Disassembler
-                 http://jrevpro.sourceforge.net
-	             Oct 19  2002
+JReversePro 1.6.0
+Java Decompiler / Disassembler
+http://jrevpro.sourceforge.net
+Dec 1 2009
 
-To Install:
-==========
-	Set the environment variable JREVERSE_HOME to point to this directory,
+
+
+
+* Set the environment variable JREVERSE_HOME to point to this directory,
 to which you have extracted the tarball.
-	Add JREVERSE_HOME/bin to the PATH environment variable.
+
+export JREVERSE_HOME=/usr/local/jreversepro-1.6.0
+
+
+* Add JREVERSE_HOME/bin to the PATH environment variable.
+
+export PATH=$PATH:$JREVERSE_HOME/bin
+
+* Set JAVA_HOME environment variable to point to the JDK installation.
+
+export JAVA_HOME=/opt/java/java6
+
+
+(Note: these commands are meant for bash shell. It might differ depending on the shell that you are using).
 	
