@@ -17,6 +17,7 @@
  */
 package net.sf.jrevpro.decompile.simulate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -113,6 +114,7 @@ public class CaseEntry {
   /**
    * @return Returns a Stringified form of the class.
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(disAssemble() + " upto " + endTarget);
@@ -146,7 +148,7 @@ public class CaseEntry {
  * 
  * @author Karthik Kumar.
  */
-class CaseComparator implements Comparator<CaseEntry> {
+class CaseComparator implements Comparator<CaseEntry>, Serializable {
 
   /**
    * @param o1
@@ -174,6 +176,7 @@ class CaseComparator implements Comparator<CaseEntry> {
    *          Object to be compared.
    * @return true, if the object is JCaseEntry. false, otherwise.
    */
+  @Override
   public boolean equals(Object obj) {
     return obj instanceof CaseEntry;
   }

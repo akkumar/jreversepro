@@ -277,7 +277,7 @@ public class TypeInferrer implements JVMConstants {
    */
   public static String getAtomicValue(String value, String jvmType) {
     value = value.trim();
-    if (jvmType.equals(JVM_TYPE_BOOLEAN)) { // boolean
+    if (jvmType.equals(Character.valueOf(JVM_TYPE_BOOLEAN).toString())) { // boolean
       if (value.compareTo(JVM_BOOLEAN_TRUE) == 0) {
         return JLSConstants.BOOLEAN_TRUE;
       } else if (value.compareTo(JVM_BOOLEAN_FALSE) == 0) {
@@ -285,7 +285,7 @@ public class TypeInferrer implements JVMConstants {
       } else {
         return value;
       }
-    } else if (jvmType.equals(JVM_TYPE_CHAR)) { // Character
+    } else if (jvmType.equals(Character.valueOf(JVM_TYPE_CHAR).toString())) { // Character
       try {
         StringBuilder sb = new StringBuilder();
         int intvalue = Integer.parseInt(value);

@@ -87,9 +87,9 @@ public class LocalVariableTable implements VariableTable {
     // This would be a NOP for this class
   }
 
-  private List<LocalVariable> variableList;
+  private final List<LocalVariable> variableList;
 
-  public class LocalVariable {
+  public static class LocalVariable {
     short startPc;
     short length;
     short nameIndex;

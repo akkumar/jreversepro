@@ -32,8 +32,9 @@ public class ConditionalBlock extends Block {
     type = _type;
   }
 
-  private ConditionExpression expr;
+  
+  private final ConditionExpression expr;
 
-  private ConditionalType type;
+  private final ConditionalType type;
 
 }

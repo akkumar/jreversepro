@@ -39,7 +39,7 @@ public class UndefinedEvaluator extends AbstractInstructionEvaluator {
     List<Integer> result = new ArrayList<Integer>();
     result.add(OPCODE_XXXUNUSEDXXX); // opcode
     for (int i = OPCODE_UNUSED_START; i <= OPCODE_UNUSED_END; ++i) {
-      result.add(new Integer(i));
+      result.add(Integer.valueOf(i));
     }
     return result;
   }

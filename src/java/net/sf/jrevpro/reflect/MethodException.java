@@ -16,10 +16,10 @@
  ***/
 package net.sf.jrevpro.reflect;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Enumeration;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.sf.jrevpro.jvm.JVMConstants;
 
@@ -78,7 +78,7 @@ public class MethodException {
    */
   public void addCatchBlock(int rhsHandlerPc, String rhsType) {
     rhsType = (rhsType != null) ? rhsType : JVMConstants.ANY;
-    excCatchTable.put(new Integer(rhsHandlerPc), rhsType);
+    excCatchTable.put(Integer.valueOf(rhsHandlerPc), rhsType);
   }
 
   /**
@@ -113,7 +113,7 @@ public class MethodException {
    *         rhsHandlerPc. null, otherwise.
    */
   public String getExceptionClass(int rhsHandlerPc) {
-    return excCatchTable.get(new Integer(rhsHandlerPc));
+    return excCatchTable.get(Integer.valueOf(rhsHandlerPc));
   }
 
   /**
@@ -121,6 +121,7 @@ public class MethodException {
    *          Object to be compared with.
    * @return if two JException objects are equal. false, otherwise.
    */
+  @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof MethodException)) {
       return false;
@@ -160,6 +161,7 @@ public class MethodException {
   /**
    * @return Stringified form of the class.
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("");
     Enumeration<Integer> enum1 = Collections
@@ -177,7 +179,7 @@ public class MethodException {
   /**
    * Start Pc of the exception handler.
    */
-  private int startPc;
+  private final int startPc;
 
   /**
    * End Pc of the exception handler
@@ -188,7 +190,7 @@ public class MethodException {
    * Set if the exception handler is for ANY data type for the block - {
    * startpc, endpc }
    */
-  private boolean any;
+  private final boolean any;
 
   /**
    * Map - Key - Handler Pc beginning value -Handler datatype.

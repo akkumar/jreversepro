@@ -160,7 +160,7 @@ public class RuntimeFrame {
 
   AbstractInstructionEvaluator getEvaluator(int opcode) {
     Class<? extends AbstractInstructionEvaluator> clazz = mapEvaluatorTypes
-        .get(new Integer(opcode));
+        .get( opcode);
     if (clazz == null) {
       logger.severe("Opcode " + opcode + " does not have an evaluator");
       throw new RuntimeException("Opcode does not have an evaluator");

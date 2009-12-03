@@ -24,6 +24,7 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -143,24 +144,27 @@ public class ClassEditPanel extends JPanel {
    *          Parent Frame of this component.
    * @return true, if file contents written. false, otherwise.
    **/
-  public boolean writeToFile(JFrame aParent, File aOutputFile) {
+  public boolean writeToFile(JFrame aParent, File aOutputFile)
+      throws IOException {
+    FileInputStream FlTemp = null;
     try {
-      FileInputStream FlTemp = new FileInputStream(aOutputFile);
+      FlTemp = new FileInputStream(aOutputFile);
       // File Exists
       if (!confirmOverwrite(aParent, aOutputFile)) {
         return false;
       }
-      FlTemp.close();
-    } catch (Exception _ex) {
+
+    } finally {
+      if (FlTemp != null) {
+        FlTemp.close();
+      }
     }
+    FileOutputStream out = null;
+    PrintStream prOut = null;
     try {
-      FileOutputStream out = new FileOutputStream(aOutputFile);
-      PrintStream PrOut = new PrintStream(out);
-      PrOut.print(mTxtJava.getText());
-      PrOut.close();
-      out.close();
-      PrOut = null;
-      out = null;
+      out = new FileOutputStream(aOutputFile);
+      prOut = new PrintStream(out);
+      prOut.print(mTxtJava.getText());
       String Msg = "Contents written onto " + aOutputFile.toString()
           + " successfully";
       JOptionPane.showMessageDialog(aParent, Msg, "File Saved",
@@ -169,6 +173,13 @@ public class ClassEditPanel extends JPanel {
     } catch (Exception _ex) {
       System.err.println(_ex);
       return false;
+    } finally {
+      if (out != null) {
+        out.close();
+      }
+      if (prOut != null) {
+        prOut.close();
+      }
     }
   }
 

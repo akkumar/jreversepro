@@ -514,7 +514,7 @@ public class AbstractClassFileParser {
     } else if (attrName.compareTo(JVMConstants.ATTRIBUTE_INNERCLASSES) == 0) {
       // TODO Should discuss with akkumar if he has implemented it
       // already in some other code location.
-
+      AttributeParser.readInnerClasses(dis);
     }
   }
 

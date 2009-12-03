@@ -31,7 +31,7 @@ public class ClassFileParserFactory {
     assertJVMMagic(dis);
     JVMVersion jvmVersion = readVersion(dis);
     // TODO: Depending on the supported JVM Versions - select one
-    // appopriately
+    // appropriately
     return new DefaultClassFileParser();
   }
 

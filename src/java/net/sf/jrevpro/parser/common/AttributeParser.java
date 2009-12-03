@@ -285,7 +285,6 @@ public final class AttributeParser {
     // TODO - New: Do some manipulation with the LineNumberTable
     // attribute..
     aDis.readFully(btRead);
-    btRead = null;
   }
 
   /**
@@ -336,5 +335,10 @@ public final class AttributeParser {
   }
 
   private static final Logger logger = CustomLoggerFactory.createLogger();
+
+  public static void readInnerClasses(DataInputStream dis) {
+    // TODO Auto-generated method stub
+    
+  }
 
 }

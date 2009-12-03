@@ -95,7 +95,7 @@ class SymbolEntry {
    *          Last ReferredIndex of the variable.
    */
   void appendReference(int index) {
-    references.add(new Integer(index));
+    references.add(Integer.valueOf(index));
   }
 
   /**
@@ -125,6 +125,7 @@ class SymbolEntry {
    *          Object to be compared.
    * @return if both object are equal. false, otherwise.
    */
+  @Override
   public boolean equals(Object obj) {
     if (obj instanceof SymbolEntry) {
       SymbolEntry jle = (SymbolEntry) obj;
@@ -137,6 +138,7 @@ class SymbolEntry {
   /**
    * @return Hashcode of this method.
    */
+  @Override
   public int hashCode() {
     return datatype.hashCode();
   }
@@ -144,6 +146,7 @@ class SymbolEntry {
   /**
    * @return Returns the string fields form, add all references.
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{ " + datatype + "  " + name + "  " + getStoreIndex()

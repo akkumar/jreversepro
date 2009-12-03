@@ -17,6 +17,7 @@
  **/
 package net.sf.jrevpro.decompile.simulate;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Comparator;
  * 
  * @author Karthik Kumar.
  */
-public class BranchComparator implements Comparator<BranchEntry> {
+public class BranchComparator implements Comparator<BranchEntry>, Serializable {
 
   /**
    * Method to compare two JBranchComparator objects

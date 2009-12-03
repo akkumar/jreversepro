@@ -81,16 +81,10 @@ public class BranchTable implements BranchConstants, Opcodes {
    *          TargetPc of the goto statement.
    */
   public void addGotoEntry(int startPc, int targetPc) {
-    gotos.put(new Integer(startPc), new Integer(targetPc));
+    gotos.put(Integer.valueOf(startPc), Integer.valueOf(targetPc));
   }
 
-  /**
-   * Finalizer method.
-   */
-  protected void finalize() {
-    branches = null;
-    gotos = null;
-  }
+
 
   /**
    * Adds a new branch entry to the list of branches.
@@ -112,7 +106,7 @@ public class BranchTable implements BranchConstants, Opcodes {
    *         false, otherwise.
    */
   public boolean isJSRTarget(int currPc) {
-    return mJSRTarget.contains(new Integer(currPc));
+    return mJSRTarget.contains(Integer.valueOf(currPc));
   }
 
   /**
@@ -123,7 +117,7 @@ public class BranchTable implements BranchConstants, Opcodes {
    *          data structure ( list ).
    */
   public void addJSRPc(int targetPc) {
-    Integer intPc = new Integer(targetPc);
+    Integer intPc = Integer.valueOf(targetPc);
     if (!mJSRTarget.contains(intPc)) {
       mJSRTarget.add(intPc);
     }
@@ -161,7 +155,7 @@ public class BranchTable implements BranchConstants, Opcodes {
    *          obtained before entering a 'synchronized' object.
    */
   public void addMonitorPc(int aMonitorPc, String aMonObject) {
-    mMonitor.put(new Integer(aMonitorPc), aMonObject);
+    mMonitor.put(Integer.valueOf(aMonitorPc), aMonObject);
   }
 
   /**
@@ -172,7 +166,7 @@ public class BranchTable implements BranchConstants, Opcodes {
    * @return monitor object associated with this branch.
    */
   public String doesMonitorBegin(int monitorBeginPc) {
-    return mMonitor.get(new Integer(monitorBeginPc));
+    return mMonitor.get(Integer.valueOf(monitorBeginPc));
   }
 
   /**
@@ -186,7 +180,7 @@ public class BranchTable implements BranchConstants, Opcodes {
     for (BranchEntry jbe : branches) {
       int gotoStartPc = jbe.getEndBlockPc() - 3;
       int gotoNextPc = gotoStartPc + 3;
-      Integer obj = gotos.get(new Integer(gotoStartPc));
+      Integer obj = gotos.get( Integer.valueOf(gotoStartPc));
       switch (jbe.getType()) {
       case TYPE_IF:
       case TYPE_ELSE_IF:
@@ -212,7 +206,7 @@ public class BranchTable implements BranchConstants, Opcodes {
         }
         break;
       case TYPE_DO_WHILE:
-        if (gotos.containsValue(new Integer(jbe.getStartPc()))) {
+        if (gotos.containsValue( Integer.valueOf(jbe.getStartPc()))) {
           jbe.setType(TYPE_WHILE);
         }
         break;
@@ -283,7 +277,7 @@ public class BranchTable implements BranchConstants, Opcodes {
    * @return the TargetPc for the goto instruction at the startPc
    */
   public int findGotoTarget(int startPc) {
-    Integer gotoStartPc = new Integer(startPc);
+    Integer gotoStartPc = Integer.valueOf(startPc);
     Integer obj = gotos.get(gotoStartPc);
     if (obj == null) {
       return -1;
@@ -415,6 +409,7 @@ public class BranchTable implements BranchConstants, Opcodes {
   /**
    * @return Stringified form of the class
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("");
     sb.append(branchesToString());
@@ -465,5 +460,5 @@ public class BranchTable implements BranchConstants, Opcodes {
   /** Method reference * */
   Method method;
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 }

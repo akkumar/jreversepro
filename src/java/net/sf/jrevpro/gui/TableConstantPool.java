@@ -37,7 +37,7 @@ public class TableConstantPool extends JTable {
  */
 @SuppressWarnings("serial")
 class JPoolTableModel extends AbstractTableModel {
-  private int TotRows;
+  private final int TotRows;
   private static final int MAX_COLUMNS = 5;
 
   String[] ColName;
@@ -61,7 +61,7 @@ class JPoolTableModel extends AbstractTableModel {
   public Object getValueAt(int row, int col) {
     // Col : 0..4 index.
     if (row == 0) {
-      return (Object) (new Integer(0));
+      return (Integer.valueOf(0));
     } else {
       switch (col) {
       case 0:
@@ -75,17 +75,19 @@ class JPoolTableModel extends AbstractTableModel {
       case 4:
         return fillPtr2(row);
       default:
-        return new Integer(0); // Error
+        return Integer.valueOf(0); // Error
       }
     }
   }
 
   // The default implementations of these methods in
   // AbstractTableModel would work, but we can refine them.
+  @Override
   public boolean isCellEditable(int row, int col) {
     return false;
   }
 
+  @Override
   public String getColumnName(int column) {
     return ColName[column];
   }
@@ -107,7 +109,7 @@ class JPoolTableModel extends AbstractTableModel {
     if (Ptr == ConstantPool.PTR_INVALID) {
       return "PTR_INVALID";
     } else {
-      return new Integer(Ptr);
+      return Integer.valueOf(Ptr);
     }
   }
 
@@ -116,7 +118,7 @@ class JPoolTableModel extends AbstractTableModel {
     if (Ptr == ConstantPool.PTR_INVALID) {
       return "PTR_INVALID";
     } else {
-      return new Integer(Ptr);
+      return Integer.valueOf(Ptr);
     }
   }
 

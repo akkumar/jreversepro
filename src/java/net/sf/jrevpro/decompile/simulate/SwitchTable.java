@@ -137,9 +137,9 @@ public class SwitchTable {
     for (int i = lowVal; i <= highVal; i++) {
       int curTarget = dis.readInt() + offset;
       String value = TypeInferrer.getValue(String.valueOf(i), this.datatype);
-      CaseEntry ent = mapCases.get(new Integer(curTarget));
+      CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
       if (ent == null) {
-        mapCases.put(new Integer(curTarget), new CaseEntry(value, curTarget));
+        mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value, curTarget));
       } else {
         ent.addValue(value);
       }
@@ -178,9 +178,9 @@ public class SwitchTable {
           datatype);
       int curTarget = dis.readInt() + offset;
 
-      CaseEntry ent = mapCases.get(new Integer(curTarget));
+      CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
       if (ent == null) {
-        mapCases.put(new Integer(curTarget), new CaseEntry(value, curTarget));
+        mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value, curTarget));
       } else {
         ent.addValue(value);
       }
@@ -232,7 +232,7 @@ public class SwitchTable {
     maxTarget = defaultByte;
     if (gotos != null) {
       for (CaseEntry ent : cases) {
-        Integer obj = gotos.get(new Integer(ent.getTarget() - 3));
+        Integer obj = gotos.get(Integer.valueOf(ent.getTarget() - 3));
         if (obj != null) {
           int tempVal = obj.intValue();
           maxTarget = (maxTarget > tempVal) ? maxTarget : tempVal;
@@ -289,6 +289,7 @@ public class SwitchTable {
   /**
    * @return Returns the Stringified version of this class.
    */
+  @Override
   public String toString() {
     return cases.toString();
   }
@@ -326,6 +327,6 @@ public class SwitchTable {
    */
   Method method;
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 
 }

@@ -58,6 +58,48 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     GuiConstants {
 
   /**
+   * Application Context shared between command line and GUI.
+   */
+  private final JReverseProContext context;
+
+  /**
+   * Represents the MenuBar.
+   */
+  private final MainMenu mMbrGen;
+
+  /**
+   * Panel containing the Reverse engineered code.
+   */
+  private final ClassEditPanel pnlEditor;
+
+  /**
+   * Panel containing the status bar.
+   */
+  private final StatusPanel mPnlStatusBar;
+
+  /**
+   * Path to class currently reverse engineered.
+   */
+  private final String mCurrentClass = null;
+
+  /**
+   * JClassInfo class currently reverse engineered.
+   */
+  private ClassInfo mClassInfo;
+
+  /**
+   * Name of the property file.
+   */
+  private final String mPropertyFile;
+
+  /**
+   * Default Directory of a file open/save dialog.
+   */
+  private String mCurDir;
+
+  private static final String CURRENT_DIRECTORY = ".";
+  
+  /**
    * No-argument constructor.
    */
   public GUIMain(JReverseProContext _context) {
@@ -165,7 +207,11 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     CustomFileChooser chooser = new CustomFileChooser(mCurDir,
         "Java Source Files", ".java", "Save File");
     if (chooser.showChooser(this, "Save File") == JFileChooser.APPROVE_OPTION) {
-      pnlEditor.writeToFile(this, chooser.getSelectedFile());
+      try {
+        pnlEditor.writeToFile(this, chooser.getSelectedFile());
+      } catch (Exception ex) {
+        //TODO: Do something about this exception
+      }
     }
   }
 
@@ -295,12 +341,12 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
   private void saveProperties() {
     try {
       Properties pp = new Properties();
-      pp.setProperty(DECOMPILE_FLAG, new Boolean(mMbrGen.OnDecompiler
-          .isSelected()).toString());
-      pp.setProperty(XPOS, new Integer(getLocation().x).toString());
-      pp.setProperty(YPOS, new Integer(getLocation().y).toString());
-      pp.setProperty(XSIZE, new Integer(getSize().width).toString());
-      pp.setProperty(YSIZE, new Integer(getSize().height).toString());
+      pp.setProperty(DECOMPILE_FLAG, Boolean.valueOf(
+          mMbrGen.OnDecompiler.isSelected()).toString());
+      pp.setProperty(XPOS, Integer.valueOf(getLocation().x).toString());
+      pp.setProperty(YPOS, Integer.valueOf(getLocation().y).toString());
+      pp.setProperty(XSIZE, Integer.valueOf(getSize().width).toString());
+      pp.setProperty(YSIZE, Integer.valueOf(getSize().height).toString());
       pp.setProperty(L_AND_F, mMbrGen.OnLookFeel.getAppLookAndFeel());
       pp.setProperty(FONT, pnlEditor.getEditorFont().getFamily());
 
@@ -458,45 +504,5 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     return result;
   }
 
-  /**
-   * Application Context shared between command line and GUI.
-   */
-  private JReverseProContext context;
-
-  /**
-   * Represents the MenuBar.
-   */
-  private MainMenu mMbrGen;
-
-  /**
-   * Panel containing the Reverse engineered code.
-   */
-  private ClassEditPanel pnlEditor;
-
-  /**
-   * Panel containing the status bar.
-   */
-  private StatusPanel mPnlStatusBar;
-
-  /**
-   * Path to class currently reverse engineered.
-   */
-  private String mCurrentClass;
-
-  /**
-   * JClassInfo class currently reverse engineered.
-   */
-  private ClassInfo mClassInfo;
-
-  /**
-   * Name of the property file.
-   */
-  private String mPropertyFile;
-
-  /**
-   * Default Directory of a file open/save dialog.
-   */
-  private String mCurDir;
-
-  private static final String CURRENT_DIRECTORY = ".";
+  
 }
