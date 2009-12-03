@@ -70,7 +70,7 @@
     <!-- Create Java Documentation -->
     <target name="docs" depends="init, makejar" description="Create the Javadocs file">
         <mkdir dir="${doc.dir}" />
-        <javadoc sourcepath="${src.java.dir}" classpath="${classes.dir}"
+        <javadoc sourcepath="${src.java.dir}" classpathref="src.class.path"
             destdir="${doc.dir}" use="true" windowtitle="${windowtitle}"
             doctitle="${doctitle}" bottom="${bottom}" />
     </target>
