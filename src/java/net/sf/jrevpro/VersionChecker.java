@@ -23,14 +23,14 @@ public class VersionChecker {
    * Checks for the version compatibility between the system JRE and the JRE for
    * which the application is written for.
    * 
-   * @return true , if System JRE is >= {@value #DEFAULT_VERSION}<br>
+   * @return true , if System JRE is >= {@value VersionChecker#DEFAULT_VERSION}<br>
    *         false , otherwise.
    */
   public static boolean versionCheck() {
     String version = System.getProperty("java.version");
     for (int i = 0; i <= 5; i += 2) {
-      int versionVal = (int) (version.charAt(i));
-      int workingVal = (int) (DEFAULT_VERSION.charAt(i));
+      int versionVal = (version.charAt(i));
+      int workingVal = (DEFAULT_VERSION.charAt(i));
       if (versionVal > workingVal) {
         return true;
       } else if (versionVal < workingVal) {

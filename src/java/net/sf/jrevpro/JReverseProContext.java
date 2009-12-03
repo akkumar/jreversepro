@@ -47,9 +47,9 @@ public class JReverseProContext {
    * 
    * @param pathToClass
    *          Path to the class for which resource needs to be loaded
-   * @return
    * @throws FileNotFoundException
    * @throws ClassParserException
+   * @return Returns the Parsed Class information for the class represented by pathToClass. 
    */
   public ClassInfo loadResource(final String pathToClass)
       throws FileNotFoundException, IOException, ClassParserException {

@@ -27,7 +27,9 @@ import net.sf.jrevpro.jls.JLSConstants;
 public class Assignment extends Expression {
 
   /**
-   * @param type
+   * @param _lhs L.H.S of the given expression
+   * @param _rhs R.H.S of the given expression
+   * 
    */
   public Assignment(Expression _lhs, Expression _rhs) {
     super(_rhs.getType(), L_EVAL);

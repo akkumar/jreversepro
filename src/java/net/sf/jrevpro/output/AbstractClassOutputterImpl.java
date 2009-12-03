@@ -252,7 +252,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
    * 
    * @param method
    *          Method information for which method header needs to be outputted.
-   * @return Returns the method header information.
+   * Returns the method header information.
    */
   protected void outputMethodHeader(Method method) {
 

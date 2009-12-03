@@ -54,15 +54,9 @@ public class DecompilerOutputImpl extends AbstractClassOutputterImpl {
   }
 
   /**
-   * Returns the stringified disassembled/decompiled method.
+   * Outputs  the stringified decompiled method.
    * 
-   * @param getBytecode
-   *          If TRUE, returns the disassembled code IF the method has already
-   *          been disassembled. If FALSE, returns the decompiled code IF the
-   *          method has been decompiled. Otherwise, returns null;
-   * @param includeMetadata
-   *          - TRUE if method stack & exception data should be output
-   * @return Stringified methods in this class
+   *
    */
   protected void outputMethods() {
 
@@ -85,6 +79,6 @@ public class DecompilerOutputImpl extends AbstractClassOutputterImpl {
 
   }
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 
 }

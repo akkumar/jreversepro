@@ -29,7 +29,7 @@ import net.sf.jrevpro.reflect.Import;
 public class ObjectInstantiationExpression extends Expression {
 
   /**
-   * @param type
+   * @param jvmType Type of the object in the JVM notation 
    */
   public ObjectInstantiationExpression(String jvmType) {
     super(jvmType, L_REF);

@@ -17,8 +17,6 @@
  */
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 import net.sf.jrevpro.CustomLoggerFactory;
@@ -53,15 +51,7 @@ public abstract class AbstractInstructionEvaluator implements JVMConstants,
 
   abstract void evaluate(Instruction ins);
 
-  /**
-   * No need for this present here. Remove this.
-   * @param numbers
-   * @return
-   */
-  @Deprecated
-  protected List<Integer> numbersAsList(Integer... numbers) {
-    return Arrays.asList(numbers);
-  }
+
 
   protected void addConditional(Instruction ins, ConditionExpression expr) {
     statements.append(new ConditionalLine(ins, expr));

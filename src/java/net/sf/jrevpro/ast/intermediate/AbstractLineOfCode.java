@@ -30,8 +30,8 @@ public abstract class AbstractLineOfCode {
 
   /**
    * 
-   * @param _expr
-   *          Expression contained within a given statement.
+   * @param _ins
+   *          Instruction associated with the line of code.
    */
   protected AbstractLineOfCode(Instruction _ins) {
     if (_ins == null) {

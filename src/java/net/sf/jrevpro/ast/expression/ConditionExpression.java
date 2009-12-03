@@ -38,8 +38,10 @@ public class ConditionExpression extends Expression {
   }
 
   /**
-   * @param type
-   * @param _precedence
+   * @param _lhs L.H.S of the conditional expression
+   * @param _rhs R.H.S of the conditional expression
+   * @param _op Operator of the conditional expression
+   * 
    */
   public ConditionExpression(Expression _lhs, Expression _rhs,
       RelationalOperator _op) {
