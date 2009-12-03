@@ -53,7 +53,9 @@
         <mkdir dir="${classes.dir}" />
         <javac srcdir="${src.java.dir}" destdir="${classes.dir}"
             source="${javac.source}" target="${javac.target}"
-            classpathref="src.class.path" />
+            classpathref="src.class.path" >
+            <compilerarg value="-Xlint"/>
+     	</javac>
     </target>
 
     <target name="compile"
