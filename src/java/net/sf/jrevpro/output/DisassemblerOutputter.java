@@ -24,12 +24,8 @@ public class DisassemblerOutputter implements AbstractOutputter {
    * Returns the stringified disassembled/decompiled class, optionally with
    * metadata.
    * 
-   * @param getBytecode
-   *          If TRUE, returns the disassembled code IF the class has already
-   *          been disassembled. If FALSE, returns the decompiled code IF the
-   *          class has been decompiled. Otherwise, returns null;
-   * @param includeMetadata
-   *          - TRUE if method stack & exception data should be output.
+   * @param _clazz
+   *         Class that needs to be disassembled.
    * @return Stringified class
    */
   public String output(ClassInfo _clazz) {

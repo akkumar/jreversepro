@@ -41,20 +41,20 @@ public class ClassInfo {
   }
 
   /**
-   * Adds a new field present in the class.
+   * Sets fields for the Class Info
    * 
-   * @param rhsField
-   *          contains the field-related information.
+   * @param _fields
+   *          Fields of the given class
    */
   public void setFields(List<Field> _fields) {
     memFields = _fields;
   }
 
   /**
-   * Adds a new method present in the class.
+   * Sets methods in the class
    * 
-   * @param rhsMethod
-   *          contains the method-related information.
+   * @param _methods
+   *          Member methods to be set in the class
    */
   public void setMethods(List<Method> _methods) {
     memMethods = _methods;
@@ -280,7 +280,7 @@ public class ClassInfo {
   /**
    * ConstantPool information contained in the class.
    */
-  private ConstantPool cpInfo;
+  private final ConstantPool cpInfo;
 
   /**
    * List of fields present in the class. All the members in the list are

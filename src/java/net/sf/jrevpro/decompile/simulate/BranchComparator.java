@@ -29,9 +29,9 @@ public class BranchComparator implements Comparator<BranchEntry> {
   /**
    * Method to compare two JBranchComparator objects
    * 
-   * @param o1
+   * @param e1
    *          First Object to be compared.
-   * @param o2
+   * @param e2
    *          Second object to be compared.
    * @return -1 if First branch overlaps Second branch, 1 if first branch doesnt
    *         overlap and exactly outside the second branch.
@@ -61,6 +61,7 @@ public class BranchComparator implements Comparator<BranchEntry> {
    *          R.H.S object to be compared.
    * @return true, if both are equal. false, otherwise.
    */
+  @Override
   public boolean equals(Object obj) {
     return (obj instanceof BranchEntry);
   }

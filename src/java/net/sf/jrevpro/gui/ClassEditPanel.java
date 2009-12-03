@@ -18,26 +18,23 @@
  * */
 package net.sf.jrevpro.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-
-import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
-
-import javax.swing.tree.DefaultMutableTreeNode;
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.io.File;
-
 import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  * JClassEditPanel - is the Main Panel that appears in the application main
@@ -62,17 +59,17 @@ public class ClassEditPanel extends JPanel {
   /**
    * GUI Component containing the source code.
    **/
-  private EditorJavaDocument mTxtJava;
+  private final EditorJavaDocument mTxtJava;
 
   /**
    * Tree component containing the fields and the methods.
    **/
-  private JTree mTreeFieldMethod;
+  private final JTree mTreeFieldMethod;
 
   /**
    * Root Node of the tree.
    **/
-  private DefaultMutableTreeNode mRoot;
+  private final DefaultMutableTreeNode mRoot;
 
   /**
    * Font of the GUI components.
@@ -184,8 +181,6 @@ public class ClassEditPanel extends JPanel {
    *          Name of the File.
    * @param aChildren
    *          Children nodes of the tree root.
-   * @param aMaxIndex
-   *          Maximum Children of the tree root.
    **/
   public void createModel(JFrame aParent, String aFileName,
       List<String> aChildren) {

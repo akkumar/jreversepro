@@ -32,12 +32,10 @@ public class DefaultClassFileParser implements ClassFileParser {
   /**
    * Parses the given file and creates the ClassInfo and ConstantPool objects.
    * 
-   * @param is
+   * @param dis
    *          InputStream containing the bytes.
    * @param pathToClass
    *          path to the class.
-   * @throws ClassParserException
-   * @throws IOException
    * @throws ClassParserException
    *           Thrown if class file not in desired format.
    * @throws IOException

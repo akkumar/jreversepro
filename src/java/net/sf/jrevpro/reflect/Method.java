@@ -41,8 +41,7 @@ import net.sf.jrevpro.reflect.variabletable.VariableTable;
 public class Method extends Member {
 
   /**
-   * @param info
-   *          The JSymbolTable associated with this class Creates a new JMethod
+   * 
    */
   public Method() {
 
@@ -87,7 +86,7 @@ public class Method extends Member {
     if (tryIndex == -1) {
       exceptionBlocks.add(exc);
     } else {
-      MethodException oldTry = (MethodException) exceptionBlocks.get(tryIndex);
+      MethodException oldTry = exceptionBlocks.get(tryIndex);
       oldTry.addCatchBlock(handlerPc, datatype);
     }
   }
@@ -289,6 +288,7 @@ public class Method extends Member {
    * 
    * @return Returns true, if this is a static method. false, otherwise.
    */
+  @Override
   public boolean isStatic() {
     return (super.isStatic() || name.equals(JVMConstants.CLINIT));
   }
@@ -330,7 +330,7 @@ public class Method extends Member {
    * This list contains the exception tables that are defined for this method.
    * The members of this list are - JException
    */
-  private List<MethodException> exceptionBlocks; // exception table
+  private final List<MethodException> exceptionBlocks; // exception table
 
   /**
    * This contains the LineNumberTable that may be compiled for this method.

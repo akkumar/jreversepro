@@ -84,7 +84,7 @@ public class AbstractClassFileParser {
    * Reads the fully qualified name of the interfaces <code>implemented</code>
    * by the Current class.
    * 
-   * @see JClassInfo#addInterface(String)
+   *
    * @throws IOException
    *           Thrown if error in stream of bytes containing the class file.
    */
@@ -102,7 +102,7 @@ public class AbstractClassFileParser {
   /**
    * Reads the fields <code>defined</code> in the Current class.
    * 
-   * @see JField
+   * 
    * @throws IOException
    *           Thrown if error in stream of bytes containing the class file.
    */
@@ -138,7 +138,7 @@ public class AbstractClassFileParser {
   /**
    * Reads the methods <code>defined</code> in the Current class.
    * 
-   * @see JMethod
+   * 
    * @throws IOException
    *           Thrown if error in stream of bytes containing the class file.
    */

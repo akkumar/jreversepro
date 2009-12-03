@@ -36,8 +36,6 @@ public class Instruction {
    *          Index of the nextPc.
    * @param rhsWide
    *          If the previous instruction was a wide instruction.
-   * @param listPosition
-   *          Position of this instruction in the bytecode array list.
    */
   public Instruction(int rhsIndex, int rhsOpcode, byte[] rhsArgs, int rhsNext,
       boolean rhsWide) {
@@ -233,6 +231,7 @@ public class Instruction {
    * 
    * @return String representation of Instruction.
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("");
     sb.append(" " + currentPc + ": ");

@@ -43,10 +43,8 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
 public class SymbolTable implements VariableTable {
 
   /**
-   * @param rhsMethod
-   *          Method for which this symbol table is generated and used.
-   * @param imports
-   *          ImportedClasses by this class.
+   * @param context
+   *          Context in which symbol table is going to be based on.
    */
   public SymbolTable(SymbolTableContext context) {
 
@@ -58,7 +56,7 @@ public class SymbolTable implements VariableTable {
       symbols.add(singleVariableIndexList);
     }
 
-    localVariableNameBasis = (int) DEFAULT_LOCAL_VARIABLE_NAME_BASIS;
+    localVariableNameBasis = DEFAULT_LOCAL_VARIABLE_NAME_BASIS;
 
     methodReturnType = context.jvmMethodReturnType;
 
@@ -278,6 +276,7 @@ public class SymbolTable implements VariableTable {
   /**
    * @return Returns Stringified form of this class
    */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     int i = 0;

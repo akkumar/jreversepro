@@ -51,14 +51,14 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
   public abstract void process();
 
   /**
-   * @return Writes the header comments
+   *  Writes the header comments
    */
   protected void outputHeaderComments() {
     sb.append("\n// Source: " + clazz.getSourceFile());
   }
 
   /**
-   * @return Writes the package Imports
+   *  Writes the package Imports
    */
   protected void outputPackageImports() {
     String packageName = Import.getPackageName(clazz.getThisClass());
@@ -74,7 +74,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
   }
 
   /**
-   * @return Outputs current and super classes
+   *  Outputs current and super classes
    */
   protected void outputThisSuperClasses() {
     sb.append("\n\n" + getTypeAsString() + " ");
@@ -89,7 +89,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
   }
 
   /**
-   * @return outputs the interfaces implemented by this class.
+   *  outputs the interfaces implemented by this class.
    */
   protected void outputInterfaces() {
     List<String> interfaces = clazz.getInterfaces();
@@ -105,7 +105,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
   }
 
   /**
-   * @return output the Fields of the given class
+   *  output the Fields of the given class
    */
   protected void outputFields() {
     sb.append("\n");
@@ -154,7 +154,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
    * @param packageName
    *          current packagename and name for which package name is to be
    *          excluded.
-   * @return String containing the code mentioned.
+   * String containing the code mentioned.
    */
   private void outputImports(Import imports, String packageName) {
     List<String> restrictPackages = new ArrayList<String>(2);
@@ -250,10 +250,8 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
   /**
    * Returns the headers for the method.
    * 
-   * @param includeStackInfo
-   *          Denotes if the stack information like maximum local variables,
-   *          stack information are supposed to be included in the reverse
-   *          engineered code. Moved from JDecompiler by pazandak@objs.com
+   * @param method
+   *          Method information for which method header needs to be outputted.
    * @return Returns the method header information.
    */
   protected void outputMethodHeader(Method method) {
@@ -353,7 +351,7 @@ abstract class AbstractClassOutputterImpl implements JVMConstants {
 
   protected ClassInfo clazz;
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger logger = CustomLoggerFactory.createLogger();
 
   private StringBuilder sb;
 
