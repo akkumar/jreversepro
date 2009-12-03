@@ -37,6 +37,8 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.apache.commons.io.IOUtils;
+
 /**
  * JClassEditPanel - is the Main Panel that appears in the application main
  * Frame.
@@ -155,9 +157,8 @@ public class ClassEditPanel extends JPanel {
       }
 
     } finally {
-      if (FlTemp != null) {
-        FlTemp.close();
-      }
+      IOUtils.closeQuietly(FlTemp);
+
     }
     FileOutputStream out = null;
     PrintStream prOut = null;
@@ -174,12 +175,8 @@ public class ClassEditPanel extends JPanel {
       System.err.println(_ex);
       return false;
     } finally {
-      if (out != null) {
-        out.close();
-      }
-      if (prOut != null) {
-        prOut.close();
-      }
+      IOUtils.closeQuietly(out);
+      IOUtils.closeQuietly(prOut);
     }
   }
 

@@ -35,6 +35,8 @@ import net.sf.jrevpro.jvm.TypeInferrer;
 import net.sf.jrevpro.reflect.Method;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
+import org.apache.commons.io.IOUtils;
+
 public class SwitchTable {
 
   /**
@@ -128,24 +130,29 @@ public class SwitchTable {
    */
   private void createTableSwitch(byte[] entries, int offset,
       Map<Integer, Integer> gotos) throws IOException {
-    DataInputStream dis = new DataInputStream(new ByteArrayInputStream(entries));
-    defaultByte = dis.readInt() + offset;
-    int lowVal = dis.readInt();
-    int highVal = dis.readInt();
+    DataInputStream dis = null;
+    try {
+      dis = new DataInputStream(new ByteArrayInputStream(entries));
+      defaultByte = dis.readInt() + offset;
+      int lowVal = dis.readInt();
+      int highVal = dis.readInt();
 
-    Map<Integer, CaseEntry> mapCases = new HashMap<Integer, CaseEntry>();
-    for (int i = lowVal; i <= highVal; i++) {
-      int curTarget = dis.readInt() + offset;
-      String value = TypeInferrer.getValue(String.valueOf(i), this.datatype);
-      CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
-      if (ent == null) {
-        mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value, curTarget));
-      } else {
-        ent.addValue(value);
+      Map<Integer, CaseEntry> mapCases = new HashMap<Integer, CaseEntry>();
+      for (int i = lowVal; i <= highVal; i++) {
+        int curTarget = dis.readInt() + offset;
+        String value = TypeInferrer.getValue(String.valueOf(i), this.datatype);
+        CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
+        if (ent == null) {
+          mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value,
+              curTarget));
+        } else {
+          ent.addValue(value);
+        }
       }
+      cases = new ArrayList<CaseEntry>(mapCases.values());
+    } finally {
+      IOUtils.closeQuietly(dis);
     }
-    cases = new ArrayList<CaseEntry>(mapCases.values());
-    dis.close();
     processData(gotos);
   }
 
@@ -166,27 +173,32 @@ public class SwitchTable {
    */
   private void createLookupSwitch(byte[] entries, int offset,
       Map<Integer, Integer> gotos) throws IOException {
-    DataInputStream dis = new DataInputStream(new ByteArrayInputStream(entries));
+    DataInputStream dis = null;
+    try {
+      dis = new DataInputStream(new ByteArrayInputStream(entries));
 
-    defaultByte = dis.readInt() + offset;
-    int numVal = dis.readInt();
+      defaultByte = dis.readInt() + offset;
+      int numVal = dis.readInt();
 
-    Map<Integer, CaseEntry> mapCases = new HashMap<Integer, CaseEntry>();
+      Map<Integer, CaseEntry> mapCases = new HashMap<Integer, CaseEntry>();
 
-    for (int i = 0; i < numVal; i++) {
-      String value = TypeInferrer.getValue(String.valueOf(dis.readInt()),
-          datatype);
-      int curTarget = dis.readInt() + offset;
+      for (int i = 0; i < numVal; i++) {
+        String value = TypeInferrer.getValue(String.valueOf(dis.readInt()),
+            datatype);
+        int curTarget = dis.readInt() + offset;
 
-      CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
-      if (ent == null) {
-        mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value, curTarget));
-      } else {
-        ent.addValue(value);
+        CaseEntry ent = mapCases.get(Integer.valueOf(curTarget));
+        if (ent == null) {
+          mapCases.put(Integer.valueOf(curTarget), new CaseEntry(value,
+              curTarget));
+        } else {
+          ent.addValue(value);
+        }
       }
+      cases = new ArrayList<CaseEntry>(mapCases.values());
+    } finally {
+      IOUtils.closeQuietly(dis);
     }
-    cases = new ArrayList<CaseEntry>(mapCases.values());
-    dis.close();
     processData(gotos);
   }
 

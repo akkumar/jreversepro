@@ -48,6 +48,8 @@ import net.sf.jrevpro.reflect.Field;
 import net.sf.jrevpro.reflect.Import;
 import net.sf.jrevpro.reflect.Method;
 
+import org.apache.commons.io.IOUtils;
+
 /**
  * Entry point for swing-based GUI
  * 
@@ -98,7 +100,7 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
   private String mCurDir;
 
   private static final String CURRENT_DIRECTORY = ".";
-  
+
   /**
    * No-argument constructor.
    */
@@ -210,7 +212,7 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
       try {
         pnlEditor.writeToFile(this, chooser.getSelectedFile());
       } catch (Exception ex) {
-        //TODO: Do something about this exception
+        // TODO: Do something about this exception
       }
     }
   }
@@ -273,11 +275,12 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     // Set Default Theme.
     MetalLookAndFeel.setCurrentTheme(new MyFavTheme());
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    FileInputStream fis = null;
     try {
       Properties pp = new Properties();
-      FileInputStream fis = new FileInputStream(mPropertyFile);
+      fis = new FileInputStream(mPropertyFile);
       pp.load(fis);
-      fis.close();
+
       int x = Integer.parseInt(pp.getProperty(XPOS));
       int y = Integer.parseInt(pp.getProperty(YPOS));
       int width = Integer.parseInt(pp.getProperty(XSIZE));
@@ -290,6 +293,7 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
 
       setLocation(x, y);
       setSize(width, height);
+
     } catch (FileNotFoundException fnfe) {
       setLocation(0, 0);
       setSize(800, 550);
@@ -299,6 +303,8 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
       System.err.println("Failed to load property file");
     } catch (IOException ioe) {
       System.err.println("Exception while closing a property file ");
+    } finally {
+      IOUtils.closeQuietly(fis);
     }
   }
 
@@ -339,6 +345,7 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
    * 
    */
   private void saveProperties() {
+    FileOutputStream fos = null;
     try {
       Properties pp = new Properties();
       pp.setProperty(DECOMPILE_FLAG, Boolean.valueOf(
@@ -350,12 +357,13 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
       pp.setProperty(L_AND_F, mMbrGen.OnLookFeel.getAppLookAndFeel());
       pp.setProperty(FONT, pnlEditor.getEditorFont().getFamily());
 
-      FileOutputStream fos = new FileOutputStream(mPropertyFile);
+      fos = new FileOutputStream(mPropertyFile);
       pp.store(fos, PROP_HEADING);
-      fos.close();
     } catch (Exception _ex) {
       System.err.println("Failed to write Properties" + mPropertyFile);
       System.err.println(_ex);
+    } finally {
+      IOUtils.closeQuietly(fos);
     }
   }
 
@@ -504,5 +512,4 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     return result;
   }
 
-  
 }

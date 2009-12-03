@@ -32,6 +32,8 @@ import net.sf.jrevpro.parser.ClassFileParserFactory;
 import net.sf.jrevpro.parser.ClassParserException;
 import net.sf.jrevpro.reflect.ClassInfo;
 
+import org.apache.commons.io.IOUtils;
+
 /**
  * 
  * @author akkumar Karthik Kumar
@@ -49,16 +51,24 @@ public class JReverseProContext {
    *          Path to the class for which resource needs to be loaded
    * @throws FileNotFoundException
    * @throws ClassParserException
-   * @return Returns the Parsed Class information for the class represented by pathToClass. 
+   * @return Returns the Parsed Class information for the class represented by
+   *         pathToClass.
    */
   public ClassInfo loadResource(final String pathToClass)
       throws FileNotFoundException, IOException, ClassParserException {
-    final FileInputStream fis = new FileInputStream(pathToClass);
-    final DataInputStream dis = new DataInputStream(fis);
+    FileInputStream fis = null;
+    ClassInfo info = null;
+    try {
+      fis = new FileInputStream(pathToClass);
+      final DataInputStream dis = new DataInputStream(fis);
 
-    final ClassFileParser cfp = ClassFileParserFactory.getClassFileParser(dis);
-    final ClassInfo info = cfp.parseInputStream(dis, pathToClass);
-    fis.close();
+      final ClassFileParser cfp = ClassFileParserFactory
+          .getClassFileParser(dis);
+      info = cfp.parseInputStream(dis, pathToClass);
+
+    } finally {
+      IOUtils.closeQuietly(fis);
+    }
     return info;
   }
 

@@ -10,6 +10,7 @@
     </configurations>
     <dependencies>
         <dependency org="org.apache.commons" name="commons-cli" rev="1.2" conf="compile->default"  />
+        <dependency org="org.apache.commons" name="commons-io" rev="1.4" conf="compile->default"  />
         
         <dependency org="org.junit" name="junit" rev="4.5" conf="test->default" />
     </dependencies>
