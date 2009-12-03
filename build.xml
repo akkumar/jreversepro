@@ -102,7 +102,7 @@
 		</copy>
 		
         <chmod file="${dist.binary.dir}/${jrevroot}/bin/*" perm="ugo+rx-w"/>
-        <tar tarfile="${dist.dir}/bin.tar">
+        <tar tarfile="${dist.dir}/jreversepro-${jreversepro.version}-bin.tar">
              <tarfileset dir="${dist.binary.dir}" mode="755">
                  <include name="${jrevroot}/bin/**" />
              </tarfileset> 
@@ -113,7 +113,7 @@
             </tarfileset>
         </tar>
         <gzip zipfile="${dist.dir}/jreversepro-${jreversepro.version}-bin.tgz" 
-              src="${dist.dir}/bin.tar" />
+              src="${dist.dir}/jreversepro-${jreversepro.version}-bin.tar" />
 		
 	</target>
 	
