@@ -23,21 +23,17 @@
     </target>
 
     <target name="init"  >
-        <property name="version"        value="1.4.0" />
 
         <property name="build.compiler" value="modern"/>
         <property name="dirs.base"      value="${basedir}"/>
-        <property name="classpath"      value="${java.class.path}" />
 
-        <property name="distdir"        value="${dirs.base}/dist"/>
-        <property name="bindistdir"     value="${distdir}/bin" />
-        <property name="srcdistdir"     value="${distdir}/src" />
-        <property name="testdir"        value="${dirs.base}/test"/>
-        <property name="testtarget"     value="${dirs.base}/test/output"/>
-        <property name="apidir"         value="api"/>
+    	
+    	<property name="testtarget"     value="${dirs.base}/test/output"/>
+        
+    	<property name="apidir"         value="api"/>
         <property name="jarfile"        value="jreversepro.jar"/>
-        <property name="doctitle"       value="JReversePro ${version} API"/>
-        <property name="windowtitle"    value="JReversePro ${version} API"/>
+        <property name="doctitle"       value="JReversePro ${jreversepro.version} API"/>
+        <property name="windowtitle"    value="JReversePro ${jreversepro.version} API"/>
         <property name="bottom"         value="Submit Feedback to akkumar@users.sourceforge.net"/>
         
 <!--        <chmod file="${bindir}/*" perm="ugo+rx-w"/>  -->
@@ -73,31 +69,59 @@
     </target>
 
     <!-- dist -->
-    <target name="dist" depends="cleanall, docs">
-        <property name="jrevroot"  value="jreversepro-${version}" />
-        <property name="infofiles" value="COPYING CHANGES README INSTALL AUTHORS"/>
+	
+	<target name="dist.pre" depends="init">
+        <mkdir dir="${dist.dir}"    />
+		
+        <property name="jrevroot"  value="jreversepro-${jreversepro.version}" />
+        <property name="infofiles" value="LICENSE-2.0.txt CHANGES README INSTALL AUTHORS"/>		
+	</target>
+	
+	<target name="dist.binary" depends="dist.pre">
+        <mkdir dir="${dist.binary.dir}" />
+        <mkdir dir="${dist.binary.dir}/${jrevroot}" />	
 
-        <mkdir dir="${distdir}"    />
-
-        <mkdir dir="${bindistdir}" />
-        <mkdir dir="${bindistdir}/${jrevroot}" />
-        <copy todir="${bindistdir}/${jrevroot}">
-            <fileset dir="." includes="${infofiles} bin/** lib/** docs/** " 
-                             excludes="CVS/** lib/checkstyle-all-2.3.jar" />
+        <copy todir="${dist.binary.dir}/${jrevroot}">
+            <fileset dir="${basedir}" includes="${infofiles}" />
         </copy>
-        <chmod file="${bindistdir}/${jrevroot}/bin/*" perm="ugo+rx-w"/>
-        <tar tarfile="${distdir}/bin.tar">
-             <tarfileset dir="${bindistdir}" mode="755">
+
+        <copy todir="${dist.binary.dir}/${jrevroot}" file="${target.dir}/${jarfile}" />
+
+
+        <copy todir="${dist.binary.dir}/${jrevroot}">
+            <fileset file="${doc.dir}" />
+        </copy>
+            	
+		<mkdir dir="${dist.binary.dir}/${jrevroot}/bin" />
+		<copy todir="${dist.binary.dir}/${jrevroot}/bin">
+			<fileset dir="${basedir}/scripts" />
+		</copy>
+		<mkdir dir="${dist.binary.dir}/${jrevroot}/lib" />
+		<copy todir="${dist.binary.dir}/${jrevroot}/lib">
+			<fileset dir="${lib.dir}/compile" />
+		</copy>
+		
+        <chmod file="${dist.binary.dir}/${jrevroot}/bin/*" perm="ugo+rx-w"/>
+        <tar tarfile="${dist.dir}/bin.tar">
+             <tarfileset dir="${dist.binary.dir}" mode="755">
                  <include name="${jrevroot}/bin/**" />
              </tarfileset> 
 
-             <tarfileset dir="${bindistdir}"> 
+             <tarfileset dir="${dist.binary.dir}"> 
                  <exclude name="${jrevroot}/bin/**"/>
                  <include name="${jrevroot}/**"/>
             </tarfileset>
         </tar>
-        <gzip zipfile="${distdir}/jreversepro-${version}-bin.tgz" 
-              src="${distdir}/bin.tar" />
+        <gzip zipfile="${dist.dir}/jreversepro-${jreversepro.version}-bin.tgz" 
+              src="${dist.dir}/bin.tar" />
+		
+	</target>
+	
+    <target name="dist" depends="makejar, docs, dist.pre, dist.binary">
+
+
+
+<!--
 
         <mkdir dir="${srcdistdir}" />
         <mkdir dir="${srcdistdir}/${jrevroot}" />
@@ -118,7 +142,7 @@
         </tar>
         <gzip zipfile="${distdir}/jreversepro-${version}-src.tgz" 
               src="${distdir}/src.tar" />
-
+-->
     </target> 
 
     <!-- uploads to sourceforge -->
