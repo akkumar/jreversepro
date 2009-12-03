@@ -16,11 +16,11 @@
  **/
 package net.sf.jrevpro.reflect;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import net.sf.jrevpro.jls.JLSStringEncoder;
 import net.sf.jrevpro.jls.JLSConstants;
+import net.sf.jrevpro.jls.JLSStringEncoder;
 import net.sf.jrevpro.jvm.JVMConstants;
 import net.sf.jrevpro.jvm.TypeInferrer;
 
@@ -507,7 +507,7 @@ public class ConstantPool {
     case TAG_METHODREF:
     case TAG_FIELDREF:
     case TAG_INTERFACEREF:
-      ConstantPoolEntry ent = (ConstantPoolEntry) listEntries.get(index);
+      ConstantPoolEntry ent = listEntries.get(index);
       result.append(getType(ent) + "," + getName(ent));
       break;
     case TAG_STRING:
@@ -530,9 +530,9 @@ public class ConstantPool {
    *         the Constant Pool Entry.
    */
   public String getName(ConstantPoolEntry ent) {
-    ConstantPoolEntry entNameType = (ConstantPoolEntry) listEntries.get(ent
+    ConstantPoolEntry entNameType = listEntries.get(ent
         .getPtr2());
-    ConstantPoolEntry entName = (ConstantPoolEntry) listEntries.get(entNameType
+    ConstantPoolEntry entName = listEntries.get(entNameType
         .getPtr1());
     return entName.getValue();
   }
@@ -547,9 +547,9 @@ public class ConstantPool {
    *         the Constant Pool Entry.
    */
   public String getType(ConstantPoolEntry ent) {
-    ConstantPoolEntry entNameType = (ConstantPoolEntry) listEntries.get(ent
+    ConstantPoolEntry entNameType = listEntries.get(ent
         .getPtr2());
-    ConstantPoolEntry entType = (ConstantPoolEntry) listEntries.get(entNameType
+    ConstantPoolEntry entType = listEntries.get(entNameType
         .getPtr2());
     return entType.getValue();
   }
@@ -596,7 +596,7 @@ public class ConstantPool {
    */
   private void getSingleEntryInfo(StringBuilder sb, int cpIndex) {
     if (cpIndex >= 1 && cpIndex < listEntries.size()) {
-      ConstantPoolEntry ent = (ConstantPoolEntry) listEntries.get(cpIndex);
+      ConstantPoolEntry ent = listEntries.get(cpIndex);
       sb.append("\n" + cpIndex + " : " + ent);
       getSingleEntryInfo(sb, ent.getPtr1());
       getSingleEntryInfo(sb, ent.getPtr2());
@@ -678,7 +678,7 @@ public class ConstantPool {
    * listEntries contains the ConstantPool Entries. The individual elements of
    * the list are JConstantPoolEntry.
    */
-  private List<ConstantPoolEntry> listEntries;
+  private final List<ConstantPoolEntry> listEntries;
 
   /**
    * Reference to importedClasses that contains the list of imported classes.

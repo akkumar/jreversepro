@@ -31,7 +31,7 @@ public class InstructionList {
 
   public void add(Instruction ins) {
     instructions.add(ins);
-
+ 
   }
 
   /**
@@ -70,12 +70,12 @@ public class InstructionList {
     // now search for the ins
     Instruction tIns = null;
     for (int i = 0; i < instructions.size(); i++) {
-      Instruction sIns = (Instruction) instructions.get(i);
+      Instruction sIns = instructions.get(i);
       if (sIns.currentPc == ind) {
         i++;
         // now make sure it's not the last ins
         if (i < instructions.size()) {
-          tIns = (Instruction) instructions.get(i);
+          tIns = instructions.get(i);
         }
         break;
       }
@@ -87,6 +87,6 @@ public class InstructionList {
     return instructions;
   }
 
-  private List<Instruction> instructions;
+  private final List<Instruction> instructions;
 
 }
