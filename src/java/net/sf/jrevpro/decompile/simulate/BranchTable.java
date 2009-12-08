@@ -339,7 +339,7 @@ public class BranchTable implements BranchConstants, Opcodes {
     if (listBranchEntries.size() == 0) {
       return null;
     }
-    for (BranchEntry ent : listBranchEntries) {
+    for (final BranchEntry ent : listBranchEntries) {
       if (ent.getType() == type) {
         return ent;
       }
