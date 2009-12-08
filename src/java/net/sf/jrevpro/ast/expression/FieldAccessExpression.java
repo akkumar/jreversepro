@@ -18,57 +18,21 @@
  **/
 package net.sf.jrevpro.ast.expression;
 
-import net.sf.jrevpro.jls.JLSConstants;
-import net.sf.jrevpro.jvm.TypeInferrer;
-import net.sf.jrevpro.reflect.Import;
 
 /**
  * @author akkumar
  * 
  */
-public class FieldAccessExpression extends Expression {
+public abstract class FieldAccessExpression extends Expression {
 
-  public FieldAccessExpression(Expression _accessTarget, String _fieldName,
+
+  protected final String fieldName;
+  
+  public FieldAccessExpression( String _fieldName,
       String _fieldType) {
     super(_fieldType, VALUE);
-
-    accessTarget = _accessTarget;
     fieldName = _fieldName;
-    isStatic = false;
   }
 
-  public FieldAccessExpression(String _classType, String _fieldName,
-      String _fieldType) {
-    super(_fieldType, L_EVAL);
 
-    classType = _classType;
-    fieldName = _fieldName;
-    isStatic = true;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-   */
-  @Override
-  public String getJLSCode() {
-    String objName = accessTarget.getJLSCode();
-    String target = "";
-    if (isStatic) {
-      target = Import.getClassName(TypeInferrer.getJLSType(classType, false));
-
-    } else {
-      if (!objName.equals(JLSConstants.THIS)) {
-        target = objName + JLSConstants.JLS_PACKAGE_DELIMITER;
-      }
-    }
-    return target + fieldName;
-  }
-
-  private Expression accessTarget;
-  private String fieldName;
-  private boolean isStatic;
-
-  private String classType;
 }

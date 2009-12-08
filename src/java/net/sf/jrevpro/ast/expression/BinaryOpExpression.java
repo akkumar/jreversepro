@@ -29,6 +29,12 @@ import net.sf.jrevpro.jls.JLSConstants;
  */
 public class BinaryOpExpression extends Expression {
 
+  private final Expression lhs;
+
+  private final Expression rhs;
+
+  private final BinaryOperator op;
+  
   public enum BinaryOperator {
     /** 
      * '+' operator
@@ -141,9 +147,5 @@ public class BinaryOpExpression extends Expression {
     opStack.push(boe);
   }
 
-  private final Expression lhs;
 
-  private final Expression rhs;
-
-  private final BinaryOperator op;
 }

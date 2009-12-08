@@ -25,6 +25,7 @@ import java.util.Arrays;
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.FieldAccessExpression;
+import net.sf.jrevpro.ast.expression.StaticFieldAccessExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -60,7 +61,7 @@ public class StaticFieldReferenceEvaluator extends AbstractInstructionEvaluator 
     String fieldName = pool.getFieldName(fieldPtr);
     String fieldType = pool.getFieldType(fieldPtr);
 
-    FieldAccessExpression expr = new FieldAccessExpression(classType,
+    FieldAccessExpression expr = new StaticFieldAccessExpression(classType,
         fieldName, fieldType);
 
     switch (ins.opcode) {

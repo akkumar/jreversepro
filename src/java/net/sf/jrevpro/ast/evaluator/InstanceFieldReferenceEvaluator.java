@@ -24,6 +24,7 @@ import java.util.Arrays;
 import net.sf.jrevpro.ast.expression.Assignment;
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.FieldAccessExpression;
+import net.sf.jrevpro.ast.expression.InstanceFieldAccessExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
@@ -31,13 +32,13 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  * @author akkumar
  * 
  */
-public class NonStaticFieldReferenceEvaluator extends
+public class InstanceFieldReferenceEvaluator extends
     AbstractInstructionEvaluator {
 
   /**
    * @param context
    */
-  public NonStaticFieldReferenceEvaluator(EvaluatorContext context) {
+  public InstanceFieldReferenceEvaluator(EvaluatorContext context) {
     super(context);
   }
 
@@ -61,7 +62,7 @@ public class NonStaticFieldReferenceEvaluator extends
       String fieldName = pool.getFieldName(fieldPtr);
       String fieldType = pool.getFieldType(fieldPtr);
 
-      FieldAccessExpression expr = new FieldAccessExpression(op1, fieldName,
+      FieldAccessExpression expr = new InstanceFieldAccessExpression(op1, fieldName,
           fieldType);
       evalStack.push(expr);
       break;
@@ -77,7 +78,7 @@ public class NonStaticFieldReferenceEvaluator extends
       String fieldName = pool.getFieldName(fieldPtr);
       String fieldType = pool.getFieldType(fieldPtr);
 
-      FieldAccessExpression expr = new FieldAccessExpression(accessTarget,
+      FieldAccessExpression expr = new InstanceFieldAccessExpression(accessTarget,
           fieldName, fieldType);
       Assignment assign = new Assignment(expr, rhs);
       statements.append(new CompleteLine(ins, assign));

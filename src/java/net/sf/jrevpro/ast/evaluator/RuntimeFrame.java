@@ -102,7 +102,7 @@ public class RuntimeFrame {
 
     // Fields accessors
     registerEvaluator(StaticFieldReferenceEvaluator.class);
-    registerEvaluator(NonStaticFieldReferenceEvaluator.class);
+    registerEvaluator(InstanceFieldReferenceEvaluator.class);
 
     // Methods accessors
     registerEvaluator(InvokeEvaluator.class);
