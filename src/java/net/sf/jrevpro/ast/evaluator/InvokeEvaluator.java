@@ -24,12 +24,23 @@ import java.util.EmptyStackException;
 import java.util.List;
 
 import net.sf.jrevpro.ast.expression.Expression;
+import net.sf.jrevpro.ast.expression.InstanceMethodAccessExpression;
 import net.sf.jrevpro.ast.expression.MethodAccessExpression;
+import net.sf.jrevpro.ast.expression.StaticMethodAccessExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.jvm.TypeInferrer;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
 /**
+ * Evaluates the following invoke instructions.
+ * 
+ * <p>
+ * <ul>
+ * <li>invokeVirtual </li>
+ * <li>invokeInterface </li>
+ * <li>invokeSpecial </li>
+ * <li>invokeStatic </li>
+ * </ul>
  * @author akkumar
  * 
  */
@@ -118,7 +129,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
 
     Expression accessTarget = evalStack.pop();
 
-    MethodAccessExpression mex = new MethodAccessExpression(accessTarget,
+    MethodAccessExpression mex = new InstanceMethodAccessExpression(accessTarget,
         methodName, methodType, argValues, flagInvokeSpecial);
     if (flagInvokeSpecial) {
       // Peek the top and replace the top object reference. Stack remains
@@ -129,7 +140,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
         evalStack.push(mex);
       } catch (EmptyStackException ex) {
         logger
-            .warning("Cannot peek the stack when pushing " + mex.getJLSCode());
+            .warning("invokespecial: Cannot peek the stack when pushing " + mex.getJLSCode());
       }
 
     } else {
@@ -171,14 +182,15 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
       argValues.add(0, evalStack.pop());
     }
 
-    MethodAccessExpression mex = new MethodAccessExpression(classType,
+    MethodAccessExpression mex = new StaticMethodAccessExpression(classType,
         methodName, methodType, argValues);
 
     if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
-      // Non-void method.Push the result.
+      // Non-void method.Push the result onto the stack.
       evalStack.push(mex);
     } else {
-      // Otherwise store it as a statement.
+      // Void return. Has to indicate End of line. 
+      // Push -it as a statement.
       statements.append(new CompleteLine(ins, mex));
     }
   }

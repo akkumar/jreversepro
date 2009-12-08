@@ -21,66 +21,54 @@ package net.sf.jrevpro.ast.expression;
 import java.util.List;
 
 import net.sf.jrevpro.jls.JLSConstants;
-import net.sf.jrevpro.jvm.TypeInferrer;
-import net.sf.jrevpro.reflect.Import;
 
 /**
+ * Expression representing a method access along the following lines. 
+ * <p>
+ * Eg:
+ * <code>string.substring(0,len) </code> 
+ * 
+ * 
  * @author akkumar
  * 
  */
-public class MethodAccessExpression extends Expression {
+public abstract class MethodAccessExpression extends Expression {
 
-  public MethodAccessExpression(Expression _accessTarget, String _methodName,
-      String _methodType, List<Expression> _args, boolean _invokeSpecial) {
-    super(_methodType, L_REF);
+  
+  /**
+   * The list of arguments for the given method call , that occur as a List of Expressions.
+   */
+  private final List<Expression> args;
 
-    accessTarget = _accessTarget;
-    methodName = _methodName;
-    isStatic = false;
-    args = _args;
-    invokeSpecial = _invokeSpecial;
-  }
 
-  public MethodAccessExpression(String _classType, String _methodName,
+
+  /**
+   * The name of the method in the method access expression.
+   * 
+   * <p>
+   * In the expression -<br> <code>string.substring(0,len) <br> <br>   
+   * <code>substring</code> would  be the method name.
+   * 
+   */
+  protected final String methodName;  
+  
+
+
+  public MethodAccessExpression(String _methodName,
       String _methodType, List<Expression> _args) {
     super(_methodType, L_REF);
 
-    classType = _classType;
     methodName = _methodName;
-    isStatic = true;
     args = _args;
   }
+  
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
-   */
-  @Override
-  public String getJLSCode() {
 
-    String objName = accessTarget.getJLSCode();
-    StringBuilder result = new StringBuilder();
-
-    if (isStatic) {
-      // invokestatic
-      result.append(Import.getClassName(TypeInferrer.getJLSType(classType,
-          false))
-          + JLSConstants.JLS_PACKAGE_DELIMITER + methodName);
-    } else if (invokeSpecial) {
-      // invokespecial
-      if (methodName.equals(INIT)) {
-        result.append(objName);
-      }
-
-    } else {
-      // invokevirtual
-      if (!objName.equals(JLSConstants.THIS)) {
-        result.append(objName + JLSConstants.JLS_PACKAGE_DELIMITER);
-      }
-      result.append(methodName);
-    }
-
+  
+  
+  
+  protected String serializedArgs() {
+    final StringBuilder result = new StringBuilder();
     result.append(JLSConstants.OPEN_BRACKET);
     for (int i = 0; i < args.size(); i++) {
       result.append(args.get(i).getJLSCode());
@@ -89,16 +77,9 @@ public class MethodAccessExpression extends Expression {
       }
     }
     result.append(JLSConstants.CLOSE_BRACKET);
-    return result.toString();
+    return result.toString();    
   }
 
-  private Expression accessTarget;
-  private String methodName;
-  private boolean isStatic;
-  private List<Expression> args;
-
-  private String classType;
-  private boolean invokeSpecial;
 
   /*
    * 
