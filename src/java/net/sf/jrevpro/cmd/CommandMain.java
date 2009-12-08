@@ -35,6 +35,12 @@ import net.sf.jrevpro.reflect.ClassInfo;
  */
 public class CommandMain {
 
+  private final CommandLineInterface cli;
+
+  private final JReverseProContext context;
+
+  private final Logger LOGGER = CustomLoggerFactory.createLogger();
+  
   public CommandMain() {
     cli = new CommandLineInterface();
     context = new JReverseProContext();
@@ -84,10 +90,6 @@ public class CommandMain {
 
   }
 
-  private final CommandLineInterface cli;
 
-  private final JReverseProContext context;
-
-  private final Logger LOGGER = CustomLoggerFactory.createLogger();
 
 }
