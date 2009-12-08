@@ -30,20 +30,57 @@ import net.sf.jrevpro.reflect.Import;
  */
 public class UnaryOpExpression extends Expression {
 
+  
   public enum UnaryOperator {
-    NEGATE, CAST_LONG, CAST_FLOAT, CAST_DOUBLE, CAST_INT, CAST_BYTE, CAST_CHAR, CAST_SHORT, UNARY_PLUS, UNARY_MINUS, CAST_REFERENCE
+    /**
+     * '-4' , say
+     */
+    NEGATE, 
+    /**
+     * '(long)'
+     */
+    CAST_LONG, 
+    /**
+     * '(float)'
+     */
+    CAST_FLOAT, 
+    /**
+     * '(double)'
+     */
+    CAST_DOUBLE, 
+    /**
+     * '(int)'
+     */
+    CAST_INT, 
+    /**
+     * '(byte)'
+     */
+    CAST_BYTE, 
+    /**
+     * '(char)'
+     */    
+    CAST_CHAR, 
+    /**
+     * '(short)'
+     */
+    CAST_SHORT, UNARY_PLUS, UNARY_MINUS, CAST_REFERENCE
   };
 
+  private final Expression expr;
+
+  private final UnaryOperator op;
+  
   public UnaryOpExpression(Expression _expr, UnaryOperator op, char type) {
     super(type, L_UNARY);
     expr = _expr;
+    this.op = op;
 
   }
 
   public UnaryOpExpression(Expression _expr, UnaryOperator op, String type) {
     super(type, L_UNARY);
     expr = _expr;
-
+    this.op = op;
   }
 
   /*
@@ -137,8 +174,6 @@ public class UnaryOpExpression extends Expression {
     opStack.push(exp);
   }
 
-  private Expression expr;
 
-  private UnaryOperator op;
 
 }
