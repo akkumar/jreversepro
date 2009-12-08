@@ -18,7 +18,7 @@
  **/
 package net.sf.jrevpro.ast.expression;
 
-import net.sf.jrevpro.ast.evaluator.EvaluatorStack;
+import net.sf.jrevpro.ast.evaluator.EvaluatorMachine;
 import net.sf.jrevpro.jls.JLSConstants;
 import net.sf.jrevpro.jvm.JVMConstants;
 import net.sf.jrevpro.jvm.TypeInferrer;
@@ -124,7 +124,7 @@ public class UnaryOpExpression extends Expression {
     }
   }
 
-  public static void evaluateCasting(EvaluatorStack opStack, UnaryOperator unop) {
+  public static void evaluateCasting(EvaluatorMachine opStack, UnaryOperator unop) {
     Expression expr = opStack.pop();
 
     UnaryOperator op = UnaryOperator.CAST_BYTE;
@@ -167,7 +167,7 @@ public class UnaryOpExpression extends Expression {
 
   }
 
-  public static void evaluateUnary(EvaluatorStack opStack, UnaryOperator unop,
+  public static void evaluateUnary(EvaluatorMachine opStack, UnaryOperator unop,
       char type) {
     Expression expr = opStack.pop();
     UnaryOpExpression exp = new UnaryOpExpression(expr, unop, type);

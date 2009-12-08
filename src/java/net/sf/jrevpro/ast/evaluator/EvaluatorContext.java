@@ -27,7 +27,7 @@ public class EvaluatorContext {
 
     pool = _pool;
     varTable = _varTable;
-    opStack = new EvaluatorStack();
+    opStack = new EvaluatorMachine();
     statements = new LineOfCodeList();
   }
 
@@ -42,6 +42,6 @@ public class EvaluatorContext {
   LineOfCodeList statements;
   ConstantPool pool;
   VariableTable varTable;
-  EvaluatorStack opStack;
+  EvaluatorMachine opStack;
 
 }

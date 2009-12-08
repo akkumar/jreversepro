@@ -25,12 +25,17 @@ import net.sf.jrevpro.ast.expression.ConditionExpression;
 import net.sf.jrevpro.ast.expression.Expression;
 
 /**
- * EvaluatorStack Stack is the abstraction of the Java Method evaluator Stack.
+ * EvaluatorStack  is the abstraction of the Java Method evaluator Stack.
  * The expressions are pushed to and popped from, this stack.
  * 
  * @author Karthik Kumar.
  */
-public class EvaluatorStack {
+public class EvaluatorMachine {
+
+  /**
+   * 
+   */
+  private final Stack<Expression> stack;
 
   /**
    * A List of constants. They are primarily used in the following case. Lets
@@ -59,7 +64,7 @@ public class EvaluatorStack {
   /**
    * Empty constructor
    */
-  public EvaluatorStack() {
+  public EvaluatorMachine() {
     stack = new Stack<Expression>();
     constants = new Vector<String>();
   }
@@ -123,7 +128,6 @@ public class EvaluatorStack {
 
   }
 
-  private final Stack<Expression> stack;
 
 
 

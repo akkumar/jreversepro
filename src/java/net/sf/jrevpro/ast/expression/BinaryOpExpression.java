@@ -18,7 +18,7 @@
  **/
 package net.sf.jrevpro.ast.expression;
 
-import net.sf.jrevpro.ast.evaluator.EvaluatorStack;
+import net.sf.jrevpro.ast.evaluator.EvaluatorMachine;
 import net.sf.jrevpro.jls.JLSConstants;
 
 /**
@@ -138,7 +138,7 @@ public class BinaryOpExpression extends Expression {
     }
   }
 
-  public static void evaluateBinary(EvaluatorStack opStack,
+  public static void evaluateBinary(EvaluatorMachine opStack,
       BinaryOperator binop, char type) {
     Expression op2 = opStack.pop();
     Expression op1 = opStack.pop();

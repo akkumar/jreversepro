@@ -61,7 +61,7 @@ public abstract class AbstractInstructionEvaluator implements JVMConstants,
   protected VariableTable varTable;
   protected String methodReturnType;
   protected LineOfCodeList statements;
-  protected EvaluatorStack evalStack;
+  protected EvaluatorMachine evalStack;
 
   protected static final Logger logger = CustomLoggerFactory.createLogger();
 
