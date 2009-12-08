@@ -78,12 +78,12 @@ public class BinaryOpExpression extends Expression {
     BITWISE_XOR, 
     
     /**
-     * '++' operator
+     * '+=' operator
      */
     SMART_MINUS, 
     
     /**
-     * '--' operator
+     * '-=' operator
      */
     SMART_PLUS
   };
