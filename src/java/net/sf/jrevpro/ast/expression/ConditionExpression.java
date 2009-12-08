@@ -28,14 +28,39 @@ import net.sf.jrevpro.jvm.JVMConstants;
 public class ConditionExpression extends Expression {
 
   public enum RelationalOperator {
-    LT, // <
-    LE, // <=
-    GT, // >
-    GE, // >=
-    NE, // !=
+    /**
+     * <
+     */
+    LT, 
+    /**
+     * <=
+     */
+    LE,
+    /**
+     * >
+     */
+    GT,
+    /**
+     * >=
+     */
+    GE,
+    /**
+     * !=
+     */
+    NE, 
+    /**
+     * ==
+     */
     EQ
     // ==
   }
+  
+
+  private final Expression lhs;
+  private final Expression rhs;
+
+  private final RelationalOperator op;
+  
 
   /**
    * @param _lhs L.H.S of the conditional expression
@@ -72,7 +97,7 @@ public class ConditionExpression extends Expression {
   /*
    * (non-Javadoc)
    * 
-   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   * @see net.sf.jrevpro.jls.expression.Expression#getJLSCode()
    */
   @Override
   public String getJLSCode() {
@@ -100,8 +125,4 @@ public class ConditionExpression extends Expression {
     return lhs.getJLSCode() + jlsExpression + rhs.getJLSCode();
   }
 
-  Expression lhs;
-  Expression rhs;
-
-  RelationalOperator op;
 }

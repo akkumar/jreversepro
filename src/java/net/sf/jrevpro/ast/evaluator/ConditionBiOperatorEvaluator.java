@@ -48,8 +48,6 @@ public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    evalStack.conditionExpression = null;
-
     Expression rhs = evalStack.pop();
     Expression lhs = evalStack.pop();
 

@@ -51,7 +51,6 @@ public class CompareEvaluator extends AbstractInstructionEvaluator {
     Expression rhs = evalStack.pop();
     Expression lhs = evalStack.pop();
 
-    evalStack.conditionExpression = null; // Fix memory leaks
     evalStack.conditionExpression = new ConditionExpression(lhs, rhs,
         RelationalOperator.EQ);
 

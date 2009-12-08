@@ -31,6 +31,31 @@ import net.sf.jrevpro.ast.expression.Expression;
  * @author Karthik Kumar.
  */
 public class EvaluatorStack {
+
+  /**
+   * A List of constants. They are primarily used in the following case. Lets
+   * say - we have a code called .
+   * 
+   * String [] args = { "run", "args", "args1" };
+   * 
+   * In this case all the individual members of the array namely args come into
+   * the constants.
+   */
+  Vector<String> constants;
+
+  /* Currently active statement */
+  // Statement statement;
+  /* Stores the precedence of the operator */
+  int precedence;
+
+  /* Context of a given condition */
+  ConditionExpression conditionExpression;
+
+  /**
+   * Last processed opcode
+   */
+  int prevOpcode;
+  
   /**
    * Empty constructor
    */
@@ -100,28 +125,6 @@ public class EvaluatorStack {
 
   private final Stack<Expression> stack;
 
-  /**
-   * A List of constants. They are primarily used in the following case. Lets
-   * say - we have a code called .
-   * 
-   * String [] args = { "run", "args", "args1" };
-   * 
-   * In this case all the individual members of the array namely args come into
-   * the constants.
-   */
-  Vector<String> constants;
 
-  /* Currently active statement */
-  // Statement statement;
-  /* Stores the precedence of the operator */
-  int precedence;
-
-  /* Context of a given condition */
-  ConditionExpression conditionExpression;
-
-  /**
-   * Last processed opcode
-   */
-  int prevOpcode;
 
 }
