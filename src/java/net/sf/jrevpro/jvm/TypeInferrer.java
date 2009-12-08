@@ -246,7 +246,7 @@ public class TypeInferrer implements JVMConstants {
    * Checks if the given datatype is a basic data type or not.
    * 
    * @param type
-   *          the datatype to be checked.
+   *          the datatype to be checked. (in VM notation).
    * @return true , if it is. false , otherwise.
    */
   public static boolean isBasicType(String type) {
@@ -287,10 +287,8 @@ public class TypeInferrer implements JVMConstants {
       }
     } else if (jvmType.equals(Character.valueOf(JVM_TYPE_CHAR).toString())) { // Character
       try {
-        StringBuilder sb = new StringBuilder();
         int intvalue = Integer.parseInt(value);
-        sb.append("'" + (char) intvalue + "'");
-        return sb.toString();
+        return String.format("'%c'", (char)intvalue);
       } catch (NumberFormatException _ex) {
         return value;
       }
