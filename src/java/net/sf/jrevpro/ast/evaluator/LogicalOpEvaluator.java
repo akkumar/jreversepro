@@ -74,27 +74,27 @@ public class LogicalOpEvaluator extends AbstractInstructionEvaluator {
           JVM_TYPE_LONG);
       break;
     case OPCODE_IAND:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_AND,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_AND,
           JVM_TYPE_INT);
       break;
     case OPCODE_LAND:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_AND,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_AND,
           JVM_TYPE_LONG);
       break;
     case OPCODE_IOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_OR,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_OR,
           JVM_TYPE_INT);
       break;
     case OPCODE_LOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_OR,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_OR,
           JVM_TYPE_LONG);
       break;
     case OPCODE_IXOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_XOR,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_XOR,
           JVM_TYPE_INT);
       break;
     case OPCODE_LXOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.LOGICAL_XOR,
+      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_XOR,
           JVM_TYPE_LONG);
       break;
 

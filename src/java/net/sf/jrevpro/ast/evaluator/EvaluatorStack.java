@@ -26,7 +26,7 @@ import net.sf.jrevpro.ast.expression.Expression;
 
 /**
  * EvaluatorStack Stack is the abstraction of the Java Method evaluator Stack.
- * The variables are pushed to and popped from, this stack.
+ * The expressions are pushed to and popped from, this stack.
  * 
  * @author Karthik Kumar.
  */
@@ -98,7 +98,7 @@ public class EvaluatorStack {
 
   }
 
-  private Stack<Expression> stack;
+  private final Stack<Expression> stack;
 
   /**
    * A List of constants. They are primarily used in the following case. Lets

@@ -22,13 +22,64 @@ import net.sf.jrevpro.ast.evaluator.EvaluatorStack;
 import net.sf.jrevpro.jls.JLSConstants;
 
 /**
+ * Expression involving binary operators.
+ * 
  * @author akkumar
  * 
  */
 public class BinaryOpExpression extends Expression {
 
   public enum BinaryOperator {
-    PLUS, MINUS, MULTIPLY, DIVIDE, MODULO, SHIFTLEFT, SHIFTRIGHT, LOGICAL_AND, LOGICAL_OR, LOGICAL_XOR, SMART_MINUS, SMART_PLUS
+    /** 
+     * '+' operator
+     */
+    PLUS, 
+    /**
+     * '-' operator
+     */
+    MINUS, 
+    /**
+     * '*' operator
+     */
+    MULTIPLY, 
+    /**
+     * '/' operator
+     */
+    DIVIDE, 
+    /**
+     * '%' operator
+     */
+    MODULO, 
+    /**
+     * '<<' operator
+     */
+    SHIFTLEFT, 
+    /**
+     * '>>' operator
+     */
+    SHIFTRIGHT, 
+    /**
+     * '&' operator
+     */
+    BITWISE_AND, 
+    /**
+     * '|' operator
+     */
+    BITWISE_OR, 
+    /**
+     * '^' operator
+     */
+    BITWISE_XOR, 
+    
+    /**
+     * '++' operator
+     */
+    SMART_MINUS, 
+    
+    /**
+     * '--' operator
+     */
+    SMART_PLUS
   };
 
   public BinaryOpExpression(Expression _lhs, BinaryOperator _op,
@@ -67,13 +118,13 @@ public class BinaryOpExpression extends Expression {
     case SHIFTRIGHT:
       return lhs.getValueEx(L_SHIFT) + JLSConstants.SHIFTRIGHT
           + rhs.getValueEx(L_SHIFT);
-    case LOGICAL_AND:
+    case BITWISE_AND:
       return lhs.getValueEx(L_BITAND) + JLSConstants.LOGICAL_AND
           + rhs.getValueEx(L_BITAND);
-    case LOGICAL_OR:
+    case BITWISE_OR:
       return lhs.getValueEx(L_BITOR) + JLSConstants.LOGICAL_OR
           + rhs.getValueEx(L_BITOR);
-    case LOGICAL_XOR:
+    case BITWISE_XOR:
       return lhs.getValueEx(L_BITXOR) + JLSConstants.LOGICAL_XOR
           + rhs.getValueEx(L_BITXOR);
     default:
@@ -90,9 +141,9 @@ public class BinaryOpExpression extends Expression {
     opStack.push(boe);
   }
 
-  private Expression lhs;
+  private final Expression lhs;
 
-  private Expression rhs;
+  private final Expression rhs;
 
-  private BinaryOperator op;
+  private final BinaryOperator op;
 }
