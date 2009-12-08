@@ -65,7 +65,6 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
     switch (ins.opcode) {
     case OPCODE_INVOKEVIRTUAL:
     case OPCODE_INVOKEINTERFACE:
-
       processInvokeInstruction(ins);
       break;
 
@@ -85,13 +84,11 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
   }
 
   /**
-   * Processes an invoke instruction - invokespecial, invokeinterface,
+   * Processes an invoke instruction - invokeinterface,
    * invokevirtual.
    * 
    * @param ins
    *          Current Instruction that is to be operated on the JVM stack.
-   * @param flagInvokeSpecial
-   *          if this instruction is invokespecial.
    */
   private void processInvokeInstruction(Instruction ins) {
     int offset = ins.getArgUnsignedShort();
@@ -108,12 +105,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
 
     String methodType = TypeInferrer.getReturnType(argsList);
 
-    List<Expression> argValues = new ArrayList<Expression>(popMax);
-    for (int i = popMax - 1; i >= 0; i--) {
-      // add arguments in reverse order
-      argValues.add(0, evalMachine.pop());
-    }
-
+    List<Expression> argValues = this.getArguments(popMax);
     Expression accessTarget = evalMachine.pop();
 
     MethodAccessExpression mex = new InstanceMethodAccessExpression(
@@ -126,6 +118,23 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
       statements.append(new CompleteLine(ins, mex));
     }
 
+  }
+
+  /**
+   * Retrieve the top N expressions from the expression stack.
+   * 
+   * @param numArguments
+   *          Number of arguments for which expressions need to be retrieved
+   *          from the stack.
+   * @return
+   */
+  List<Expression> getArguments(int numArguments) {
+    List<Expression> expressions = new ArrayList<Expression>(numArguments);
+    for (int i = numArguments - 1; i >= 0; i--) {
+      // add arguments in reverse order
+      expressions.add(0, evalMachine.pop());
+    }
+    return expressions;
   }
 
 }
