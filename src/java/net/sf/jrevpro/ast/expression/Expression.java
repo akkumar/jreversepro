@@ -41,10 +41,7 @@ public abstract class Expression implements JVMConstants,
    */
   public abstract String getJLSCode();
 
-  /**
-   * Release all the resources associated with this Expression
-   */
-  // public abstract void release();
+
   protected Expression(String _jvmType, int _precedence) {
     jvmType = _jvmType;
     precedence = _precedence;
@@ -90,6 +87,7 @@ public abstract class Expression implements JVMConstants,
   /**
    * Have clone object
    */
+  @Override
   public Object clone() throws CloneNotSupportedException {
     return super.clone();
   }

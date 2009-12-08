@@ -28,7 +28,6 @@ public class InstanceMethodAccessExpression extends MethodAccessExpression {
       String methodName, String methodType, List<Expression> args,
       boolean invokeSpecial) {
     super(methodName, methodType, args);
-    // TODO Auto-generated constructor stub
     
     this.accessTarget = accessTarget;
     this.invokeSpecial = invokeSpecial;

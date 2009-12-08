@@ -21,7 +21,6 @@ public class StaticMethodAccessExpression extends MethodAccessExpression {
    */
   private final String classType;
   
-
   public StaticMethodAccessExpression(String _classType, String _methodName,
       String _methodType, List<Expression> _args) {
     super(_methodName, _methodType, _args);
@@ -32,17 +31,14 @@ public class StaticMethodAccessExpression extends MethodAccessExpression {
   /*
    * (non-Javadoc)
    * 
-   * @see net.sf.jrevpro.jls.expression.Expression#getJLSRepresentation()
+   * @see Expression#getJLSCode()
    */
   @Override
   public String getJLSCode() {
-
     StringBuilder result = new StringBuilder();
-
     result.append(Import.getClassName(TypeInferrer.getJLSType(classType,
           false))
           + JLSConstants.JLS_PACKAGE_DELIMITER + methodName);
-    
     result.append(serializedArgs());
     return result.toString();
   }  

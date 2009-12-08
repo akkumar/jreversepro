@@ -33,14 +33,11 @@ import net.sf.jrevpro.jls.JLSConstants;
  * 
  */
 public abstract class MethodAccessExpression extends Expression {
-
   
   /**
    * The list of arguments for the given method call , that occur as a List of Expressions.
    */
   private final List<Expression> args;
-
-
 
   /**
    * The name of the method in the method access expression.
@@ -52,20 +49,12 @@ public abstract class MethodAccessExpression extends Expression {
    */
   protected final String methodName;  
   
-
-
   public MethodAccessExpression(String _methodName,
       String _methodType, List<Expression> _args) {
     super(_methodType, L_REF);
-
     methodName = _methodName;
     args = _args;
   }
-  
-
-
-  
-  
   
   protected String serializedArgs() {
     final StringBuilder result = new StringBuilder();
@@ -79,26 +68,4 @@ public abstract class MethodAccessExpression extends Expression {
     result.append(JLSConstants.CLOSE_BRACKET);
     return result.toString();    
   }
-
-
-  /*
-   * 
-   * // Takes care of modifying the input if
-   * (objRef.compareTo(JLSConstants.THIS) != 0) { if (flagInvokeSpecial &&
-   * methodName.equals(INIT)) { opStack.statement = objRef; // Constructor }
-   * else { opStack.statement = objRef + "." + methodName; } } else { if
-   * (flagInvokeSpecial && methodName.equals(INIT)) { if
-   * ((className.equals(JVMConstants.CLASS_LANG_OBJECT))) { opStack.statement =
-   * ""; // filter out the default Object() // constructor. return; } else {
-   * opStack.statement = JLSConstants.SUPER; // Code for super constructor here.
-   * } } else { opStack.statement = methodName; } } opStack.precedence = L_REF;
-   * opStack.statement += getArgValues(jvmArgTypes, argValues);
-   * 
-   * if (methodType.compareTo(String.valueOf(JVM_TYPE_VOID)) == 0) { if
-   * (flagInvokeSpecial && !opStack.empty()) { Operand op1 = opStack.pop();
-   * opStack.push(new Operand(opStack.statement, op1.getDatatype(),
-   * opStack.precedence)); } } else { opStack.push(opStack.statement,
-   * methodType, opStack.precedence); }
-   */
-
 }
