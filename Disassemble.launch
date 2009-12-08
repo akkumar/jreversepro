@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/jreversepro/src/java/net/sf/jrevpro/cmd/CommandMain.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.sf.jrevpro.cmd.CommandMain"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-i ${project_loc}/bin/net/sf/jrevpro/input/Hello.class -a"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="jreversepro"/>
+</launchConfiguration>
