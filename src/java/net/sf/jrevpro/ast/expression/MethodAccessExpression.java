@@ -60,10 +60,10 @@ public abstract class MethodAccessExpression extends Expression {
     final StringBuilder result = new StringBuilder();
     result.append(JLSConstants.OPEN_BRACKET);
     for (int i = 0; i < args.size(); i++) {
-      result.append(args.get(i).getJLSCode());
       if (i != 0) {
         result.append(JLSConstants.ARGS_SEPARATOR);
       }
+      result.append(args.get(i).getJLSCode());
     }
     result.append(JLSConstants.CLOSE_BRACKET);
     return result.toString();    
