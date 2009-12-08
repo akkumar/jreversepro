@@ -34,7 +34,7 @@ public class LongFloatDoubleStoreEvaluator extends AbstractInstructionEvaluator 
   @Override
   void evaluate(Instruction ins) {
     int indexToSymbolTable = getIndexToSymbolTable(ins);
-    Expression rhs = evalStack.pop();
+    Expression rhs = evalMachine.pop();
     Variable lhs = new Variable(varTable, rhs.getType(), indexToSymbolTable,
         ins.currentPc);
 

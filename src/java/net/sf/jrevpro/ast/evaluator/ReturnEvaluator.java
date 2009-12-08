@@ -50,7 +50,7 @@ public class ReturnEvaluator extends AbstractInstructionEvaluator {
     if (ins.opcode == OPCODE_RETURN) {
       expr = new ReturnExpression();
     } else {
-      Expression op1 = evalStack.pop();
+      Expression op1 = evalMachine.pop();
 
       switch (ins.opcode) {
       case OPCODE_IRETURN:

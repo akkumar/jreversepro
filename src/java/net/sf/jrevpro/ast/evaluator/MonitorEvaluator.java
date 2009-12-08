@@ -45,7 +45,7 @@ public class MonitorEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression expr = evalStack.pop();
+    Expression expr = evalMachine.pop();
     statements.append(new CompleteLine(ins, expr));
   }
 

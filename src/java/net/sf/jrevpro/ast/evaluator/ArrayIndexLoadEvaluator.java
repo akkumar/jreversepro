@@ -32,8 +32,8 @@ public class ArrayIndexLoadEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   void evaluate(Instruction ins) {
-    Expression subscript = evalStack.pop();
-    Expression arrayObject = evalStack.pop();
+    Expression subscript = evalMachine.pop();
+    Expression arrayObject = evalMachine.pop();
 
     char type = JVM_TYPE_UNDEFINED;
     switch (ins.opcode) {
@@ -65,7 +65,7 @@ public class ArrayIndexLoadEvaluator extends AbstractInstructionEvaluator {
     ArrayMemberReferenceExpression expr = new ArrayMemberReferenceExpression(
         subscript, arrayObject, type);
 
-    evalStack.push(expr);
+    evalMachine.push(expr);
 
   }
 

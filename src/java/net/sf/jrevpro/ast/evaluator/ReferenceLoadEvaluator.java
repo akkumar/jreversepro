@@ -49,7 +49,7 @@ public class ReferenceLoadEvaluator extends AbstractInstructionEvaluator {
     Variable var = new Variable(varTable, JVM_TYPE_REFERENCE,
         variableIndexToSymbolTable, ins.currentPc);
 
-    evalStack.push(var);
+    evalMachine.push(var);
   }
 
   @Override

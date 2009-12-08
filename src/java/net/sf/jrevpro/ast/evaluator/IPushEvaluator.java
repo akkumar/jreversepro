@@ -33,12 +33,12 @@ public class IPushEvaluator extends AbstractInstructionEvaluator {
   void evaluate(Instruction ins) {
     switch (ins.opcode) {
     case OPCODE_BIPUSH: {
-      evalStack.push(new Constant(ins.getArgByte(), JVM_TYPE_BYTE));
+      evalMachine.push(new Constant(ins.getArgByte(), JVM_TYPE_BYTE));
       break;
     }
     case OPCODE_SIPUSH: {
       // Sign Extend This
-      evalStack.push(new Constant(ins.getArgShort(), JVM_TYPE_SHORT));
+      evalMachine.push(new Constant(ins.getArgShort(), JVM_TYPE_SHORT));
       break;
     }
     }

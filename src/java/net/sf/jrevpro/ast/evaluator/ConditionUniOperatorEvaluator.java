@@ -51,7 +51,7 @@ public class ConditionUniOperatorEvaluator extends AbstractInstructionEvaluator 
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression lhs = evalStack.pop();
+    Expression lhs = evalMachine.pop();
 
     RelationalOperator op = RelationalOperator.EQ;
 
@@ -76,13 +76,13 @@ public class ConditionUniOperatorEvaluator extends AbstractInstructionEvaluator 
       break;
 
     }
-    if (evalStack.prevOpcode < OPCODE_LCMP
-        || evalStack.prevOpcode > OPCODE_DCMPG) {
+    if (evalMachine.prevOpcode < OPCODE_LCMP
+        || evalMachine.prevOpcode > OPCODE_DCMPG) {
       // To be compared with 0
-      evalStack.conditionExpression = null;
+      evalMachine.conditionExpression = null;
       Expression rhs = new Constant(JLSConstants.VALUE_0, lhs.getType());
 
-      evalStack.conditionExpression = new ConditionExpression(lhs, rhs, op);
+      evalMachine.conditionExpression = new ConditionExpression(lhs, rhs, op);
     }
 
   }

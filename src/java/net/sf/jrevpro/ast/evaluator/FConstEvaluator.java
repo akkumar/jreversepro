@@ -33,15 +33,15 @@ public class FConstEvaluator extends AbstractInstructionEvaluator {
   void evaluate(Instruction ins) {
     switch (ins.opcode) {
     case OPCODE_FCONST_0: { // fconst_0
-      evalStack.push(Constant.FLOAT_0);
+      evalMachine.push(Constant.FLOAT_0);
       break;
     }
     case OPCODE_FCONST_1: { // fconst_1
-      evalStack.push(Constant.FLOAT_1);
+      evalMachine.push(Constant.FLOAT_1);
       break;
     }
     case OPCODE_FCONST_2: { // fconst_2
-      evalStack.push(Constant.FLOAT_2);
+      evalMachine.push(Constant.FLOAT_2);
       break;
     }
     default: {

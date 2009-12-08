@@ -39,7 +39,7 @@ public class InvokeStaticEvaluator  extends AbstractInstructionEvaluator {
 
     List<Expression> argValues = new ArrayList<Expression>(popMax);
     for (int i = popMax - 1; i >= 0; i--) {
-      argValues.add(0, evalStack.pop());
+      argValues.add(0, evalMachine.pop());
     }
 
     MethodAccessExpression mex = new StaticMethodAccessExpression(classType,
@@ -47,7 +47,7 @@ public class InvokeStaticEvaluator  extends AbstractInstructionEvaluator {
 
     if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
       // Non-void method.Push the result onto the stack.
-      evalStack.push(mex);
+      evalMachine.push(mex);
     } else {
       // Void return. Has to indicate End of line. 
       // Push -it as a statement.

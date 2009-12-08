@@ -52,7 +52,7 @@ public class NewArrayEvaluator extends AbstractInstructionEvaluator {
     switch (ins.opcode) {
     case OPCODE_NEWARRAY: {
       int atype = ins.getArgByte();
-      Expression arraySize = evalStack.pop();
+      Expression arraySize = evalMachine.pop();
       char jvmtype = JVM_TYPE_UNDEFINED;
 
       switch (atype) {
@@ -91,7 +91,7 @@ public class NewArrayEvaluator extends AbstractInstructionEvaluator {
       int offset = ins.getArgUnsignedShort();
       String classType = pool.getClassName(offset);
 
-      Expression arraySize1 = evalStack.pop();
+      Expression arraySize1 = evalMachine.pop();
       expr = new ArrayInstantiationExpression(classType, arraySize1);
       break;
     }
@@ -113,14 +113,14 @@ public class NewArrayEvaluator extends AbstractInstructionEvaluator {
 
       // Get all array indices
       for (int i = dimensions - 1; i >= 0; i--) {
-        arrayIndices[i] = evalStack.pop();
+        arrayIndices[i] = evalMachine.pop();
       }
       expr = new ArrayInstantiationExpression(classType, Arrays
           .asList(arrayIndices));
     }
 
     }
-    evalStack.push(expr);
+    evalMachine.push(expr);
 
   } 
 

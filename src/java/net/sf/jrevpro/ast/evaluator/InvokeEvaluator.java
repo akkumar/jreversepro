@@ -111,17 +111,17 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
     List<Expression> argValues = new ArrayList<Expression>(popMax);
     for (int i = popMax - 1; i >= 0; i--) {
       // add arguments in reverse order
-      argValues.add(0, evalStack.pop());
+      argValues.add(0, evalMachine.pop());
     }
 
-    Expression accessTarget = evalStack.pop();
+    Expression accessTarget = evalMachine.pop();
 
     MethodAccessExpression mex = new InstanceMethodAccessExpression(
         accessTarget, methodName, methodType, argValues, false);
 
     if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
       // Non-void method - Push the result back onto the stack
-      evalStack.push(mex);
+      evalMachine.push(mex);
     } else {
       statements.append(new CompleteLine(ins, mex));
     }

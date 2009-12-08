@@ -69,13 +69,13 @@ public class PopEvaluator extends AbstractInstructionEvaluator {
   @Override
   void evaluate(Instruction ins) {
     if (ins.opcode == OPCODE_POP) {
-      Expression op1 = evalStack.pop();
+      Expression op1 = evalMachine.pop();
       statements.append(new CompleteLine(ins, op1));
     } else if (ins.opcode == OPCODE_POP2) {
       // To Assess its use properly.
-      Expression op1 = evalStack.pop();
+      Expression op1 = evalMachine.pop();
       if (op1.isCategory1()) {
-        evalStack.pop();
+        evalMachine.pop();
       }
     } else {
       throw new UnsupportedOperationException("Unsupported opcode");

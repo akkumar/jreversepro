@@ -49,7 +49,7 @@ public class ConditionNullEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression lhs = evalStack.pop();
+    Expression lhs = evalMachine.pop();
 
     RelationalOperator op = RelationalOperator.EQ;
 
@@ -62,8 +62,8 @@ public class ConditionNullEvaluator extends AbstractInstructionEvaluator {
       break;
     }
 
-    evalStack.conditionExpression = null;
-    evalStack.conditionExpression = new ConditionExpression(lhs, Constant.NULL,
+    evalMachine.conditionExpression = null;
+    evalMachine.conditionExpression = new ConditionExpression(lhs, Constant.NULL,
         op);
   }
 

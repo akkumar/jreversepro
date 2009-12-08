@@ -49,7 +49,7 @@ public class FLoadEvaluator extends AbstractInstructionEvaluator {
       int variableIndexToSymbolTable) {
     Variable var = new Variable(varTable, JVM_TYPE_FLOAT,
         variableIndexToSymbolTable, ins.currentPc);
-    evalStack.push(var);
+    evalMachine.push(var);
   }
 
   @Override

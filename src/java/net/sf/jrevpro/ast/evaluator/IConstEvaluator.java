@@ -32,7 +32,7 @@ public class IConstEvaluator extends AbstractInstructionEvaluator {
   @Override
   void evaluate(Instruction ins) {
     int val = ins.opcode - OPCODE_ICONST_0;
-    evalStack.push(new Constant(String.valueOf(val), JVM_TYPE_INT));
+    evalMachine.push(new Constant(String.valueOf(val), JVM_TYPE_INT));
   }
 
   @Override

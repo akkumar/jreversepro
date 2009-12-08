@@ -53,7 +53,7 @@ public class InstanceFieldReferenceEvaluator extends
   void evaluate(Instruction ins) {
     switch (ins.opcode) {
     case OPCODE_GETFIELD: {
-      Expression op1 = evalStack.pop();
+      Expression op1 = evalMachine.pop();
 
       int offset = ins.getArgUnsignedShort();
 
@@ -64,13 +64,13 @@ public class InstanceFieldReferenceEvaluator extends
 
       FieldAccessExpression expr = new InstanceFieldAccessExpression(op1, fieldName,
           fieldType);
-      evalStack.push(expr);
+      evalMachine.push(expr);
       break;
     }
     case OPCODE_PUTFIELD: {
 
-      Expression rhs = evalStack.pop();
-      Expression accessTarget = evalStack.pop();
+      Expression rhs = evalMachine.pop();
+      Expression accessTarget = evalMachine.pop();
 
       int offset = ins.getArgUnsignedShort();
 

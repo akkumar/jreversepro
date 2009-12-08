@@ -27,12 +27,12 @@ public class EvaluatorContext {
 
     pool = _pool;
     varTable = _varTable;
-    opStack = new EvaluatorMachine();
+    evalMachine = new EvaluatorMachine();
     statements = new LineOfCodeList();
   }
 
   public void setPreviousOpcode(int opcode) {
-    opStack.setPreviousOpcode(opcode);
+    evalMachine.setPreviousOpcode(opcode);
   }
 
   public LineOfCodeList getStatements() {
@@ -42,6 +42,6 @@ public class EvaluatorContext {
   LineOfCodeList statements;
   ConstantPool pool;
   VariableTable varTable;
-  EvaluatorMachine opStack;
+  EvaluatorMachine evalMachine;
 
 }

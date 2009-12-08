@@ -66,7 +66,7 @@ public class ILoadEvaluator extends AbstractInstructionEvaluator {
     Variable var = new Variable(varTable, JVM_TYPE_INT,
         variableIndexToSymbolTable, ins.currentPc);
 
-    evalStack.push(var);
+    evalMachine.push(var);
   }
 
   /*

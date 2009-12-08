@@ -50,87 +50,87 @@ public class ArithmeticEvaluator extends AbstractInstructionEvaluator {
     switch (ins.opcode) {
     // +
     case OPCODE_IADD:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.PLUS,
           JVM_TYPE_INT);
       break;
     case OPCODE_LADD:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.PLUS,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FADD:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.PLUS,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DADD:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.PLUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.PLUS,
           JVM_TYPE_DOUBLE);
       break;
     // -
     case OPCODE_ISUB:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MINUS,
           JVM_TYPE_INT);
       break;
     case OPCODE_LSUB:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MINUS,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FSUB:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MINUS,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DSUB:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MINUS,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MINUS,
           JVM_TYPE_DOUBLE);
       break;
     // *
     case OPCODE_IMUL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MULTIPLY,
           JVM_TYPE_INT);
       break;
     case OPCODE_LMUL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MULTIPLY,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FMUL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MULTIPLY,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DMUL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MULTIPLY,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MULTIPLY,
           JVM_TYPE_DOUBLE);
       break;
     // /
     case OPCODE_IDIV:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.DIVIDE,
           JVM_TYPE_INT);
       break;
     case OPCODE_LDIV:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.DIVIDE,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FDIV:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.DIVIDE,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DDIV:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.DIVIDE,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.DIVIDE,
           JVM_TYPE_DOUBLE);
       break;
     // %
     case OPCODE_IREM:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MODULO,
           JVM_TYPE_INT);
       break;
     case OPCODE_LREM:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MODULO,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FREM:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MODULO,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DREM:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.MODULO,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.MODULO,
           JVM_TYPE_DOUBLE);
       break;
 

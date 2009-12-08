@@ -48,13 +48,13 @@ public class CompareEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression rhs = evalStack.pop();
-    Expression lhs = evalStack.pop();
+    Expression rhs = evalMachine.pop();
+    Expression lhs = evalMachine.pop();
 
-    evalStack.conditionExpression = new ConditionExpression(lhs, rhs,
+    evalMachine.conditionExpression = new ConditionExpression(lhs, rhs,
         RelationalOperator.EQ);
 
-    evalStack.push(Constant.VALUE_1);
+    evalMachine.push(Constant.VALUE_1);
   }
 
   /*

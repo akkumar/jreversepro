@@ -32,7 +32,7 @@ public class LConstEvaluator extends AbstractInstructionEvaluator {
   @Override
   void evaluate(Instruction ins) {
     int val = ins.opcode - OPCODE_LCONST_0;
-    evalStack.push(new Constant(val, JVM_TYPE_LONG));
+    evalMachine.push(new Constant(val, JVM_TYPE_LONG));
   }
 
   @Override

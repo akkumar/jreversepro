@@ -33,11 +33,11 @@ public class DConstEvaluator extends AbstractInstructionEvaluator {
   void evaluate(Instruction ins) {
     switch (ins.opcode) {
     case OPCODE_DCONST_0: {
-      evalStack.push(Constant.DOUBLE_0);
+      evalMachine.push(Constant.DOUBLE_0);
       break;
     }
     case OPCODE_DCONST_1: {
-      evalStack.push(Constant.DOUBLE_1);
+      evalMachine.push(Constant.DOUBLE_1);
       break;
     }
     default:

@@ -50,51 +50,51 @@ public class LogicalOpEvaluator extends AbstractInstructionEvaluator {
 
     switch (ins.opcode) {
     case OPCODE_ISHL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTLEFT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTLEFT,
           JVM_TYPE_INT);
       break;
     case OPCODE_LSHL:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTLEFT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTLEFT,
           JVM_TYPE_LONG);
       break;
     case OPCODE_ISHR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTRIGHT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTRIGHT,
           JVM_TYPE_INT);
       break;
     case OPCODE_IUSHR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTRIGHT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTRIGHT,
           JVM_TYPE_INT);
       break;
     case OPCODE_LSHR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTRIGHT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTRIGHT,
           JVM_TYPE_LONG);
       break;
     case OPCODE_LUSHR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.SHIFTRIGHT,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.SHIFTRIGHT,
           JVM_TYPE_LONG);
       break;
     case OPCODE_IAND:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_AND,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_AND,
           JVM_TYPE_INT);
       break;
     case OPCODE_LAND:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_AND,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_AND,
           JVM_TYPE_LONG);
       break;
     case OPCODE_IOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_OR,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_OR,
           JVM_TYPE_INT);
       break;
     case OPCODE_LOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_OR,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_OR,
           JVM_TYPE_LONG);
       break;
     case OPCODE_IXOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_XOR,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_XOR,
           JVM_TYPE_INT);
       break;
     case OPCODE_LXOR:
-      BinaryOpExpression.evaluateBinary(evalStack, BinaryOperator.BITWISE_XOR,
+      BinaryOpExpression.evaluateBinary(evalMachine, BinaryOperator.BITWISE_XOR,
           JVM_TYPE_LONG);
       break;
 

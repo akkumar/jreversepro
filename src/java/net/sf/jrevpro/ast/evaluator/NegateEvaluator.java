@@ -49,19 +49,19 @@ public class NegateEvaluator extends AbstractInstructionEvaluator {
   void evaluate(Instruction ins) {
     switch (ins.opcode) {
     case OPCODE_INEG:
-      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+      UnaryOpExpression.evaluateUnary(evalMachine, UnaryOperator.NEGATE,
           JVM_TYPE_INT);
       break;
     case OPCODE_LNEG:
-      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+      UnaryOpExpression.evaluateUnary(evalMachine, UnaryOperator.NEGATE,
           JVM_TYPE_LONG);
       break;
     case OPCODE_FNEG:
-      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+      UnaryOpExpression.evaluateUnary(evalMachine, UnaryOperator.NEGATE,
           JVM_TYPE_FLOAT);
       break;
     case OPCODE_DNEG:
-      UnaryOpExpression.evaluateUnary(evalStack, UnaryOperator.NEGATE,
+      UnaryOpExpression.evaluateUnary(evalMachine, UnaryOperator.NEGATE,
           JVM_TYPE_DOUBLE);
       break;
     }

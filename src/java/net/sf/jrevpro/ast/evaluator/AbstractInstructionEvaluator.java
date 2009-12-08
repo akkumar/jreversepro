@@ -42,7 +42,7 @@ public abstract class AbstractInstructionEvaluator implements JVMConstants,
   public AbstractInstructionEvaluator(EvaluatorContext context) {
     pool = context.pool;
     varTable = context.varTable;
-    evalStack = context.opStack;
+    evalMachine = context.evalMachine;
     statements = context.statements;
 
   }
@@ -61,7 +61,7 @@ public abstract class AbstractInstructionEvaluator implements JVMConstants,
   protected VariableTable varTable;
   protected String methodReturnType;
   protected LineOfCodeList statements;
-  protected EvaluatorMachine evalStack;
+  protected EvaluatorMachine evalMachine;
 
   protected static final Logger logger = CustomLoggerFactory.createLogger();
 

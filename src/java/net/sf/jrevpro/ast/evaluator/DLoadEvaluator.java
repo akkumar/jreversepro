@@ -49,7 +49,7 @@ public class DLoadEvaluator extends AbstractInstructionEvaluator {
       int variableIndexToSymbolTable) {
     Variable var = new Variable(varTable, JVM_TYPE_DOUBLE,
         variableIndexToSymbolTable, ins.currentPc);
-    evalStack.push(var);
+    evalMachine.push(var);
   }
 
   @Override

@@ -57,17 +57,17 @@ public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
       int offset = ins.getArgUnsignedShort();
       ObjectInstantiationExpression expr = new ObjectInstantiationExpression(
           pool.getClassName(offset));
-      evalStack.push(expr);
+      evalMachine.push(expr);
       break;
     }
     case OPCODE_ARRAYLENGTH: {
-      Expression arrayReference = evalStack.pop();
+      Expression arrayReference = evalMachine.pop();
       ArrayLengthExpression expr = new ArrayLengthExpression(arrayReference);
-      evalStack.push(expr);
+      evalMachine.push(expr);
       break;
     }
     case OPCODE_ATHROW: {
-      Expression thrownClass = evalStack.pop();
+      Expression thrownClass = evalMachine.pop();
       ThrowExpression expr = new ThrowExpression(thrownClass);
       statements.append(new CompleteLine(ins, expr));
       break;
@@ -76,24 +76,24 @@ public class ReferenceTypeInfoEvaluator extends AbstractInstructionEvaluator {
       int offset = ins.getArgUnsignedShort();
 
       // Get Class Name
-      Expression expr = evalStack.pop();
+      Expression expr = evalMachine.pop();
 
       String castType = pool.getClassName(offset);
 
-      evalStack.push(new UnaryOpExpression(expr, UnaryOperator.CAST_REFERENCE,
+      evalMachine.push(new UnaryOpExpression(expr, UnaryOperator.CAST_REFERENCE,
           castType));
       // No Change to JVM Stack
       break;
     }
     case OPCODE_INSTANCEOF: {
-      Expression reference = evalStack.pop();
+      Expression reference = evalMachine.pop();
       int offset = ins.getArgUnsignedShort();
 
       // Class Type found here
       String classType = pool.getClassName(offset);
       InstanceOfExpression expr = new InstanceOfExpression(reference, classType);
 
-      evalStack.push(expr);
+      evalMachine.push(expr);
       break;
     }
     }

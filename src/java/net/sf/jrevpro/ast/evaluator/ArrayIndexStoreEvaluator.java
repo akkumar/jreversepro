@@ -35,9 +35,9 @@ public class ArrayIndexStoreEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   void evaluate(Instruction ins) {
-    Expression value = evalStack.pop();
-    Expression subscript = evalStack.pop();
-    Expression arrayObject = evalStack.pop();
+    Expression value = evalMachine.pop();
+    Expression subscript = evalMachine.pop();
+    Expression arrayObject = evalMachine.pop();
 
     ArrayMemberReferenceExpression arr = new ArrayMemberReferenceExpression(
         arrayObject, subscript, TypeInferrer.getArrayMemberType(arrayObject

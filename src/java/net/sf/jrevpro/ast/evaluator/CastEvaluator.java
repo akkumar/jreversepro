@@ -51,31 +51,31 @@ public class CastEvaluator extends AbstractInstructionEvaluator {
     case OPCODE_I2L:
     case OPCODE_F2L:
     case OPCODE_D2L:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_LONG);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_LONG);
       break;
     case OPCODE_I2F:
     case OPCODE_L2F:
     case OPCODE_D2F:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_FLOAT);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_FLOAT);
       break;
     case OPCODE_I2D:
     case OPCODE_L2D:
     case OPCODE_F2D:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_DOUBLE);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_DOUBLE);
       break;
     case OPCODE_L2I:
     case OPCODE_F2I:
     case OPCODE_D2I:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_INT);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_INT);
       break;
     case OPCODE_I2B:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_BYTE);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_BYTE);
       break;
     case OPCODE_I2C:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_CHAR);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_CHAR);
       break;
     case OPCODE_I2S:
-      UnaryOpExpression.evaluateCasting(evalStack, UnaryOperator.CAST_SHORT);
+      UnaryOpExpression.evaluateCasting(evalMachine, UnaryOperator.CAST_SHORT);
       break;
 
     }

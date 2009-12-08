@@ -36,18 +36,18 @@ public class LdcEvaluator extends AbstractInstructionEvaluator {
       // Utf8 Value is referred to here.
       int ldcIndex = ins.getArgUnsignedByte();
       String ldcString = pool.getLdcString(ldcIndex);
-      evalStack.push(new Constant(ldcString, pool.getDataType(ldcIndex)));
+      evalMachine.push(new Constant(ldcString, pool.getDataType(ldcIndex)));
       break;
     }
     case OPCODE_LDC_W: { // ldc_w
       int ldcIndex = ins.getArgUnsignedShort();
-      evalStack.push(new Constant(pool.getLdcString(ldcIndex),
+      evalMachine.push(new Constant(pool.getLdcString(ldcIndex),
           CLASS_LANG_STRING));
       break;
     }
     case OPCODE_LDC2_W: { // ldc2_w
       int ldcIndex = ins.getArgUnsignedShort();
-      evalStack.push(new Constant(pool.getEntryValue(ldcIndex), pool
+      evalMachine.push(new Constant(pool.getEntryValue(ldcIndex), pool
           .getDataType(ldcIndex)));
       break;
     }

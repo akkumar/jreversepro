@@ -38,19 +38,19 @@ public class InvokeSpecialEvaluator extends AbstractInstructionEvaluator {
     List<Expression> argValues = new ArrayList<Expression>(popMax);
     for (int i = popMax - 1; i >= 0; i--) {
       // add arguments in reverse order
-      argValues.add(0, evalStack.pop());
+      argValues.add(0, evalMachine.pop());
     }
 
-    Expression accessTarget = evalStack.pop();
+    Expression accessTarget = evalMachine.pop();
 
     MethodAccessExpression mex = new InstanceMethodAccessExpression(
         accessTarget, methodName, methodType, argValues, true);
     // Peek the top and replace the top object reference. Stack remains
     // the same.
     try {
-      evalStack.pop(); // Popped expression is not needed. we are just
+      evalMachine.pop(); // Popped expression is not needed. we are just
       // replacing it.
-      evalStack.push(mex);
+      evalMachine.push(mex);
     } catch (EmptyStackException ex) {
       logger.warning("invokespecial: Cannot peek the stack when pushing "
           + mex.getJLSCode());

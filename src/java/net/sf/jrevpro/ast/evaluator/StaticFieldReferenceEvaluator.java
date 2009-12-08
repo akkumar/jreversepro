@@ -66,10 +66,10 @@ public class StaticFieldReferenceEvaluator extends AbstractInstructionEvaluator 
 
     switch (ins.opcode) {
     case OPCODE_GETSTATIC:
-      evalStack.push(expr);
+      evalMachine.push(expr);
       break;
     case OPCODE_PUTSTATIC:
-      Expression rhs = evalStack.pop();
+      Expression rhs = evalMachine.pop();
       statements.append(new CompleteLine(ins, new Assignment(expr, rhs)));
       break;
     }

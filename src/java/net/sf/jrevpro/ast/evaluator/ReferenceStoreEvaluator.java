@@ -51,7 +51,7 @@ public class ReferenceStoreEvaluator extends AbstractInstructionEvaluator {
   private void operateStoreInstruction(Instruction ins,
       int variableIndexToSymbolTable) {
     int indexToSymbolTable = variableIndexToSymbolTable;
-    Expression rhs = evalStack.pop();
+    Expression rhs = evalMachine.pop();
     Variable lhs = new Variable(varTable, rhs.getType(), indexToSymbolTable,
         ins.currentPc);
     statements.append(new CompleteLine(ins, new Assignment(lhs, rhs)));

@@ -47,7 +47,7 @@ public class SwitchEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression exp = evalStack.pop();
+    Expression exp = evalMachine.pop();
     statements.append(new SwitchLine(ins, exp));
   }
 

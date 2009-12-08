@@ -48,8 +48,8 @@ public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression rhs = evalStack.pop();
-    Expression lhs = evalStack.pop();
+    Expression rhs = evalMachine.pop();
+    Expression lhs = evalMachine.pop();
 
     RelationalOperator op = RelationalOperator.EQ;
     switch (ins.opcode) {
@@ -74,9 +74,9 @@ public class ConditionBiOperatorEvaluator extends AbstractInstructionEvaluator {
       op = RelationalOperator.LE;
       break;
     }
-    evalStack.conditionExpression = new ConditionExpression(lhs, rhs, op);
+    evalMachine.conditionExpression = new ConditionExpression(lhs, rhs, op);
 
-    addConditional(ins, evalStack.conditionExpression);
+    addConditional(ins, evalMachine.conditionExpression);
   }
 
   /*

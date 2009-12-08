@@ -50,7 +50,7 @@ public class IStoreEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   void evaluate(Instruction ins) {
-    Expression exp = evalStack.pop();
+    Expression exp = evalMachine.pop();
     switch (ins.opcode) {
     case OPCODE_ISTORE:
       logger.info("Processing Instruction " + ins.currentPc + " istore "

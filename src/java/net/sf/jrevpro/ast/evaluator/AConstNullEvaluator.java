@@ -30,7 +30,7 @@ public class AConstNullEvaluator extends AbstractInstructionEvaluator {
 
   @Override
   void evaluate(Instruction ins) {
-    evalStack.push(Constant.NULL);
+    evalMachine.push(Constant.NULL);
 
   }
 
