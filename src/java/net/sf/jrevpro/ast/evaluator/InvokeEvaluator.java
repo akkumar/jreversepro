@@ -20,13 +20,11 @@ package net.sf.jrevpro.ast.evaluator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EmptyStackException;
 import java.util.List;
 
 import net.sf.jrevpro.ast.expression.Expression;
 import net.sf.jrevpro.ast.expression.InstanceMethodAccessExpression;
 import net.sf.jrevpro.ast.expression.MethodAccessExpression;
-import net.sf.jrevpro.ast.expression.StaticMethodAccessExpression;
 import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.jvm.TypeInferrer;
 import net.sf.jrevpro.reflect.instruction.Instruction;
@@ -36,11 +34,12 @@ import net.sf.jrevpro.reflect.instruction.Instruction;
  * 
  * <p>
  * <ul>
- * <li>invokeVirtual </li>
- * <li>invokeInterface </li>
- * <li>invokeSpecial </li>
- * <li>invokeStatic </li>
+ * <li>invokeVirtual</li>
+ * <li>invokeInterface</li>
+ * <li>invokeSpecial</li>
+ * <li>invokeStatic</li>
  * </ul>
+ * 
  * @author akkumar
  * 
  */
@@ -67,16 +66,9 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
     case OPCODE_INVOKEVIRTUAL:
     case OPCODE_INVOKEINTERFACE:
 
-      processInvokeInstruction(ins, false);
+      processInvokeInstruction(ins);
       break;
 
-    case OPCODE_INVOKESPECIAL:
-      processInvokeInstruction(ins, true);
-      break;
-
-    case OPCODE_INVOKESTATIC:
-      processInvokeStatic(ins);
-      break;
     }
 
   }
@@ -89,8 +81,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
    */
   @Override
   Iterable<Integer> getProcessingOpcodes() {
-    return Arrays.asList(OPCODE_INVOKEVIRTUAL, OPCODE_INVOKEINTERFACE,
-        OPCODE_INVOKESPECIAL, OPCODE_INVOKESTATIC);
+    return Arrays.asList(OPCODE_INVOKEVIRTUAL, OPCODE_INVOKEINTERFACE);
   }
 
   /**
@@ -102,8 +93,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
    * @param flagInvokeSpecial
    *          if this instruction is invokespecial.
    */
-  private void processInvokeInstruction(Instruction ins,
-      boolean flagInvokeSpecial) {
+  private void processInvokeInstruction(Instruction ins) {
     int offset = ins.getArgUnsignedShort();
     int classIndex = pool.getPtr1(offset);
 
@@ -117,10 +107,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
     // Equals Number of Arguments
 
     String methodType = TypeInferrer.getReturnType(argsList);
-    if (flagInvokeSpecial) { // possibly a constructor.
-      // then the type is the same as className
-      methodType = className;
-    }
+
     List<Expression> argValues = new ArrayList<Expression>(popMax);
     for (int i = popMax - 1; i >= 0; i--) {
       // add arguments in reverse order
@@ -129,69 +116,16 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
 
     Expression accessTarget = evalStack.pop();
 
-    MethodAccessExpression mex = new InstanceMethodAccessExpression(accessTarget,
-        methodName, methodType, argValues, flagInvokeSpecial);
-    if (flagInvokeSpecial) {
-      // Peek the top and replace the top object reference. Stack remains
-      // the same.
-      try {
-        evalStack.pop(); // Popped expression is not needed. we are just
-        // replacing it.
-        evalStack.push(mex);
-      } catch (EmptyStackException ex) {
-        logger
-            .warning("invokespecial: Cannot peek the stack when pushing " + mex.getJLSCode());
-      }
-
-    } else {
-      if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
-        // Non-void method - Push the result back onto the stack
-        evalStack.push(mex);
-      } else {
-        statements.append(new CompleteLine(ins, mex));
-      }
-    }
-  }
-
-  /**
-   * Processes the invoke instruction - Invoke static
-   * 
-   * @param ins
-   *          Current Instruction that is to be operated on the JVM stack.
-   */
-  private void processInvokeStatic(Instruction ins) {
-    int offset = ins.getArgUnsignedShort();
-    int classIndex = pool.getPtr1(offset);
-    String classType = pool.getClassName(classIndex);
-
-    // GetMethodName
-    int nameIndex = pool.getPtr2(offset);
-    String methodName = pool.getFirstDirectName(nameIndex);
-
-    // Get No: of arguments
-    int argsIndex = pool.getPtr2(nameIndex);
-    String argsList = pool.getEntryValue(argsIndex);
-    List<String> args = TypeInferrer.getArguments(argsList);
-    int popMax = args.size();
-
-    String methodType = TypeInferrer.getReturnType(argsList);
-    // Get Return type
-
-    List<Expression> argValues = new ArrayList<Expression>(popMax);
-    for (int i = popMax - 1; i >= 0; i--) {
-      argValues.add(0, evalStack.pop());
-    }
-
-    MethodAccessExpression mex = new StaticMethodAccessExpression(classType,
-        methodName, methodType, argValues);
+    MethodAccessExpression mex = new InstanceMethodAccessExpression(
+        accessTarget, methodName, methodType, argValues, false);
 
     if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
-      // Non-void method.Push the result onto the stack.
+      // Non-void method - Push the result back onto the stack
       evalStack.push(mex);
     } else {
-      // Void return. Has to indicate End of line. 
-      // Push -it as a statement.
       statements.append(new CompleteLine(ins, mex));
     }
+
   }
+
 }

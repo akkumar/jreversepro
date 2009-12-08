@@ -106,6 +106,8 @@ public class RuntimeFrame {
 
     // Methods accessors
     registerEvaluator(InvokeEvaluator.class);
+    registerEvaluator(InvokeStaticEvaluator.class);
+    registerEvaluator(InvokeSpecialEvaluator.class);
 
     // MonitorEnter / Monitor Exit
     registerEvaluator(MonitorEvaluator.class);
