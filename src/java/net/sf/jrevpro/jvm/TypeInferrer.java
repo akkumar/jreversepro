@@ -137,7 +137,7 @@ public class TypeInferrer implements JVMConstants {
    * <table>
    * <tr>
    * <th><code>dataType</code></th>
-   * <th><code>getSignTokenLength(dataType)(dataType)</code></th>
+   * <th><code>getSignTokenLength(dataType)</code></th>
    * </tr>
    * <tr>
    * <td><code>all basic data types</code></td>
@@ -149,7 +149,7 @@ public class TypeInferrer implements JVMConstants {
    * </tr>
    * <tr>
    * <td><code>Ljava/lang/String </code></td>
-   * <td> <code> len(Ljava/lang/String)</code></td>
+   * <td> <code> len(java/lang/String) + 1</code></td>
    * </tr>
    * </table>
    * 
