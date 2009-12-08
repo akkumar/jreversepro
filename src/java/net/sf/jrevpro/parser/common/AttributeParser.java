@@ -38,6 +38,8 @@ import net.sf.jrevpro.reflect.Method;
  */
 public final class AttributeParser {
 
+  private static final Logger logger = CustomLoggerFactory.createLogger();
+
   /**
    * Manipulates the 'ConstantValue' attribute of the Fields.
    * <p>
@@ -234,6 +236,11 @@ public final class AttributeParser {
     return classes;
   }
 
+  public static void readInnerClasses(DataInputStream dis) {
+    // TODO Auto-generated method stub
+    
+  }
+
   /**
    * Reads the possible attributes of Code.
    * <p>
@@ -334,11 +341,5 @@ public final class AttributeParser {
 
   }
 
-  private static final Logger logger = CustomLoggerFactory.createLogger();
-
-  public static void readInnerClasses(DataInputStream dis) {
-    // TODO Auto-generated method stub
-    
-  }
 
 }
