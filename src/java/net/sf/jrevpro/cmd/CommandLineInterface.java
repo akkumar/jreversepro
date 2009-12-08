@@ -28,6 +28,12 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
+/**
+ * The command line interface of the application in place.
+ * 
+ * @author karthik.kumar
+ *
+ */
 public class CommandLineInterface {
 
   public CommandLineInterface() {
@@ -50,7 +56,7 @@ public class CommandLineInterface {
       if (cmd.hasOption(OPTION_GUI)) {
         if (cmd.hasOption(OPTION_INPUT) || cmd.hasOption(OPTION_DECOMPILE)
             || cmd.hasOption(OPTION_DISASSEMBLE)) {
-          logger
+          LOGGER
               .severe(OPTION_GUI
                   + " needs to be specified alone and should not accompany other arguments");
           throw new IllegalArgumentException("Invalid argument specified");
@@ -60,7 +66,7 @@ public class CommandLineInterface {
       }
 
       if (!cmd.hasOption(OPTION_INPUT)) {
-        logger.severe("Option -" + OPTION_INPUT + " mandatory");
+        LOGGER.severe("Option -" + OPTION_INPUT + " mandatory");
       }
       outputType = OutputType.NONE;
       if (cmd.hasOption(OPTION_DISASSEMBLE)) {
@@ -71,7 +77,7 @@ public class CommandLineInterface {
       }
       if (cmd.hasOption(OPTION_GUI)) {
         if (cmd.hasOption(OPTION_INPUT) || cmd.hasOption(OPTION_DECOMPILE)) {
-          logger
+          LOGGER
               .severe(OPTION_GUI
                   + " needs to be specified alone and should not accompany other arguments");
           throw new UnsupportedOperationException("Invalid argument specified");
@@ -79,7 +85,7 @@ public class CommandLineInterface {
         guiEnabled = true;
       }
       if (outputType == OutputType.NONE) {
-        logger.severe("Need to specify either " + OPTION_DISASSEMBLE + " or "
+        LOGGER.severe("Need to specify either " + OPTION_DISASSEMBLE + " or "
             + OPTION_DECOMPILE);
 
       }
@@ -89,7 +95,7 @@ public class CommandLineInterface {
       }
 
     } catch (ParseException ex) {
-      logger.severe(ex.toString());
+      LOGGER.severe(ex.toString());
     }
   }
 
@@ -134,6 +140,6 @@ public class CommandLineInterface {
   // t may mean target as v is already used
   private static final String DECOMPILE_VERSION = "t";
 
-  private final Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger LOGGER = CustomLoggerFactory.createLogger();
 
 }
