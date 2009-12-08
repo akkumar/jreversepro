@@ -60,11 +60,6 @@ public class CommandMain {
   public void process(String[] args) {
     cli.parse(args);
 
-    // Comment by bercolax: Set the Java version to decompile. To server
-    // multiple requests
-    // queuing support should be added later to follow serialized processing.
-    // Else synchronization issues
-    // will occur.
     JavaDecompileVersionContext.setJavaVersionToDecompile(cli
         .getJavaVersionToDecompile());
 
@@ -80,19 +75,19 @@ public class CommandMain {
       System.out.println(context.print(cli.getOutputType(), info));
 
     } catch (FileNotFoundException e) {
-      logger.severe(e.getMessage());
+      LOGGER.severe(e.getMessage());
     } catch (IOException e) {
-      logger.severe(e.getMessage());
+      LOGGER.severe(e.getMessage());
     } catch (ClassParserException e) {
-      logger.severe(e.getMessage());
+      LOGGER.severe(e.getMessage());
     }
 
   }
 
-  private CommandLineInterface cli;
+  private final CommandLineInterface cli;
 
-  private JReverseProContext context;
+  private final JReverseProContext context;
 
-  private Logger logger = CustomLoggerFactory.createLogger();
+  private final Logger LOGGER = CustomLoggerFactory.createLogger();
 
 }
