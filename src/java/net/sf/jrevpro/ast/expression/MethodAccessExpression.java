@@ -56,7 +56,7 @@ public abstract class MethodAccessExpression extends Expression {
     args = _args;
   }
   
-  protected String serializedArgs() {
+  String serializedArgs() {
     final StringBuilder result = new StringBuilder();
     result.append(JLSConstants.OPEN_BRACKET);
     for (int i = 0; i < args.size(); i++) {
