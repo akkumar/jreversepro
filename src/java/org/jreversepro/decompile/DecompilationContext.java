@@ -29,6 +29,14 @@ import org.jreversepro.reflect.instruction.InstructionList;
 
 public class DecompilationContext {
 
+  Method method;
+
+  ConstantPool constantPool;
+
+  InstructionList list;
+
+  private static final Logger logger = CustomLoggerFactory.createLogger();
+  
   public DecompilationContext(Method _method, ConstantPool _constantPool) {
     method = _method;
     constantPool = _constantPool;
@@ -42,12 +50,6 @@ public class DecompilationContext {
 
   }
 
-  Method method;
 
-  ConstantPool constantPool;
-
-  InstructionList list;
-
-  private Logger logger = CustomLoggerFactory.createLogger();
 
 }

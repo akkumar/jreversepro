@@ -31,6 +31,13 @@ import org.jreversepro.reflect.variabletable.VariableTable;
 
 public class Decompiler {
 
+  private static final Logger logger = CustomLoggerFactory.createLogger();
+
+
+  private VariableTable variableTable;
+
+  private final DecompilationContext context;
+  
   public Decompiler(DecompilationContext _ctx) {
     context = _ctx;
 
@@ -68,9 +75,5 @@ public class Decompiler {
 
   }
 
-  private VariableTable symbolTable;
 
-  private DecompilationContext context;
-
-  private Logger logger = CustomLoggerFactory.createLogger();
 }

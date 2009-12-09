@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author akkumar
+ * List of instructions in a given method.
  * 
  */
 public class InstructionList {
+
+  private final List<Instruction> instructions;
 
   public InstructionList() {
     instructions = new ArrayList<Instruction>();
@@ -87,6 +89,5 @@ public class InstructionList {
     return instructions;
   }
 
-  private final List<Instruction> instructions;
 
 }
