@@ -29,6 +29,78 @@ import org.jreversepro.jvm.JVMConstants;
  */
 public class ClassInfo {
 
+  // Generic Info about a class File.
+  /**
+   * Absolute path where the class' source file was located.
+   */
+  private String absPath;
+
+  /**
+   * Major number of the JVM version that this class file is compiled for.
+   */
+  private short majorNumber;
+
+  /**
+   * Minor number of the JVM version that this class file is compiled for.
+   */
+  private short minorNumber;
+
+  /**
+   * Name of the current class in the JVM format. That is, if the class is
+   * String then the name would be java/lang/String.
+   */
+  private String thisClass;
+
+  /**
+   * Name of the current class' superclass in the JVM format. That is, if the
+   * class is String then the name would be java/lang/String.
+   */
+  private String superClass;
+
+  /**
+   * Name of the package of the current class in the JVM format. That is the
+   * fully qualified name of the class is java.lang.String. then the package
+   * name would contain java/lang.
+   */
+  private String packageName;
+
+  /**
+   * Name of the source file in which this class files' code is present.
+   */
+  private String srcFile;
+
+  /**
+   * ConstantPool information contained in the class.
+   */
+  private final ConstantPool cpInfo;
+
+  /**
+   * List of fields present in the class. All the members in the list are
+   * JField.
+   */
+  private List<Field> memFields;
+
+  /**
+   * List of methods present in the class. All the members in the list are
+   * JMethod.
+   */
+  private List<Method> memMethods;
+
+  /**
+   * List of interfaces present in the class. All the members in the list are
+   * String. For example if the class implements java.awt.event.ActionListener
+   * then the list would contain java/awt/event/ActionListener as its member.
+   * The class file name would be in the JVM format as mentioned above.
+   */
+  private List<String> interfaces;
+
+  /**
+   * An integer referring to the access permission of the class. Like if a class
+   * is public static void main () then the accessflag would have appropriate
+   * bits set to say if it public static.
+   */
+  private int accessFlag;
+  
   /**
    * Empty constructor
    */
@@ -238,76 +310,6 @@ public class ClassInfo {
     return ((accessFlag & JVMConstants.ACC_INTERFACE) == 0);
   }
 
-  // Generic Info about a class File.
-  /**
-   * Absolute path where the class' source file was located.
-   */
-  private String absPath;
-
-  /**
-   * Major number of the JVM version that this class file is compiled for.
-   */
-  private short majorNumber;
-
-  /**
-   * Minor number of the JVM version that this class file is compiled for.
-   */
-  private short minorNumber;
-
-  /**
-   * Name of the current class in the JVM format. That is, if the class is
-   * String then the name would be java/lang/String.
-   */
-  private String thisClass;
-
-  /**
-   * Name of the current class' superclass in the JVM format. That is, if the
-   * class is String then the name would be java/lang/String.
-   */
-  private String superClass;
-
-  /**
-   * Name of the package of the current class in the JVM format. That is the
-   * fully qualified name of the class is java.lang.String. then the package
-   * name would contain java/lang.
-   */
-  private String packageName;
-
-  /**
-   * Name of the source file in which this class files' code is present.
-   */
-  private String srcFile;
-
-  /**
-   * ConstantPool information contained in the class.
-   */
-  private final ConstantPool cpInfo;
-
-  /**
-   * List of fields present in the class. All the members in the list are
-   * JField.
-   */
-  private List<Field> memFields;
-
-  /**
-   * List of methods present in the class. All the members in the list are
-   * JMethod.
-   */
-  private List<Method> memMethods;
-
-  /**
-   * List of interfaces present in the class. All the members in the list are
-   * String. For example if the class implements java.awt.event.ActionListener
-   * then the list would contain java/awt/event/ActionListener as its member.
-   * The class file name would be in the JVM format as mentioned above.
-   */
-  private List<String> interfaces;
-
-  /**
-   * An integer referring to the access permission of the class. Like if a class
-   * is public static void main () then the accessflag would have appropriate
-   * bits set to say if it public static.
-   */
-  private int accessFlag;
+ 
 
 }
