@@ -25,7 +25,7 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -41,14 +41,14 @@ public class MenuLooknFeel extends JMenu {
 
   JFrame AppFrame;
 
-  public static final String MOTIF_LF = MotifLookAndFeel.class.getName();
-  public static final String WINDOWS_LF = WindowsLookAndFeel.class.getName();
-  public static final String METAL_LF = MetalLookAndFeel.class.getName();
+  private  static final String MOTIF_LF = MotifLookAndFeel.class.getName();
+  private static final String WINDOWS_LF = WindowsLookAndFeel.class.getName();
+  private static final String DEFAULT_LF = SynthLookAndFeel.class.getName();
 
   String App_LF;
   static final String WINDOWS = "Win";
   static final String MOTIF = "Motif";
-  static final String METAL = "Metal";
+  static final String SYNTH = "Synth";
 
   public MenuLooknFeel(String title, JFrame thisFrame) {
     super(title);
@@ -82,19 +82,17 @@ public class MenuLooknFeel extends JMenu {
 
   public void setAppLookAndFeel(String Rhs) {
     if (Rhs == null)
-      setMetal_LF();
+      setDefault_LF();
     else if (Rhs.compareTo(WINDOWS) == 0)
       setWin_LF();
     else if (Rhs.compareTo(MOTIF) == 0)
       setMotif_LF();
-    else if (Rhs.compareTo(METAL) == 0)
-      setMetal_LF();
     else
-      setMetal_LF();
+      setDefault_LF();
   }
 
   public void setDefaultLookAndFeel() {
-    setMetal_LF();
+    setDefault_LF();
   }
 
   private void setWin_LF() {
@@ -115,11 +113,11 @@ public class MenuLooknFeel extends JMenu {
     }
   }
 
-  private void setMetal_LF() {
+  private void setDefault_LF() {
     try {
-      UIManager.setLookAndFeel(METAL_LF);
+      UIManager.setLookAndFeel(DEFAULT_LF);
       SwingUtilities.updateComponentTreeUI(AppFrame);
-      App_LF = METAL;
+      App_LF = SYNTH;
     } catch (Exception _ex) {
     }
   }
@@ -127,7 +125,7 @@ public class MenuLooknFeel extends JMenu {
   private void addLookAndFeelListeners() {
     MetalLookAndFeel.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        setMetal_LF();
+        setDefault_LF();
       }
     });
 
