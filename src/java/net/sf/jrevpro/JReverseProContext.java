@@ -44,6 +44,24 @@ public class JReverseProContext {
   public enum OutputType {
     NONE, DISASSEMBLER, DECOMPILER, VIEW_CONSTANTPOOL,
   }
+  
+  /**
+   * Version of the software.
+   */
+  public static final String VERSION = "1.6.0";
+
+  /**
+   * GPL Information.
+   */
+  public static String GPL_INFO = "// JReversePro v " + VERSION + " "
+      + (new Date()) + "\n// http://jrevpro.sourceforge.net"
+      + "\n// Copyright (C)2000-2009 Karthik Kumar."
+      + "\n// JReversePro comes with ABSOLUTELY NO WARRANTY;"
+      + "\n// This is free software, and you are welcome to redistribute"
+      + "\n// it under certain conditions;See the File 'COPYING' for "
+      + "more details.\n";
+
+  private final Logger logger = CustomLoggerFactory.createLogger();  
 
   /**
    * 
@@ -92,21 +110,5 @@ public class JReverseProContext {
     System.out.println(GPL_INFO);
   }
 
-  /**
-   * Version of the software.
-   */
-  public static final String VERSION = "1.5.0";
 
-  /**
-   * GPL Information.
-   */
-  public static String GPL_INFO = "// JReversePro v " + VERSION + " "
-      + (new Date()) + "\n// http://jrevpro.sourceforge.net"
-      + "\n// Copyright (C)2000-2009 Karthik Kumar."
-      + "\n// JReversePro comes with ABSOLUTELY NO WARRANTY;"
-      + "\n// This is free software, and you are welcome to redistribute"
-      + "\n// it under certain conditions;See the File 'COPYING' for "
-      + "more details.\n";
-
-  private final Logger logger = CustomLoggerFactory.createLogger();
 }
