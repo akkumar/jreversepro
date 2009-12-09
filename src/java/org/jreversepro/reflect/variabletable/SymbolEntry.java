@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * LocalEntry is an entry in the SymbolTable.
+ * VariableEntry is an entry in the VariableTable.
  * 
  * @author Karthik Kumar
  */

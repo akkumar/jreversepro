@@ -31,16 +31,77 @@ import org.jreversepro.jvm.TypeInferrer;
 import org.jreversepro.reflect.Import;
 import org.jreversepro.reflect.instruction.Instruction;
 
-
 /**
  * Variable Table built dynamically by the app.
  * 
- * @author Karthik Kumar
- *         Karthikeyan C 
+ * @author Karthik Kumar Karthikeyan C
  * 
  * 
  */
 public class DynamicVariableTable implements VariableTable {
+
+  /**
+   * Map of the Symbols -
+   * 
+   * Key - local variable index // 0-based index
+   * 
+   * Value - List of LocalEntry. since for the same localvariable index, more
+   * than one datatypes may exist (of different scope within the method).
+   */
+  List<List<SymbolEntry>> symbols;
+
+  /**
+   * List of symbol names of all 'LocalEntry' variables in the method.
+   */
+  Set<String> symbolNames;
+
+  /**
+   * Maximum number of symbols that can be in the table at any given time.
+   * 
+   * 0-based index.
+   */
+  int maxSymbols;
+
+  /**
+   * Maximum args in that symbol count mentioned in maxSymbols.
+   * 
+   * 0-based index.
+   */
+  int maxArgs;
+
+  /**
+   * Current index of basic fundamental datatype local variables
+   * (non-reference), beginning at {@link #DEFAULT_LOCAL_VARIABLE_NAME_BASIS}
+   */
+  int localVariableNameBasis;
+
+  /**
+   * Return of the method for which the symbol table is being constructed.
+   */
+  String methodReturnType;
+
+  /**
+   * To represent the index of a variable into the bytecode array of a method,
+   * when we store it, we use a -ve number to represent the referred bytecode
+   * index for a <i>method argument</i>, since they are referred in the
+   * arguments and hence should be out of bounds (0.. methods.length).
+   */
+  public static final int ARG_BYTECODE_REFERRED_INDEX = -1;
+
+  /**
+   * Local variables names start with 'i'
+   */
+  private static final char DEFAULT_LOCAL_VARIABLE_NAME_BASIS = 'i';
+
+  /**
+   * Suffix to the local variables that are of type Array.
+   * <p>
+   * TODO: Better way to abstract out the nomenclature part of it.
+   */
+  private static final String LOCAL_VARIABLE_ARRAY_SUFFIX = "arr";
+
+  
+  private static final Logger logger = CustomLoggerFactory.createLogger();
 
   /**
    * @param context
@@ -291,66 +352,5 @@ public class DynamicVariableTable implements VariableTable {
     }
     return sb.toString();
   }
-
-  /**
-   * Map of the Symbols -
-   * 
-   * Key - local variable index // 0-based index
-   * 
-   * Value - List of LocalEntry. since for the same localvariable index, more
-   * than one datatypes may exist (of different scope within the method).
-   */
-  List<List<SymbolEntry>> symbols;
-
-  /**
-   * List of symbol names of all 'LocalEntry' variables in the method.
-   */
-  Set<String> symbolNames;
-
-  /**
-   * Maximum number of symbols that can be in the table at any given time.
-   * 
-   * 0-based index.
-   */
-  int maxSymbols;
-
-  /**
-   * Maximum args in that symbol count mentioned in maxSymbols.
-   * 
-   * 0-based index.
-   */
-  int maxArgs;
-
-  /**
-   * Current index of basic fundamental datatype local variables
-   * (non-reference), beginning at {@link #DEFAULT_LOCAL_VARIABLE_NAME_BASIS}
-   */
-  int localVariableNameBasis;
-
-  /**
-   * Return of the method for which the symbol table is being constructed.
-   */
-  String methodReturnType;
-
-  /**
-   * To represent the index of a variable into the bytecode array of a method,
-   * when we store it - we use a -ve number to represent the referred bytecode
-   * index for a method argument, since they are referred in the arguments and
-   * hence should be out of bounds (0.. methods.length).
-   */
-  public static final int ARG_BYTECODE_REFERRED_INDEX = -1;
-
-  /**
-   * Local variables names start with 'i'
-   */
-  private static final char DEFAULT_LOCAL_VARIABLE_NAME_BASIS = 'i';
-
-  /**
-   * Suffix to the local variables that are of type Array. TODO: Better way to
-   * abstract out the nomenclature part of it.
-   */
-  private static final String LOCAL_VARIABLE_ARRAY_SUFFIX = "Arr";
-
-  private static final Logger logger = CustomLoggerFactory.createLogger();
 
 }
