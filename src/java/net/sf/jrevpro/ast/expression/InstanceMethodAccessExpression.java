@@ -40,7 +40,7 @@ public class InstanceMethodAccessExpression extends MethodAccessExpression {
     StringBuilder result = new StringBuilder();
 
     if (methodName.equals(INIT)) {
-      result.append(objName);
+      result.append(objName); // This would be a ctor.
     } else {
       if (!objName.equals(JLSConstants.THIS)) {
         result.append(objName + JLSConstants.JLS_PACKAGE_DELIMITER);
