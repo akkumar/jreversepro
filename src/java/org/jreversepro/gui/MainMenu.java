@@ -29,28 +29,28 @@ import javax.swing.JRadioButtonMenuItem;
 public class MainMenu extends JMenuBar {
   static final int MAX_THEMES = 3;
 
-  JMenu OnFile;
-  JMenu OnEdit;
-  JMenu OnView;
-  JMenu OnOptions;
-  public MenuLooknFeel OnLookFeel;
-  JMenu OnHelp;
+  JMenu onFile;
+  JMenu onEdit;
+  JMenu onView;
+  JMenu onOptions;
+  public MenuLooknFeel onLookFeel;
+  JMenu onHelp;
 
-  public JMenuItem OnFileOpen;
-  public JMenuItem OnFileSave;
-  public JMenuItem OnFileExit;
+  public JMenuItem onFileOpen;
+  public JMenuItem onFileSave;
+  public JMenuItem onFileExit;
 
-  public JMenuItem OnEditCut;
-  public JMenuItem OnEditCopy;
+  public JMenuItem onEditCut;
+  public JMenuItem onEditCopy;
 
-  public JMenuItem OnViewCPool;
+  public JMenuItem onViewCPool;
 
-  public JMenuItem OnOptFont;
+  public JMenuItem onOptFont;
 
-  public JRadioButtonMenuItem OnDisAssembler;
-  public JRadioButtonMenuItem OnDecompiler;
+  public JRadioButtonMenuItem onDisAssembler;
+  public JRadioButtonMenuItem onDecompiler;
 
-  public JMenuItem OnHelpAbout;
+  public JMenuItem onHelpAbout;
 
   ButtonGroup group;
   JFrame parent;
@@ -61,38 +61,38 @@ public class MainMenu extends JMenuBar {
 
     parent = owner;
 
-    OnFile = new JMenu("File");
-    OnEdit = new JMenu("Edit");
-    OnView = new JMenu("View");
-    OnOptions = new JMenu("Options");
-    OnHelp = new JMenu("Help");
+    onFile = new JMenu("File");
+    onEdit = new JMenu("Edit");
+    onView = new JMenu("View");
+    onOptions = new JMenu("Options");
+    onHelp = new JMenu("Help");
 
-    OnLookFeel = new MenuLooknFeel("Look And Feel", parent);
+    onLookFeel = new MenuLooknFeel("Look And Feel", parent);
 
     initMenuItems();
 
-    OnFile.add(OnFileOpen);
-    OnFile.add(OnFileSave);
-    OnFile.add(OnFileExit);
+    onFile.add(onFileOpen);
+    onFile.add(onFileSave);
+    onFile.add(onFileExit);
 
-    OnEdit.add(OnEditCut);
-    OnEdit.add(OnEditCopy);
+    onEdit.add(onEditCut);
+    onEdit.add(onEditCopy);
 
-    OnView.add(OnViewCPool);
+    onView.add(onViewCPool);
 
-    OnOptions.add(OnOptFont);
-    OnOptions.addSeparator();
-    OnOptions.add(OnDisAssembler);
-    OnOptions.add(OnDecompiler);
+    onOptions.add(onOptFont);
+    onOptions.addSeparator();
+    onOptions.add(onDisAssembler);
+    onOptions.add(onDecompiler);
 
-    OnHelp.add(OnHelpAbout);
+    onHelp.add(onHelpAbout);
 
-    add(OnFile);
-    add(OnEdit);
-    add(OnView);
-    add(OnOptions);
-    add(OnLookFeel);
-    add(OnHelp);
+    add(onFile);
+    add(onEdit);
+    add(onView);
+    add(onOptions);
+    add(onLookFeel);
+    add(onHelp);
 
     setFont(FontObj);
   }
@@ -103,29 +103,29 @@ public class MainMenu extends JMenuBar {
       value = true;
     else
       value = false;
-    OnDecompiler.setSelected(value);
-    OnDisAssembler.setSelected(!value);
+    onDecompiler.setSelected(value);
+    onDisAssembler.setSelected(!value);
   }
 
   private void initMenuItems() {
-    OnFileOpen = new JMenuItem("Open");
-    OnFileSave = new JMenuItem("Save");
-    OnFileExit = new JMenuItem("Exit");
+    onFileOpen = new JMenuItem("Open");
+    onFileSave = new JMenuItem("Save");
+    onFileExit = new JMenuItem("Exit");
 
-    OnEditCut = new JMenuItem("Cut");
-    OnEditCopy = new JMenuItem("Copy");
+    onEditCut = new JMenuItem("Cut");
+    onEditCopy = new JMenuItem("Copy");
 
-    OnViewCPool = new JMenuItem("ConstantPool");
+    onViewCPool = new JMenuItem("ConstantPool");
 
-    OnOptFont = new JMenuItem("Set Font ");
+    onOptFont = new JMenuItem("Set Font ");
 
-    OnDisAssembler = new JRadioButtonMenuItem("DisAssemble", true);
-    OnDecompiler = new JRadioButtonMenuItem("Decompile");
+    onDisAssembler = new JRadioButtonMenuItem("DisAssemble", true);
+    onDecompiler = new JRadioButtonMenuItem("Decompile");
 
     group = new ButtonGroup();
-    group.add(OnDisAssembler);
-    group.add(OnDecompiler);
+    group.add(onDisAssembler);
+    group.add(onDecompiler);
 
-    OnHelpAbout = new JMenuItem("About");
+    onHelpAbout = new JMenuItem("About");
   }
 }
