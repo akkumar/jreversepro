@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
+import com.apple.laf.AquaLookAndFeel;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
@@ -41,9 +42,10 @@ public class MenuLooknFeel extends JMenu {
 
   JFrame AppFrame;
 
-  private  static final String MOTIF_LF = MotifLookAndFeel.class.getName();
+  private static final String MOTIF_LF = MotifLookAndFeel.class.getName();
   private static final String WINDOWS_LF = WindowsLookAndFeel.class.getName();
   private static final String DEFAULT_LF = SynthLookAndFeel.class.getName();
+  private static final String AQUA_LF = AquaLookAndFeel.class.getName();
 
   String App_LF;
   static final String WINDOWS = "Win";
@@ -115,11 +117,16 @@ public class MenuLooknFeel extends JMenu {
 
   private void setDefault_LF() {
     try {
-      UIManager.setLookAndFeel(DEFAULT_LF);
+      if (System.getProperty("os.name").startsWith("Mac")) {
+        UIManager.setLookAndFeel(AQUA_LF);
+      } else {
+        UIManager.setLookAndFeel(DEFAULT_LF);
+      }
       SwingUtilities.updateComponentTreeUI(AppFrame);
       App_LF = SYNTH;
-    } catch (Exception _ex) {
-    }
+    } catch (Exception ulfe) {
+
+    } 
   }
 
   private void addLookAndFeelListeners() {
