@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 
 public class Hello {
 
-  public static void main(String[] args) throws FileNotFoundException {
+  static int variable;
+  
+  public static void main(String[] args1) throws FileNotFoundException {
     @SuppressWarnings("unused")
     FileInputStream fst = new FileInputStream("a.txt");
   }
@@ -17,5 +19,9 @@ public class Hello {
     if (a < b) {
       b = 3;
     }
+  }
+  
+  static { 
+    Hello.variable = 2;
   }
 }

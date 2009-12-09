@@ -8,7 +8,7 @@ public abstract class Parent1 {
   public int i = 0;
 
   public long lokking = 6670;
-  public List list;
+  public List<String> list;
 
   public static int add(int x, int k) throws Exception {
     return 10;
@@ -17,10 +17,11 @@ public abstract class Parent1 {
   public void addLong(long currCkaTimeInMilliSecs, String jh, double jjik, int k) {
 
     i = 9898;
-    list = new ArrayList();
+    list = new ArrayList<String>();
     list.add("added");
     int kk = 90;
     kk = 877;
+    k = kk;
 
   }
 
