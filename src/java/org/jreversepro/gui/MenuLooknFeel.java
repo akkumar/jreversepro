@@ -16,8 +16,19 @@
  **/
 package org.jreversepro.gui;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 @SuppressWarnings("serial")
 public class MenuLooknFeel extends JMenu {
@@ -30,9 +41,9 @@ public class MenuLooknFeel extends JMenu {
 
   JFrame AppFrame;
 
-  public static final String MOTIF_LF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-  public static final String WINDOWS_LF = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-  public static final String METAL_LF = "javax.swing.plaf.metal.MetalLookAndFeel";
+  public static final String MOTIF_LF = MotifLookAndFeel.class.getName();
+  public static final String WINDOWS_LF = WindowsLookAndFeel.class.getName();
+  public static final String METAL_LF = MetalLookAndFeel.class.getName();
 
   String App_LF;
   static final String WINDOWS = "Win";
