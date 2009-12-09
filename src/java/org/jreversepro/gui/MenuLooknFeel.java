@@ -36,7 +36,7 @@ import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 @SuppressWarnings("serial")
 public class MenuLooknFeel extends JMenu {
 
-  String App_LF;
+  String appLnF;
 
   static final String WINDOWS = "Win";
   static final String MOTIF = "Motif";
@@ -47,9 +47,9 @@ public class MenuLooknFeel extends JMenu {
 
   JRadioButtonMenuItem[] lookAndFeels;
 
-  ButtonGroup Btngroup;
+  ButtonGroup groupLnF;
 
-  JFrame AppFrame;
+  JFrame appFrame;
 
   /**
    * Current LnF of the app
@@ -66,7 +66,7 @@ public class MenuLooknFeel extends JMenu {
   public MenuLooknFeel(String title, JFrame thisFrame) {
     super(title);
 
-    AppFrame = thisFrame;
+    appFrame = thisFrame;
 
     ButtonGroup group = new ButtonGroup();
     lookAndFeels = new JRadioButtonMenuItem[LnFClasses.size()];
@@ -94,7 +94,7 @@ public class MenuLooknFeel extends JMenu {
   }
 
   public final String getAppLookAndFeel() {
-    return App_LF;
+    return appLnF;
   }
 
   public void setAppLookAndFeel(String rhs) {
@@ -120,8 +120,8 @@ public class MenuLooknFeel extends JMenu {
   private void updateLF(final String lnf) {
     try {
       UIManager.setLookAndFeel(LnFClasses.get(lnf));
-      SwingUtilities.updateComponentTreeUI(AppFrame);
-      App_LF = lnf;
+      SwingUtilities.updateComponentTreeUI(appFrame);
+      appLnF = lnf;
     } catch (Exception _ex) {
     }
   }
