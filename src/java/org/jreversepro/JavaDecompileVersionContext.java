@@ -20,7 +20,18 @@ public final class JavaDecompileVersionContext {
   private static final JavaDecompileVersionContext ctx = new JavaDecompileVersionContext();
 
   public enum JAVA_VERSION {
-    JAVA_1_4, JAVA_5, JAVA_6
+    /**
+     * Java 1.5 source
+     */
+    JAVA_1_4, 
+    /**
+     * Java 1.5 source
+     */
+    JAVA_5, 
+    /**
+     * Java 1.6 source
+     */
+    JAVA_6
   }
 
   public static final void setJavaVersionToDecompile(final String version) {
