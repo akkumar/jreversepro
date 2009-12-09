@@ -1,8 +1,6 @@
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EmptyStackException;
 import java.util.List;
 
 import net.sf.jrevpro.ast.expression.Expression;
@@ -11,7 +9,7 @@ import net.sf.jrevpro.ast.expression.MethodAccessExpression;
 import net.sf.jrevpro.jvm.TypeInferrer;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
-public class InvokeSpecialEvaluator extends AbstractInstructionEvaluator {
+public class InvokeSpecialEvaluator extends InvokeEvaluator {
 
   public InvokeSpecialEvaluator(EvaluatorContext context) {
     super(context);
@@ -35,26 +33,13 @@ public class InvokeSpecialEvaluator extends AbstractInstructionEvaluator {
     String methodType = className;
     // possibly a constructor.
     // then the type is the same as className
-    List<Expression> argValues = new ArrayList<Expression>(popMax);
-    for (int i = popMax - 1; i >= 0; i--) {
-      // add arguments in reverse order
-      argValues.add(0, evalMachine.pop());
-    }
+    List<Expression> argValues = this.getArguments(popMax);
 
     Expression accessTarget = evalMachine.pop();
 
     MethodAccessExpression mex = new InstanceMethodAccessExpression(
-        accessTarget, methodName, methodType, argValues, true);
-    // Peek the top and replace the top object reference. Stack remains
-    // the same.
-    try {
-      evalMachine.pop(); // Popped expression is not needed. we are just
-      // replacing it.
-      evalMachine.push(mex);
-    } catch (EmptyStackException ex) {
-      logger.warning("invokespecial: Cannot peek the stack when pushing "
-          + mex.getJLSCode());
-    }
+        accessTarget, methodName, methodType, argValues);
+    evalMachine.push(mex);
   }
 
   @Override

@@ -1,6 +1,5 @@
 package net.sf.jrevpro.ast.evaluator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import net.sf.jrevpro.ast.intermediate.CompleteLine;
 import net.sf.jrevpro.jvm.TypeInferrer;
 import net.sf.jrevpro.reflect.instruction.Instruction;
 
-public class InvokeStaticEvaluator  extends AbstractInstructionEvaluator {
+public class InvokeStaticEvaluator  extends InvokeEvaluator {
 
   public InvokeStaticEvaluator(EvaluatorContext context) {
     super(context);
@@ -37,11 +36,7 @@ public class InvokeStaticEvaluator  extends AbstractInstructionEvaluator {
     String methodType = TypeInferrer.getReturnType(argsList);
     // Get Return type
 
-    List<Expression> argValues = new ArrayList<Expression>(popMax);
-    for (int i = popMax - 1; i >= 0; i--) {
-      argValues.add(0, evalMachine.pop());
-    }
-
+    List<Expression> argValues = this.getArguments(popMax);
     MethodAccessExpression mex = new StaticMethodAccessExpression(classType,
         methodName, methodType, argValues);
 

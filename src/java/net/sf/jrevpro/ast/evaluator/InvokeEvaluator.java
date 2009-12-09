@@ -109,7 +109,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
     Expression accessTarget = evalMachine.pop();
 
     MethodAccessExpression mex = new InstanceMethodAccessExpression(
-        accessTarget, methodName, methodType, argValues, false);
+        accessTarget, methodName, methodType, argValues);
 
     if (!methodType.equals(String.valueOf(JVM_TYPE_VOID))) {
       // Non-void method - Push the result back onto the stack
