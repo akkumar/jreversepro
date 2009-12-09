@@ -44,7 +44,7 @@ public class DynamicVariableTableContext {
     maxSymbols = method.getMaxLocals();
     args = method.getArgList();
     isMethodStatic = method.isStatic();
-    mapMethodExceptions = method.getAllExceptionsAsMap();
+    mapMethodExceptions = method.getExceptionBlocks().getAllExceptionsAsMap();
     jvmMethodReturnType = method.getReturnType();
   }
 

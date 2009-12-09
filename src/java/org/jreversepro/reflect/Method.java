@@ -19,16 +19,13 @@
 package org.jreversepro.reflect;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.jreversepro.jvm.JVMConstants;
 import org.jreversepro.jvm.TypeInferrer;
 import org.jreversepro.reflect.variabletable.DynamicVariableTable;
 import org.jreversepro.reflect.variabletable.DynamicVariableTableContext;
 import org.jreversepro.reflect.variabletable.VariableTable;
-
 
 /**
  * <b>Method</b> is the abstract representation of a method in the class
@@ -75,10 +72,9 @@ public class Method extends Member {
   private byte[] bytecodes;
 
   /**
-   * This list contains the exception tables that are defined for this method.
-   * The members of this list are - JException
+   * List of Exceptions thrown by the given method.
    */
-  private final List<ExceptionThrownByMethod> exceptionBlocks; // exception table
+  private final ExceptionList exceptionBlocks; // exception table
 
   /**
    * This contains the LineNumberTable that may be compiled for this method.
@@ -92,17 +88,17 @@ public class Method extends Member {
    * The LocalVariableTable optional variable-length attribute providing debug
    * information and also to provide meaningful names to parameters of a method
    * as well as local variables in a method. This will be populated and used
-   * only when debugging is turned on [using -g option]. Else the decompiler will
-   * assign its own name.
+   * only when debugging is turned on [using -g option]. Else the decompiler
+   * will assign its own name.
    * 
    */
   private VariableTable variableTable;
-  
+
   /**
    * 
    */
   public Method() {
-    exceptionBlocks = new ArrayList<ExceptionThrownByMethod>();
+    exceptionBlocks = new ExceptionList();
     throwsClasses = new ArrayList<String>(2);
   }
 
@@ -130,18 +126,7 @@ public class Method extends Member {
    */
   public void addExceptionBlock(int startPc, int endPc, int handlerPc,
       String datatype) {
-
-    ExceptionThrownByMethod exc = new ExceptionThrownByMethod(startPc, endPc, handlerPc,
-        datatype);
-
-    // Probably some changes to the keys put in the list.
-    int tryIndex = exceptionBlocks.indexOf(exc);
-    if (tryIndex == -1) {
-      exceptionBlocks.add(exc);
-    } else {
-      ExceptionThrownByMethod oldTry = exceptionBlocks.get(tryIndex);
-      oldTry.addCatchBlock(handlerPc, datatype);
-    }
+    this.exceptionBlocks.addExceptionBlock(startPc, endPc, handlerPc, datatype);
   }
 
   /**
@@ -277,21 +262,8 @@ public class Method extends Member {
    * 
    * @return Returns the exception table.
    */
-  public List<ExceptionThrownByMethod> getExceptionBlocks() {
+  public ExceptionList getExceptionBlocks() {
     return exceptionBlocks;
-  }
-
-  /**
-   * Returns a map
-   * 
-   * @return Returns a map of exception tables.
-   */
-  public Map<Integer, String> getAllExceptionsAsMap() {
-    Map<Integer, String> newMap = new HashMap<Integer, String>();
-    for (ExceptionThrownByMethod exc : exceptionBlocks) {
-      newMap.putAll(exc.excCatchTable);
-    }
-    return newMap;
   }
 
   /**
@@ -324,14 +296,7 @@ public class Method extends Member {
     StringBuilder result = new StringBuilder("");
     result.append("\n\t  // Max Locals " + maxLocals);
     result.append("  , Max Stack " + maxStack);
-    if (exceptionBlocks != null) {
-      result.append("\n\n\t  /**");
-      result.append("\n\t\tFrom  To  Handler\tClass\n");
-      for (ExceptionThrownByMethod exc : exceptionBlocks) {
-        result.append(exc.toString());
-      }
-      result.append("\t  **/\n");
-    }
+    result.append(exceptionBlocks != null ? exceptionBlocks.toString() : "");
     // TODO: appending the Exception table info. to be done.
     return result.toString();
   }
@@ -345,7 +310,5 @@ public class Method extends Member {
   public boolean isStatic() {
     return (super.isStatic() || name.equals(JVMConstants.CLINIT));
   }
-
-  
 
 }

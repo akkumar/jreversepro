@@ -29,7 +29,7 @@ import org.jreversepro.jvm.JVMConstants;
  * 
  * @author Karthik Kumar.
  */
-public class ExceptionThrownByMethod {
+public class ExceptionThrown {
 
   /**
    * Start Pc of the exception handler.
@@ -66,7 +66,7 @@ public class ExceptionThrownByMethod {
    * @param rhsType
    *          Handler data type.
    */
-  public ExceptionThrownByMethod(int rhsStart, int rhsEnd, int rhsHandler,
+  public ExceptionThrown(int rhsStart, int rhsEnd, int rhsHandler,
       String rhsType) {
     startPc = rhsStart;
     endPc = rhsEnd;
@@ -144,10 +144,10 @@ public class ExceptionThrownByMethod {
    */
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof ExceptionThrownByMethod)) {
+    if (!(obj instanceof ExceptionThrown)) {
       return false;
     } else {
-      return sameTryBlock((ExceptionThrownByMethod) obj);
+      return sameTryBlock((ExceptionThrown) obj);
     }
   }
 
@@ -160,7 +160,7 @@ public class ExceptionThrownByMethod {
    * @return Returns true if the code blocks are same for both of them. false,
    *         otherwise.
    */
-  public boolean sameTryBlock(ExceptionThrownByMethod exc) {
+  public boolean sameTryBlock(ExceptionThrown exc) {
     return (startPc == exc.startPc && endPc == exc.endPc);
   }
 
