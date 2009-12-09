@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.jreversepro.jvm.JVMConstants;
 
-
 /**
  * <b>JClassInfo</b> is the abstract representation of the Class File. The names
  * of the methods are self explanatory.
@@ -100,7 +99,7 @@ public class ClassInfo {
    * bits set to say if it public static.
    */
   private int accessFlag;
-  
+
   /**
    * Empty constructor
    */
@@ -210,6 +209,10 @@ public class ClassInfo {
     this.packageName = packageName;
   }
 
+  public String getPackageName() {
+    return this.packageName;
+  }
+
   /**
    * Sets the name of the source file to which this was contained in.
    * 
@@ -309,7 +312,5 @@ public class ClassInfo {
   public boolean isClass() {
     return ((accessFlag & JVMConstants.ACC_INTERFACE) == 0);
   }
-
- 
 
 }
