@@ -18,6 +18,8 @@ package org.jreversepro.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -34,6 +36,7 @@ import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 @SuppressWarnings("serial")
 public class MenuLooknFeel extends JMenu {
 
+
   JRadioButtonMenuItem MetalLookAndFeel;
   JRadioButtonMenuItem MotifLookAndFeel;
   JRadioButtonMenuItem WinLookAndFeel;
@@ -42,15 +45,25 @@ public class MenuLooknFeel extends JMenu {
 
   JFrame AppFrame;
 
-  private static final String MOTIF_LF = MotifLookAndFeel.class.getName();
-  private static final String WINDOWS_LF = WindowsLookAndFeel.class.getName();
-  private static final String DEFAULT_LF = SynthLookAndFeel.class.getName();
-  private static final String AQUA_LF = AquaLookAndFeel.class.getName();
-
+  /**
+   * Current LnF of the app
+   */
   String App_LF;
+
   static final String WINDOWS = "Win";
   static final String MOTIF = "Motif";
+  static final String MAC   = "Mac";
   static final String SYNTH = "Synth";
+  
+  static final Map<String, String> LnFClasses;
+
+  static {
+    LnFClasses = new HashMap<String,String>();
+    LnFClasses.put(WINDOWS, WindowsLookAndFeel.class.getName());
+    LnFClasses.put(MOTIF, MotifLookAndFeel.class.getName());
+    LnFClasses.put(MAC, AquaLookAndFeel.class.getName());
+    LnFClasses.put(SYNTH, SynthLookAndFeel.class.getName());
+  }
 
   public MenuLooknFeel(String title, JFrame thisFrame) {
     super(title);
@@ -82,71 +95,54 @@ public class MenuLooknFeel extends JMenu {
     return App_LF;
   }
 
-  public void setAppLookAndFeel(String Rhs) {
-    if (Rhs == null)
-      setDefault_LF();
-    else if (Rhs.compareTo(WINDOWS) == 0)
-      setWin_LF();
-    else if (Rhs.compareTo(MOTIF) == 0)
-      setMotif_LF();
+  public void setAppLookAndFeel(String rhs) {
+    String tmpLF = SYNTH;
+    if (rhs == null) {
+      if (System.getProperty("os.name").startsWith("Mac")) {
+        tmpLF = MAC;
+      } else {
+        tmpLF = SYNTH;
+      }
+    }
+    else if (rhs.compareTo(WINDOWS) == 0 || rhs.compareTo(MOTIF) == 0 || rhs.compareTo(MAC) == 0) 
+      tmpLF = rhs;
     else
-      setDefault_LF();
+      tmpLF = SYNTH;
+    updateLF(tmpLF);
   }
 
   public void setDefaultLookAndFeel() {
-    setDefault_LF();
+    this.setAppLookAndFeel(null);
   }
 
-  private void setWin_LF() {
+  private void updateLF(final String lnf) {
     try {
-      UIManager.setLookAndFeel(WINDOWS_LF);
+      UIManager.setLookAndFeel(LnFClasses.get(lnf));
       SwingUtilities.updateComponentTreeUI(AppFrame);
-      App_LF = WINDOWS;
+      App_LF = lnf;
     } catch (Exception _ex) {
     }
-  }
-
-  private void setMotif_LF() {
-    try {
-      UIManager.setLookAndFeel(MOTIF_LF);
-      SwingUtilities.updateComponentTreeUI(AppFrame);
-      App_LF = MOTIF;
-    } catch (Exception _ex) {
-    }
-  }
-
-  private void setDefault_LF() {
-    try {
-      if (System.getProperty("os.name").startsWith("Mac")) {
-        UIManager.setLookAndFeel(AQUA_LF);
-      } else {
-        UIManager.setLookAndFeel(DEFAULT_LF);
-      }
-      SwingUtilities.updateComponentTreeUI(AppFrame);
-      App_LF = SYNTH;
-    } catch (Exception ulfe) {
-
-    } 
   }
 
   private void addLookAndFeelListeners() {
     MetalLookAndFeel.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        setDefault_LF();
+        setAppLookAndFeel(SYNTH);
       }
     });
 
     MotifLookAndFeel.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        setMotif_LF();
+        setAppLookAndFeel(MOTIF);
       }
     });
 
     WinLookAndFeel.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        setWin_LF();
+        setAppLookAndFeel(WINDOWS);
       }
     });
 
   }
+
 }
