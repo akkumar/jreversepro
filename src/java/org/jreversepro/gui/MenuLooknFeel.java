@@ -31,24 +31,39 @@ import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import com.apple.laf.AquaLookAndFeel;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 @SuppressWarnings("serial")
 public class MenuLooknFeel extends JMenu {
 
-  String appLnF;
 
   static final String WINDOWS = "Win";
   static final String MOTIF = "Motif";
   static final String MAC = "Mac";
   static final String SYNTH = "Synth";
+  static final String NIMBUS = "Nimbus";
 
   static final Map<String, String> LnFClasses;
 
+  /**
+   * Look And Feel of the app
+   */
+  String appLnF;
+
+  /**
+   * Menu items of the app belonging to the look and feel options 
+   */
   JRadioButtonMenuItem[] lookAndFeels;
 
+  /**
+   * Button Group for LnF group of options
+   */
   ButtonGroup groupLnF;
 
+  /**
+   * Parent frame to update.
+   */
   JFrame appFrame;
 
   /**
@@ -61,6 +76,7 @@ public class MenuLooknFeel extends JMenu {
     LnFClasses.put(MOTIF, MotifLookAndFeel.class.getName());
     LnFClasses.put(MAC, AquaLookAndFeel.class.getName());
     LnFClasses.put(SYNTH, SynthLookAndFeel.class.getName());
+    LnFClasses.put(NIMBUS, NimbusLookAndFeel.class.getName());
   }
 
   public MenuLooknFeel(String title, JFrame thisFrame) {
