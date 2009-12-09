@@ -42,16 +42,68 @@ import org.jreversepro.reflect.variabletable.VariableTable;
 public class Method extends Member {
 
   /**
+   * Signature of a method.
+   * 
+   * For example for a method as follows.
+   * 
+   * public void doSomething( int ,int ) //random method signature the signature
+   * will be (II)V .
+   */
+  private String signature;
+
+  /**
+   * Throws classes is a List containing String of the java data types that are
+   * thrown by this method.
+   */
+  private List<String> throwsClasses;
+
+  /**
+   * Maximum size that the JVM stack will occupy on execution of all
+   * instructions present in this method.
+   */
+  private int maxStack;
+
+  /**
+   * Maximum number of local variables present in the local variable table at
+   * any time.
+   */
+  private int maxLocals;
+
+  /**
+   * This contains the bytecodes that are present for the method.
+   */
+  private byte[] bytecodes;
+
+  /**
+   * This list contains the exception tables that are defined for this method.
+   * The members of this list are - JException
+   */
+  private final List<MethodException> exceptionBlocks; // exception table
+
+  /**
+   * This contains the LineNumberTable that may be compiled for this method.
+   * Nevertheless for decompiling purposes this can't be used since this is
+   * optional information in a class file. If debugging is turned off then the
+   * compiler wont bother to generate this LineNumberTable.
+   */
+  private LineNumberTable lineTable;
+
+  /**
+   * The LocalVariableTable optional variable-length attribute providing debug
+   * information and also to provide meaningful names to parameters of a method
+   * as well as local variables in a method. This will be populated and used
+   * only when debugging is turned on [using -g option]. Else the decompiler will
+   * assign its own name.
+   * 
+   */
+  private VariableTable variableTable;
+  
+  /**
    * 
    */
   public Method() {
-
     exceptionBlocks = new ArrayList<MethodException>();
-
     throwsClasses = new ArrayList<String>(2);
-
-    variableTable = null;
-
   }
 
   /**
@@ -294,61 +346,6 @@ public class Method extends Member {
     return (super.isStatic() || name.equals(JVMConstants.CLINIT));
   }
 
-  /**
-   * Signature of a method.
-   * 
-   * For example for a method as follows.
-   * 
-   * public void doSomething( int ,int ) //random method signature the signature
-   * will be (II)V .
-   */
-  private String signature;
-
-  /**
-   * Throws classes is a List containing String of the java data types that are
-   * thrown by this method.
-   */
-  private List<String> throwsClasses;
-
-  /**
-   * Maximum size that the JVM stack will occupy on execution of all
-   * instructions present in this method.
-   */
-  private int maxStack;
-
-  /**
-   * Maximum number of local variables present in the local variable table at
-   * any time.
-   */
-  private int maxLocals;
-
-  /**
-   * This contains the bytecodes that are present for the method.
-   */
-  private byte[] bytecodes;
-
-  /**
-   * This list contains the exception tables that are defined for this method.
-   * The members of this list are - JException
-   */
-  private final List<MethodException> exceptionBlocks; // exception table
-
-  /**
-   * This contains the LineNumberTable that may be compiled for this method.
-   * Nevertheless for decompiling purposes this cant be used since this is
-   * optional information in a class file. If debugging is turned off then the
-   * compiler wont bother to generate this LineNumberTable.
-   */
-  private LineNumberTable lineTable;
-
-  /**
-   * The LocalVariableTable optional variable-length attribute providing debug
-   * information and also to provide meaningful names to parameters of a method
-   * as well as local variables in a method. This will be populated and used
-   * only when debugging is turned on [using -g option]. Else the deompiler will
-   * assign its own name.
-   * 
-   */
-  private VariableTable variableTable;
+  
 
 }
