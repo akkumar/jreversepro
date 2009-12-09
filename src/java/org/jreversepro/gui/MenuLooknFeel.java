@@ -29,7 +29,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
-import com.apple.laf.AquaLookAndFeel;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -74,7 +73,7 @@ public class MenuLooknFeel extends JMenu {
     LnFClasses = new HashMap<String, String>();
     LnFClasses.put(WINDOWS, WindowsLookAndFeel.class.getName());
     LnFClasses.put(MOTIF, MotifLookAndFeel.class.getName());
-    LnFClasses.put(MAC, AquaLookAndFeel.class.getName());
+    LnFClasses.put(MAC, "com.apple.laf.AquaLookAndFeel");//AquaLookAndFeel.class.getName());
     LnFClasses.put(SYNTH, SynthLookAndFeel.class.getName());
     LnFClasses.put(NIMBUS, NimbusLookAndFeel.class.getName());
   }
