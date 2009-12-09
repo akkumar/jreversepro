@@ -17,40 +17,55 @@
 
 package org.jreversepro.gui;
 
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.SwingConstants;
-
-import java.awt.event.ItemListener;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ActionEvent;
-
-import java.awt.Frame;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GraphicsEnvironment;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.TreeSet;
-import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class DlgFont extends JDialog implements ItemListener, ActionListener {
 
+  // Static constants
+  public static final int SELECTED = 1;
+  public static final int CANCELLED = 2;
+
+  public static final int PREVIEW_SIZE = 20;
+  public static final int OPTIMUM_SIZE = 14;
+
+  private final JComboBox faces;
+
+  private final JButton btnOk;
+  private final JButton btnCancel;
+
+  private final JLabel lblTest;
+
+  private int selection;
+
+  private Font curFont;
+  
   public DlgFont(Frame owner, String title) {
     super(owner, title, true);
 
     faces = new JComboBox(getFontObjects());
     faces.addItemListener(this);
 
-    BtnOk = new JButton("         Ok           ");
-    BtnCancel = new JButton("     Cancel        ");
+    btnOk = new JButton("         Ok           ");
+    btnCancel = new JButton("     Cancel        ");
 
-    LblTest = new JLabel("AaBbCc123", SwingConstants.LEFT);
-    LblTest.setFont(new Font("SansSerif", Font.PLAIN, OPTIMUM_SIZE));
+    lblTest = new JLabel("AaBbCc123", SwingConstants.LEFT);
+    lblTest.setFont(new Font("SansSerif", Font.PLAIN, OPTIMUM_SIZE));
 
     GridBagConstraints c = new GridBagConstraints();
 
@@ -65,71 +80,55 @@ public class DlgFont extends JDialog implements ItemListener, ActionListener {
     c.gridwidth = GridBagConstraints.REMAINDER;
     c.gridheight = 1;
     c.weightx = 0.0;
-    getContentPane().add(BtnOk, c);
-    getContentPane().add(BtnCancel, c);
+    getContentPane().add(btnOk, c);
+    getContentPane().add(btnCancel, c);
 
     c.gridwidth = 1; // reset to the default
-    getContentPane().add(LblTest, c);
+    getContentPane().add(lblTest, c);
 
     setSize(500, 120);
     setLocation(100, 200);
     setResizable(false);
 
-    BtnOk.addActionListener(this);
-    BtnCancel.addActionListener(this);
+    btnOk.addActionListener(this);
+    btnCancel.addActionListener(this);
   }
 
   public Font getChosenFont() {
-    return CurFont;
+    return curFont;
   }
 
   public int showFontDialog() {
     setVisible(true);
-    return Selection;
+    return selection;
   }
 
   public void itemStateChanged(ItemEvent e) {
     Font PreviewFont = new Font((String) (faces.getSelectedItem()), Font.PLAIN,
         PREVIEW_SIZE);
 
-    CurFont = new Font((String) (faces.getSelectedItem()), Font.PLAIN,
+    curFont = new Font((String) (faces.getSelectedItem()), Font.PLAIN,
         OPTIMUM_SIZE);
-    LblTest.setFont(PreviewFont);
+    lblTest.setFont(PreviewFont);
   }
 
   public void actionPerformed(ActionEvent e) {
-    if (e.getSource() == BtnOk)
-      Selection = SELECTED;
+    if (e.getSource() == btnOk)
+      selection = SELECTED;
     else
-      Selection = CANCELLED;
+      selection = CANCELLED;
     setVisible(false);
   }
 
   // Get Font Objects
-  private Vector<String> getFontObjects() {
+  private String[] getFontObjects() {
     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
-    FontSet Fs = new FontSet(ge.getAllFonts());
-    return Fs.getFonts();
+    FontSet fontSet = new FontSet(ge.getAllFonts());
+    return fontSet.toArray(new String[ge.getAllFonts().length]);
   }
 
-  // Static constants
-  public static final int SELECTED = 1;
-  public static final int CANCELLED = 2;
 
-  public static final int PREVIEW_SIZE = 20;
-  public static final int OPTIMUM_SIZE = 14;
-
-  private JComboBox faces;
-
-  private JButton BtnOk;
-  private JButton BtnCancel;
-
-  private JLabel LblTest;
-
-  private int Selection;
-
-  private Font CurFont;
 
 }// End of class
 
@@ -145,14 +144,4 @@ class FontSet extends TreeSet<String> {
     }
   }
 
-  /**
-   * @return the fonts present in the collection.
-   */
-  public Vector<String> getFonts() {
-    Vector<String> result = new Vector<String>();
-    for (String s : this) {
-      result.add(s);
-    }
-    return result;
-  }
 }
