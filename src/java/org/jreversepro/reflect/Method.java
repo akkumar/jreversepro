@@ -25,8 +25,8 @@ import java.util.Map;
 
 import org.jreversepro.jvm.JVMConstants;
 import org.jreversepro.jvm.TypeInferrer;
-import org.jreversepro.reflect.variabletable.SymbolTable;
-import org.jreversepro.reflect.variabletable.SymbolTableContext;
+import org.jreversepro.reflect.variabletable.DynamicVariableTable;
+import org.jreversepro.reflect.variabletable.DynamicVariableTableContext;
 import org.jreversepro.reflect.variabletable.VariableTable;
 
 
@@ -253,8 +253,8 @@ public class Method extends Member {
 
   public void initializeSymbolTable() {
     if (variableTable == null) {
-      SymbolTableContext ctx = new SymbolTableContext(this);
-      variableTable = new SymbolTable(ctx);
+      DynamicVariableTableContext ctx = new DynamicVariableTableContext(this);
+      variableTable = new DynamicVariableTable(ctx);
     } else {
       throw new IllegalStateException(
           "VariableTable is already set. We should not be calling this");

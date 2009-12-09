@@ -16,6 +16,12 @@
  */
 package org.jreversepro.reflect.variabletable;
 
+/**
+ * Variable Table , specific to each and every method that records the index of the variable to its type.
+ * 
+ * @author karthik.kumar
+ *
+ */
 public interface VariableTable {
 
   final int FULL_SCOPE_INSTRUCTION_INDEX = 0;

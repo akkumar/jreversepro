@@ -28,6 +28,9 @@ import org.jreversepro.reflect.variabletable.VariableTable;
 
 
 /**
+ * Information about the local variable table inferred from the class file format, (if present).
+ * <br> Usually the information is present if the source has been compiled with the debugging option ( -g ) . 
+ * 
  * @author karthikeyanc
  * 
  */
@@ -66,7 +69,7 @@ public class LocalVariableTable implements VariableTable {
     // when long or double is in the argument it increments index by two.
     // so the varIndex should be adjusted as per that
 
-    for (LocalVariable locVar : variableList) {
+    for (final LocalVariable locVar : variableList) {
       if (locVar.getIndex() == (varIndex)
           && (locVar.getStartPc() + locVar.getLength()) >= insIndex) {
         return locVar.getName();

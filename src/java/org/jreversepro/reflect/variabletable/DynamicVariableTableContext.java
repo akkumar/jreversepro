@@ -23,20 +23,7 @@ import java.util.Map;
 import org.jreversepro.reflect.Method;
 
 
-public class SymbolTableContext {
-
-  /**
-   * 
-   * @param method
-   *          Method Instance for SymbolTableContext needs to be created.
-   */
-  public SymbolTableContext(Method method) {
-    maxSymbols = method.getMaxLocals();
-    args = method.getArgList();
-    isMethodStatic = method.isStatic();
-    mapMethodExceptions = method.getAllExceptionsAsMap();
-    jvmMethodReturnType = method.getReturnType();
-  }
+public class DynamicVariableTableContext {
 
   Map<Integer, String> mapMethodExceptions;
 
@@ -47,4 +34,19 @@ public class SymbolTableContext {
   boolean isMethodStatic; // Is the given method static
 
   String jvmMethodReturnType; // JVM Method Return type
+  
+  /**
+   * 
+   * @param method
+   *          Method Instance for SymbolTableContext needs to be created.
+   */
+  public DynamicVariableTableContext(Method method) {
+    maxSymbols = method.getMaxLocals();
+    args = method.getArgList();
+    isMethodStatic = method.isStatic();
+    mapMethodExceptions = method.getAllExceptionsAsMap();
+    jvmMethodReturnType = method.getReturnType();
+  }
+
+  
 }

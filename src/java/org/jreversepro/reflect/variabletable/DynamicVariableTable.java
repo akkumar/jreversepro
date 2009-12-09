@@ -33,21 +33,20 @@ import org.jreversepro.reflect.instruction.Instruction;
 
 
 /**
- * SymbolTable - Symbol Table of a method containing local variables only.
+ * Variable Table built dynamically by the app.
  * 
- * @author Karthik Kumar (super star) Karthikeyan C (bercolax)
+ * @author Karthik Kumar
+ *         Karthikeyan C 
  * 
- *         Modification History 01-June-2008 SymbolTable(SymbolTableContext)
- *         Constructor
  * 
  */
-public class SymbolTable implements VariableTable {
+public class DynamicVariableTable implements VariableTable {
 
   /**
    * @param context
    *          Context in which symbol table is going to be based on.
    */
-  public SymbolTable(SymbolTableContext context) {
+  public DynamicVariableTable(DynamicVariableTableContext context) {
 
     maxSymbols = context.maxSymbols;
 
