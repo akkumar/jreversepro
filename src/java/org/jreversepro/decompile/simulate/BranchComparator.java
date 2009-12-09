@@ -17,7 +17,6 @@
  **/
 package org.jreversepro.decompile.simulate;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -25,7 +24,7 @@ import java.util.Comparator;
  * 
  * @author Karthik Kumar.
  */
-public class BranchComparator implements Comparator<BranchEntry>, Serializable {
+public class BranchComparator implements Comparator<BranchEntry> {
 
   /**
    * Method to compare two JBranchComparator objects
