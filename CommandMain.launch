@@ -7,6 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.jreversepro.cmd.CommandMain"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-i ${project_loc}/bin/net/sf/jrevpro/input/Hello.class -d"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-i ${project_loc}/bin/org/jreversepro/input/Hello.class -d"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="jreversepro"/>
 </launchConfiguration>
