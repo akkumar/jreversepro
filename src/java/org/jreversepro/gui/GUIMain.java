@@ -35,7 +35,6 @@ import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import org.apache.commons.io.IOUtils;
 import org.jreversepro.JReverseProContext;
@@ -272,7 +271,6 @@ public class GUIMain extends JFrame implements ActionListener,
    */
   private void initAppState() {
     // Set Default Theme.
-    MetalLookAndFeel.setCurrentTheme(new MyFavTheme());
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     FileInputStream fis = null;
     try {
@@ -284,7 +282,6 @@ public class GUIMain extends JFrame implements ActionListener,
       int y = Integer.parseInt(pp.getProperty(YPOS));
       int width = Integer.parseInt(pp.getProperty(XSIZE));
       int height = Integer.parseInt(pp.getProperty(YSIZE));
-      mMbrGen.OnLookFeel.setAppLookAndFeel(pp.getProperty(L_AND_F));
 
       mMbrGen.setFlag(pp.getProperty(DECOMPILE_FLAG));
       pnlEditor.setEditorFont(new Font(pp.getProperty(FONT), Font.PLAIN,
@@ -298,7 +295,6 @@ public class GUIMain extends JFrame implements ActionListener,
       setSize(800, 550);
       pnlEditor.setEditorFont(new Font(ClassEditPanel.DEFAULT_FONT, Font.PLAIN,
           DlgFont.OPTIMUM_SIZE));
-      mMbrGen.OnLookFeel.setDefaultLookAndFeel();
       System.err.println("Failed to load property file");
     } catch (IOException ioe) {
       System.err.println("Exception while closing a property file ");
@@ -364,7 +360,6 @@ public class GUIMain extends JFrame implements ActionListener,
       pp.setProperty(YPOS, Integer.valueOf(getLocation().y).toString());
       pp.setProperty(XSIZE, Integer.valueOf(getSize().width).toString());
       pp.setProperty(YSIZE, Integer.valueOf(getSize().height).toString());
-      pp.setProperty(L_AND_F, mMbrGen.OnLookFeel.getAppLookAndFeel());
       pp.setProperty(FONT, pnlEditor.getEditorFont().getFamily());
 
       fos = new FileOutputStream(mPropertyFile);
