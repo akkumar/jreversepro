@@ -43,7 +43,7 @@ public final class ConfirmCloseDialog {
   public static boolean confirmExit(JFrame aAppFrame) {
     int OptionSelect = JOptionPane.showConfirmDialog(aAppFrame,
         "Are you sure you want to exit ?", "Confirm Exit",
-        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
     if (OptionSelect == JOptionPane.YES_OPTION) {
       return true;
     } else {
