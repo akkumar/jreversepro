@@ -23,15 +23,35 @@ import java.util.Map;
 
 import org.jreversepro.jvm.JVMConstants;
 
-
 /**
- * <b>ExceptionThrownByMethod</b> is an abstraction of the exception table , that
- * represents the list of exceptions  thrown by the
- * method.
+ * <b>ExceptionThrownByMethod</b> is an abstraction of the exception table ,
+ * that represents the list of exceptions thrown by the method.
  * 
  * @author Karthik Kumar.
  */
 public class ExceptionThrownByMethod {
+
+  /**
+   * Start Pc of the exception handler.
+   */
+  private final int startPc;
+
+  /**
+   * End Pc of the exception handler
+   */
+  private int endPc;
+
+  /**
+   * Set if the exception handler is for ANY data type for the block - {
+   * startpc, endpc }
+   */
+  private final boolean any;
+
+  /**
+   * Key - Exception Handler Pc beginning. <br/>
+   * value - Exception Handler datatype.
+   */
+  Map<Integer, String> excCatchTable;
 
   /**
    * Constructor.
@@ -165,37 +185,13 @@ public class ExceptionThrownByMethod {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("");
-    Enumeration<Integer> enum1 = Collections
-        .enumeration(excCatchTable.keySet());
-    Enumeration<String> enum2 = Collections.enumeration(excCatchTable.values());
 
-    while (enum1.hasMoreElements()) {
+    for (Map.Entry<Integer, String> ent : excCatchTable.entrySet()) {
       sb.append("\t\t" + startPc + "\t" + endPc);
-      sb.append("\t" + enum1.nextElement());
-      sb.append(" " + enum2.nextElement() + "\n");
+      sb.append("\t" + ent.getKey());
+      sb.append(" " + ent.getValue() + "\n");
     }
     return sb.toString();
   }
-
-  /**
-   * Start Pc of the exception handler.
-   */
-  private final int startPc;
-
-  /**
-   * End Pc of the exception handler
-   */
-  private int endPc;
-
-  /**
-   * Set if the exception handler is for ANY data type for the block - {
-   * startpc, endpc }
-   */
-  private final boolean any;
-
-  /**
-   * Map - Key - Handler Pc beginning value -Handler datatype.
-   */
-  Map<Integer, String> excCatchTable;
 
 }
