@@ -26,6 +26,10 @@ import net.sf.jrevpro.jls.JLSConstants;
  */
 public class Assignment extends Expression {
 
+  private final Expression lhs;
+
+  private final Expression rhs;
+  
   /**
    * @param _lhs L.H.S of the given expression
    * @param _rhs R.H.S of the given expression
@@ -48,8 +52,6 @@ public class Assignment extends Expression {
 
   }
 
-  Expression lhs;
 
-  Expression rhs;
 
 }
