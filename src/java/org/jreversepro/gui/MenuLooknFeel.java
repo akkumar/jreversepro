@@ -36,10 +36,16 @@ import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 @SuppressWarnings("serial")
 public class MenuLooknFeel extends JMenu {
 
+  String App_LF;
 
-  JRadioButtonMenuItem MetalLookAndFeel;
-  JRadioButtonMenuItem MotifLookAndFeel;
-  JRadioButtonMenuItem WinLookAndFeel;
+  static final String WINDOWS = "Win";
+  static final String MOTIF = "Motif";
+  static final String MAC = "Mac";
+  static final String SYNTH = "Synth";
+
+  static final Map<String, String> LnFClasses;
+
+  JRadioButtonMenuItem[] lookAndFeels;
 
   ButtonGroup Btngroup;
 
@@ -48,17 +54,9 @@ public class MenuLooknFeel extends JMenu {
   /**
    * Current LnF of the app
    */
-  String App_LF;
-
-  static final String WINDOWS = "Win";
-  static final String MOTIF = "Motif";
-  static final String MAC   = "Mac";
-  static final String SYNTH = "Synth";
-  
-  static final Map<String, String> LnFClasses;
 
   static {
-    LnFClasses = new HashMap<String,String>();
+    LnFClasses = new HashMap<String, String>();
     LnFClasses.put(WINDOWS, WindowsLookAndFeel.class.getName());
     LnFClasses.put(MOTIF, MotifLookAndFeel.class.getName());
     LnFClasses.put(MAC, AquaLookAndFeel.class.getName());
@@ -71,20 +69,24 @@ public class MenuLooknFeel extends JMenu {
     AppFrame = thisFrame;
 
     ButtonGroup group = new ButtonGroup();
+    lookAndFeels = new JRadioButtonMenuItem[LnFClasses.size()];
 
-    MetalLookAndFeel = new JRadioButtonMenuItem("Metal", true);
-    MotifLookAndFeel = new JRadioButtonMenuItem("Motif");
-    WinLookAndFeel = new JRadioButtonMenuItem("Windows");
+    int i = 0;
+    for (final String lnf : LnFClasses.keySet()) {
+      lookAndFeels[i] = new JRadioButtonMenuItem(lnf);
+      lookAndFeels[i].addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          setAppLookAndFeel(lnf);
+        }
+      });
+      i++;
+    }
 
-    group.add(MetalLookAndFeel);
-    group.add(MotifLookAndFeel);
-    group.add(WinLookAndFeel);
+    for (final JRadioButtonMenuItem eachItem : lookAndFeels) {
+      group.add(eachItem);
+      add(eachItem);
+    }
 
-    add(MetalLookAndFeel);
-    add(MotifLookAndFeel);
-    add(WinLookAndFeel);
-
-    addLookAndFeelListeners();
   }
 
   public MenuLooknFeel(JFrame thisFrame) {
@@ -103,8 +105,8 @@ public class MenuLooknFeel extends JMenu {
       } else {
         tmpLF = SYNTH;
       }
-    }
-    else if (rhs.compareTo(WINDOWS) == 0 || rhs.compareTo(MOTIF) == 0 || rhs.compareTo(MAC) == 0) 
+    } else if (rhs.compareTo(WINDOWS) == 0 || rhs.compareTo(MOTIF) == 0
+        || rhs.compareTo(MAC) == 0)
       tmpLF = rhs;
     else
       tmpLF = SYNTH;
@@ -122,27 +124,6 @@ public class MenuLooknFeel extends JMenu {
       App_LF = lnf;
     } catch (Exception _ex) {
     }
-  }
-
-  private void addLookAndFeelListeners() {
-    MetalLookAndFeel.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        setAppLookAndFeel(SYNTH);
-      }
-    });
-
-    MotifLookAndFeel.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        setAppLookAndFeel(MOTIF);
-      }
-    });
-
-    WinLookAndFeel.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        setAppLookAndFeel(WINDOWS);
-      }
-    });
-
   }
 
 }
