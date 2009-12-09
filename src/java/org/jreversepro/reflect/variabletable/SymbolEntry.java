@@ -25,7 +25,7 @@ import java.util.List;
  * 
  * @author Karthik Kumar
  */
-class SymbolEntry {
+class VariableEntry {
 
   /**
    * 
@@ -39,7 +39,7 @@ class SymbolEntry {
    * @param aName
    *          Name of the variable.
    */
-  SymbolEntry(int aVarIndex, int aStoreIndex, String datatype, String aName) {
+  VariableEntry(int aVarIndex, int aStoreIndex, String datatype, String aName) {
     this.symbolIndex = aVarIndex;
     this.datatype = datatype;
     this.name = aName;
@@ -53,7 +53,7 @@ class SymbolEntry {
    * @param datatype
    *          data type of the variable
    */
-  SymbolEntry(String datatype) {
+  VariableEntry(String datatype) {
     this(-1, -1, datatype, "");
   }
 
@@ -127,8 +127,11 @@ class SymbolEntry {
    */
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof SymbolEntry) {
-      SymbolEntry jle = (SymbolEntry) obj;
+    if (obj == null) {
+      return false;
+    }
+    if (obj instanceof VariableEntry) {
+      VariableEntry jle = (VariableEntry) obj;
       return (this.datatype.equals(jle.datatype));
     } else {
       return false;

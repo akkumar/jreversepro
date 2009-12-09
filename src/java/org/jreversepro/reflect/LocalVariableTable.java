@@ -60,7 +60,7 @@ public class LocalVariableTable implements VariableTable {
 
   }
 
-  public int getMaxSymbols() {
+  public int getMaxVariables() {
     return variableList.size();
   }
 

@@ -58,7 +58,7 @@ public interface VariableTable {
    * @return Get the maximum number of symbols available in the scope of the
    *         current method.
    */
-  int getMaxSymbols();
+  int getMaxVariables();
 
   /**
    * @param aVarIndex

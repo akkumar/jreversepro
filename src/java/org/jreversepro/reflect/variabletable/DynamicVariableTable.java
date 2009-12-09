@@ -48,19 +48,19 @@ public class DynamicVariableTable implements VariableTable {
    * Value - List of LocalEntry. since for the same localvariable index, more
    * than one datatypes may exist (of different scope within the method).
    */
-  List<List<SymbolEntry>> symbols;
+  List<List<VariableEntry>> variables;
 
   /**
    * List of symbol names of all 'LocalEntry' variables in the method.
    */
-  Set<String> symbolNames;
+  Set<String> variableNames;
 
   /**
-   * Maximum number of symbols that can be in the table at any given time.
+   * Maximum number of variables that can be in the table at any given time.
    * 
    * 0-based index.
    */
-  int maxSymbols;
+  int maxVariables;
 
   /**
    * Maximum args in that symbol count mentioned in maxSymbols.
@@ -109,12 +109,12 @@ public class DynamicVariableTable implements VariableTable {
    */
   public DynamicVariableTable(DynamicVariableTableContext context) {
 
-    maxSymbols = context.maxSymbols;
+    maxVariables = context.maxSymbols;
 
-    symbols = new ArrayList<List<SymbolEntry>>(context.maxSymbols);
-    for (int i = 0; i < maxSymbols; ++i) {
-      List<SymbolEntry> singleVariableIndexList = new ArrayList<SymbolEntry>();
-      symbols.add(singleVariableIndexList);
+    variables = new ArrayList<List<VariableEntry>>(context.maxSymbols);
+    for (int i = 0; i < maxVariables; ++i) {
+      List<VariableEntry> singleVariableIndexList = new ArrayList<VariableEntry>();
+      variables.add(singleVariableIndexList);
     }
 
     localVariableNameBasis = DEFAULT_LOCAL_VARIABLE_NAME_BASIS;
@@ -123,7 +123,7 @@ public class DynamicVariableTable implements VariableTable {
 
     // Loads the Method Arguments onto symbol table.
 
-    symbolNames = new HashSet<String>();
+    variableNames = new HashSet<String>();
     loadMethodArgumentsToSymbolTable(context.args, context.isMethodStatic);
 
   }
@@ -156,7 +156,7 @@ public class DynamicVariableTable implements VariableTable {
       return;
       // No reassignment of data types for arguments.
     }
-    SymbolEntry ent = retrieveActiveLocalEntry(localVariableIndex,
+    VariableEntry ent = retrieveActiveLocalEntry(localVariableIndex,
         referredBytecodeIndex);
     if (ent != null) {
       // An entry is already present.
@@ -187,8 +187,8 @@ public class DynamicVariableTable implements VariableTable {
    * 
    * @see net.sf.jrevpro.ast.block.symboltable.VariableTable#getMaxSymbols()
    */
-  public int getMaxSymbols() {
-    return maxSymbols;
+  public int getMaxVariables() {
+    return maxVariables;
   }
 
   /*
@@ -197,7 +197,7 @@ public class DynamicVariableTable implements VariableTable {
    * @see net.sf.jrevpro.ast.block.symboltable.VariableTable#getName(int, int)
    */
   public String getName(int aVarIndex, int aInsIndex) {
-    SymbolEntry entry = retrieveActiveLocalEntry(aVarIndex, aInsIndex);
+    VariableEntry entry = retrieveActiveLocalEntry(aVarIndex, aInsIndex);
     if (entry == null) {
       toString();
       throw new IllegalArgumentException(
@@ -244,11 +244,11 @@ public class DynamicVariableTable implements VariableTable {
    * @return Returns a matching LocalTable entry given the variable index and
    *         the instruction index.
    */
-  private SymbolEntry retrieveActiveLocalEntry(int aVarIndex, int aInsIndex) {
-    List<SymbolEntry> currentList = symbols.get(aVarIndex);
-    SymbolEntry rightEntry = null;
+  private VariableEntry retrieveActiveLocalEntry(int aVarIndex, int aInsIndex) {
+    List<VariableEntry> currentList = variables.get(aVarIndex);
+    VariableEntry rightEntry = null;
     for (int i = currentList.size() - 1; i >= 0; i--) {
-      SymbolEntry ent = currentList.get(i);
+      VariableEntry ent = currentList.get(i);
       if (aInsIndex >= ent.getStoreIndex()) {
         rightEntry = ent;
       }
@@ -267,14 +267,14 @@ public class DynamicVariableTable implements VariableTable {
    *          Datatype of the local variable entry.
    */
   private void addEntry(int localVariableIndex, int storeIndex, String jvmType) {
-    List<SymbolEntry> currentList = symbols.get(localVariableIndex);
+    List<VariableEntry> currentList = variables.get(localVariableIndex);
 
     String name = generateLocalVariableName(jvmType, localVariableIndex);
-    SymbolEntry ent = new SymbolEntry(localVariableIndex, storeIndex, jvmType,
+    VariableEntry ent = new VariableEntry(localVariableIndex, storeIndex, jvmType,
         name);
     if (!currentList.contains(ent)) {
       currentList.add(ent);
-      if (!symbolNames.add(name)) {
+      if (!variableNames.add(name)) {
         logger.warning("Symbol Name " + name + " already exists.");
         throw new RuntimeException(
             "Symbol name already exists. Cannot add new one. Hence Quitting.");
@@ -312,7 +312,7 @@ public class DynamicVariableTable implements VariableTable {
     if (arrType) {
       name += LOCAL_VARIABLE_ARRAY_SUFFIX;
     }
-    if (symbolNames.contains(name)
+    if (variableNames.contains(name)
         || JLSLanguageContext.getKeywordList().contains(name)) {
       name = generateUniqueName(name, aVarIndex);
     }
@@ -341,10 +341,10 @@ public class DynamicVariableTable implements VariableTable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     int i = 0;
-    for (List<SymbolEntry> entries : symbols) {
+    for (List<VariableEntry> entries : variables) {
       if (entries.size() > 0) {
         sb.append(i + " = ");
-        for (SymbolEntry ent : entries) {
+        for (VariableEntry ent : entries) {
           sb.append(ent);
         }
         ++i;
