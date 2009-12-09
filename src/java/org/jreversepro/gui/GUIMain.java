@@ -21,8 +21,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,7 +36,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-
 
 import org.apache.commons.io.IOUtils;
 import org.jreversepro.JReverseProContext;
@@ -56,7 +55,7 @@ import org.jreversepro.reflect.Method;
  * @author Karthik Kumar
  */
 @SuppressWarnings("serial")
-public class GUIMain extends JFrame implements ActionListener, WindowListener,
+public class GUIMain extends JFrame implements ActionListener, 
     GuiConstants {
 
   /**
@@ -322,7 +321,18 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     mMbrGen.OnOptFont.addActionListener(this);
 
     mMbrGen.OnHelpAbout.addActionListener(this);
-    addWindowListener(this);
+    addWindowListener(new WindowAdapter() {
+      /**
+       * WindowClosing event handler.
+       * 
+       * @param aEvent
+       *          Event generated.
+       */
+      @Override
+      public void windowClosing(WindowEvent aEvent) {
+        appClose();
+      }
+    });
   }
 
   /**
@@ -367,69 +377,6 @@ public class GUIMain extends JFrame implements ActionListener, WindowListener,
     }
   }
 
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowClosing(WindowEvent aEvent) {
-    appClose();
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowClosed(WindowEvent aEvent) {
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowActivated(WindowEvent aEvent) {
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowDeactivated(WindowEvent aEvent) {
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowIconified(WindowEvent aEvent) {
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowDeiconified(WindowEvent aEvent) {
-  }
-
-  /**
-   * WindowClosing event handler.
-   * 
-   * @param aEvent
-   *          Event generated.
-   */
-  public void windowOpened(WindowEvent aEvent) {
-  }
 
   /**
    * Creates the JTree of the LHS Panel ssociated with the class.
