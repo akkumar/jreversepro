@@ -34,7 +34,8 @@ import org.jreversepro.reflect.instruction.Instruction;
 /**
  * Variable Table built dynamically by the app.
  * 
- * @author Karthik Kumar Karthikeyan C
+ * @author Karthik Kumar
+ * @author Karthikeyan C
  * 
  * 
  */
@@ -247,6 +248,8 @@ public class DynamicVariableTable implements VariableTable {
   private VariableEntry retrieveActiveLocalEntry(int aVarIndex, int aInsIndex) {
     List<VariableEntry> currentList = variables.get(aVarIndex);
     VariableEntry rightEntry = null;
+    //Find the most recent variable entry in the list, whose store index is lower than 
+    // the instruction index and retrieve the same.
     for (int i = currentList.size() - 1; i >= 0; i--) {
       VariableEntry ent = currentList.get(i);
       if (aInsIndex >= ent.getStoreIndex()) {
