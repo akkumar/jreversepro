@@ -76,7 +76,7 @@ public class InvokeEvaluator extends AbstractInstructionEvaluator {
   /*
    * (non-Javadoc)
    * 
-   * @seenet.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
+   * @see net.sf.jrevpro.decompile.evaluator.AbstractInstructionEvaluator#
    * getProcessingOpcodes()
    */
   @Override

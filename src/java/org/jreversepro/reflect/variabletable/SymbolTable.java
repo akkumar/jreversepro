@@ -71,7 +71,7 @@ public class SymbolTable implements VariableTable {
   /*
    * (non-Javadoc)
    * 
-   * @seenet.sf.jrevpro.ast.block.symboltable.VariableTable#
+   * @see net.sf.jrevpro.ast.block.symboltable.VariableTable#
    * recordLocalDatatypeReference(int, char, int)
    */
   public void recordLocalDatatypeReference(int localVariableIndex,
@@ -83,7 +83,7 @@ public class SymbolTable implements VariableTable {
   /*
    * (non-Javadoc)
    * 
-   * @seenet.sf.jrevpro.ast.block.symboltable.VariableTable#
+   * @see net.sf.jrevpro.ast.block.symboltable.VariableTable#
    * recordLocalDatatypeReference(int, java.lang.String, int)
    */
   public void recordLocalDatatypeReference(int localVariableIndex,
@@ -167,8 +167,8 @@ public class SymbolTable implements VariableTable {
 
     for (String argType : methodArguments) {
       addEntry(symIndex++, ARG_BYTECODE_REFERRED_INDEX, argType);
-      if (argType.equals(JVMConstants.JVM_TYPE_LONG)
-          || argType.equals(JVMConstants.JVM_TYPE_DOUBLE)) {
+      if (argType.equals(String.valueOf(JVMConstants.JVM_TYPE_LONG))
+          || argType.equals(String.valueOf(JVMConstants.JVM_TYPE_DOUBLE))) {
         // Since both long and double take two entries.
         // increment the symbol table count once again
         symIndex++;
