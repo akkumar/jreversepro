@@ -78,7 +78,7 @@ public class Method extends Member {
    * This list contains the exception tables that are defined for this method.
    * The members of this list are - JException
    */
-  private final List<MethodException> exceptionBlocks; // exception table
+  private final List<ExceptionThrownByMethod> exceptionBlocks; // exception table
 
   /**
    * This contains the LineNumberTable that may be compiled for this method.
@@ -102,7 +102,7 @@ public class Method extends Member {
    * 
    */
   public Method() {
-    exceptionBlocks = new ArrayList<MethodException>();
+    exceptionBlocks = new ArrayList<ExceptionThrownByMethod>();
     throwsClasses = new ArrayList<String>(2);
   }
 
@@ -131,7 +131,7 @@ public class Method extends Member {
   public void addExceptionBlock(int startPc, int endPc, int handlerPc,
       String datatype) {
 
-    MethodException exc = new MethodException(startPc, endPc, handlerPc,
+    ExceptionThrownByMethod exc = new ExceptionThrownByMethod(startPc, endPc, handlerPc,
         datatype);
 
     // Probably some changes to the keys put in the list.
@@ -139,7 +139,7 @@ public class Method extends Member {
     if (tryIndex == -1) {
       exceptionBlocks.add(exc);
     } else {
-      MethodException oldTry = exceptionBlocks.get(tryIndex);
+      ExceptionThrownByMethod oldTry = exceptionBlocks.get(tryIndex);
       oldTry.addCatchBlock(handlerPc, datatype);
     }
   }
@@ -277,7 +277,7 @@ public class Method extends Member {
    * 
    * @return Returns the exception table.
    */
-  public List<MethodException> getexceptionBlocks() {
+  public List<ExceptionThrownByMethod> getExceptionBlocks() {
     return exceptionBlocks;
   }
 
@@ -288,7 +288,7 @@ public class Method extends Member {
    */
   public Map<Integer, String> getAllExceptionsAsMap() {
     Map<Integer, String> newMap = new HashMap<Integer, String>();
-    for (MethodException exc : exceptionBlocks) {
+    for (ExceptionThrownByMethod exc : exceptionBlocks) {
       newMap.putAll(exc.excCatchTable);
     }
     return newMap;
@@ -327,7 +327,7 @@ public class Method extends Member {
     if (exceptionBlocks != null) {
       result.append("\n\n\t  /**");
       result.append("\n\t\tFrom  To  Handler\tClass\n");
-      for (MethodException exc : exceptionBlocks) {
+      for (ExceptionThrownByMethod exc : exceptionBlocks) {
         result.append(exc.toString());
       }
       result.append("\t  **/\n");

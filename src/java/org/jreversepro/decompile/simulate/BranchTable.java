@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import org.jreversepro.CustomLoggerFactory;
 import org.jreversepro.jvm.Opcodes;
 import org.jreversepro.reflect.Method;
-import org.jreversepro.reflect.MethodException;
+import org.jreversepro.reflect.ExceptionThrownByMethod;
 import org.jreversepro.reflect.instruction.Instruction;
 
 
@@ -250,8 +250,8 @@ public class BranchTable implements BranchConstants, Opcodes {
    * @param excTryTable
    *          Individual entries being JException.
    */
-  public void addTryBlocks(List<MethodException> excTryTable) {
-    for (MethodException exc : excTryTable) {
+  public void addTryBlocks(List<ExceptionThrownByMethod> excTryTable) {
+    for (ExceptionThrownByMethod exc : excTryTable) {
       int insIndex = exc.getStartPc();
       if (insIndex == -1) {
         continue;

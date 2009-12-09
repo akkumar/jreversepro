@@ -25,13 +25,13 @@ import org.jreversepro.jvm.JVMConstants;
 
 
 /**
- * <b>MethodException</b> is an abstraction of the exception table , that
- * represents the list of exceptions (represented by a table) thrown by the
+ * <b>ExceptionThrownByMethod</b> is an abstraction of the exception table , that
+ * represents the list of exceptions  thrown by the
  * method.
  * 
  * @author Karthik Kumar.
  */
-public class MethodException {
+public class ExceptionThrownByMethod {
 
   /**
    * Constructor.
@@ -46,7 +46,7 @@ public class MethodException {
    * @param rhsType
    *          Handler data type.
    */
-  public MethodException(int rhsStart, int rhsEnd, int rhsHandler,
+  public ExceptionThrownByMethod(int rhsStart, int rhsEnd, int rhsHandler,
       String rhsType) {
     startPc = rhsStart;
     endPc = rhsEnd;
@@ -124,10 +124,10 @@ public class MethodException {
    */
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof MethodException)) {
+    if (!(obj instanceof ExceptionThrownByMethod)) {
       return false;
     } else {
-      return sameTryBlock((MethodException) obj);
+      return sameTryBlock((ExceptionThrownByMethod) obj);
     }
   }
 
@@ -140,7 +140,7 @@ public class MethodException {
    * @return Returns true if the code blocks are same for both of them. false,
    *         otherwise.
    */
-  public boolean sameTryBlock(MethodException exc) {
+  public boolean sameTryBlock(ExceptionThrownByMethod exc) {
     return (startPc == exc.startPc && endPc == exc.endPc);
   }
 
