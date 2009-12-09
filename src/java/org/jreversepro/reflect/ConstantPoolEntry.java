@@ -26,6 +26,46 @@ package org.jreversepro.reflect;
  **/
 public class ConstantPoolEntry {
 
+  public static final int INVALID_CONSTANT_POOL_POINTER = -1;
+
+  /**
+   * ptr1 is the first pointer from this ConstantPoolEntry. An example could be
+   * TAG_CLASS. TagClass would have an entry pointing to a TAG_UTF8 that
+   * contains the class name. In that case the ptr1 of TAG_CLASS entry would
+   * give lead to TAG_UTF8.
+   **/
+  int ptr1;
+
+  /**
+   * ptr2 is the second pointer from this ConstantPoolEntry. An example could be
+   * TAG_FIELDTYPE. TagFieldType will have two entries - the first one to
+   * TAG_CLASS and the second one to TAG_NAMETYPE.In this case ptr2 would have
+   * the number of TAG_NAMETYPE index.
+   **/
+  int ptr2;
+
+  /**
+   * This is applicable to TAG_UTF8 TAG_INTEGER TAG_FLOAT TAG_DOUBLE TAG_LONG
+   * that contains the actual value of the tag.
+   **/
+  String value;
+
+  /**
+   * Tag Byte tells us about what tag it is. It can be one of the following.
+   * TAG_UTF8 corresponds to CONSTANT_UTF8. <Br/>
+   * TAG_INTEGER corresponds to CONSTANT_INTEGER. <br/>
+   * TAG_FLOAT corresponds to CONSTANT_FLOAT <br/>
+   * TAG_LONG corresponds to CONSTANT_LONG <BR/>
+   * TAG_DOUBLE corresponds to CONSTANT_DOUBLE <br/>
+   * TAG_CLASS corresponds to CONSTANT_CLASS <br/>
+   * TAG_STRING corresponds to CONSTANT_STRING <br />
+   * TAG_FIELDREF corresponds to CONSTANT_FIELDREF <br />
+   * TAG_METHODREF corresponds to CONSTANT_METHODREF <br />
+   * TAG_INTERFACEREF corresponds to CONSTANT_INTERFACEREF <br/>
+   * TAG_NAMETYPE corresponds to CONSTANT_NAMETYPE
+   **/
+  int tagByte;
+  
   /**
    * Constructor
    * 
@@ -76,6 +116,7 @@ public class ConstantPoolEntry {
   /**
    * @return Returns stringified form of this class.
    **/
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(ConstantPool.getTagName(tagByte));
@@ -100,39 +141,5 @@ public class ConstantPoolEntry {
     return sb.toString();
   }
 
-  public static final int INVALID_CONSTANT_POOL_POINTER = -1;
-
-  /**
-   * ptr1 is the first pointer from this ConstantPoolEntry. An example could be
-   * TAG_CLASS. TagClass would have an entry pointing to a TAG_UTF8 that
-   * contains the class name. In that case the ptr1 of TAG_CLASS entry would
-   * give lead to TAG_UTF8.
-   **/
-  int ptr1;
-
-  /**
-   * ptr2 is the second pointer from this ConstantPoolEntry. An example could be
-   * TAG_FIELDTYPE. TagFieldType will have two entries - the first one to
-   * TAG_CLASS and the second one to TAG_NAMETYPE.In this case ptr2 would have
-   * the number of TAG_NAMETYPE index.
-   **/
-  int ptr2;
-
-  /**
-   * This is applicable to TAG_UTF8 TAG_INTEGER TAG_FLOAT TAG_DOUBLE TAG_LONG
-   * that contains the actual value of the tag.
-   **/
-  String value;
-
-  /**
-   * Tag Byte tells us about what tag it is. It can be one of the following.
-   * TAG_UTF8 corresponds to CONSTANT_UTF8 TAG_INTEGER corresponds to
-   * CONSTANT_INTEGER TAG_FLOAT corresponds to CONSTANT_FLOAT TAG_LONG
-   * corresponds to CONSTANT_LONG TAG_DOUBLE corresponds to CONSTANT_DOUBLE
-   * TAG_CLASS corresponds to CONSTANT_CLASS TAG_STRING corresponds to
-   * CONSTANT_STRING TAG_FIELDREF corresponds to CONSTANT_FIELDREF TAG_METHODREF
-   * corresponds to CONSTANT_METHODREF TAG_INTERFACEREF corresponds to
-   * CONSTANT_INTERFACEREF TAG_NAMETYPE corresponds to CONSTANT_NAMETYPE
-   **/
-  int tagByte;
+ 
 }
