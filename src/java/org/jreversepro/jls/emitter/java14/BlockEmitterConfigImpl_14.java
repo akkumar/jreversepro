@@ -19,6 +19,8 @@ package org.jreversepro.jls.emitter.java14;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jreversepro.ast.block.MethodBlock;
+import org.jreversepro.ast.block.Statement;
 import org.jreversepro.jls.emitter.BlockEmitterConfig;
 
 
@@ -29,12 +31,13 @@ import org.jreversepro.jls.emitter.BlockEmitterConfig;
  */
 public class BlockEmitterConfigImpl_14 extends BlockEmitterConfig {
 
+  @Override
   public Map<String, String> getConfig() {
     Map<String, String> map = new HashMap<String, String>();
-    map.put("net.sf.jrevpro.ast.block.MethodBlock",
-        "net.sf.jrevpro.jls.emitter.java14.MethodEmitter");
-    map.put("net.sf.jrevpro.ast.block.Statement",
-        "net.sf.jrevpro.jls.emitter.java14.StatementEmitter");
+    map.put(MethodBlock.class.getName(),
+        MethodEmitter.class.getName());
+    map.put(Statement.class.getName(),
+        StatementEmitter.class.getName());
     return map;
   }
 
