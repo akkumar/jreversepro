@@ -1,36 +1,29 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
     <property file="${base.dir}/build.properties" />
 
-    <property name="ivy.jar.file" value="${ivy.jar.dir}/apache-ivy-${ivy.install.version}/ivy-${ivy.install.version}.jar" />
-
-    <target name="init-ivy">
-        <available property="ivy.installed" value="true"
-            file="${ivy.jar.file}" type="file" />
-    </target>
-
-    <target name="clean-ivy">
-        <delete dir="${ivy.jar.dir}" />
+    <target name="init.ivy">
+    	<property name="mvnrepo" value="http://repo2.maven.org/maven2" />
+    	<property name="ivy.version" value="2.1.0" />
+        <property name="ivy_repo_url" value="${mvnrepo}/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar" />
+        
+        <property name="ivy.jar.file" value="${user.home}/.ivy2/ivy-${ivy.version}.jar" />
+    </target>   	
+ 
+    <target name="clean.ivy" depends="init.ivy">
         <delete dir="${lib.dir}" />
     </target>
 
-    <target name="download-ivy" depends="init-ivy" unless="ivy.installed">
-        <mkdir dir="${ivy.jar.dir}" />
-        <echo message="Downloading Ivy..." />
-    	<delete file="${ivy.jar.dir}/apache-ivy-${ivy.install.version}-bin.zip" />
-        <get src="${central.repo}" dest="${ivy.jar.dir}/apache-ivy-${ivy.install.version}-bin.zip" />
-    	<unzip src="${ivy.jar.dir}/apache-ivy-${ivy.install.version}-bin.zip" dest="${ivy.jar.dir}" />
+    <target name="load.ivy" depends="init.ivy" >
+    	<get src="${ivy_repo_url}" dest="${ivy.jar.file}" usetimestamp="true" />
+        <taskdef loaderRef="ivyLoader" uri="antlib:org.apache.ivy.ant">
+			<classpath>
+        		<pathelement location="${ivy.jar.file}" />
+        	</classpath>
+        </taskdef>	
     </target>
 
-    <target name="load-ivy" depends="init-ivy,download-ivy">
-        <path id="ivy.lib.path">
-            <fileset dir="${ivy.jar.dir}" includes="**/*.jar" />
-        </path>
-        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant"
-            classpathref="ivy.lib.path" />
+    <target name="retrieve.ivy" depends="load.ivy">
         <ivy:settings file="${basedir}/ivy.settings.xml" />
-    </target>
-
-    <target name="retrieve-ivy" depends="load-ivy">
         <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[revision].[ext]"
             conf="compile,test" type="jar" />
     </target>

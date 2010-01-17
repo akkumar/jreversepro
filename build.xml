@@ -59,7 +59,7 @@
     </target>
 
     <target name="compile"
-        depends="init,retrieve-ivy,compile.pre,compile.main,compile.post" />
+        depends="init,retrieve.ivy,compile.pre,compile.main,compile.post" />
 
 
     <!-- Create the Jar File -->
