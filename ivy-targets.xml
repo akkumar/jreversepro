@@ -2,24 +2,24 @@
     <property file="${base.dir}/build.properties" />
 
     <target name="init.ivy">
-    	<property name="mvnrepo" value="http://repo2.maven.org/maven2" />
-    	<property name="ivy.version" value="2.1.0" />
+      <property name="mvnrepo" value="http://repo2.maven.org/maven2" />
+      <property name="ivy.version" value="2.1.0" />
         <property name="ivy_repo_url" value="${mvnrepo}/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar" />
         
         <property name="ivy.jar.file" value="${user.home}/.ivy2/ivy-${ivy.version}.jar" />
-    </target>   	
+    </target>     
  
     <target name="clean.ivy" depends="init.ivy">
         <delete dir="${lib.dir}" />
     </target>
 
     <target name="load.ivy" depends="init.ivy" >
-    	<get src="${ivy_repo_url}" dest="${ivy.jar.file}" usetimestamp="true" />
+      <get src="${ivy_repo_url}" dest="${ivy.jar.file}" usetimestamp="true" />
         <taskdef loaderRef="ivyLoader" uri="antlib:org.apache.ivy.ant">
-			<classpath>
-        		<pathelement location="${ivy.jar.file}" />
-        	</classpath>
-        </taskdef>	
+      <classpath>
+            <pathelement location="${ivy.jar.file}" />
+          </classpath>
+        </taskdef>  
     </target>
 
     <target name="retrieve.ivy" depends="load.ivy">

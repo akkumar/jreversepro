@@ -55,7 +55,7 @@
             source="${javac.source}" target="${javac.target}"
             classpathref="src.class.path" >
             <compilerarg value="-Xlint"/>
-     	</javac>
+      </javac>
     </target>
 
     <target name="compile"
@@ -177,24 +177,24 @@
     </target>
 
     <target name="decompile" depends="compile" description="Launch the GUI version">
-       	<java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
-    		<arg line="-i ${basedir}/bin/org/jreversepro/input/Hello.class -d" />
-    	</java>
- 	</target>
+        <java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
+        <arg line="-i ${basedir}/bin/org/jreversepro/input/Hello.class -d" />
+      </java>
+  </target>
 
     <target name="disassemble" depends="compile" description="Launch the GUI version">
-       	<java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
-    		<arg line="-i ${basedir}/bin/org/jreversepro/input/Hello.class -a" />
-    	</java>
- 	</target>
- 		
- 	<target name="gui" depends="compile" description="Launch the GUI version">
- 		<java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
- 	    	<arg line="-u" />
- 	    </java>
- 	</target>
-	
-	<!--
+        <java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
+        <arg line="-i ${basedir}/bin/org/jreversepro/input/Hello.class -a" />
+      </java>
+  </target>
+    
+  <target name="gui" depends="compile" description="Launch the GUI version">
+    <java classpathref="src.class.path" fork="true" classname="org.jreversepro.cmd.CommandMain" >
+        <arg line="-u" />
+      </java>
+  </target>
+  
+  <!--
         TODO: The following test related targets do not work . Need to
         get them up and running soon
     -->
