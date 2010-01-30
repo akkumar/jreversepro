@@ -1,6 +1,6 @@
-Main-Class: jreversepro/JMainFrame
+Main-Class: org/jreversepro/GUIMain
 Maintained-By: Karthik Kumar
-Software-Version: 1.4.1
-Home-page: http://jrevpro.sourceforge.net
+Software-Version: 1.6.0
+Home-page: http://jreversepro.blogspot.com
 
 
